@@ -31,7 +31,7 @@ import { Link, useFetchers, useRevalidator, useSubmit } from "react-router";
 import { DocumentPreview, FileDropzone, Hyperlink } from "~/components";
 import DocumentIcon from "~/components/DocumentIcon";
 import { useDateFormatter, usePermissions, useUser } from "~/hooks";
-import type { MethodItemType, OptimisticFileObject } from "~/modules/shared";
+import type { ItemType, OptimisticFileObject } from "~/modules/shared";
 import { getDocumentType } from "~/modules/shared";
 import type { ModelUpload } from "~/types";
 import { path } from "~/utils/path";
@@ -44,14 +44,19 @@ type ItemDocumentsProps = {
   files: ItemFile[];
   itemId: string;
   modelUpload?: ModelUpload;
-  type: MethodItemType;
+  type: ItemType;
+  // Read-only: hide the upload affordances and disable delete. Used when the
+  // owning record is closed (e.g. a completed/cancelled change order). Defaults
+  // to editable so the part detail page is unchanged.
+  isReadOnly?: boolean;
 };
 
 const ItemDocuments = ({
   files,
   itemId,
   modelUpload,
-  type
+  type,
+  isReadOnly = false
 }: ItemDocumentsProps) => {
   const { t } = useLingui();
   const { formatDate } = useDateFormatter();
@@ -98,9 +103,13 @@ const ItemDocuments = ({
             <Trans>Files</Trans>
           </CardTitle>
         </CardHeader>
-        <CardAction>
-          <ItemDocumentForm type={type} itemId={itemId} />
-        </CardAction>
+        {!isReadOnly && (
+          <CardAction>
+            <HStack>
+              <ItemDocumentForm type={type} itemId={itemId} />
+            </HStack>
+          </CardAction>
+        )}
       </HStack>
       <CardContent>
         <Table>
@@ -160,7 +169,7 @@ const ItemDocuments = ({
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           destructive
-                          disabled={!canDelete}
+                          disabled={isReadOnly || !canDelete}
                           onClick={() => deleteModel()}
                         >
                           Delete
@@ -232,7 +241,7 @@ const ItemDocuments = ({
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             destructive
-                            disabled={!canDelete}
+                            disabled={isReadOnly || !canDelete}
                             onClick={() => deleteFile(file)}
                           >
                             Delete
@@ -256,7 +265,7 @@ const ItemDocuments = ({
             )}
           </Tbody>
         </Table>
-        <FileDropzone onDrop={onDrop} />
+        {!isReadOnly && <FileDropzone onDrop={onDrop} />}
       </CardContent>
     </Card>
   );
@@ -266,7 +275,7 @@ export default ItemDocuments;
 
 type ItemDocumentFormProps = {
   itemId: string;
-  type: MethodItemType;
+  type: ItemType;
 };
 
 const ItemDocumentForm = ({ itemId, type }: ItemDocumentFormProps) => {
@@ -293,7 +302,7 @@ const ItemDocumentForm = ({ itemId, type }: ItemDocumentFormProps) => {
 
 type Props = {
   itemId: string;
-  type: MethodItemType;
+  type: ItemType;
 };
 
 export const useItemDocuments = ({ itemId, type }: Props) => {

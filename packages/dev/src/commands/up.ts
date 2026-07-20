@@ -8,10 +8,11 @@ import { currentBranch } from "../git.js";
 import { onShutdown } from "../helpers.js";
 import { pickApps, pickBorrowSlug } from "../prompts.js";
 import {
+  assertAssemblerDepsBuilt,
   installDeps,
   installSkills,
   spawnApps,
-  spawnGeometry,
+  spawnAssembler,
   spawnStripeListener,
   syncEnvSymlinks
 } from "../services/apps.js";
@@ -156,9 +157,14 @@ export async function up(opts: UpOpts = {}) {
   const allApps = opts.all === true;
   const selectedApps = appsRequested
     ? allApps
-      ? APP_CHOICES.map((c) => c.value)
+      ? // --all excludes the assembler: it needs a one-time native OCCT build,
+        // so it stays opt-in (CARBON_DEV_APPS or an explicit pick).
+        APP_CHOICES.map((c) => c.value).filter((v) => v !== "assembler")
       : await pickApps()
     : [];
+  // Fail before booting anything heavy (docker, migrations) if the assembler is
+  // selected without its one-time OCCT build.
+  if (selectedApps.includes("assembler")) assertAssemblerDepsBuilt();
   const slug = resolveSlug(root);
 
   // Resolve borrowed slot before ensureSlugAvailable (borrowing doesn't start
@@ -208,18 +214,27 @@ export async function up(opts: UpOpts = {}) {
     log.info("stripe listener spawned (CARBON_EDITION=cloud)");
   }
 
-  if (selectedApps.includes("geometry")) {
-    spawnGeometry({ root, ports: ctx.ports });
+  if (selectedApps.includes("assembler")) {
+    spawnAssembler({ root, ports: ctx.ports });
   }
 
-  box(
-    summaryLines(
-      ctx.ports,
-      selectedApps,
-      portless ? ctx.branchPrefix : undefined
-    ).join("\n"),
-    `Carbon dev — ${slug}`
+  const summary = summaryLines(
+    ctx.ports,
+    selectedApps,
+    portless ? ctx.branchPrefix : undefined
   );
+  // `box()` derives its padding from `process.stdout.columns`; some
+  // non-interactive terminals (e.g. Conductor's run pane) report a width of 0,
+  // which makes @clack compute a negative `String.repeat` count and throw. This
+  // is only the cosmetic end-of-boot summary and it runs *before* the apps are
+  // spawned, so never let it abort startup — fall back to plain lines if the box
+  // can't be drawn.
+  try {
+    box(summary.join("\n"), `Carbon dev — ${slug}`);
+  } catch {
+    log.info(`Carbon dev — ${slug}`);
+    for (const line of summary) log.message(line);
+  }
 
   // Startup done — hand teardown ownership to the app supervisor (or, for
   // services-only, to a later manual `crbn down`).
@@ -595,7 +610,7 @@ async function runAppsThenTeardown(
   portless: boolean,
   stripeChild?: ExecaChildProcess
 ) {
-  const reactRouterApps = selectedApps.filter((id) => id !== "geometry");
+  const reactRouterApps = selectedApps.filter((id) => id !== "assembler");
   await spawnApps({ root, apps: reactRouterApps, ports, portless });
 
   // Apps exit on Ctrl+C; auto-`down` so compose stack isn't orphaned.
