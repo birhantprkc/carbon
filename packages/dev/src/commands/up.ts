@@ -8,6 +8,7 @@ import { currentBranch } from "../git.js";
 import { onShutdown } from "../helpers.js";
 import { pickApps, pickBorrowSlug } from "../prompts.js";
 import {
+  assemblerDepsBuilt,
   assertAssemblerDepsBuilt,
   installDeps,
   installSkills,
@@ -157,9 +158,19 @@ export async function up(opts: UpOpts = {}) {
   const allApps = opts.all === true;
   const selectedApps = appsRequested
     ? allApps
-      ? // --all excludes the assembler: it needs a one-time native OCCT build,
-        // so it stays opt-in (CARBON_DEV_APPS or an explicit pick).
-        APP_CHOICES.map((c) => c.value).filter((v) => v !== "assembler")
+      ? // --all includes the assembler, but only when its one-time native OCCT
+        // build exists — otherwise skip it (with a note) rather than hard-failing
+        // the whole --all on a machine that hasn't built it. An explicit pick of
+        // the assembler still fails fast below.
+        APP_CHOICES.map((c) => c.value).filter((v) => {
+          if (v !== "assembler") return true;
+          if (assemblerDepsBuilt()) return true;
+          log.warn(
+            "assembler skipped from --all: its OCCT build isn't present " +
+              "(apps/assembler/scripts/build-occt.sh)"
+          );
+          return false;
+        })
       : await pickApps()
     : [];
   // Fail before booting anything heavy (docker, migrations) if the assembler is
@@ -519,10 +530,19 @@ async function runDatabaseMigrations(
           {
             title: "Regenerate types & swagger",
             task: async () => {
-              if (!migrationsApplied) return "skipped (no new migrations)";
+              // Always regenerate types: the on-disk types must match the DB
+              // schema, which can be out of sync even when no NEW migration ran
+              // this boot — the schema is already applied to this worktree's DB
+              // after a branch switch, stash-pop, or reverted generated files.
+              // Gating on `migrationsApplied` left stale types in those cases.
               await execa("pnpm", ["db:types"], { cwd: ctx.root });
-              await execa("pnpm", ["generate:swagger"], { cwd: ctx.root });
-              return "types + swagger refreshed";
+              // Swagger only changes with the schema and is heavier, so keep it
+              // gated on a migration having actually applied this boot.
+              if (migrationsApplied) {
+                await execa("pnpm", ["generate:swagger"], { cwd: ctx.root });
+                return "types + swagger refreshed";
+              }
+              return "types refreshed";
             }
           }
         ]
