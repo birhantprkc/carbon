@@ -42,6 +42,7 @@ import { getMode, setMode } from "~/services/mode.server";
 import Background from "~/styles/background.css?url";
 import NProgress from "~/styles/nprogress.css?url";
 import Tailwind from "~/styles/tailwind.css?url";
+import "@carbon/lib/shims";
 import type { Route } from "./+types/root";
 import { getTheme } from "./services/theme.server";
 
@@ -68,6 +69,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     AUTH_PROVIDERS,
     CARBON_EDITION,
     CARBON_API_URL,
+    CARBON_SLACK_ENABLED,
     CONTROLLED_ENVIRONMENT,
     ERP_URL,
     LOG_LEVEL,
@@ -91,6 +93,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
         AUTH_PROVIDERS,
         CARBON_EDITION,
         CARBON_API_URL,
+        CARBON_SLACK_ENABLED,
         CONTROLLED_ENVIRONMENT,
         ERP_URL,
         LOG_LEVEL,
@@ -214,7 +217,7 @@ function Document({
             }}
           />
         ) : null}
-        <Toaster position="bottom-right" visibleToasts={5} />
+        <Toaster position="bottom-left" visibleToasts={5} />
         <ScrollRestoration />
         <Scripts />
         {!CONTROLLED_ENVIRONMENT && import.meta.env.PROD && <Analytics />}

@@ -5,7 +5,6 @@ import {
   useInterval,
   useRealtimeChannel
 } from "@carbon/react";
-import type { TrackedEntityAttributes } from "@carbon/utils";
 import {
   getLocalTimeZone,
   now,
@@ -16,6 +15,7 @@ import type { RealtimeChannel } from "@supabase/supabase-js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRevalidator } from "react-router";
 import { useUrlParams, useUser } from "~/hooks";
+import { isSerialEntityIncompleteForOperation } from "~/services/operations.service";
 import type {
   JobMaterial,
   JobOperationParameter,
@@ -30,17 +30,25 @@ export function useOperation({
   operation,
   events,
   trackedEntities,
+  isFirstOperation,
   pauseInterval,
-  procedure
+  procedure,
+  onAdvanceToUnit
 }: {
   operation: OperationWithDetails;
   events: ProductionEvent[];
   trackedEntities: TrackedEntity[];
+  // The first operation in the routing has no printed labels yet, so units are
+  // auto-selected; later operations require the operator to scan/select.
+  isFirstOperation: boolean;
   pauseInterval: boolean;
   procedure: Promise<{
     attributes: JobOperationStep[];
     parameters: JobOperationParameter[];
   }>;
+  // Auto-select the next serial unit (used on the first operation, where there
+  // are no printed labels to scan yet). Provided by JobOperation.
+  onAdvanceToUnit?: (entity: TrackedEntity) => void;
 }) {
   const [params] = useUrlParams();
   const trackedEntityParam = params.get("trackedEntityId");
@@ -256,21 +264,47 @@ export function useOperation({
   const [availableEntities, setAvailableEntities] = useState<TrackedEntity[]>(
     []
   );
-  // show the serial selector with the remaining serial numbers for the operation
+  // Later operations prompt scan/select once on arrival — even if a stale or
+  // auto-seeded ?trackedEntityId is already in the URL. This ref makes that a
+  // once-per-mount prompt so we don't re-open the picker while the operator is
+  // working a scanned unit.
+  const arrivalPromptedRef = useRef(false);
+  // Select / advance the serial unit the operator works on. This is the single
+  // advancement authority — complete.tsx no longer redirects to a next unit.
+  //  - First operation: no labels have been printed yet, so there is nothing to
+  //    scan — auto-select the next unit and flow through #1..#N.
+  //  - Later operations: every unit already carries a printed label, so the
+  //    operator scans/selects. Prompt once on arrival (even if a stale param sits
+  //    in the URL) and again after each completion.
   // biome-ignore lint/correctness/useExhaustiveDependencies: suppressed due to migration
   useEffect(() => {
-    if (trackedEntityParam) return;
-    const uncompletedEntities = trackedEntities.filter(
-      (entity) =>
-        !(
-          `Operation ${operationId}` in
-          ((entity.attributes as TrackedEntityAttributes) ?? {})
-        )
+    const uncompletedEntities = trackedEntities.filter((entity) =>
+      isSerialEntityIncompleteForOperation(entity, operationId ?? "")
     );
-    if (uncompletedEntities.length > 0) serialModal.onOpen();
     setAvailableEntities(uncompletedEntities);
+    if (uncompletedEntities.length === 0) return;
+    const selectedIsIncomplete =
+      !!trackedEntityParam &&
+      uncompletedEntities.some((entity) => entity.id === trackedEntityParam);
+
+    if (isFirstOperation) {
+      // Auto-select the next unit once the selected one is done (or none yet).
+      if (!selectedIsIncomplete) onAdvanceToUnit?.(uncompletedEntities[0]);
+      return;
+    }
+
+    // Prompt scan/select once on arrival — even when a stale/auto-seeded
+    // ?trackedEntityId is present, which would otherwise read as "already working
+    // a unit". After that, only re-open once the selected unit is complete; stay
+    // quiet while the operator works a scanned, still-incomplete unit.
+    if (!arrivalPromptedRef.current) {
+      arrivalPromptedRef.current = true;
+      serialModal.onOpen();
+      return;
+    }
+    if (!selectedIsIncomplete) serialModal.onOpen();
     // causes an infinite loop on navigation
-  }, [trackedEntities, trackedEntityParam]);
+  }, [trackedEntities, trackedEntityParam, operationId, isFirstOperation]);
 
   return {
     active,

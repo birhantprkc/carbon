@@ -44,8 +44,8 @@ import { getMode, setMode } from "~/services/mode.server";
 import Background from "~/styles/background.css?url";
 import NProgress from "~/styles/nprogress.css?url";
 import Tailwind from "~/styles/tailwind.css?url";
+import "@carbon/lib/shims";
 import type { Route } from "./+types/root";
-import "./polyfill";
 import { getTheme } from "./services/theme.server";
 
 export const middleware = [requestIdMiddleware, flashMiddleware];
@@ -74,6 +74,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     AUTH_PROVIDERS,
     CARBON_EDITION,
     CARBON_API_URL,
+    CARBON_SLACK_ENABLED,
     CLOUDFLARE_TURNSTILE_SITE_KEY,
     CONTROLLED_ENVIRONMENT,
     ERP_URL,
@@ -104,6 +105,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
         AUTH_PROVIDERS,
         CARBON_API_URL,
         CARBON_EDITION,
+        CARBON_SLACK_ENABLED,
         CLOUDFLARE_TURNSTILE_SITE_KEY,
         CONTROLLED_ENVIRONMENT,
         DEFAULT_LANGUAGE,
@@ -200,7 +202,7 @@ export function Document({
   // Combine the styles with proper selectors
   const themeStyle = {
     ...(mode === "light" ? lightVars : darkVars),
-    "--radius": "0.675rem"
+    "--radius": "0.4375rem"
   } as React.CSSProperties;
 
   return (

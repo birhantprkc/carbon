@@ -149,6 +149,7 @@ const log = getLogger("mes", "job-operation");
 type JobOperationProps = {
   events: ProductionEvent[];
   expiredEntityPolicy?: "Warn" | "Block" | "BlockWithOverride";
+  autoSelectMaterialWithoutPickingList?: boolean;
   files: Promise<StorageItem[]>;
   kanban: Kanban | null;
   materials: Promise<{
@@ -173,6 +174,7 @@ type JobOperationProps = {
   job: Job;
   thumbnailPath: string | null;
   trackedEntities: TrackedEntity[];
+  isFirstOperation: boolean;
   workCenter: Promise<
     PostgrestSingleResponse<{
       name: string;
@@ -215,6 +217,7 @@ function PickedBadge({
 export const JobOperation = ({
   events,
   expiredEntityPolicy = "Block",
+  autoSelectMaterialWithoutPickingList = false,
   files,
   job,
   kanban,
@@ -225,6 +228,7 @@ export const JobOperation = ({
   procedure,
   thumbnailPath,
   trackedEntities,
+  isFirstOperation,
   workCenter
 }: JobOperationProps) => {
   const { t } = useLingui();
@@ -294,8 +298,15 @@ export const JobOperation = ({
     operation: originalOperation,
     events,
     trackedEntities,
+    isFirstOperation,
     pauseInterval: isModalOpen,
-    procedure
+    procedure,
+    // First operation only (no labels to scan yet): auto-select the next unit.
+    // `activeStep` follows `trackedEntityId` via the sync effect above, so setting
+    // the URL param is all that's needed.
+    onAdvanceToUnit: (entity) => {
+      setParams({ trackedEntityId: entity.id });
+    }
   });
 
   const controlsHeight = useMemo(() => {
@@ -332,6 +343,9 @@ export const JobOperation = ({
     artifacts,
     awaitingModel: modelPending,
     showOptimizeProgress,
+    backgroundOptimizing,
+    optimizeFailed,
+    canRetry,
     optimizeQueued,
     retry: onModelRetry,
     retryLabel: modelRetryLabel,
@@ -496,7 +510,7 @@ export const JobOperation = ({
                   <Trans>Model</Trans>
                 </TabsTrigger>
                 <TabsTrigger value="procedure">
-                  <Trans>Procedure</Trans>
+                  <Trans>Instructions</Trans>
                 </TabsTrigger>
                 <TabsTrigger value="chat">
                   <Trans>Chat</Trans>
@@ -1453,7 +1467,20 @@ export const JobOperation = ({
                           {issueModal.isOpen && (
                             <IssueMaterialModal
                               operationId={operation.id}
+                              // The process view issues the whole quantity at
+                              // once, so picked lots may pre-fill when the
+                              // parent is a single entity. The modal enforces
+                              // the full rule: a picking list exists AND (the
+                              // parent is not serialized OR the operation
+                              // makes exactly one unit).
+                              allowPrefill
+                              parentUnitCount={
+                                operation.operationQuantity ?? undefined
+                              }
                               expiredEntityPolicy={expiredEntityPolicy}
+                              autoSelectMaterialWithoutPickingList={
+                                autoSelectMaterialWithoutPickingList
+                              }
                               locationId={locationId}
                               workCenterId={operation.workCenterId ?? undefined}
                               material={selectedMaterial ?? undefined}
@@ -1710,11 +1737,26 @@ export const JobOperation = ({
                             >
                               <Td>
                                 <div className="flex gap-2 items-center">
-                                  <span>{entity.id}</span>
+                                  <div className="flex flex-col min-w-0">
+                                    {entity.readableId ? (
+                                      <>
+                                        <span className="font-medium truncate">
+                                          {entity.readableId}
+                                        </span>
+                                        <span className="text-xs text-muted-foreground font-mono truncate">
+                                          {entity.id}
+                                        </span>
+                                      </>
+                                    ) : (
+                                      <span className="font-mono truncate">
+                                        {entity.id}
+                                      </span>
+                                    )}
+                                  </div>
                                   {entity.id === trackedEntityId && (
-                                    <LuCheck className="text-emerald-500 size-4" />
+                                    <LuCheck className="text-emerald-500 size-4 shrink-0" />
                                   )}
-                                  <Copy text={entity.id} />
+                                  <Copy text={entity.readableId || entity.id} />
                                 </div>
                               </Td>
 
@@ -1772,9 +1814,18 @@ export const JobOperation = ({
               <ModelPreview
                 key={modelPath}
                 awaitingModel={modelPending}
+                optimizing={backgroundOptimizing}
+                optimizeFailed={optimizeFailed}
+                sourceMissing={artifacts?.sourceAvailable === false}
                 optimizedUrl={
                   artifacts?.optimizedModelPath
-                    ? getPrivateUrl(artifacts.optimizedModelPath)
+                    ? // ?v= busts the immutable preview cache on the STABLE
+                      // optimized.glb path when a re-optimise lands.
+                      `${getPrivateUrl(artifacts.optimizedModelPath)}${
+                        artifacts.optimizedAt
+                          ? `?v=${encodeURIComponent(artifacts.optimizedAt)}`
+                          : ""
+                      }`
                     : null
                 }
                 glbUrl={
@@ -1796,7 +1847,7 @@ export const JobOperation = ({
                 }
                 mode={mode}
                 className="rounded-none"
-                onRetry={onModelRetry}
+                onRetry={canRetry ? onModelRetry : undefined}
                 retryLabel={modelRetryLabel}
               />
             ) : (
