@@ -48,6 +48,10 @@ msgstr "(wykluczone dla tego klienta)"
 msgid "{0, plural, one {This part is on 1 open change notice} other {This part is on # open change notices}}"
 msgstr "{0, plural, one {Ta część znajduje się na 1 otwartym zgłoszeniu zmian} other {Ta część znajduje się na # otwartych zgłoszeniach zmian}}"
 
+#. placeholder {0}: precise?.text
+msgid "{0} ago"
+msgstr "{0} temu"
+
 #. placeholder {0}: ar.count
 msgid "{0} customers with a balance"
 msgstr "{0} klientów z saldem"
@@ -1657,8 +1661,14 @@ msgstr "Przypisuje tę jednostkę do centrum pracy do materiałów liniesidowych
 msgid "At each gate"
 msgstr "Na każdej bramce"
 
+msgid "At job completion"
+msgstr "Po zakończeniu zadania"
+
 msgid "At least one condition must match"
 msgstr "Co najmniej jeden warunek musi się zgadzać"
+
+msgid "At operation completion"
+msgstr "Po zakończeniu operacji"
 
 msgid "Attach File"
 msgstr "Dolacz plik"
@@ -2385,9 +2395,8 @@ msgstr "Zarejestruj wejście"
 msgid "Clock Out"
 msgstr "Wyloguj się"
 
-#. placeholder {0}: formatTime(openEntry.clockIn, locale)
-msgid "Clocked in since {0}"
-msgstr "Zalogowany od {0}"
+msgid "Clocked in since <0/>"
+msgstr "Zalogowany od <0/>"
 
 msgid "Close"
 msgstr "Zamknij"
@@ -2580,9 +2589,6 @@ msgstr "Skonfiguruj domyślne konta kapitału i zysków zatrzymanych"
 
 msgid "Configure defaults for the quality dashboard."
 msgstr "Skonfiguruj ustawienia domyślne dla pulpitu jakości."
-
-msgid "Configure how preventative maintenance dispatches are automatically generated from maintenance schedules."
-msgstr "Skonfiguruj sposób automatycznego generowania dyspozycji konserwacji zapobiegawczej z harmonogramów konserwacji."
 
 msgid "Configure Item"
 msgstr "Konfiguruj element"
@@ -3646,9 +3652,6 @@ msgstr "Dni do zapłaty"
 msgid "Days from ordering a part to having it available; planning offsets demand backward by this much."
 msgstr "Dni od zamówienia części do jej dostępności; planowanie przesunięcia wstecz popytu o tę ilość."
 
-msgid "Days in advance to generate dispatches"
-msgstr "Dni z wyprzedzeniem do wygenerowania wysyłek"
-
 msgid "Days Off"
 msgstr "Dni wolne"
 
@@ -3710,6 +3713,9 @@ msgstr "Zdecyduj, co operator widzi, jeśli spróbuje wydać partię lub numer s
 
 msgid "Decide what happens when an operator presses Finish on the shop floor with material still unpicked."
 msgstr "Zdecyduj, co się stanie, gdy operator naciśnie Zakończ na hali produkcji z materiałem, który wciąż nie został pobrany."
+
+msgid "Decide when material picked to a work center but not consumed flows back to the warehouse."
+msgstr "Zdecyduj, kiedy materiał pobrany do stanowiska pracy, ale nie zużyty, wraca do magazynu."
 
 msgid "Decimal Places"
 msgstr "Miejsca Dziesiętne"
@@ -4558,6 +4564,9 @@ msgstr "np. pierwsze 3 do 4 tygodnie"
 msgid "e.g. Zebra 2x1"
 msgstr "np. Zebra 2x1"
 
+msgid "Each operation's unused material returns as soon as the operation is done."
+msgstr "Nieużywany materiał każdej operacji wraca natychmiast po zakończeniu operacji."
+
 msgid "Each physical unit gets its own tracked entity and unique number — one entity, one unit."
 msgstr "Każda jednostka fizyczna otrzymuje swoją własną jednostkę śledzenia i unikalny numer — jedna jednostka, jedna jednostka."
 
@@ -5308,8 +5317,9 @@ msgstr "Data wygaśnięcia (dotyczy wszystkich numerów seryjnych w tej linii)"
 msgid "Expired"
 msgstr "Wygasło"
 
-msgid "Expired {date}"
-msgstr "Wygasło {date}"
+#. placeholder {0}: formatDate(date)
+msgid "Expired {0}"
+msgstr "Wygasło {0}"
 
 msgid "Expired batch"
 msgstr "Wygasła partia"
@@ -5320,8 +5330,8 @@ msgstr "Wygasłe partie"
 msgid "Expires"
 msgstr "Wygasa"
 
-msgid "Expires {date}"
-msgstr "Wygasa {date}"
+msgid "Expires <0/>"
+msgstr "Wygasa <0/>"
 
 msgid "Expires At (optional)"
 msgstr "Wygasa (opcjonalnie)"
@@ -5928,6 +5938,9 @@ msgstr "Od {0}"
 msgid "From / To"
 msgstr "Od / Do"
 
+msgid "From <0/>"
+msgstr "Od <0/>"
+
 msgid "From customer"
 msgstr "Od klienta"
 
@@ -6513,6 +6526,10 @@ msgstr "Wyniki Importu"
 
 msgid "Import your BOM"
 msgstr "Zaimportuj swoją BOM"
+
+#. placeholder {0}: precise?.text
+msgid "in {0}"
+msgstr "za {0}"
 
 msgid "In Onshape, edit this OAuth application's permissions to include \"Application can write to your documents\", then connect again."
 msgstr "W Onshape edytuj uprawnienia tej aplikacji OAuth, aby zawierały „Application can write to your documents”, a następnie połącz się ponownie."
@@ -7161,12 +7178,8 @@ msgstr "Nazwisko"
 msgid "Last Quarter"
 msgstr "Ostatni kwartał"
 
-#. placeholder {0}: formatDateTime(lastSyncedAt)
-msgid "Last synced: {0}"
-msgstr "Ostatnia synchronizacja: {0}"
-
-msgid "Last updated: {formattedDate}"
-msgstr "Ostatnia aktualizacja: {formattedDate}"
+msgid "Last synced: <0/>"
+msgstr "Ostatnia synchronizacja: <0/>"
 
 msgid "Lead time"
 msgstr "Czas Dostawy"
@@ -7212,6 +7225,9 @@ msgstr "Element po lewej stronie"
 
 msgid "Leftover Parts Detected"
 msgstr "Wykryte nadmiarowe części"
+
+msgid "Leftover staged material returns when the whole job completes."
+msgstr "Pozostały materiał przygotowany wraca, gdy całe zadanie się zakończy."
 
 msgid "Less manual work"
 msgstr "Mniej pracy ręcznej"
@@ -7503,9 +7519,6 @@ msgstr "Wydatek na Konserwację (domyślne)"
 
 msgid "Maintenance Schedules"
 msgstr "Harmonogramy konserwacji"
-
-msgid "Maintenance Scheduling"
-msgstr "Planowanie konserwacji"
 
 msgid "Maintenance Type"
 msgstr "Typ konserwacji"
@@ -8368,6 +8381,9 @@ msgstr "Następna data"
 msgid "Next Due"
 msgstr "Następny termin"
 
+msgid "Next Due Date"
+msgstr "Następna data wymagalności"
+
 msgid "Next page"
 msgstr "Następna strona"
 
@@ -8567,7 +8583,7 @@ msgid "No matches. Type to create one."
 msgstr "Brak dopasowań. Wpisz, aby utworzyć jeden."
 
 msgid "No matching bins"
-msgstr ""
+msgstr "Brak pasujących pojemników"
 
 msgid "No new notifications"
 msgstr "Brak nowych powiadomień"
@@ -8796,7 +8812,7 @@ msgstr "Notatki (opcjonalnie)"
 
 #. placeholder {0}: search.trim()
 msgid "Nothing at this location matches \"{0}\"."
-msgstr ""
+msgstr "Nic w tej lokalizacji nie pasuje do \"{0}\"."
 
 msgid "Nothing else at this location has stock to pull from."
 msgstr "W tym miejscu nic innego nie ma zapasów do pobrania."
@@ -10787,6 +10803,12 @@ msgstr "Ponów"
 msgid "Return Home"
 msgstr "Wróć do domu"
 
+msgid "Returned"
+msgstr "Zwrócone"
+
+msgid "Returning unused picked material"
+msgstr "Zwracanie nieużywanego pobranego materiału"
+
 msgid "Rev {revision}"
 msgstr "Wer. {revision}"
 
@@ -12095,6 +12117,9 @@ msgstr "Zostań na tej stronie"
 
 msgid "Step"
 msgstr "Krok"
+
+msgid "Step added"
+msgstr "Krok dodany"
 
 msgid "Step Records"
 msgstr "Rekordy Kroków"
@@ -13954,6 +13979,9 @@ msgstr "Diagram bez tytułu"
 msgid "Untitled line"
 msgstr "Linia bez tytułu"
 
+msgid "Unused picked material flushed back from the work center to the warehouse."
+msgstr "Nieużywany pobrany materiał odprowadzony z powrotem od stanowiska pracy do magazynu."
+
 msgid "UoM"
 msgstr "UoM"
 
@@ -15021,9 +15049,8 @@ msgstr "Możesz zmienić styl interfejsu użytkownika w dowolnym momencie za po�
 msgid "You can only see this key once. Store it safely."
 msgstr "Możesz zobaczyć ten klucz tylko raz. Przechowuj go bezpiecznie."
 
-#. placeholder {0}: new Date(openClockEntry.clockIn).toLocaleString(locale)
-msgid "You clocked in at {0}. You can edit your clock-out time below or acknowledge that you're still working."
-msgstr "Zalogowałeś się o {0}. Możesz edytować czas wylogowania poniżej lub potwierdzić, że nadal pracujesz."
+msgid "You clocked in at <0/>. You can edit your clock-out time below or acknowledge that you're still working."
+msgstr "Zalogowałeś się o godzinie <0/>. Poniżej możesz zmienić czas wylogowania lub potwierdzić, że nadal pracujesz."
 
 #. placeholder {0}: leftoverQuantity === 1 ? "part" : "parts"
 #. placeholder {1}: job.quantity

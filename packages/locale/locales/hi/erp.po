@@ -48,6 +48,10 @@ msgstr "(इस ग्राहक के लिए बाहर रखा ग�
 msgid "{0, plural, one {This part is on 1 open change notice} other {This part is on # open change notices}}"
 msgstr "{0, plural, one {यह भाग 1 खुली परिवर्तन सूचना पर है} other {यह भाग # खुली परिवर्तन सूचनाओं पर है}}"
 
+#. placeholder {0}: precise?.text
+msgid "{0} ago"
+msgstr "{0} पहले"
+
 #. placeholder {0}: ar.count
 msgid "{0} customers with a balance"
 msgstr "{0} ग्राहकों के साथ शेष"
@@ -1657,8 +1661,14 @@ msgstr "इस इकाई को लाइनसाइड सामग्र�
 msgid "At each gate"
 msgstr "हर गेट पर"
 
+msgid "At job completion"
+msgstr "जॉब पूरी होने पर"
+
 msgid "At least one condition must match"
 msgstr "कम से कम एक शर्त मेल खानी चाहिए"
+
+msgid "At operation completion"
+msgstr "ऑपरेशन पूरी होने पर"
 
 msgid "Attach File"
 msgstr "फ़ाइल संलग्न करें"
@@ -2385,9 +2395,8 @@ msgstr "घड़ी में"
 msgid "Clock Out"
 msgstr "घड़ी बंद करें"
 
-#. placeholder {0}: formatTime(openEntry.clockIn, locale)
-msgid "Clocked in since {0}"
-msgstr "{0} से घड़ी में है"
+msgid "Clocked in since <0/>"
+msgstr "<0/> से काम में आए"
 
 msgid "Close"
 msgstr "बंद करें"
@@ -2580,9 +2589,6 @@ msgstr "इक्विटी और प्रतिधारित आय ख�
 
 msgid "Configure defaults for the quality dashboard."
 msgstr "गुणवत्ता डैशबोर्ड के लिए डिफ़ॉल्ट कॉन्फ़िगर करें।"
-
-msgid "Configure how preventative maintenance dispatches are automatically generated from maintenance schedules."
-msgstr "रखरखाव शेड्यूल से निवारक रखरखाव डिस्पैच को स्वचालित रूप से कैसे उत्पन्न किया जाए, इसे कॉन्फ़िगर करें।"
 
 msgid "Configure Item"
 msgstr "आइटम कॉन्फ़िगर करें"
@@ -3646,9 +3652,6 @@ msgstr "देय दिन"
 msgid "Days from ordering a part to having it available; planning offsets demand backward by this much."
 msgstr "किसी हिस्से को ऑर्डर करने से लेकर इसके उपलब्ध होने तक के दिन; योजना इस राशि से पिछड़े की ओर मांग को ऑफसेट करती है।"
 
-msgid "Days in advance to generate dispatches"
-msgstr "डिस्पैच जेनरेट करने के लिए दिनों में अग्रिम"
-
 msgid "Days Off"
 msgstr "दिन बंद"
 
@@ -3710,6 +3713,9 @@ msgstr "तय करें कि यदि कोई ऑपरेटर एक
 
 msgid "Decide what happens when an operator presses Finish on the shop floor with material still unpicked."
 msgstr "तय करें कि जब ऑपरेटर शॉप फ्लोर पर फिनिश दबाता है तो क्या होता है जब सामग्री अभी भी अनचुनी होती है।"
+
+msgid "Decide when material picked to a work center but not consumed flows back to the warehouse."
+msgstr "तय करें कि वर्क सेंटर में चुनी गई अप्रयुक्त सामग्री कब गोदाम में वापस जाए।"
 
 msgid "Decimal Places"
 msgstr "दशमलव स्थान"
@@ -4558,6 +4564,9 @@ msgstr "उदाहरण के लिए पहले 3 से 4 सप्त
 msgid "e.g. Zebra 2x1"
 msgstr "उदाहरण के लिए Zebra 2x1"
 
+msgid "Each operation's unused material returns as soon as the operation is done."
+msgstr "प्रत्येक ऑपरेशन की अप्रयुक्त सामग्री ऑपरेशन पूरी होते ही वापस आती है।"
+
 msgid "Each physical unit gets its own tracked entity and unique number — one entity, one unit."
 msgstr "प्रत्येक भौतिक इकाई को अपनी खुद की ट्रैक की गई इकाई और अद्वितीय संख्या मिलती है — एक इकाई, एक इकाई।"
 
@@ -5308,8 +5317,9 @@ msgstr "समाप्ति तारीख (इस लाइन पर सभ
 msgid "Expired"
 msgstr "समाप्त"
 
-msgid "Expired {date}"
-msgstr "समाप्त {date}"
+#. placeholder {0}: formatDate(date)
+msgid "Expired {0}"
+msgstr "समाप्त {0}"
 
 msgid "Expired batch"
 msgstr "समाप्त बैच"
@@ -5320,8 +5330,8 @@ msgstr "समाप्त बैच"
 msgid "Expires"
 msgstr "समाप्त होता है"
 
-msgid "Expires {date}"
-msgstr "समाप्त होता है {date}"
+msgid "Expires <0/>"
+msgstr "समाप्त होता है <0/>"
 
 msgid "Expires At (optional)"
 msgstr "समाप्त होता है (वैकल्पिक)"
@@ -5928,6 +5938,9 @@ msgstr "{0} से"
 msgid "From / To"
 msgstr "से / को"
 
+msgid "From <0/>"
+msgstr "से <0/>"
+
 msgid "From customer"
 msgstr "ग्राहक से"
 
@@ -6513,6 +6526,10 @@ msgstr "आयात परिणाम"
 
 msgid "Import your BOM"
 msgstr "अपना BOM आयात करें"
+
+#. placeholder {0}: precise?.text
+msgid "in {0}"
+msgstr "{0} में"
 
 msgid "In Onshape, edit this OAuth application's permissions to include \"Application can write to your documents\", then connect again."
 msgstr "Onshape में, इस OAuth ऐप्लिकेशन की अनुमतियों में \"Application can write to your documents\" शामिल करें, फिर दोबारा कनेक्ट करें।"
@@ -7161,12 +7178,8 @@ msgstr "अंतिम नाम"
 msgid "Last Quarter"
 msgstr "पिछली तिमाही"
 
-#. placeholder {0}: formatDateTime(lastSyncedAt)
-msgid "Last synced: {0}"
-msgstr "अंतिम सिंक: {0}"
-
-msgid "Last updated: {formattedDate}"
-msgstr "अंतिम अपडेट: {formattedDate}"
+msgid "Last synced: <0/>"
+msgstr "अंतिम सिंक: <0/>"
 
 msgid "Lead time"
 msgstr "लीड समय"
@@ -7212,6 +7225,9 @@ msgstr "बाईं ओर की वस्तु"
 
 msgid "Leftover Parts Detected"
 msgstr "बचे हुए पार्ट्स का पता चला"
+
+msgid "Leftover staged material returns when the whole job completes."
+msgstr "बची हुई सामग्री पूरी जॉब पूरी होने पर वापस आती है।"
 
 msgid "Less manual work"
 msgstr "कम मैनुअल काम"
@@ -7503,9 +7519,6 @@ msgstr "रखरखाव व्यय (डिफ़ॉल्ट)"
 
 msgid "Maintenance Schedules"
 msgstr "रखरखाव शेड्यूल"
-
-msgid "Maintenance Scheduling"
-msgstr "रखरखाव शेड्यूलिंग"
 
 msgid "Maintenance Type"
 msgstr "रखरखाव प्रकार"
@@ -8368,6 +8381,9 @@ msgstr "अगली तारीख"
 msgid "Next Due"
 msgstr "अगला देय"
 
+msgid "Next Due Date"
+msgstr "अगली देय तारीख"
+
 msgid "Next page"
 msgstr "अगला पृष्ठ"
 
@@ -8567,7 +8583,7 @@ msgid "No matches. Type to create one."
 msgstr "कोई मेल नहीं। एक बनाने के लिए टाइप करें।"
 
 msgid "No matching bins"
-msgstr ""
+msgstr "कोई मिलान बिन नहीं"
 
 msgid "No new notifications"
 msgstr "कोई नई सूचनाएं नहीं"
@@ -8796,7 +8812,7 @@ msgstr "नोट्स (वैकल्पिक)"
 
 #. placeholder {0}: search.trim()
 msgid "Nothing at this location matches \"{0}\"."
-msgstr ""
+msgstr "इस स्थान पर कुछ भी \"{0}\" से मेल नहीं खाता।"
 
 msgid "Nothing else at this location has stock to pull from."
 msgstr "इस स्थान पर कोई अन्य स्टॉक नहीं है जहां से खींचा जा सकता है।"
@@ -10787,6 +10803,12 @@ msgstr "पुनः प्रयास करें"
 msgid "Return Home"
 msgstr "घर लौटें"
 
+msgid "Returned"
+msgstr "लौटाया गया"
+
+msgid "Returning unused picked material"
+msgstr "अप्रयुक्त सामग्री को वापस किया जा रहा है"
+
 msgid "Rev {revision}"
 msgstr "Rev {revision}"
 
@@ -12095,6 +12117,9 @@ msgstr "इस पृष्ठ पर रहें"
 
 msgid "Step"
 msgstr "चरण"
+
+msgid "Step added"
+msgstr "चरण जोड़ा गया"
 
 msgid "Step Records"
 msgstr "चरण रिकॉर्ड"
@@ -13954,6 +13979,9 @@ msgstr "बिना शीर्षक वाला आरेख"
 msgid "Untitled line"
 msgstr "बिना शीर्षक की पंक्ति"
 
+msgid "Unused picked material flushed back from the work center to the warehouse."
+msgstr "अप्रयुक्त सामग्री को वर्क सेंटर से गोदाम में वापस भेजा गया।"
+
 msgid "UoM"
 msgstr "UoM"
 
@@ -15021,9 +15049,8 @@ msgstr "आप किसी भी समय थीम सेटिंग के
 msgid "You can only see this key once. Store it safely."
 msgstr "आप इस कुंजी को केवल एक बार देख सकते हैं। इसे सुरक्षित रूप से संग्रहीत करें।"
 
-#. placeholder {0}: new Date(openClockEntry.clockIn).toLocaleString(locale)
-msgid "You clocked in at {0}. You can edit your clock-out time below or acknowledge that you're still working."
-msgstr "आप {0} पर क्लॉक इन हुए हैं। आप नीचे अपने क्लॉक-आउट समय को संपादित कर सकते हैं या यह स्वीकार कर सकते हैं कि आप अभी भी काम कर रहे हैं।"
+msgid "You clocked in at <0/>. You can edit your clock-out time below or acknowledge that you're still working."
+msgstr "आपने <0/> पर साइन इन किया। आप नीचे अपने साइन आउट समय को संपादित कर सकते हैं या स्वीकार कर सकते हैं कि आप अभी भी काम कर रहे हैं।"
 
 #. placeholder {0}: leftoverQuantity === 1 ? "part" : "parts"
 #. placeholder {1}: job.quantity
