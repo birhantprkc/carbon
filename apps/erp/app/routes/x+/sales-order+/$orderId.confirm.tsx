@@ -2,6 +2,7 @@ import { assertIsPost } from "@carbon/auth";
 import { requirePermissions } from "@carbon/auth/auth.server";
 import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { validator } from "@carbon/form";
+import { trackWorkEvent } from "@carbon/lib/telemetry";
 import { datetime, getSalesOrderStatus } from "@carbon/utils";
 import { parseAcceptLanguage } from "intl-parse-accept-language";
 import type { ActionFunctionArgs } from "react-router";
@@ -24,10 +25,11 @@ export async function action(args: ActionFunctionArgs) {
   try {
     assertIsPost(request);
 
-    const { client, companyId, userId } = await requirePermissions(request, {
-      create: "sales",
-      role: "employee"
-    });
+    const { client, companyId, companyGroupId, userId } =
+      await requirePermissions(request, {
+        create: "sales",
+        role: "employee"
+      });
 
     const { orderId } = params;
     if (!orderId) {
@@ -109,6 +111,7 @@ export async function action(args: ActionFunctionArgs) {
           const emailResult = await sendSalesOrderEmail({
             salesOrderId: orderId,
             companyId,
+            companyGroupId,
             userId,
             customerContactId: customerContact,
             cc: ccSelections,
@@ -171,6 +174,17 @@ export async function action(args: ActionFunctionArgs) {
       id: orderId,
       companyId: companyId,
       userId: userId
+    });
+
+    // Below every early return above, so a failed email or a failed status
+    // write never counts as a confirmed order.
+    trackWorkEvent("sales_order_confirmed", {
+      companyId,
+      userId,
+      salesOrderId: orderId,
+      lineCount: orderLines.data?.length ?? 0,
+      derivedStatus: status,
+      emailed: notification === "Email"
     });
 
     return {

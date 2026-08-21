@@ -4,11 +4,12 @@ import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { SalesInvoiceEmail } from "@carbon/documents/email";
 import { validator } from "@carbon/form";
 import { trigger } from "@carbon/jobs";
+import { trackWorkEvent } from "@carbon/lib/telemetry";
 import { raiseMoment } from "@carbon/lib/workflows";
 import { renderAsync } from "@react-email/components";
 import { parseAcceptLanguage } from "intl-parse-accept-language";
 import type { ActionFunctionArgs } from "react-router";
-import { getPaymentTermsList } from "~/modules/accounting";
+import { getCurrencyByCode, getPaymentTermsList } from "~/modules/accounting";
 import { upsertDocument } from "~/modules/documents";
 import {
   getSalesInvoice,
@@ -26,10 +27,11 @@ export async function action(args: ActionFunctionArgs) {
   const { request, params } = args;
   assertIsPost(request);
 
-  const { client, companyId, userId } = await requirePermissions(request, {
-    create: "invoicing",
-    role: "employee"
-  });
+  const { client, companyId, companyGroupId, userId } =
+    await requirePermissions(request, {
+      create: "invoicing",
+      role: "employee"
+    });
 
   const { invoiceId } = params;
   if (!invoiceId) {
@@ -120,6 +122,12 @@ export async function action(args: ActionFunctionArgs) {
     outputs: { salesInvoice: { id: invoiceId }, postedBy: { id: userId } },
     companyId,
     actorId: userId
+  });
+
+  trackWorkEvent("sales_invoice_posted", {
+    companyId,
+    userId,
+    salesInvoiceId: invoiceId
   });
 
   const acceptLanguage = request.headers.get("accept-language");
@@ -276,9 +284,19 @@ export async function action(args: ActionFunctionArgs) {
           };
         }
 
+        // Same decimals the PDF of this invoice uses.
+        const currencyRow = salesInvoice.data.currencyCode
+          ? await getCurrencyByCode(
+              serviceRole,
+              companyGroupId,
+              salesInvoice.data.currencyCode
+            )
+          : null;
+
         const emailTemplate = SalesInvoiceEmail({
           // @ts-expect-error TS2739 - TODO: fix type
           company: company.data,
+          currencyDecimals: currencyRow?.data?.decimalPlaces ?? null,
           locale: locales?.[0] ?? "en-US",
           salesInvoice: salesInvoice.data,
           salesInvoiceLines: salesInvoiceLines.data ?? [],

@@ -15,6 +15,10 @@ msgstr ""
 msgid " A supplier is a business or person who sells you parts or services."
 msgstr "供应商是向您销售零件或服务的企业或个人。"
 
+#. placeholder {0}: formatDateTime(lastReconciliation.runAt)
+msgid "— last checked {0}"
+msgstr "— 上次检查于 {0}"
+
 msgid ", {residual}% residual"
 msgstr ", {residual}% 残差"
 
@@ -45,8 +49,8 @@ msgid "(excluded for this customer)"
 msgstr "(已为此客户排除)"
 
 #. placeholder {0}: open.length
-msgid "{0, plural, one {This part is on 1 open change notice} other {This part is on # open change notices}}"
-msgstr "{0, plural, one {此零件包含在1个开放的更改单中} other {此零件包含在#个开放的更改单中}}"
+msgid "{0, plural, one {This item is on 1 open change notice} other {This item is on # open change notices}}"
+msgstr "{0, plural, one {此物品包含在1个未完成的更改单中} other {此物品包含在#个未完成的更改单中}}"
 
 #. placeholder {0}: selectedAccountIds.length
 msgid "{0} accounts"
@@ -55,6 +59,10 @@ msgstr "{0} 个账户"
 #. placeholder {0}: precise?.text
 msgid "{0} ago"
 msgstr "{0} 前"
+
+#. placeholder {0}: tieOut.deltaCellCount
+msgid "{0} cells with deltas"
+msgstr "{0} 个单元格有差异"
 
 #. placeholder {0}: ar.count
 msgid "{0} customers with a balance"
@@ -73,9 +81,22 @@ msgstr "{0} 已成功删除"
 msgid "{0} draft journal entries"
 msgstr "{0} 份草稿日记账条目"
 
+#. placeholder {0}: jobs.length
+msgid "{0} jobs created"
+msgstr "{0} 个作业已创建"
+
 #. placeholder {0}: mappings.length
 msgid "{0} lines to map"
 msgstr "{0} 行待映射"
+
+#. placeholder {0}: mappingReadiness.mapped
+#. placeholder {1}: mappingReadiness.required
+msgid "{0} of {1} posting accounts mapped"
+msgstr "{0} / {1} 个过账科目已映射"
+
+#. placeholder {0}: rows.length
+msgid "{0} of {maxSlots} provider slots used"
+msgstr "{0} / {maxSlots} 个提供商插槽已使用"
 
 #. placeholder {0}: history.length
 msgid "{0} orders"
@@ -89,6 +110,10 @@ msgstr "{0} 个问题 — 未发布"
 msgid "{0} Processes"
 msgstr "{0} 个流程"
 
+#. placeholder {0}: result.credentialName ?? "Passkey"
+msgid "{0} registered"
+msgstr "{0} 已注册"
+
 #. placeholder {0}: ap.count
 msgid "{0} suppliers with a balance"
 msgstr "{0}个有余额的供应商"
@@ -96,6 +121,11 @@ msgstr "{0}个有余额的供应商"
 #. placeholder {0}: lotEntities.length - inspected
 msgid "{0} un-sampled entities will be released to Available. Sampled passes stay Available and sampled failures stay Rejected."
 msgstr "{0} 个未采样的实体将被释放到可用状态。已采样的合格品保持可用状态，已采样的不合格品保持被拒绝状态。"
+
+#. placeholder {0}: unmapped.length
+#. placeholder {1}: chart.length
+msgid "{0} unmapped accounts will be matched against {1} provider accounts."
+msgstr "{0} 个未映射的账户将与 {1} 个提供商账户相匹配。"
 
 #. placeholder {0}: task.autoCheck.count
 msgid "{0} unposted documents"
@@ -105,9 +135,17 @@ msgstr "{0} 份未过账单据"
 msgid "{0} uploaded successfully"
 msgstr "{0} 上传成功"
 
+#. placeholder {0}: dimension.valueCount
+#. placeholder {0}: selectedDimension?.valueCount
+msgid "{0} values"
+msgstr "{0} 个值"
+
 #. placeholder {0}: unmatchedValues.length
 msgid "{0} values missing"
 msgstr "{0} 个值缺失"
+
+msgid "{alreadyPlannedItemCount} parts skipped — they already have open jobs"
+msgstr "{alreadyPlannedItemCount} 个零件已跳过 — 它们已有待处理作业"
 
 msgid "{apOverduePct}% of payables"
 msgstr "{apOverduePct}% 的应付账款"
@@ -127,6 +165,9 @@ msgstr "{done} 个，共 {total} 个阶段已完成"
 msgid "{from}–{to} of {count}"
 msgstr "{from}–{to} 共 {count}"
 
+msgid "{from}–{to} of {count} operations"
+msgstr "{from}–{to} / {count} 条操作"
+
 #. placeholder {0}: errors.length
 #. placeholder {1}: skipped.length
 msgid "{inserted} inserted, {updated} updated, {0} need fixing, {1} skipped."
@@ -138,8 +179,24 @@ msgstr "{linesCount, plural, one {# 行} other {# 行}}"
 msgid "{maxSizeMB}MB limit"
 msgstr "{maxSizeMB}MB 限制"
 
+msgid "{mismatchCount} months with mismatched totals"
+msgstr "{mismatchCount} 个月的总额不匹配"
+
+msgid "{missingCount} journals missing in the provider"
+msgstr "提供商中缺少 {missingCount} 份日记账"
+
+msgid "{missingCount} missing journals and {mismatchCount} mismatched months"
+msgstr "{missingCount} 份缺失日记账和 {mismatchCount} 个月不匹配"
+
 msgid "{name} deleted"
 msgstr "{name} 已删除"
+
+msgid "{noDemandItemCount} parts skipped — nothing to make"
+msgstr "{noDemandItemCount} 个零件已跳过 — 没有需要生产的"
+
+#. placeholder {0}: (routeData?.purchaseOrder?.revisionId ?? 0) + 1
+msgid "{orderLabel} will be reopened for editing as revision {0}. The document already sent to the supplier is unchanged until you finalize and resend the order."
+msgstr "{orderLabel} 将被重新打开以作为修订版本 {0} 进行编辑。已发送给供应商的文件在您完成并重新发送订单前保持不变。"
 
 msgid "{remaining, plural, one {# phase left} other {# phases left}}"
 msgstr "{remaining, plural, one {# 个阶段剩余} other {# 个阶段剩余}}"
@@ -158,6 +215,9 @@ msgstr "{totalQuantity, plural, one {# 件} other {# 件}}"
 
 msgid "{uncounted, plural, one {# uncounted line} other {# uncounted lines}}"
 msgstr "{uncounted, plural, one {# 未计数行} other {# 未计数行}}"
+
+msgid "{updatedJobCount} jobs updated"
+msgstr "{updatedJobCount} 个作业已更新"
 
 msgid "{uploadedFileName} uploaded — fields filled from the document."
 msgstr "{uploadedFileName} 已上传 — 已根据文档填写字段。"
@@ -185,6 +245,9 @@ msgstr "↩ {0} 从已淘汰的 {1} 重定向"
 msgid "<0>Add a supplier part</0> for this item to set a preferred supplier."
 msgstr "<0>为此项目添加供应商零件</0>以设置首选供应商。"
 
+msgid "0 operations"
+msgstr "0 条操作"
+
 msgid "0-4 weeks"
 msgstr "0-4 周"
 
@@ -193,6 +256,18 @@ msgstr "1 天"
 
 msgid "1 draft journal entry"
 msgstr "1 份草稿日记账条目"
+
+msgid "1 job created"
+msgstr "1 个作业已创建"
+
+msgid "1 job updated"
+msgstr "1 个作业已更新"
+
+msgid "1 part skipped — it already has an open job"
+msgstr "1 个零件已跳过 — 它已有待处理作业"
+
+msgid "1 part skipped — nothing to make"
+msgstr "1 个零件已跳过 — 没有需要生产的"
 
 msgid "1 problem — not published"
 msgstr "1 个问题 — 未发布"
@@ -754,6 +829,10 @@ msgstr "验收"
 msgid "Acceptance passed"
 msgstr "验收通过"
 
+#. placeholder {0}: formatDate(certification.certifiedAt)
+msgid "Accepted {0}"
+msgstr "于 {0} 接受"
+
 msgid "Account"
 msgstr "账户"
 
@@ -783,6 +862,9 @@ msgstr "账户经理"
 
 msgid "Account Manager"
 msgstr "账户经理"
+
+msgid "Account Mapping"
+msgstr "账户映射"
 
 msgid "Account Number"
 msgstr "账户编号"
@@ -840,6 +922,9 @@ msgstr "应收账款"
 
 msgid "Accounts receivable for amounts owed by customers"
 msgstr "客户应付金额的应收账款。"
+
+msgid "Accounts referenced by posting defaults or journal history that have no provider mapping yet."
+msgstr "由过账默认值或日记账历史记录引用但尚无提供商映射的账户。"
 
 msgid "Accumulated Depreciation"
 msgstr "累计折旧"
@@ -955,6 +1040,9 @@ msgstr "添加评论..."
 msgid "Add a custom pricing row to override quantity, price, shipping, lead time, and tax"
 msgstr "添加自定义定价行以覆盖数量、价格、运费、交货期和税费"
 
+msgid "Add a materials section that lists each item on the bill of materials with its quantity."
+msgstr "添加一个材料部分，列出物料清单上的每个项目及其数量。"
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "在打印设置中添加打印机以直接打印标签。"
 
@@ -984,6 +1072,9 @@ msgstr "添加关于您的决定的任何备注..."
 
 msgid "Add Approval Requirement"
 msgstr "添加批准要求"
+
+msgid "Add Authenticator App"
+msgstr "添加身份验证器应用"
 
 msgid "Add Calibration Record"
 msgstr "添加校准记录"
@@ -1060,6 +1151,9 @@ msgstr "添加合作伙伴"
 msgid "Add parts"
 msgstr "添加零件"
 
+msgid "Add Passkey"
+msgstr "添加密钥"
+
 msgid "Add path"
 msgstr "添加路径"
 
@@ -1098,6 +1192,9 @@ msgstr "添加发货"
 
 msgid "Add Shipping"
 msgstr "添加运费"
+
+msgid "Add slot"
+msgstr "添加插槽"
 
 msgid "Add Spare Part"
 msgstr "添加备件"
@@ -1190,6 +1287,9 @@ msgstr "就范围达成一致"
 msgid "Agree who owns what and set a working rhythm"
 msgstr "同意谁拥有什么并设定工作节奏"
 
+msgid "AI couldn't confidently match any accounts"
+msgstr "AI 无法自信地匹配任何账户"
+
 msgid "AI Tokens"
 msgstr "AI 代币"
 
@@ -1198,6 +1298,10 @@ msgstr "对齐范围"
 
 msgid "All"
 msgstr "全部"
+
+#. placeholder {0}: tieOut.cellCount
+msgid "All {0} cells tie out"
+msgstr "全部 {0} 个单元格对账"
 
 msgid "All {total} phases are done. Nice work — your team is up and running."
 msgstr "所有 {total} 个阶段已完成。做得很好——你的团队已启动并运行。"
@@ -1229,17 +1333,20 @@ msgstr "所有项目类型"
 msgid "All Items"
 msgstr "所有项目"
 
-msgid "All jobs completed"
-msgstr "所有工作已完成"
-
 msgid "All Locations"
 msgstr "所有位置"
 
 msgid "All members of selected groups and selected individuals will be able to approve requests"
 msgstr "所选组的所有成员和所选个人将能够批准请求"
 
+msgid "All posting accounts are mapped"
+msgstr "所有过账账户已映射"
+
 msgid "All rows imported — {inserted} inserted, {updated} updated."
 msgstr "所有行已导入—{inserted}行插入，{updated}行更新。"
+
+msgid "All slotted dimension values are mapped"
+msgstr "所有分配维度的值都已映射"
 
 msgid "All Suppliers"
 msgstr "所有供应商"
@@ -1438,6 +1545,9 @@ msgstr "任何物品类型"
 msgid "Anything not explicitly listed in scope above"
 msgstr "未在上述范围内明确列出的任何内容"
 
+msgid "AP"
+msgstr "AP"
+
 msgid "AP Aging"
 msgstr "应付账款账龄"
 
@@ -1514,6 +1624,9 @@ msgstr "应用定价规则"
 msgid "Apply Rules On Top"
 msgstr "在顶部应用规则"
 
+msgid "Apply suggestions"
+msgstr "应用建议"
+
 msgid "Apply To"
 msgstr "应用于"
 
@@ -1556,6 +1669,12 @@ msgstr "AQL"
 msgid "AQL (Z1.4 / ISO 2859-1)"
 msgstr "AQL (Z1.4 / ISO 2859-1)"
 
+msgid "AR"
+msgstr "AR"
+
+msgid "AR / AP representation"
+msgstr "AR / AP 表示法"
+
 msgid "AR Aging"
 msgstr "应收账款账龄"
 
@@ -1567,6 +1686,9 @@ msgstr "应收账款未结"
 
 msgid "AR Overdue"
 msgstr "应收账款逾期"
+
+msgid "AR/AP"
+msgstr "AR/AP"
 
 msgid "Archive"
 msgstr "存档"
@@ -1580,7 +1702,7 @@ msgstr "已归档"
 msgid "Archived Logs"
 msgstr "已归档日志"
 
-#. placeholder {0}: quote.quoteId
+#. placeholder {0}: getQuoteDisplayId(quote)
 #. placeholder {1}: formatter.format(total)
 msgid "Are you sure you want to accept quote {0} for {1}?"
 msgstr "你确定要接受报价 {0} 的 {1} 吗？"
@@ -1599,9 +1721,8 @@ msgstr "您确定要取消 {0} 吗?在您重新打开之前，它将被关闭并
 msgid "Are you sure you want to cancel {0}? This will also cancel all related supplier quotes."
 msgstr "您确定要取消 {0} 吗？这也将取消所有相关的供应商报价。"
 
-#. placeholder {0}: routeData?.purchaseOrder?.purchaseOrderId ?? "this purchase order"
-msgid "Are you sure you want to cancel {0}? This will close the order."
-msgstr "确定要取消{0}吗？这将关闭订单。"
+msgid "Are you sure you want to cancel {orderLabel}? This will close the order."
+msgstr "您确定要取消 {orderLabel} 吗？这将关闭订单。"
 
 msgid "Are you sure you want to cancel this job? It will no longer be available on the shop floor."
 msgstr "你确定要取消此工作吗？它将不再在车间可用。"
@@ -1657,14 +1778,17 @@ msgstr "你确定要从此操作中删除 {0} 吗？此操作无法撤销。"
 msgid "Are you sure you want to delete {0}?"
 msgstr "你确定要删除 {0} 吗？"
 
+#. placeholder {0}: getQuoteDisplayId( routeData?.quote )
+#. placeholder {0}: getQuoteDisplayId( selectedQuotation )
 #. placeholder {0}: initialValues.memoId
-#. placeholder {0}: initialValues.paymentId
-#. placeholder {0}: pickingList.pickingListId
 msgid "Are you sure you want to delete {0}? This cannot be undone."
 msgstr "您确定要删除 {0} 吗？此操作无法撤销。"
 
 msgid "Are you sure you want to delete {name}? This cannot be undone."
 msgstr "您确定要删除 {name} 吗？此操作无法撤销。"
+
+msgid "Are you sure you want to delete {orderLabel}? This cannot be undone."
+msgstr "您确定要删除 {orderLabel} 吗？此操作无法撤销。"
 
 #. placeholder {0}: activeView.name
 #. placeholder {0}: viewPendingDelete.name
@@ -1890,6 +2014,9 @@ msgstr "你确定要删除此看板卡吗？此操作无法撤销。"
 
 msgid "Are you sure you want to delete this maintenance dispatch? This cannot be undone."
 msgstr "您确定要删除此维护调度吗？此操作无法撤销。"
+
+msgid "Are you sure you want to delete this passkey? You won't be able to use it to sign in anymore."
+msgstr "您确定要删除此密钥吗?您将无法再使用它登录。"
 
 msgid "Are you sure you want to delete this quality document?"
 msgstr "你确定要删除此质量文件吗？"
@@ -2120,6 +2247,9 @@ msgstr "附件"
 msgid "Attachments"
 msgstr "附件"
 
+msgid "Attempts"
+msgstr "尝试次数"
+
 msgid "Attribute"
 msgstr "属性"
 
@@ -2153,6 +2283,12 @@ msgstr "审计日志"
 msgid "Authentication Error"
 msgstr "身份验证错误"
 
+msgid "Authenticator app"
+msgstr "身份验证器应用"
+
+msgid "Authenticator QR code"
+msgstr "身份验证器二维码"
+
 msgid "Auto apply"
 msgstr "自动应用"
 
@@ -2168,17 +2304,14 @@ msgstr "必须启用自动发布才能自动启动作业"
 msgid "Auto Start Job"
 msgstr "自动启动作业"
 
+msgid "Auto-create"
+msgstr "自动创建"
+
 msgid "Auto-generated QR Code"
 msgstr "自动生成的二维码"
 
 msgid "Auto-numbering formats for orders, jobs, parts, and more"
 msgstr "订单、工作、零件等的自动编号格式"
-
-msgid "Auto-start the operator's timer when they open an operation in the MES so time logs are captured from the start."
-msgstr "当操作员在MES中打开操作时自动启动计时器，以便从一开始就捕获时间日志。"
-
-msgid "Auto-start timer on open"
-msgstr "打开时自动启动计时器"
 
 msgid "Auto-suggest purchases from demand and reorder points"
 msgstr "根据需求和重新订购点自动建议采购"
@@ -2414,6 +2547,9 @@ msgstr "与 Carbon 预约通话"
 msgid "Book Depreciation"
 msgstr "账面折旧"
 
+msgid "Books lock date (manual)"
+msgstr "账册锁定日期（手动）"
+
 msgid "Both"
 msgstr "两者"
 
@@ -2645,6 +2781,9 @@ msgstr "Carbon"
 msgid "Carbon + you"
 msgstr "Carbon + 你"
 
+msgid "Carbon account"
+msgstr "Carbon 账户"
+
 msgid "Carbon client is not available"
 msgstr "Carbon 客户端不可用"
 
@@ -2669,8 +2808,18 @@ msgstr "Carbon 标志"
 msgid "Carbon only"
 msgstr "仅限 Carbon"
 
+msgid "Carbon Posted"
+msgstr "Carbon 已记账"
+
+msgid "Carbon value"
+msgstr "Carbon 值"
+
 msgid "Carbon Value"
 msgstr "碳值"
+
+#. placeholder {0}: unmapped.length
+msgid "Carbon will use AI to guess a provider account for each of your {0} unmapped accounts. Suggestions are a starting point — you can review them before anything is saved."
+msgstr "Carbon 将使用 AI 为您的每个 {0} 个未映射的账户猜测一个提供商账户。建议是一个起点 — 您可以在保存任何内容之前审查它们。"
 
 msgid "Carbon-only"
 msgstr "仅限Carbon"
@@ -2726,11 +2875,17 @@ msgstr "抄送"
 msgid "Centralized Billing Address"
 msgstr "集中式账单地址"
 
+msgid "Cert Version"
+msgstr "证书版本"
+
 msgid "Certificate Number"
 msgstr "证书编号"
 
 msgid "Certificate uploaded"
 msgstr "证书已上传"
+
+msgid "Certified"
+msgstr "已认证"
 
 msgid "Chain"
 msgstr "链"
@@ -2767,6 +2922,9 @@ msgstr "更改单类型"
 
 msgid "Change Notices"
 msgstr "更改单"
+
+msgid "Change notices could not be loaded, so new versions and revisions are blocked. Reload to try again."
+msgstr "无法加载更改单，因此新版本和修订版本已被阻止。请重新加载以重试。"
 
 msgid "Change order"
 msgstr "变更单"
@@ -2833,6 +2991,9 @@ msgstr "选择序列号"
 
 msgid "Choose another file"
 msgstr "选择另一个文件"
+
+msgid "Choose what appears on the printed job traveler."
+msgstr "选择打印的工作单上显示的内容。"
 
 msgid "Choose your preferred language for the interface."
 msgstr "选择您偏好的界面语言。"
@@ -3068,9 +3229,6 @@ msgstr "完成日期"
 msgid "Completed Date"
 msgstr "完成日期"
 
-msgid "Completed Job Notifications"
-msgstr "已完成的工作通知"
-
 msgid "Completed Qty"
 msgstr "已完成数量"
 
@@ -3079,6 +3237,13 @@ msgstr "完成条码"
 
 msgid "Completion Time"
 msgstr "完成时间"
+
+#. placeholder {0}: formatRelativeTime(tieOut.computedAt)
+msgid "computed {0}"
+msgstr "计算于 {0}"
+
+msgid "Computed At"
+msgstr "计算于"
 
 msgid "Condensed P&L with margins and key subtotals"
 msgstr "精简损益表，含利润率和关键小计"
@@ -3176,6 +3341,9 @@ msgstr "确认 {0}"
 
 msgid "Confirm & release"
 msgstr "确认并发布"
+
+msgid "Confirm all"
+msgstr "全部确认"
 
 msgid "Confirm and sign the scope"
 msgstr "确认并签署范围"
@@ -3326,6 +3494,9 @@ msgstr "承包商"
 
 msgid "Control design changes with revisions / ECOs"
 msgstr "控制设计变更与修订版本/工程变更单"
+
+msgid "Control how operators pick material and track time on the shop floor."
+msgstr "控制操作人员如何在车间选择材料并跟踪时间。"
 
 msgid "Controller, Accountant"
 msgstr "控制器，会计"
@@ -3629,6 +3800,9 @@ msgstr "无法加载文档"
 msgid "Couldn't load related documents. Refresh before creating a new one to avoid duplicates."
 msgstr "无法加载相关文档。创建新文档前请先刷新以避免重复。"
 
+msgid "Couldn't load the provider's dimension targets — check the connection and reload."
+msgstr "无法加载提供商的维度目标 — 检查连接并重新加载。"
+
 msgid "Couldn't reschedule the job. Please try again."
 msgstr "无法重新安排作业。请重试。"
 
@@ -3730,6 +3904,9 @@ msgstr "创建看板"
 
 msgid "Create new rule"
 msgstr "创建新规则"
+
+msgid "Create PO Revision"
+msgstr "创建采购订单修订版本"
 
 msgid "Create Production Event"
 msgstr "创建生产事件"
@@ -4178,6 +4355,9 @@ msgstr "每日"
 msgid "Daily check-ins while your team finds its feet on the live system"
 msgstr "每日检查，帮助您的团队在实时系统上站稳脚跟"
 
+msgid "Daily summary"
+msgstr "每日汇总"
+
 msgid "Daily Usage"
 msgstr "日常使用"
 
@@ -4608,6 +4788,12 @@ msgstr "删除零件"
 msgid "Delete Partner"
 msgstr "删除合作伙伴"
 
+msgid "Delete passkey"
+msgstr "删除密钥"
+
+msgid "Delete Passkey"
+msgstr "删除密钥"
+
 msgid "Delete Payment"
 msgstr "删除付款"
 
@@ -4894,6 +5080,12 @@ msgstr "维度"
 msgid "Dimension"
 msgstr "尺寸"
 
+msgid "Dimension slots"
+msgstr "维度插槽"
+
+msgid "Dimension values on posted journals that have no provider mapping yet."
+msgstr "已发布日记账上尚未映射到提供商的维度值。"
+
 msgid "dimensions"
 msgstr "维度"
 
@@ -4994,6 +5186,9 @@ msgstr "处置"
 msgid "Do you want to overwrite the user's current permissions with the default permissions for this employee type?"
 msgstr "您想用此员工类型的默认权限覆盖该用户的当前权限吗？"
 
+msgid "Doc-Backed"
+msgstr "文档支持"
+
 msgid "Docs"
 msgstr "文档"
 
@@ -5017,6 +5212,9 @@ msgstr "文档："
 
 msgid "Documents"
 msgstr "文档"
+
+msgid "Documents pushes invoices, bills and payments as native provider documents; their journals are recorded as covered by the document. It also pulls payments recorded in the provider back into Carbon, closing the matching invoice or bill and posting a Carbon GL journal. Off records them as deliberately excluded."
+msgstr "文档将发票、账单和付款推送为原生提供商文档；其日记被记录为由文档覆盖。它还将在提供商中记录的付款拉回到Carbon，关闭匹配的发票或账单并发布Carbon GL日记。关闭时将其记录为故意排除。"
 
 msgid "Don't Cancel"
 msgstr "不要取消"
@@ -5404,6 +5602,9 @@ msgstr "编辑零件"
 msgid "Edit Partner"
 msgstr "编辑合作伙伴"
 
+msgid "Edit Passkey"
+msgstr "编辑密钥"
+
 msgid "Edit Payment"
 msgstr "编辑付款"
 
@@ -5733,6 +5934,12 @@ msgstr "输入采购订单号"
 msgid "Enter text…"
 msgstr "输入文本…"
 
+msgid "Enter the 6-digit code from your authenticator app"
+msgstr "输入来自您的身份验证器应用的6位数代码"
+
+msgid "Enter the 6-digit code from your authenticator app to resume."
+msgstr "输入您的身份验证器应用中的 6 位数字代码以继续。"
+
 msgid "Enter the quantity this movement should have been. An opposite movement for the difference is posted next to the original, in the original's time period."
 msgstr "输入此移动应该的数量。差异的相反移动将在原始时期内的原始移动旁发布。"
 
@@ -5753,6 +5960,15 @@ msgstr "要分割的实体"
 
 msgid "Entity"
 msgstr "实体"
+
+msgid "Entity certification: Accepted"
+msgstr "实体认证：已接受"
+
+msgid "Entity certification: Expired"
+msgstr "实体认证：已过期"
+
+msgid "Entity certification: Pending"
+msgstr "实体认证：待处理"
 
 msgid "Entity Type"
 msgstr "实体类型"
@@ -5934,6 +6150,12 @@ msgstr "豁免证书"
 msgid "Exemption Reason"
 msgstr "豁免原因"
 
+msgid "Existing mappings. Pick a different provider account to re-map."
+msgstr "现有映射。选择不同的提供商账户以重新映射。"
+
+msgid "Existing mappings. Pick a different provider option to re-map."
+msgstr "现有映射。选择不同的提供商选项以重新映射。"
+
 msgid "Expand"
 msgstr "展开"
 
@@ -6017,6 +6239,7 @@ msgid "Expired"
 msgstr "已过期"
 
 #. placeholder {0}: formatDate(date)
+#. placeholder {0}: formatDate(expiresAt)
 msgid "Expired {0}"
 msgstr "已过期 {0}"
 
@@ -6028,6 +6251,10 @@ msgstr "过期批次"
 
 msgid "Expires"
 msgstr "过期"
+
+#. placeholder {0}: formatDate(expiresAt)
+msgid "Expires {0}"
+msgstr "于 {0} 到期"
 
 msgid "Expires <0/>"
 msgstr "过期于 <0/>"
@@ -6065,8 +6292,14 @@ msgstr "扩展价格"
 msgid "External"
 msgstr "外部"
 
+msgid "External Delta"
+msgstr "外部差异"
+
 msgid "External document"
 msgstr "外部文档"
+
+msgid "External ID"
+msgstr "外部 ID"
 
 msgid "External link"
 msgstr "外部链接"
@@ -6247,6 +6480,9 @@ msgstr "获取风险失败"
 msgid "Failed to fetch suggestions"
 msgstr "获取建议失败"
 
+msgid "Failed to get options"
+msgstr "获取选项失败"
+
 msgid "Failed to initialize Carbon client"
 msgstr "未能初始化 Carbon 客户端"
 
@@ -6316,6 +6552,9 @@ msgstr "移动账户失败: {0}"
 
 msgid "Failed to regenerate thumbnail"
 msgstr "未能重新生成缩略图"
+
+msgid "Failed to register passkey"
+msgstr "注册密钥失败"
 
 msgid "Failed to remove image: {errorMessage}"
 msgstr "删除图像失败：{errorMessage}"
@@ -6784,6 +7023,9 @@ msgstr "生成的ID已禁用"
 msgid "Generated IDs are enabled"
 msgstr "生成的ID已启用"
 
+msgid "Generating suggestions…"
+msgstr "正在生成建议…"
+
 msgid "Get live on Carbon: one system running quoting, purchasing, the shop floor, inventory, and finance, replacing the current tools."
 msgstr "在 Carbon 上线：一个系统运行报价、采购、车间、库存和财务，替代当前工具。"
 
@@ -7067,6 +7309,9 @@ msgstr "历史汇率（权益）"
 msgid "History"
 msgstr "历史"
 
+msgid "Hold the journal as a warning to fix."
+msgstr "暂存该日记帐作为警告以供修复"
+
 msgid "Holiday"
 msgstr "假期"
 
@@ -7220,6 +7465,9 @@ msgstr "超级护理：前几周的密集支持"
 msgid "I (reduced)"
 msgstr "I（已减少）"
 
+msgid "I have a reasonable basis to believe this individual is a U.S. person as defined in 22 CFR 120.62"
+msgstr "我有合理的理由相信该个人是根据 22 CFR 120.62 定义的美国人"
+
 msgid "I'm Still Working"
 msgstr "我仍在工作"
 
@@ -7231,6 +7479,9 @@ msgstr "ID"
 
 msgid "Ideas, suggestions or problems?"
 msgstr "想法、建议或问题？"
+
+msgid "Idempotency key"
+msgstr "幂等键"
 
 msgid "Identifiers"
 msgstr "标识符"
@@ -7353,17 +7604,11 @@ msgstr "入站检验"
 msgid "Inbox"
 msgstr "收件箱"
 
-msgid "Include a materials (bill of materials) section on the job traveler PDF with item numbers and quantities."
-msgstr "在工作单据 PDF 中包含物料清单（BOM）部分，列出物料号和数量。"
-
 msgid "Include extra parts in shipment"
 msgstr "在发货中包含额外零件"
 
 msgid "Include Inactive"
 msgstr "包括不活跃"
-
-msgid "Include materials on traveler"
-msgstr "在工作单据上包含物料"
 
 msgid "Included"
 msgstr "已包含"
@@ -7500,6 +7745,9 @@ msgstr "说明"
 msgid "Instructions are inherited from the procedure."
 msgstr "说明继承自工序。"
 
+msgid "Integration"
+msgstr "集成"
+
 msgid "Integration not found"
 msgstr "集成未找到"
 
@@ -7535,6 +7783,9 @@ msgstr "来自银行活动的利息收入或支出"
 
 msgid "Internal"
 msgstr "内部"
+
+msgid "Internal Delta"
+msgstr "内部差异"
 
 msgid "Internal notes"
 msgstr "内部备注"
@@ -7607,6 +7858,9 @@ msgstr "库存估值"
 
 msgid "Invite"
 msgstr "邀请"
+
+msgid "Invite Expired"
+msgstr "邀请已过期"
 
 msgid "Invited"
 msgstr "已邀请"
@@ -7767,6 +8021,9 @@ msgstr "签发日期"
 msgid "Issues"
 msgstr "问题"
 
+msgid "ITAR Certifications"
+msgstr "ITAR 认证"
+
 msgid "item"
 msgstr "项"
 
@@ -7845,6 +8102,9 @@ msgstr "此窗口内的项目会获得黄色徽章。"
 msgid "Items: item master, BOMs, Bill of Process, engineering changes, CAD"
 msgstr "项目：项目主数据、物料清单、工艺流程、工程变更、CAD"
 
+msgid "Its design may change before the change notice is released."
+msgstr "在更改单发布前，其设计可能会发生变化。"
+
 msgid "Job"
 msgstr "工作"
 
@@ -7878,20 +8138,14 @@ msgstr "工作优先级"
 msgid "Job readable"
 msgstr "工作可读性"
 
-msgid "Job Traveler Materials"
-msgstr "工作单据物料"
-
-msgid "Job traveler settings updated"
-msgstr "工作单据设置已更新"
+msgid "Job Traveler"
+msgstr "工作单"
 
 msgid "Jobs"
 msgstr "工作"
 
 msgid "Jobs Assigned to Me"
 msgstr "分配给我的工作"
-
-msgid "Jobs in progress"
-msgstr "进行中的工作"
 
 msgid "Jobs Required"
 msgstr "所需的工作"
@@ -7914,6 +8168,9 @@ msgstr "本期日期的日记账条目如仍为草稿状态，必须进行过账
 
 msgid "Journal Entry"
 msgstr "日记账条目"
+
+msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
+msgstr "日期在此日期及之前的日记账被视为已锁定。当两者都存在时，与提供商报告的锁定日期合并。"
 
 msgid "Just one"
 msgstr "仅一个"
@@ -7947,6 +8204,9 @@ msgstr "保持开放"
 
 msgid "Keep picking"
 msgstr "继续领取"
+
+msgid "Keeps orders, quotes, and settings behind a second check"
+msgstr "让订单、报价单和设置受到第二道检查的保护"
 
 msgid "Key"
 msgstr "钥匙"
@@ -8015,6 +8275,12 @@ msgstr "语言"
 msgid "Last 6 Months"
 msgstr "最近6个月"
 
+msgid "Last attempt"
+msgstr "上次尝试"
+
+msgid "Last Attempt"
+msgstr "上次尝试"
+
 msgid "Last Calibration"
 msgstr "最后校准"
 
@@ -8026,6 +8292,9 @@ msgstr "最后一天"
 
 msgid "Last Fiscal Year"
 msgstr "上一财政年度"
+
+msgid "Last Login"
+msgstr "最后登录"
 
 msgid "Last Month"
 msgstr "上个月"
@@ -8044,6 +8313,9 @@ msgstr "最后运行"
 
 msgid "Last synced: <0/>"
 msgstr "上次同步: <0/>"
+
+msgid "Last used"
+msgstr "最后使用"
 
 msgid "Latest operation end"
 msgstr "最新操作结束"
@@ -8503,6 +8775,12 @@ msgstr "制造商零件号"
 msgid "Manufacturing"
 msgstr "制造"
 
+msgid "Map accounts"
+msgstr "映射科目"
+
+msgid "Map Carbon accounts to the provider's chart of accounts. Posted journals push using the mapped provider account code."
+msgstr "将 Carbon 账户映射到提供商的科目表。已过账日记账使用映射的提供商账户代码推送。"
+
 msgid "Map Extracted Invoice Lines"
 msgstr "映射提取的发票行项目"
 
@@ -8514,6 +8792,12 @@ msgstr "立即映射行"
 
 msgid "Map your current process, systems, and data"
 msgstr "映射您当前的流程、系统和数据"
+
+msgid "Mapped accounts"
+msgstr "已映射账户"
+
+msgid "Mapped values"
+msgstr "已映射的值"
 
 #. placeholder {0}: i18n._(step.gate)
 msgid "Mark \"{0}\" as passed?"
@@ -8585,6 +8869,12 @@ msgstr "匹配任意"
 msgid "Match any (OR)"
 msgstr "匹配任意项 (OR)"
 
+msgid "Match by code"
+msgstr "按代码匹配"
+
+msgid "Match by name"
+msgstr "按名称匹配"
+
 msgid "Match none"
 msgstr "不匹配任何条件"
 
@@ -8633,6 +8923,9 @@ msgstr "物料ID"
 msgid "Material IDs"
 msgstr "物料ID"
 
+msgid "Material is pre-selected"
+msgstr "材料已预先选择"
+
 msgid "Material Properties"
 msgstr "材料属性"
 
@@ -8674,6 +8967,12 @@ msgstr "材料"
 
 msgid "Materials"
 msgstr "材料"
+
+msgid "Materials are included"
+msgstr "包含材料"
+
+msgid "Materials are not included"
+msgstr "不包含材料"
 
 msgid "Max Qty"
 msgstr "最大数量"
@@ -8734,6 +9033,9 @@ msgstr "MES"
 
 msgid "Message"
 msgstr "消息"
+
+msgid "Metadata"
+msgstr "元数据"
 
 msgid "Method"
 msgstr "方法"
@@ -8800,6 +9102,12 @@ msgstr "分钟/1000件"
 
 msgid "Minutes/Piece"
 msgstr "分钟/件"
+
+msgid "Mismatch"
+msgstr "不匹配"
+
+msgid "Missing"
+msgstr "缺失"
 
 msgid "Missing Information"
 msgstr "缺少信息"
@@ -8869,6 +9177,9 @@ msgstr "更多"
 
 msgid "More actions"
 msgstr "更多操作"
+
+msgid "More information"
+msgstr "更多信息"
 
 msgid "More options"
 msgstr "更多选项"
@@ -9317,6 +9628,10 @@ msgstr "否"
 msgid "No {0} found"
 msgstr "未找到 {0}"
 
+#. placeholder {0}: status.toLowerCase()
+msgid "No {0} sync operations"
+msgstr "没有 {0} 同步操作"
+
 #. placeholder {0}: copy.pluralNoun
 msgid "No {0} yet"
 msgstr "还没有{0}"
@@ -9326,6 +9641,9 @@ msgstr "未添加任何能力"
 
 msgid "No Access"
 msgstr "无权限"
+
+msgid "No accounts mapped yet"
+msgstr "尚未映射账户"
 
 msgid "No action needed"
 msgstr "无需操作"
@@ -9415,6 +9733,12 @@ msgstr "未安排休息日"
 msgid "No default attachments yet."
 msgstr "还没有默认附件。"
 
+msgid "No dimension slots configured"
+msgstr "未配置维度插槽"
+
+msgid "No dimension values mapped yet"
+msgstr "尚未映射维度值"
+
 msgid "No draft make method for this item yet."
 msgstr "此项目还没有草稿制造方法。"
 
@@ -9486,6 +9810,9 @@ msgstr "无项目"
 
 msgid "No items have inventory activity here yet."
 msgstr "此处尚无项目的库存活动。"
+
+msgid "No jobs were created"
+msgstr "没有创建任何作业"
 
 msgid "No journal lines in scope for this period"
 msgstr "本期范围内没有日记账行"
@@ -9568,6 +9895,9 @@ msgstr "无零件ID"
 msgid "No parts"
 msgstr "没有零件"
 
+msgid "No passkeys registered yet."
+msgstr "尚未注册任何密钥。"
+
 msgid "No payables"
 msgstr "无应付款"
 
@@ -9576,6 +9906,9 @@ msgstr "还没有付款。"
 
 msgid "No planning data"
 msgstr "没有规划数据"
+
+msgid "No posted journals in this period for this account"
+msgstr "此期间此账户没有已记账日记账"
 
 msgid "No pricing for selected quantity"
 msgstr "所选数量无定价"
@@ -9622,6 +9955,9 @@ msgstr "没有剩余的实体可检查。"
 msgid "No reports match your search."
 msgstr "未找到与搜索条件匹配的报告。"
 
+msgid "No representative of this company has accepted the Carbon GovCloud Rider yet. An administrator at this company must accept it before anyone can access Carbon — Carbon staff cannot accept it on your behalf."
+msgstr "本公司尚无代表接受 Carbon GovCloud Rider。在任何人访问 Carbon 之前，必须由本公司的管理员接受 — Carbon 员工无法代表贵公司接受。"
+
 msgid "No results"
 msgstr "无结果"
 
@@ -9655,6 +9991,9 @@ msgstr "无存储单元"
 msgid "No suppliers yet"
 msgstr "还没有供应商"
 
+msgid "No sync operations yet"
+msgstr "尚无同步操作"
+
 msgid "No time entries for this week"
 msgstr "本周没有时间条目"
 
@@ -9666,6 +10005,12 @@ msgstr "此步骤没有工具"
 
 msgid "No transactions in this period"
 msgstr "此期间无交易"
+
+msgid "No unmapped accounts match a provider code"
+msgstr "没有未映射的账户与提供商代码匹配"
+
+msgid "No unmapped values match a provider option name"
+msgstr "没有未映射的值与提供商选项名称匹配"
 
 msgid "No value needed"
 msgstr "不需要值"
@@ -9733,11 +10078,17 @@ msgstr "正常"
 msgid "Not a table but a general-ledger balance: cost accumulates as job materials are issued and clears when the job is received to stock."
 msgstr "不是表格而是总账余额：当发出工作物料时成本积累，当工作收到库存时清除。"
 
+msgid "Not certified"
+msgstr "未认证"
+
 msgid "Not enough jobs to cover quantity"
 msgstr "工作数量不足以覆盖数量"
 
 msgid "Not reached"
 msgstr "未到达"
+
+msgid "Not recorded"
+msgstr "未记录"
 
 msgid "Not referenced anywhere yet."
 msgstr "还没有在任何地方被引用。"
@@ -9746,6 +10097,9 @@ msgid "Not Required"
 msgstr "不需要"
 
 msgid "Not set"
+msgstr "未设置"
+
+msgid "Not set up"
 msgstr "未设置"
 
 msgid "Not started"
@@ -9826,6 +10180,9 @@ msgstr "OEM (原始设备制造商)"
 
 msgid "of"
 msgstr "的"
+
+msgid "Off — handled outside the sync"
+msgstr "关闭 — 在同步外处理"
 
 msgid "Off — released revisions stay editable"
 msgstr "关闭 — 已发布的版本保持可编辑"
@@ -9965,9 +10322,6 @@ msgstr "未结应收"
 msgid "Open Audit Log"
 msgstr "打开审计日志"
 
-msgid "Open change notices affecting this part"
-msgstr "打开影响此零件的更改单"
-
 msgid "Open date"
 msgstr "开始日期"
 
@@ -10052,6 +10406,9 @@ msgstr "打开"
 msgid "Opening"
 msgstr "期初"
 
+msgid "Opening an operation starts its timer, so time is tracked from the moment work begins."
+msgstr "打开一个操作会启动其计时器，因此从工作开始时起就跟踪时间。"
+
 msgid "Opening balance of depreciation already booked before this asset was added to Carbon (use 0 for new acquisitions)."
 msgstr "在将此资产添加到Carbon之前已入账的折旧的期初余额（新购置的情况下使用0）。"
 
@@ -10081,9 +10438,6 @@ msgstr "操作数量"
 
 msgid "Operation supplier process"
 msgstr "操作供应商流程"
-
-msgid "Operation Timer"
-msgstr "操作计时器"
 
 msgid "Operation type"
 msgstr "操作类型"
@@ -10121,6 +10475,12 @@ msgstr "操作员"
 msgid "Operators can use shared workstations with PIN authentication."
 msgstr "操作员可以使用带有PIN身份验证的共享工作站。"
 
+msgid "Operators start on the Scan tab"
+msgstr "操作人员从扫描选项卡开始"
+
+msgid "Operators start the timer themselves when they begin an operation."
+msgstr "操作人员在开始一个操作时自己启动计时器。"
+
 msgid "Opportunity"
 msgstr "机会"
 
@@ -10142,8 +10502,14 @@ msgstr "可选页面和部分"
 msgid "Options"
 msgstr "选项"
 
+msgid "or"
+msgstr "或"
+
 msgid "OR"
 msgstr "或"
+
+msgid "Or enter this secret manually:"
+msgstr "或手动输入此密码:"
 
 msgid "Order"
 msgstr "订单"
@@ -10306,6 +10672,9 @@ msgstr "拥有：{0}"
 msgid "Packing Slip"
 msgstr "装箱单"
 
+msgid "Pad amounts to their currency's decimal places, so 300 appears as 300.00 and columns of figures stay aligned. Turn this off to show only the digits that carry value. Printed documents and stored amounts are unaffected either way."
+msgstr "将金额填充到其货币的小数位数，使300显示为300.00，数字列保持对齐。关闭此选项可仅显示有效数字。打印文档和存储的金额无论如何都不受影响。"
+
 msgid "Page"
 msgstr "页面"
 
@@ -10350,6 +10719,12 @@ msgstr "父存储单元"
 
 msgid "Pareto by Type"
 msgstr "按类型的帕累托"
+
+msgid "Park as error"
+msgstr "停靠为错误"
+
+msgid "Park the journal with a warning until the value is mapped"
+msgstr "将日记账停放，并显示警告，直到该值被映射"
 
 msgid "part"
 msgstr "零件"
@@ -10402,6 +10777,18 @@ msgstr "通过"
 msgid "Passed"
 msgstr "已通过"
 
+msgid "Passkey name"
+msgstr "密钥名称"
+
+msgid "Passkey unlock failed"
+msgstr "密钥解锁失败"
+
+msgid "Passkeys"
+msgstr "密钥"
+
+msgid "Passkeys are disabled"
+msgstr "密钥已禁用"
+
 msgid "Path"
 msgstr "路径"
 
@@ -10410,6 +10797,9 @@ msgstr "支付汇率"
 
 msgid "Payables"
 msgstr "应付账款（默认）"
+
+msgid "Payables (AP)"
+msgstr "应付账款 (AP)"
 
 msgid "Payables (default)"
 msgstr "付款条件"
@@ -10507,6 +10897,9 @@ msgstr "期间关闭"
 msgid "Period End"
 msgstr "期末"
 
+msgid "Period lock policy"
+msgstr "期间锁定政策"
+
 msgid "Periodic depreciation expense for fixed assets"
 msgstr "拣选按最早过期日期优先提供跟踪实体，因此最快过期的库存默认首先出库。"
 
@@ -10545,6 +10938,9 @@ msgstr "可用于分配的物理打印机。"
 
 msgid "Pick"
 msgstr "拣选"
+
+msgid "Pick a Carbon dimension and the provider target it posts to. Auto-create adds missing provider options by name at push time."
+msgstr "选择一个 Carbon 维度和它发布到的提供商目标。自动创建在推送时按名称添加缺失的提供商选项。"
 
 msgid "Pick a column to sort by"
 msgstr "选择要排序的列"
@@ -10767,6 +11163,9 @@ msgstr "发布者"
 msgid "Posted By"
 msgstr "发布者"
 
+msgid "Posted journals with these source types always sync. Daily summary groups a day's journals into one provider entry per account."
+msgstr "这些来源类型的已过账日记账始终进行同步。每日汇总将一天的日记账合并为每个账户的一条提供商记录。"
+
 msgid "Posted once, corrected {corrections} times."
 msgstr "发布一次，修正了 {corrections} 次。"
 
@@ -10790,9 +11189,6 @@ msgstr "潜在数据丢失"
 
 msgid "Pre-filled for a new item when expiry is Fixed Duration."
 msgstr "当过期时间设置为固定期限时，为新项目预填充。"
-
-msgid "Pre-select material without a picking list"
-msgstr "不带拣选单预先选择材料"
 
 msgid "Preferred Supplier"
 msgstr "首选供应商"
@@ -11057,14 +11453,32 @@ msgstr "属性"
 msgid "Property"
 msgstr "属性"
 
+msgid "Proposed matches where the Carbon account number equals the provider account code exactly."
+msgstr "提议的匹配项，其中 Carbon 账户编号与提供商账户代码完全相等。"
+
+msgid "Proposed matches where the Carbon dimension value's name equals a provider option name exactly."
+msgstr "建议的匹配，其中 Carbon 维度值的名称与提供商选项名称完全相同。"
+
 msgid "Protect the go-live date"
 msgstr "保护上线日期"
 
 msgid "Protect training time and attend"
 msgstr "保护培训时间并参加"
 
+msgid "Protects your company's data"
+msgstr "保护您公司的数据"
+
 msgid "Provide process knowledge and inputs"
 msgstr "提供流程知识和输入"
+
+msgid "Provider"
+msgstr "提供商"
+
+msgid "Provider account"
+msgstr "提供商账户"
+
+msgid "Provider option"
+msgstr "提供商选项"
 
 msgid "Public"
 msgstr "公开"
@@ -11079,8 +11493,14 @@ msgstr "发布版本{0}?"
 msgid "Published by Carbon"
 msgstr "由 Carbon 发布"
 
+msgid "Pull"
+msgstr "拉取"
+
 msgid "Pull From"
 msgstr "从以下位置提取"
+
+msgid "Pull from accounting"
+msgstr "从会计系统拉取"
 
 msgid "Pull from Inventory"
 msgstr "从库存中提取"
@@ -11205,8 +11625,20 @@ msgstr "采购发票"
 msgid "Purchasing Unit of Measure"
 msgstr "采购计量单位"
 
+msgid "Push"
+msgstr "推送"
+
+msgid "Push it re-dated to the first open day, keeping the original date in the narration."
+msgstr "将其推送至第一个可用日期，在备注中保留原始日期"
+
 msgid "Push record changes to external systems the moment they happen."
 msgstr "将记录更改实时推送到外部系统。"
+
+msgid "Push the journal without the dimension"
+msgstr "推送不包含维度的日记账"
+
+msgid "Push to accounting"
+msgstr "推送到会计系统"
 
 #. placeholder {0}: row.original.replenishmentSystem === "Make" ? "Job" : "Order"
 msgid "QR Code to create a {0} for this kanban"
@@ -11414,8 +11846,14 @@ msgstr "原材料"
 msgid "Raw Materials (default)"
 msgstr "原材料（默认）"
 
+msgid "Re-date to first open day"
+msgstr "重新日期至第一个开放日"
+
 msgid "Re-keying between quoting, the floor, and finance"
 msgstr "在报价、车间和财务之间重复输入数据"
+
+msgid "Re-send"
+msgstr "重新发送"
 
 msgid "Reactivate"
 msgstr "重新激活"
@@ -11437,6 +11875,9 @@ msgstr "可读 ID（含版本）"
 
 msgid "Reading the document..."
 msgstr "正在读取文档..."
+
+msgid "Ready"
+msgstr "就绪"
 
 msgid "Ready for Quote"
 msgstr "准备报价"
@@ -11510,6 +11951,9 @@ msgstr "仍为草稿或待处理状态的收据、装运、销售发票、采购
 msgid "Receivables"
 msgstr "应收账款（默认）"
 
+msgid "Receivables (AR)"
+msgstr "应收账款 (AR)"
+
 msgid "Receivables (default)"
 msgstr "将采购订单与所收货物和发票进行对账——在Carbon中隐含进行，通过行数量和GR/IR余额。"
 
@@ -11567,6 +12011,9 @@ msgstr "最近创建"
 
 msgid "Reconcile"
 msgstr "对账"
+
+msgid "Reconciliation found discrepancies with the provider"
+msgstr "对账发现与提供商的差异"
 
 msgid "Reconciling a purchase order against what was received and invoiced — implicit in Carbon, via the line quantities and GR/IR balance."
 msgstr "回收期"
@@ -11633,6 +12080,9 @@ msgstr "已注册"
 
 msgid "Registered"
 msgstr "重新订购点"
+
+msgid "Registration failed"
+msgstr "注册失败"
 
 msgid "Registration Number"
 msgstr "注册号"
@@ -11710,6 +12160,9 @@ msgstr "删除 {0}"
 msgid "Remove {label}"
 msgstr "移除 {label}"
 
+msgid "Remove authenticator app"
+msgstr "移除身份验证器应用"
+
 msgid "Remove clause"
 msgstr "移除条款"
 
@@ -11746,6 +12199,9 @@ msgstr "删除行"
 msgid "Remove slide"
 msgstr "移除幻灯片"
 
+msgid "Remove slot"
+msgstr "移除插槽"
+
 msgid "Remove sort by column"
 msgstr "删除按列排序"
 
@@ -11754,6 +12210,9 @@ msgstr "从所有引用此存储类型的存储单元中移除它并将其删除
 
 msgid "Remove tool"
 msgstr "移除工具"
+
+msgid "Remove two-factor authentication"
+msgstr "移除双因素身份验证"
 
 msgid "Removed"
 msgstr "已移除"
@@ -11849,6 +12308,9 @@ msgstr "报告"
 msgid "Reprint"
 msgstr "重新打印"
 
+msgid "Request a new invite"
+msgstr "请求新邀请"
+
 msgid "Request access"
 msgstr "请求访问"
 
@@ -11858,6 +12320,12 @@ msgstr "请求批准"
 msgid "Requested Date"
 msgstr "请求日期"
 
+msgid "Require a 6-digit code from an authenticator app when signing in."
+msgstr "登录时需要来自身份验证器应用的 6 位数字代码。"
+
+msgid "Require an authenticator app before anyone can open this company. Their other companies are unaffected. Visit the <0>employee accounts page</0> to see each person's status."
+msgstr "在任何人打开此公司之前需要身份验证器应用。他们的其他公司不受影响。访问<0>员工账户页面</0>以查看每个人的状态。"
+
 msgid "Require approval before suppliers can be set to Active"
 msgstr "在供应商可以设置为活跃之前需要批准"
 
@@ -11866,6 +12334,9 @@ msgstr "根据金额阈值要求采购订单获得批准"
 
 msgid "Require approval for quality documents in your workflow"
 msgstr "在您的工作流程中需要质量文件的批准"
+
+msgid "Require two-factor authentication"
+msgstr "需要双因素认证"
 
 msgid "Required"
 msgstr "必需"
@@ -11884,6 +12355,9 @@ msgstr "必需的操作（按顺序）"
 
 msgid "Required Date"
 msgstr "所需日期"
+
+msgid "Required in a controlled environment — audit logging cannot be turned off."
+msgstr "在受控环境中需要 — 审计日志无法关闭。"
 
 msgid "Requirement"
 msgstr "需求"
@@ -11922,6 +12396,14 @@ msgstr "重置PIN"
 #. placeholder {1}: operator.lastName
 msgid "Reset PIN for {0} {1}"
 msgstr "重置 {0} {1} 的 PIN"
+
+msgid "Reset Two-Factor Auth"
+msgstr "重置双因素认证"
+
+#. placeholder {0}: user.firstName
+#. placeholder {1}: user.lastName
+msgid "Reset two-factor authentication for {0} {1}"
+msgstr "重置{0} {1}的双因素认证"
 
 msgid "Reset view"
 msgstr "重置视图"
@@ -11977,6 +12459,9 @@ msgstr "通过报废或出售将资产退出使用，将收益或损失计入账
 msgid "Retry"
 msgstr "重试"
 
+msgid "Retry all"
+msgstr "全部重试"
+
 msgid "Return Home"
 msgstr "返回首页"
 
@@ -12027,6 +12512,9 @@ msgstr "审查每个项目的更改，然后确认 — 发布无法撤销。"
 
 msgid "Review the period's balance sheet and income statement and confirm the figures look right. This is a manual sign-off — mark it done once you have reviewed them."
 msgstr "审查期间的资产负债表和损益表，并确认数字正确。这是手动签核 — 审查后标记为完成。"
+
+msgid "Review the suggested matches before applying. These are a best guess — confirm each is correct."
+msgstr "在应用之前审查建议的匹配项。这些是最佳猜测 — 确认每个都是正确的。"
 
 msgid "Review the warnings below, then post the count to apply the adjustments."
 msgstr "查看下面的警告，然后过账盘点以应用调整。"
@@ -12082,6 +12570,13 @@ msgstr "询价单号"
 
 msgid "RFQs"
 msgstr "询价单"
+
+msgid "Ride Carbon dimensions along on pushed journals. Each slot maps one Carbon dimension to one provider analytics target; the value mapping below pairs individual dimension values with provider options."
+msgstr "在推送的日记账上附加 Carbon 维度。每个插槽将一个 Carbon 维度映射到一个提供商分析目标；下面的值映射将单个维度值与提供商选项配对。"
+
+#. placeholder {0}: certification.docVersion
+msgid "Rider v{0}"
+msgstr "Rider v{0}"
 
 msgid "Right item"
 msgstr "右项"
@@ -12369,6 +12864,9 @@ msgstr "保存应用"
 msgid "Save contacts"
 msgstr "保存联系人"
 
+msgid "Save dimension settings"
+msgstr "保存维度设置"
+
 msgid "Save Method"
 msgstr "保存方法"
 
@@ -12413,6 +12911,12 @@ msgstr "扫描或搜索..."
 
 msgid "Scan or select a tracked entity from this lot to add it as a sample column, then record its result in the grid."
 msgstr "从此批次扫描或选择被追踪的实体以将其作为样本列添加，然后在网格中记录其结果。"
+
+msgid "Scan this QR code with your authenticator app (e.g. Google Authenticator or 1Password), then enter the 6-digit code it shows."
+msgstr "使用您的身份验证器应用(例如 Google Authenticator 或 1Password)扫描此 QR 码,然后输入它显示的 6 位数字代码。"
+
+msgid "Scan this with your authenticator app, then enter the 6-digit code it shows."
+msgstr "使用您的身份验证器应用扫描此内容，然后输入它显示的6位数代码。"
 
 msgid "SCAR"
 msgstr "SCAR"
@@ -12573,8 +13077,17 @@ msgstr "完成秒数"
 msgid "Seconds/Piece"
 msgstr "秒/件"
 
+msgid "Secret copied to clipboard"
+msgstr "密码已复制到剪贴板"
+
 msgid "Section"
 msgstr "部分"
+
+msgid "Secure your account with 2FA"
+msgstr "使用2FA保护您的账户"
+
+msgid "Security"
+msgstr "安全"
 
 msgid "Segments that drive customer pricing and terms"
 msgstr "驱动客户定价和条款的细分市场"
@@ -12685,6 +13198,9 @@ msgstr "选择客户类型"
 msgid "Select customers"
 msgstr "选择客户"
 
+msgid "Select dimension"
+msgstr "选择维度"
+
 msgid "Select Employee"
 msgstr "选择员工"
 
@@ -12720,6 +13236,15 @@ msgstr "选择方法..."
 
 msgid "Select Printer"
 msgstr "选择打印机"
+
+msgid "Select provider account"
+msgstr "选择提供商账户"
+
+msgid "Select provider target"
+msgstr "选择提供商目标"
+
+msgid "Select provider value"
+msgstr "选择提供商值"
 
 msgid "Select Quantities"
 msgstr "选择数量"
@@ -12872,6 +13397,9 @@ msgstr "服务"
 msgid "Services"
 msgstr "服务"
 
+msgid "Session locked"
+msgstr "会话已锁定"
+
 msgid "Set a target"
 msgstr "设置目标"
 
@@ -12902,8 +13430,14 @@ msgstr "设置定价"
 msgid "Set Quantity"
 msgstr "设置数量"
 
+msgid "Set up authenticator app"
+msgstr "设置身份验证器应用"
+
 msgid "Set up the right way"
 msgstr "以正确的方式设置"
+
+msgid "Set up two-factor authentication"
+msgstr "设置双因素身份验证"
 
 msgid "Set up your company with a step-by-step implementation plan covering setup, data, training, and go-live."
 msgstr "通过涵盖设置、数据、培训和上线的分步实施计划来设置您的公司。"
@@ -12929,6 +13463,9 @@ msgstr "设置"
 
 msgid "Setup & Controls"
 msgstr "设置和控制"
+
+msgid "Setup failed"
+msgstr "设置失败"
 
 msgid "Setup instructions"
 msgstr "设置说明"
@@ -13152,6 +13689,9 @@ msgstr "显示供应商ID"
 msgid "Show sync options"
 msgstr "显示同步选项"
 
+msgid "Show Trailing Zeros"
+msgstr "显示尾随零"
+
 #. placeholder {0}: data.length
 msgid "Showing {0} of {totalCount} — refine your search"
 msgstr "显示 {0} 个，共 {totalCount} 个 — 优化搜索"
@@ -13162,6 +13702,9 @@ msgstr "显示货币：{parentCurrency}"
 msgid "Showing the first 500 lines"
 msgstr "显示前500行"
 
+msgid "Showing the newest 200 journals"
+msgstr "显示最新的 200 条日记账"
+
 msgid "Showing the top 1,000 groups by amount"
 msgstr "按金额显示前1,000个分组"
 
@@ -13170,6 +13713,9 @@ msgstr "作为淡色背景显示在每个生成的PDF页面后面"
 
 msgid "Shown to the user when this rule fails."
 msgstr "当此规则失败时向用户显示。"
+
+msgid "Sign in with biometrics instead of a magic link. Passkeys are secured by Face ID, Touch ID, or your device PIN."
+msgstr "使用生物识别而不是魔法链接登录。密钥由 Face ID、Touch ID 或您的设备 PIN 保护。"
 
 msgid "Sign in with Email"
 msgstr "用邮箱登录"
@@ -13183,8 +13729,14 @@ msgstr "使用 Outlook 登录"
 msgid "Sign in with Passkey"
 msgstr "使用密钥登录"
 
+msgid "Sign out"
+msgstr "登出"
+
 msgid "Sign Out"
 msgstr "登出"
+
+msgid "Sign out instead"
+msgstr "改为登出"
 
 msgid "Sign-off review before moving to the next step"
 msgstr "签署审查后再进行下一步"
@@ -13197,6 +13749,12 @@ msgstr "以 {name} 身份登录"
 
 msgid "Signed quantity — negative for outbound movements"
 msgstr "有符号数量 — 出站移动为负"
+
+msgid "Signing in also requires a one-time code from your authenticator app"
+msgstr "登录还需要来自您的身份验证器应用的一次性代码"
+
+msgid "Signing in will no longer require a code. Enter the current 6-digit code from your authenticator app to confirm."
+msgstr "登录将不再需要代码。输入您的身份验证器应用中的当前 6 位数字代码以确认。"
 
 msgid "Sites & locations"
 msgstr "站点和位置"
@@ -13305,6 +13863,9 @@ msgstr "源列表"
 
 msgid "Source Method"
 msgstr "源方法"
+
+msgid "Source types"
+msgstr "源类型"
 
 msgid "Source Version"
 msgstr "源版本"
@@ -13644,6 +14205,15 @@ msgstr "后继零件"
 msgid "Suffix"
 msgstr "后缀"
 
+msgid "Suggest mappings"
+msgstr "建议映射"
+
+msgid "Suggest mappings with AI"
+msgstr "使用 AI 建议映射"
+
+msgid "Suggest with AI"
+msgstr "使用 AI 建议"
+
 msgid "Suggested orders you haven't placed yet."
 msgstr "您尚未下达的建议订单。"
 
@@ -13848,6 +14418,18 @@ msgstr "在此处更改员工类型不会更改其现有权限；后续对话框
 
 msgid "Sync"
 msgstr "同步"
+
+msgid "Sync Activity"
+msgstr "同步活动"
+
+msgid "Sync operation"
+msgstr "同步操作"
+
+msgid "Sync Tie-Out"
+msgstr "同步对账"
+
+msgid "Synced"
+msgstr "已同步"
 
 msgid "System"
 msgstr "系统"
@@ -14522,6 +15104,9 @@ msgstr "技术人员在执行此维护时遵循的程序；在已生成计划之
 msgid "The processes this work center can run; appears in process-pickers when scheduling operations, and limits which jobs can route through this work center."
 msgstr "该工作中心可以运行的流程；在安排操作时显示在流程选择器中，并限制哪些工作可以通过该工作中心路由。"
 
+msgid "The provider offers no dimension targets. Enable the feature in the provider first (e.g. tracking categories, class tracking, or fields)."
+msgstr "提供商不提供维度目标。首先在提供商中启用该功能（例如跟踪类别、类跟踪或字段）。"
+
 msgid "The quantity breakpoints this line is priced at; each column carries its own per-unit price for buyer–supplier negotiation and for converting to downstream documents."
 msgstr "此行定价的数量断点；每列为买卖方谈判和转换为下游文件的自己的单价。"
 
@@ -14682,6 +15267,12 @@ msgstr "系统通过了您配置的系统中的所有范围内验收测试，使
 msgid "The thread linking a sales RFQ, its quote, and the resulting sales order — a join, not a document with its own status."
 msgstr "链接销售RFQ、其报价和生成的销售订单的线程 - 连接，而不是具有自己状态的文档。"
 
+msgid "The timer starts automatically"
+msgstr "计时器自动启动"
+
+msgid "The timer starts manually"
+msgstr "计时器手动启动"
+
 msgid "The tooling and fixtures your operations rely on"
 msgstr "您的运营所依赖的工具和夹具"
 
@@ -14690,6 +15281,9 @@ msgstr "在此批量批次中创建的所有工作中要制造的总量；与每
 
 msgid "The traceable reference (e.g. NIST standard, master gauge serial) the calibration values were compared against."
 msgstr "对其进行校准值比较的可追踪参考（例如NIST标准，主测量仪序列号）。"
+
+msgid "The traveler lists each item on the bill of materials with its quantity."
+msgstr "工作单列出物料清单上的每个项目及其数量。"
 
 msgid "The type controls which default permissions the new employee receives; selecting it here pre-fills the permission matrix from the type's template."
 msgstr "类型控制新员工接收的默认权限；在此处选择它会从类型的模板预填充权限矩阵。"
@@ -14820,11 +15414,24 @@ msgstr "此信息将对所有用户可见，请谨慎分享。"
 msgid "this inspection plan"
 msgstr "这个检验计划"
 
+#. placeholder {0}: company?.name ?? "Carbon"
+msgid "This invitation to join {0} has expired. You can request a new invite to be sent to your email."
+msgstr "加入 {0} 的邀请已过期。您可以请求将新邀请发送到您的电子邮件。"
+
+msgid "This is a controlled environment, so an authenticator app is required."
+msgstr "这是受控环境，因此需要身份验证器应用。"
+
+msgid "This is a controlled environment, so two-factor authentication is required for everyone and cannot be turned off."
+msgstr "这是受控环境，因此每个人都需要双因素认证，无法关闭。"
+
 msgid "This is a purchased item — it has no BoM/BoP; only its attributes and documents can change."
 msgstr "这是一个采购项目 — 它没有BoM/BoP；只有其属性和文档可以更改。"
 
 msgid "This is a unique identifier for the webhook"
 msgstr "这是webhook的唯一标识符"
+
+msgid "This is an ITAR-controlled environment. Access is restricted to U.S. Persons."
+msgstr "这是一个 ITAR 受控环境。访问仅限于美国人。"
 
 msgid "This is the month your fiscal year starts."
 msgstr "这是您的财政年度开始的月份。"
@@ -14868,6 +15475,9 @@ msgstr "您的实现中心的此页面正在构建中。请从命令中心开始
 msgid "This part has {quantityOnHand} on hand at this location. No Stock means it will be neither planned nor consumed."
 msgstr "此零件在此位置有 {quantityOnHand} 件现货。\"无库存\"意味着它既不会被计划也不会被消耗。"
 
+msgid "This part is activated when change notice {activationLockId} is released."
+msgstr "此零件将在更改单 {activationLockId} 发布后激活。"
+
 msgid "This part is being phased out."
 msgstr "这个零件正在逐步淘汰。"
 
@@ -14883,8 +15493,14 @@ msgstr "此路径仅决定接下来运行什么"
 msgid "This period has no journal entries posted to it and can be permanently deleted. This cannot be undone."
 msgstr "此期间未过账任何日记账分录，可以永久删除。此操作无法撤销。"
 
+msgid "this purchase order"
+msgstr "此采购订单"
+
 msgid "This Quarter"
 msgstr "本季度"
+
+msgid "This removes their authenticator app, so their next sign-in only needs a magic link. Use this when they have lost access to their authenticator. It affects their sign-in for every company they belong to."
+msgstr "这将移除他们的身份验证器应用，因此他们的下次登录只需要一个魔法链接。当他们失去对身份验证器的访问权限时，请使用此选项。它会影响他们对所属每个公司的登录。"
 
 msgid "This revision is released (Production). Changes should normally flow through a change notice."
 msgstr "此修订版已发布（生产版）。更改应该通过更改单进行。"
@@ -14911,8 +15527,14 @@ msgstr "此存储类型当前被 {usageCount} 个存储单元{0}使用。"
 msgid "this supplier"
 msgstr "此供应商"
 
+msgid "This tool is activated when change notice {activationLockId} is released."
+msgstr "此工具将在更改单 {activationLockId} 发布后激活。"
+
 msgid "This updates the theme for all users of the application"
 msgstr "这会更新应用程序所有用户的主题"
+
+msgid "This user does not have two-factor authentication enabled."
+msgstr "此用户未启用双因素认证。"
 
 msgid "This version belongs to an open <0>change notice</0>. Edit it there."
 msgstr "此版本属于开放的<0>变更通知</0>。请在那里编辑。"
@@ -14992,6 +15614,9 @@ msgstr "星期四"
 
 msgid "Tie shipments through to an invoice with no re-keying"
 msgstr "将发货与发票关联，无需重新输入"
+
+msgid "Tie-out"
+msgstr "对账"
 
 msgid "Tie-Out"
 msgstr "对账"
@@ -15218,6 +15843,9 @@ msgstr "追踪实体"
 msgid "Tracked entity ID is required but none was found"
 msgstr "已跟踪实体ID是必需的，但未找到"
 
+msgid "Tracked material is pre-selected by pick order (FEFO), even without a picking list."
+msgstr "追踪的材料按照提货顺序（FEFO）预先选择，即使没有提货单。"
+
 msgid "Tracking"
 msgstr "追踪"
 
@@ -15317,6 +15945,24 @@ msgstr "星期二"
 msgid "Turn on the built-in pieces"
 msgstr "启用内置功能"
 
+msgid "Two-Factor"
+msgstr "双因素"
+
+msgid "Two-factor authentication"
+msgstr "双因素认证"
+
+msgid "Two-factor authentication disabled"
+msgstr "双因素身份验证已禁用"
+
+msgid "Two-factor authentication enabled"
+msgstr "双因素身份验证已启用"
+
+msgid "Two-Factor Authentication Enforcement"
+msgstr "双因素认证强制执行"
+
+msgid "Two-factor authentication is not enabled."
+msgstr "双因素身份验证未启用。"
+
 msgid "Type"
 msgstr "类型"
 
@@ -15343,6 +15989,12 @@ msgstr "类型："
 
 msgid "Types"
 msgstr "类型"
+
+msgid "U.S. Person Attestation"
+msgstr "美国人证明"
+
+msgid "Unable to unlock"
+msgstr "无法解锁"
 
 msgid "Unapplied"
 msgstr "未应用"
@@ -15446,8 +16098,20 @@ msgstr "从销售订单取消关联工作？"
 msgid "Unlock"
 msgstr "解锁"
 
+msgid "Unlock with passkey"
+msgstr "使用密钥解锁"
+
+msgid "Unmapped accounts"
+msgstr "未映射的账户"
+
+msgid "Unmapped dimension values"
+msgstr "未映射的维度值"
+
 msgid "Unmapped Extracted Lines"
 msgstr "未映射的提取行"
+
+msgid "Unmapped values"
+msgstr "未映射的值"
 
 msgid "Unmatched"
 msgstr "未匹配"
@@ -15665,6 +16329,9 @@ msgstr "使用...获取下一个服务ID"
 msgid "Use ... to get the next tool ID"
 msgstr "使用 ... 获取下一个工具 ID"
 
+msgid "Use a different account"
+msgstr "使用不同的账户"
+
 msgid "Use a different email"
 msgstr "使用不同的电子邮件"
 
@@ -15803,6 +16470,15 @@ msgstr "供应商核销收入"
 msgid "Verification Error"
 msgstr "验证错误"
 
+msgid "Verification failed"
+msgstr "验证失败"
+
+msgid "Verify"
+msgstr "验证"
+
+msgid "Verify and continue"
+msgstr "验证并继续"
+
 msgid "Verify inventory and financial balances tie out"
 msgstr "验证库存和财务余额相符"
 
@@ -15836,6 +16512,9 @@ msgstr "查看活跃工作"
 
 msgid "View Active Quotes"
 msgstr "查看活跃报价"
+
+msgid "View all"
+msgstr "查看全部"
 
 msgid "View All"
 msgstr "查看全部"
@@ -15986,6 +16665,9 @@ msgstr "查看建议"
 
 msgid "View Suppliers"
 msgstr "查看供应商"
+
+msgid "View tie-out"
+msgstr "查看对账"
 
 msgid "View Traceability Graph"
 msgstr "查看可追溯性图表"
@@ -16193,6 +16875,9 @@ msgstr "什么数据"
 msgid "What drove inventory up or down, by any dimension"
 msgstr "按任何维度推动库存上升或下降的因素"
 
+msgid "What happens when a journal is dated in a locked period."
+msgstr "当日记帐日期在锁定期间时会发生什么"
+
 msgid "What is {translatedTerm}?"
 msgstr "{translatedTerm}是什么?"
 
@@ -16271,17 +16956,11 @@ msgstr "启用后,此类别中的属性会显示在人员的公开个人资料�
 msgid "When on, employees can edit this attribute's value on their own profile; otherwise only admins can."
 msgstr "启用后,员工可以在自己的个人资料中编辑此属性的值;否则,仅管理员可以这样做。"
 
-msgid "When on, opening an operation starts its timer automatically."
-msgstr "打开时，打开操作会自动启动其计时器。"
-
 msgid "When on, pricing rules (volume discounts, promotions) still apply on top of this override; when off, this override is the final price."
 msgstr "启用后,定价规则(批量折扣、促销)仍适用于此覆盖;禁用时,此覆盖是最终价格。"
 
 msgid "When on, scanning this process's operation barcode reports all remaining open quantity as complete in one action; turn off when operators routinely report partials."
 msgstr "启用后,扫描此流程的操作条形码会在一个操作中将所有剩余的未处理数量报告为已完成;当操作员定期报告部分时禁用。"
-
-msgid "When on, the traveler PDF lists the job's required materials."
-msgstr "启用后，工作单据 PDF 将列出工作所需的物料。"
 
 msgid "When on, this party's invoices skip tax calculation; the party is responsible for keeping the exemption certificate current."
 msgstr "启用后,该方的发票会跳过税计算;该方负责使豁免证书保持最新。"
@@ -16291,9 +16970,6 @@ msgstr "启用后,此价格覆盖适用于匹配的订单;禁用时,覆盖被保
 
 msgid "When on, this rule fires for every target of its type. Assignment rows are ignored but preserved."
 msgstr "启用时，此规则对其类型的每个目标都会触发。分配行被忽略但保留。"
-
-msgid "When on, tracked material is pre-selected by pick order (FEFO) even without a picking list. When off, operators start on the Scan tab."
-msgstr "启用时，即使没有拣选单，跟踪的材料也会根据拣选顺序（FEFO）预先选择。禁用时，操作员从扫描选项卡开始。"
 
 msgid "When supplier responses are expected back; suppliers see this date on the RFQ portal and Carbon stops accepting late responses after it (configurable)."
 msgstr "何时预期供应商回复;供应商在RFQ门户上看到该日期,Carbon在之后停止接受迟到的回复(可配置)。"
@@ -16505,6 +17181,9 @@ msgstr "窗口："
 msgid "WIP"
 msgstr "在制品"
 
+msgid "Without a picking list, operators pick material from the Scan tab."
+msgstr "没有提货单，操作人员从扫描选项卡中选择材料。"
+
 #. placeholder {0}: quarter.start + 1
 #. placeholder {1}: quarter.end
 msgid "Wk {0}–{1}"
@@ -16692,6 +17371,9 @@ msgstr "您正在按照自己的节奏自行设置 Carbon"
 msgid "You've been clocked in for {hoursElapsed} hours. Did you forget to clock out?"
 msgstr "您已打卡 {hoursElapsed} 小时。您忘记打卡下班了吗？"
 
+msgid "Your account stays safe even if your login is stolen"
+msgstr "即使您的登录被盗，您的账户也保持安全"
+
 msgid "Your books and how money flows."
 msgstr "您的账簿和资金流向。"
 
@@ -16737,6 +17419,9 @@ msgstr "您的主要联系人"
 msgid "Your Name"
 msgstr "你的名字"
 
+msgid "Your organization requires an authenticator app."
+msgstr "您的组织需要身份验证器应用。"
+
 msgid "Your part numbers"
 msgstr "您的零件编号"
 
@@ -16751,6 +17436,9 @@ msgstr "您的项目团队"
 
 msgid "Your real data is loaded and you have checked a sample and approved it."
 msgstr "您的真实数据已加载，您已检查样本并批准了它。"
+
+msgid "Your session was locked after inactivity."
+msgstr "您的会话因不活动而被锁定。"
 
 msgid "Your source data is accessible and reasonably clean"
 msgstr "您的源数据可访问且相对干净"

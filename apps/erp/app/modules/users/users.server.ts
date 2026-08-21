@@ -1,5 +1,6 @@
-import { error, success } from "@carbon/auth";
+import { CONTROLLED_ENVIRONMENT, error, success } from "@carbon/auth";
 import { deleteAuthAccount } from "@carbon/auth/auth.server";
+import { logPermissionChange } from "@carbon/auth/auth-events.server";
 import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { flash, requireAuthSession } from "@carbon/auth/session.server";
 import {
@@ -9,6 +10,7 @@ import {
 } from "@carbon/auth/users.server";
 import type { Database, Json } from "@carbon/database";
 import { redis } from "@carbon/kv";
+import { now, parseAbsolute } from "@internationalized/date";
 
 // Re-exported, not reimplemented: this module used to carry a near-identical
 // copy that (a) missed the canonical version's cache TTL and (b) bypassed its
@@ -37,6 +39,21 @@ import { insertEmployeeJob } from "../people/people.service";
 
 const logger = getLogger("erp", "users");
 
+/**
+ * Controlled environments (ITAR) expire invites 7 days after creation. Computed
+ * at read time — no `expiresAt` column. Resend resets `createdAt`, restarting
+ * the window. Enforced only when CONTROLLED_ENVIRONMENT is on.
+ */
+export const INVITE_EXPIRY_DAYS = 7;
+
+export function isControlledInviteExpired(createdAt: string): boolean {
+  if (!CONTROLLED_ENVIRONMENT) return false;
+  const expiresAt = parseAbsolute(createdAt, "UTC").add({
+    days: INVITE_EXPIRY_DAYS
+  });
+  return expiresAt.compare(now("UTC")) < 0;
+}
+
 export async function acceptInvite(
   serviceRole: SupabaseClient<Database>,
   code: string,
@@ -51,6 +68,16 @@ export async function acceptInvite(
     .single();
 
   if (invite.error) return invite;
+
+  if (isControlledInviteExpired(invite.data.createdAt)) {
+    return {
+      data: null,
+      error: {
+        message:
+          "This invite has expired. Please request a new invite to continue."
+      }
+    };
+  }
 
   if (email && invite.data.email !== email) {
     throw new Error(
@@ -355,7 +382,9 @@ export async function createEmployeeAccount(
     employeeType,
     locationId,
     companyId,
-    createdBy
+    createdBy,
+    attestedBy,
+    attestedAt
   }: {
     email: string;
     firstName: string;
@@ -364,6 +393,10 @@ export async function createEmployeeAccount(
     locationId: string;
     companyId: string;
     createdBy: string;
+    // ITAR (controlled environments): the inviter's 22 CFR 120.62 U.S.-person
+    // attestation. Null in ordinary deployments.
+    attestedBy?: string | null;
+    attestedAt?: string | null;
   }
 ): Promise<
   | { success: false; message: string }
@@ -447,7 +480,9 @@ export async function createEmployeeAccount(
       email,
       companyId,
       createdBy,
-      code
+      code,
+      attestedBy: attestedBy ?? null,
+      attestedAt: attestedAt ?? null
     })
   ]);
 
@@ -1126,23 +1161,19 @@ export function makeCompanyPermissionsFromClaims(
         switch (action) {
           case "view":
             // biome-ignore lint/complexity/useLiteralKeys: suppressed due to migration
-            permissions[module]["view"] =
-              value.includes("0") || value.includes(companyId);
+            permissions[module]["view"] = value.includes(companyId);
             break;
           case "create":
             // biome-ignore lint/complexity/useLiteralKeys: suppressed due to migration
-            permissions[module]["create"] =
-              value.includes("0") || value.includes(companyId);
+            permissions[module]["create"] = value.includes(companyId);
             break;
           case "update":
             // biome-ignore lint/complexity/useLiteralKeys: suppressed due to migration
-            permissions[module]["update"] =
-              value.includes("0") || value.includes(companyId);
+            permissions[module]["update"] = value.includes(companyId);
             break;
           case "delete":
             // biome-ignore lint/complexity/useLiteralKeys: suppressed due to migration
-            permissions[module]["delete"] =
-              value.includes("0") || value.includes(companyId);
+            permissions[module]["delete"] = value.includes(companyId);
             break;
         }
       }
@@ -1241,18 +1272,10 @@ export function makeCompanyPermissionsFromEmployeeType(
       result[permission.module] = {
         name: permission.module.toLowerCase(),
         permission: {
-          view:
-            permission.view.includes("0") ||
-            permission.view.includes(companyId),
-          create:
-            permission.create.includes("0") ||
-            permission.create.includes(companyId),
-          update:
-            permission.update.includes("0") ||
-            permission.update.includes(companyId),
-          delete:
-            permission.delete.includes("0") ||
-            permission.delete.includes(companyId)
+          view: permission.view.includes(companyId),
+          create: permission.create.includes(companyId),
+          update: permission.update.includes(companyId),
+          delete: permission.delete.includes(companyId)
         }
       };
     }
@@ -1372,12 +1395,16 @@ export async function updateEmployee(
     id,
     employeeType,
     permissions,
-    companyId
+    companyId,
+    actorId,
+    ip
   }: {
     id: string;
     employeeType: string;
     permissions: Record<string, CompanyPermission>;
     companyId: string;
+    actorId?: string;
+    ip?: string;
   }
 ): Promise<Result> {
   const updateEmployeeEmployeeType = await client
@@ -1387,7 +1414,7 @@ export async function updateEmployee(
   if (updateEmployeeEmployeeType.error)
     return error(updateEmployeeEmployeeType.error, "Failed to update employee");
 
-  return updatePermissions(client, { id, permissions, companyId });
+  return updatePermissions(client, { id, permissions, companyId, actorId, ip });
 }
 
 export async function updatePermissions(
@@ -1396,15 +1423,19 @@ export async function updatePermissions(
     id,
     permissions,
     companyId,
-    addOnly = false
+    addOnly = false,
+    actorId,
+    ip
   }: {
     id: string;
     permissions: Record<string, CompanyPermission>;
     companyId: string;
     addOnly?: boolean;
+    actorId?: string;
+    ip?: string;
   }
 ): Promise<Result> {
-  if (await client.rpc("is_claims_admin")) {
+  if (await client.rpc("is_claims_admin", { company: companyId })) {
     const claims = await getClaims(client, id);
 
     if (claims.error) return error(claims.error, "Failed to get claims");
@@ -1418,6 +1449,10 @@ export async function updatePermissions(
     ) as Record<string, string[]>;
     // biome-ignore lint/complexity/useLiteralKeys: suppressed due to migration
     delete updatedPermissions["role"];
+
+    // Snapshot the effective grant set BEFORE the in-place mutation below, so
+    // the audit event carries an honest before/after diff (NIST 3.3.1/3.3.2).
+    const beforePermissions = structuredClone(updatedPermissions);
 
     // add any missing claims to the current claims
     Object.keys(permissions).forEach((name) => {
@@ -1521,6 +1556,15 @@ export async function updatePermissions(
       });
     }
 
+    // The "0" global-company wildcard is retired (NIST 800-171 3.1.5). Strip it
+    // from every array so it can never be persisted to the authoritative table.
+    for (const key of Object.keys(updatedPermissions)) {
+      const value = updatedPermissions[key];
+      if (Array.isArray(value)) {
+        updatedPermissions[key] = value.filter((c: string) => c !== "0");
+      }
+    }
+
     const permissionsUpdate = await getCarbonServiceRole()
       .from("userPermission")
       .update({ permissions: updatedPermissions })
@@ -1529,6 +1573,17 @@ export async function updatePermissions(
       return error(permissionsUpdate.error, "Failed to update claims");
 
     await redis.del(getPermissionCacheKey(id));
+
+    // Audit the change (NIST 800-171 3.3.1/3.3.2): actor, target, before/after.
+    logPermissionChange({
+      actor: actorId,
+      targetUserId: id,
+      companyId,
+      ip,
+      before: beforePermissions,
+      after: updatedPermissions,
+      reason: addOnly ? "add" : "edit"
+    });
 
     return success("Permissions updated");
   } else {

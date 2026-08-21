@@ -34,9 +34,11 @@ import ItemThumbnail from "./ItemThumbnail";
 import Location from "./Location";
 import MetricCard from "./MetricCard";
 import { ModelOptimizedIndicator } from "./ModelOptimizedIndicator";
+import MotionMoney from "./MotionMoney";
 import New from "./New";
 import PeriodSelector from "./PeriodSelector";
 import RealtimeDataProvider from "./RealtimeDataProvider";
+import { RevisionSuffix } from "./RevisionSuffix";
 import SearchFilter from "./SearchFilter";
 import { SearchLandingPage } from "./SearchLandingPage";
 import Select from "./Select";
@@ -74,6 +76,7 @@ export {
   MethodItemTypeIcon,
   MetricCard,
   ModelOptimizedIndicator,
+  MotionMoney,
   ModuleIcon,
   New,
   OperationStatusIcon,
@@ -81,6 +84,7 @@ export {
   PeriodSelector,
   PrintButton,
   RealtimeDataProvider,
+  RevisionSuffix,
   SearchFilter,
   SearchLandingPage,
   Select,

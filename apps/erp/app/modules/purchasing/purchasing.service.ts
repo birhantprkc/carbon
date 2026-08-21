@@ -13,7 +13,7 @@ import { getEmployeeJob } from "~/modules/people";
 import type { GenericQueryFilters } from "~/utils/query";
 import { LIST_COUNT, setGenericQueryFilters } from "~/utils/query";
 import { sanitize } from "~/utils/supabase";
-import { getCurrencyByCode } from "../accounting/accounting.service";
+import { getCurrencyByCode } from "../accounting/accounting.ee.service";
 import type { PurchaseInvoice } from "../invoicing/types";
 import {
   canApproveRequest,
@@ -41,10 +41,11 @@ import type {
   supplierTypeValidator,
   supplierValidator
 } from "./purchasing.models";
+import { PURCHASE_ORDER_LOCKED_STATUSES } from "./purchasing.models";
 import type { PurchaseOrder, PurchasingRFQ, SupplierQuote } from "./types";
 
 const PURCHASE_ORDERS_LIST_COLUMNS =
-  "id,purchaseOrderId,status,orderDate,supplierId,supplierReference,assignee,companyId,customFields,createdAt,createdBy,updatedAt,updatedBy,thumbnailPath,itemType,orderTotal,receivableQuantity,receivedQuantity,shippingMethodId,receiptRequestedDate,receiptPromisedDate,deliveryDate,dropShipment,paymentTermId,createdByFullName,assigneeFullName" as const;
+  "id,purchaseOrderId,revisionId,status,orderDate,supplierId,supplierReference,assignee,companyId,customFields,createdAt,createdBy,updatedAt,updatedBy,thumbnailPath,itemType,orderTotal,receivableQuantity,receivedQuantity,shippingMethodId,receiptRequestedDate,receiptPromisedDate,deliveryDate,dropShipment,paymentTermId,createdByFullName,assigneeFullName" as const;
 
 const logger = getLogger("erp", "purchasing-service");
 
@@ -135,6 +136,7 @@ export async function duplicatePurchaseOrder(
         "id, supplierId, supplierContactId, supplierLocationId, supplierReference, currencyCode, purchaseOrderType, internalNotes, externalNotes"
       )
       .eq("id", sourcePurchaseOrderId)
+      .eq("companyId", companyId)
       .single(),
     client
       .from("purchaseOrderDelivery")
@@ -144,9 +146,10 @@ export async function duplicatePurchaseOrder(
     client
       .from("purchaseOrderLine")
       .select(
-        "purchaseOrderLineType, itemId, assetId, description, purchaseQuantity, supplierUnitPrice, inventoryUnitOfMeasureCode, purchaseUnitOfMeasureCode, locationId, storageUnitId, setupPrice, customFields, conversionFactor, tags, internalNotes, externalNotes, exchangeRate, supplierShippingCost, modelUploadId, supplierTaxAmount, jobId, jobOperationId, promisedDate, requiredDate, accountId, costCenterId, ownerId, sortOrder, supplierPartId"
+        "purchaseOrderLineType, itemId, assetId, description, purchaseQuantity, supplierUnitPrice, inventoryUnitOfMeasureCode, purchaseUnitOfMeasureCode, locationId, storageUnitId, setupPrice, customFields, conversionFactor, tags, internalNotes, externalNotes, exchangeRate, supplierShippingCost, modelUploadId, supplierTaxAmount, taxPercent, jobId, jobOperationId, promisedDate, requiredDate, accountId, costCenterId, ownerId, sortOrder, supplierPartId"
       )
       .eq("purchaseOrderId", sourcePurchaseOrderId)
+      .eq("companyId", companyId)
   ]);
 
   if (source.error || !source.data) {
@@ -1208,6 +1211,43 @@ export async function updatePurchaseOrderStatus(
   }
 ) {
   return client.from("purchaseOrder").update(update).eq("id", update.id);
+}
+
+/**
+ * Reopens a released purchase order to Draft as its next revision.
+ *
+ * Compare-and-swap: the increment and the eligibility conditions are both in
+ * SQL, so concurrent requests can't share a revision number and an ineligible
+ * order matches no rows. Returns rows updated — 0 means it was not eligible.
+ */
+export async function reopenPurchaseOrderAsRevision(
+  db: Kysely<KyselyDatabase>,
+  {
+    id,
+    companyId,
+    updatedBy
+  }: {
+    id: string;
+    companyId: string;
+    updatedBy: string;
+  }
+) {
+  const result = await db
+    .updateTable("purchaseOrder")
+    .set((eb) => ({
+      status: "Draft" as const,
+      assignee: null,
+      revisionId: eb("revisionId", "+", 1),
+      updatedBy,
+      updatedAt: datetime.timestamp()
+    }))
+    .where("id", "=", id)
+    .where("companyId", "=", companyId)
+    .where("status", "in", [...PURCHASE_ORDER_LOCKED_STATUSES])
+    .where("orderDate", "is not", null)
+    .executeTakeFirst();
+
+  return Number(result.numUpdatedRows ?? 0);
 }
 
 export async function updateSupplierAccounting(
@@ -2485,7 +2525,9 @@ export async function getPurchasingRFQSuppliers(
   client: SupabaseClient<Database>,
   purchasingRfqId: string
 ): Promise<PostgrestResponse<PurchasingRfqSupplierWithSupplier>> {
-  // @ts-ignore - nested select instantiation exceeds tsgo depth limit
+  // @ts-ignore TS2589 — supabase select-string instantiation depth sits on
+  // tsgo's limit; the cliff shifts as unrelated modules join the program.
+  // ts-ignore, not ts-expect-error, so it satisfies both tsc and tsgo.
   return client
     .from("purchasingRfqSupplier")
     .select("*, supplier(id, name)")

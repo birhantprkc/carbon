@@ -103,6 +103,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   return {
     quote: quote.data,
+    presentationCurrency: presentationCurrency.data ?? null,
     lines: lines.data ?? [],
     prices: prices.data ?? [],
     files: getSupplierInteractionDocuments(
@@ -133,7 +134,7 @@ export default function SupplierQuoteRoute() {
               explorer={<SupplierQuoteExplorer />}
               content={
                 <div className="h-[calc(100dvh-99px)] overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent w-full">
-                  <VStack spacing={2} className="p-2">
+                  <VStack spacing={4} className="p-4">
                     <Outlet />
                   </VStack>
                 </div>

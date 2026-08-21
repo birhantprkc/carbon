@@ -15,6 +15,10 @@ msgstr ""
 msgid " A supplier is a business or person who sells you parts or services."
 msgstr "Bir tedarikçi, size parça veya hizmet satan bir işletme veya kişidir."
 
+#. placeholder {0}: formatDateTime(lastReconciliation.runAt)
+msgid "— last checked {0}"
+msgstr "— son kontrol {0}"
+
 msgid ", {residual}% residual"
 msgstr ", {residual}% kalıntı"
 
@@ -45,8 +49,8 @@ msgid "(excluded for this customer)"
 msgstr "(bu müşteri için hariç tutulmuş)"
 
 #. placeholder {0}: open.length
-msgid "{0, plural, one {This part is on 1 open change notice} other {This part is on # open change notices}}"
-msgstr "{0, plural, one {Bu parça 1 açık değişiklik bildirisinde yer alıyor} other {Bu parça # açık değişiklik bildirisinde yer alıyor}}"
+msgid "{0, plural, one {This item is on 1 open change notice} other {This item is on # open change notices}}"
+msgstr "{0, plural, one {Bu ürün 1 açık değişiklik bildirisinde yer alıyor} other {Bu ürün # açık değişiklik bildirisinde yer alıyor}}"
 
 #. placeholder {0}: selectedAccountIds.length
 msgid "{0} accounts"
@@ -55,6 +59,10 @@ msgstr "{0} hesaplar"
 #. placeholder {0}: precise?.text
 msgid "{0} ago"
 msgstr "{0} önce"
+
+#. placeholder {0}: tieOut.deltaCellCount
+msgid "{0} cells with deltas"
+msgstr "{0} deltaları olan hücreler"
 
 #. placeholder {0}: ar.count
 msgid "{0} customers with a balance"
@@ -73,9 +81,22 @@ msgstr "{0} başarıyla silindi"
 msgid "{0} draft journal entries"
 msgstr "{0} taslak muhasebe kaydı"
 
+#. placeholder {0}: jobs.length
+msgid "{0} jobs created"
+msgstr "{0} iş oluşturuldu"
+
 #. placeholder {0}: mappings.length
 msgid "{0} lines to map"
 msgstr "{0} satır eşlenecek"
+
+#. placeholder {0}: mappingReadiness.mapped
+#. placeholder {1}: mappingReadiness.required
+msgid "{0} of {1} posting accounts mapped"
+msgstr "{0} / {1} deftere nakil hesapları eşlendi"
+
+#. placeholder {0}: rows.length
+msgid "{0} of {maxSlots} provider slots used"
+msgstr "{0}/{maxSlots} sağlayıcı yuvası kullanıldı"
 
 #. placeholder {0}: history.length
 msgid "{0} orders"
@@ -89,6 +110,10 @@ msgstr "{0} sorun — yayınlanmadı"
 msgid "{0} Processes"
 msgstr "{0} Süreçler"
 
+#. placeholder {0}: result.credentialName ?? "Passkey"
+msgid "{0} registered"
+msgstr "{0} kayıtlı"
+
 #. placeholder {0}: ap.count
 msgid "{0} suppliers with a balance"
 msgstr "{0} bakiyesi olan tedarikçi"
@@ -96,6 +121,11 @@ msgstr "{0} bakiyesi olan tedarikçi"
 #. placeholder {0}: lotEntities.length - inspected
 msgid "{0} un-sampled entities will be released to Available. Sampled passes stay Available and sampled failures stay Rejected."
 msgstr "{0} örneklenmemiş varlıklar Kullanılabilir'e bırakılacaktır. Örneklenen başarılılar Kullanılabilir ve örneklenen başarısızlar Reddedilmiş olarak kalır."
+
+#. placeholder {0}: unmapped.length
+#. placeholder {1}: chart.length
+msgid "{0} unmapped accounts will be matched against {1} provider accounts."
+msgstr "{0} eşleştirilmemiş hesap, {1} sağlayıcı hesabı ile eşleştirilecektir."
 
 #. placeholder {0}: task.autoCheck.count
 msgid "{0} unposted documents"
@@ -105,9 +135,17 @@ msgstr "{0} deftere geçmemiş belge"
 msgid "{0} uploaded successfully"
 msgstr "{0} başarıyla yüklendi"
 
+#. placeholder {0}: dimension.valueCount
+#. placeholder {0}: selectedDimension?.valueCount
+msgid "{0} values"
+msgstr "{0} değer"
+
 #. placeholder {0}: unmatchedValues.length
 msgid "{0} values missing"
 msgstr "{0} değeri eksik"
+
+msgid "{alreadyPlannedItemCount} parts skipped — they already have open jobs"
+msgstr "{alreadyPlannedItemCount} parça atlandı — zaten açık işleri var"
 
 msgid "{apOverduePct}% of payables"
 msgstr "{apOverduePct}% borç"
@@ -127,6 +165,9 @@ msgstr "{done} / {total} aşama tamamlandı"
 msgid "{from}–{to} of {count}"
 msgstr "{from}–{to} / {count}"
 
+msgid "{from}–{to} of {count} operations"
+msgstr "{from}–{to} / {count} işlem"
+
 #. placeholder {0}: errors.length
 #. placeholder {1}: skipped.length
 msgid "{inserted} inserted, {updated} updated, {0} need fixing, {1} skipped."
@@ -138,8 +179,24 @@ msgstr "{linesCount, plural, one {# satır} other {# satırlar}}"
 msgid "{maxSizeMB}MB limit"
 msgstr "{maxSizeMB}MB sınırı"
 
+msgid "{mismatchCount} months with mismatched totals"
+msgstr "{mismatchCount} ay tutarları uyuşmazlığı"
+
+msgid "{missingCount} journals missing in the provider"
+msgstr "sağlayıcıda eksik {missingCount} yevmiye"
+
+msgid "{missingCount} missing journals and {mismatchCount} mismatched months"
+msgstr "{missingCount} eksik yevmiye ve {mismatchCount} tutarları uyuşmazlığı olan ay"
+
 msgid "{name} deleted"
 msgstr "{name} silindi"
+
+msgid "{noDemandItemCount} parts skipped — nothing to make"
+msgstr "{noDemandItemCount} parça atlandı — yapılacak bir şey yok"
+
+#. placeholder {0}: (routeData?.purchaseOrder?.revisionId ?? 0) + 1
+msgid "{orderLabel} will be reopened for editing as revision {0}. The document already sent to the supplier is unchanged until you finalize and resend the order."
+msgstr "{orderLabel} revizyon {0} olarak düzenlenmek üzere yeniden açılacaktır. Tedarikçiye gönderilen belge, siparişi sonlandırıp yeniden gönderene kadar değişmez."
 
 msgid "{remaining, plural, one {# phase left} other {# phases left}}"
 msgstr "{remaining, plural, one {# aşama kaldı} other {# aşama kaldı}}"
@@ -158,6 +215,9 @@ msgstr "{totalQuantity, plural, one {# birim} other {# birimler}}"
 
 msgid "{uncounted, plural, one {# uncounted line} other {# uncounted lines}}"
 msgstr "{uncounted, plural, one {# sayılmamış satır} other {# sayılmamış satırlar}}"
+
+msgid "{updatedJobCount} jobs updated"
+msgstr "{updatedJobCount} iş güncellendi"
 
 msgid "{uploadedFileName} uploaded — fields filled from the document."
 msgstr "{uploadedFileName} yüklendi — alanlar belgeden dolduruldu."
@@ -185,6 +245,9 @@ msgstr "↩ {0} eski hale getirilen {1} kaynağından yönlendirildi"
 msgid "<0>Add a supplier part</0> for this item to set a preferred supplier."
 msgstr "<0>Bu ürün için bir tedarikçi parçası ekleyin</0> tercih edilen tedarikçi ayarlamak için."
 
+msgid "0 operations"
+msgstr "0 işlem"
+
 msgid "0-4 weeks"
 msgstr "0-4 hafta"
 
@@ -193,6 +256,18 @@ msgstr "1 gün"
 
 msgid "1 draft journal entry"
 msgstr "1 taslak muhasebe kaydı"
+
+msgid "1 job created"
+msgstr "1 iş oluşturuldu"
+
+msgid "1 job updated"
+msgstr "1 iş güncellendi"
+
+msgid "1 part skipped — it already has an open job"
+msgstr "1 parça atlandı — zaten açık bir işi var"
+
+msgid "1 part skipped — nothing to make"
+msgstr "1 parça atlandı — yapılacak bir şey yok"
 
 msgid "1 problem — not published"
 msgstr "1 sorun — yayınlanmadı"
@@ -754,6 +829,10 @@ msgstr "Kabul"
 msgid "Acceptance passed"
 msgstr "Kabul edildi"
 
+#. placeholder {0}: formatDate(certification.certifiedAt)
+msgid "Accepted {0}"
+msgstr "{0} tarihinde kabul edildi"
+
 msgid "Account"
 msgstr "Hesap"
 
@@ -783,6 +862,9 @@ msgstr "Hesap yöneticisi"
 
 msgid "Account Manager"
 msgstr "Hesap Yöneticisi"
+
+msgid "Account Mapping"
+msgstr "Hesap Haritalama"
 
 msgid "Account Number"
 msgstr "Hesap Numarası"
@@ -840,6 +922,9 @@ msgstr "Alacak hesapları"
 
 msgid "Accounts receivable for amounts owed by customers"
 msgstr "Müşteriler tarafından borçlu olunan tutarlar için alacak hesapları."
+
+msgid "Accounts referenced by posting defaults or journal history that have no provider mapping yet."
+msgstr "Deftere nakil varsayılanları veya yevmiye geçmişi tarafından referans verilen ancak henüz sağlayıcı haritalaması olmayan hesaplar."
 
 msgid "Accumulated Depreciation"
 msgstr "Birikmiş amortisman"
@@ -955,6 +1040,9 @@ msgstr "Bir yorum ekle..."
 msgid "Add a custom pricing row to override quantity, price, shipping, lead time, and tax"
 msgstr "Miktar, fiyat, kargo, teslim süresi ve vergiyi geçersiz kılmak için özel bir fiyatlandırma satırı ekleyin"
 
+msgid "Add a materials section that lists each item on the bill of materials with its quantity."
+msgstr "Malzeme listesindeki her parçayı ve miktarını gösteren bir malzeme bölümü ekleyin."
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Etiketleri doğrudan yazdırmak için yazdırma ayarlarında bir yazıcı ekleyin."
 
@@ -984,6 +1072,9 @@ msgstr "Kararınızla ilgili herhangi bir not ekleyin..."
 
 msgid "Add Approval Requirement"
 msgstr "Onay Gereksinimi Ekle"
+
+msgid "Add Authenticator App"
+msgstr "Kimlik Doğrulayıcı Uygulaması Ekle"
 
 msgid "Add Calibration Record"
 msgstr "Kalibrasyon Kaydı Ekle"
@@ -1060,6 +1151,9 @@ msgstr "Ortak Ekle"
 msgid "Add parts"
 msgstr "Parça ekle"
 
+msgid "Add Passkey"
+msgstr "Geçiş Anahtarı Ekle"
+
 msgid "Add path"
 msgstr "Yol ekle"
 
@@ -1098,6 +1192,9 @@ msgstr "Sevkiyat Ekle"
 
 msgid "Add Shipping"
 msgstr "Nakliye Ekle"
+
+msgid "Add slot"
+msgstr "Yuva ekle"
 
 msgid "Add Spare Part"
 msgstr "Yedek Parça Ekle"
@@ -1190,6 +1287,9 @@ msgstr "Kapsamda anlaş"
 msgid "Agree who owns what and set a working rhythm"
 msgstr "Kimin neyi sahip olduğunu belirleyin ve çalışma ritmi oluşturun"
 
+msgid "AI couldn't confidently match any accounts"
+msgstr "Yapay Zeka herhangi bir hesapı emin bir şekilde eşleştiremedi"
+
 msgid "AI Tokens"
 msgstr "Yapay Zeka Jetonları"
 
@@ -1198,6 +1298,10 @@ msgstr "Kapsamda Hizala"
 
 msgid "All"
 msgstr "Tümü"
+
+#. placeholder {0}: tieOut.cellCount
+msgid "All {0} cells tie out"
+msgstr "Tüm {0} hücre uyumluyor"
 
 msgid "All {total} phases are done. Nice work — your team is up and running."
 msgstr "Tüm {total} aşama tamamlandı. Harika iş — ekibiniz çalışmaya başladı."
@@ -1229,17 +1333,20 @@ msgstr "Tüm öğe türleri"
 msgid "All Items"
 msgstr "Tüm Öğeler"
 
-msgid "All jobs completed"
-msgstr "Tüm işler tamamlandı"
-
 msgid "All Locations"
 msgstr "Tüm Konumlar"
 
 msgid "All members of selected groups and selected individuals will be able to approve requests"
 msgstr "Seçilen gruplardaki ve bireylerdeki tüm üyeler talepleri onaylayabilecektir"
 
+msgid "All posting accounts are mapped"
+msgstr "Tüm deftere nakil hesapları haritalanmış"
+
 msgid "All rows imported — {inserted} inserted, {updated} updated."
 msgstr "{inserted} eklendi, {updated} güncellendi — tüm satırlar içe aktarıldı."
+
+msgid "All slotted dimension values are mapped"
+msgstr "Tüm boyut değerleri eşlendi"
 
 msgid "All Suppliers"
 msgstr "Tüm Tedarikçiler"
@@ -1438,6 +1545,9 @@ msgstr "Herhangi bir ürün tipi"
 msgid "Anything not explicitly listed in scope above"
 msgstr "Yukarıda açıkça kapsamda listelenmemiş herhangi bir şey"
 
+msgid "AP"
+msgstr "AP"
+
 msgid "AP Aging"
 msgstr "AP Yaşlandırma"
 
@@ -1514,6 +1624,9 @@ msgstr "Fiyatlandırma kurallarını uygula"
 msgid "Apply Rules On Top"
 msgstr "Kuralları üste uygula"
 
+msgid "Apply suggestions"
+msgstr "Önerileri Uygula"
+
 msgid "Apply To"
 msgstr "Uygulanacak Alan"
 
@@ -1556,6 +1669,12 @@ msgstr "AQL"
 msgid "AQL (Z1.4 / ISO 2859-1)"
 msgstr "AQL (Z1.4 / ISO 2859-1)"
 
+msgid "AR"
+msgstr "AR"
+
+msgid "AR / AP representation"
+msgstr "AR / AP gösterimi"
+
 msgid "AR Aging"
 msgstr "AR Yaşlandırma"
 
@@ -1567,6 +1686,9 @@ msgstr "AR Ödenmemiş"
 
 msgid "AR Overdue"
 msgstr "AR Vadesi Geçmiş"
+
+msgid "AR/AP"
+msgstr "AR/AP"
 
 msgid "Archive"
 msgstr "Arşiv"
@@ -1580,7 +1702,7 @@ msgstr "Arşivlenmiş"
 msgid "Archived Logs"
 msgstr "Arşivlenmiş Kayıtlar"
 
-#. placeholder {0}: quote.quoteId
+#. placeholder {0}: getQuoteDisplayId(quote)
 #. placeholder {1}: formatter.format(total)
 msgid "Are you sure you want to accept quote {0} for {1}?"
 msgstr "Teklif {0}'ı {1} için kabul etmek istediğinizden emin misiniz?"
@@ -1599,9 +1721,8 @@ msgstr "{0} öğesini iptal etmek istediğinizden emin misiniz? Yeniden açana k
 msgid "Are you sure you want to cancel {0}? This will also cancel all related supplier quotes."
 msgstr "{0}'yi iptal etmek istediğinizden emin misiniz? Bu aynı zamanda tüm ilgili tedarikçi tekliflerini de iptal edecektir."
 
-#. placeholder {0}: routeData?.purchaseOrder?.purchaseOrderId ?? "this purchase order"
-msgid "Are you sure you want to cancel {0}? This will close the order."
-msgstr "{0} siparişini iptal etmek istediğinizden emin misiniz? Bu siparişi kapatacaktır."
+msgid "Are you sure you want to cancel {orderLabel}? This will close the order."
+msgstr "{orderLabel}'yi iptal etmek istediğinizden emin misiniz? Bu siparişi kapatacaktır."
 
 msgid "Are you sure you want to cancel this job? It will no longer be available on the shop floor."
 msgstr "Bu işi iptal etmek istediğinizden emin misiniz? Artık atölyede kullanılamayacak."
@@ -1657,14 +1778,17 @@ msgstr "Bu işlemden {0}'ı silmek istediğinizden emin misiniz? Bu geri alınam
 msgid "Are you sure you want to delete {0}?"
 msgstr "{0} öğesini silmek istediğinizden emin misiniz?"
 
+#. placeholder {0}: getQuoteDisplayId( routeData?.quote )
+#. placeholder {0}: getQuoteDisplayId( selectedQuotation )
 #. placeholder {0}: initialValues.memoId
-#. placeholder {0}: initialValues.paymentId
-#. placeholder {0}: pickingList.pickingListId
 msgid "Are you sure you want to delete {0}? This cannot be undone."
 msgstr "Emin misiniz ki {0}'ı silmek istiyorsunuz? Bu geri alınamaz."
 
 msgid "Are you sure you want to delete {name}? This cannot be undone."
 msgstr "{name} adlı yedeği silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
+
+msgid "Are you sure you want to delete {orderLabel}? This cannot be undone."
+msgstr "{orderLabel}'yi silmek istediğinizden emin misiniz? Bu geri alınamaz."
 
 #. placeholder {0}: activeView.name
 #. placeholder {0}: viewPendingDelete.name
@@ -1890,6 +2014,9 @@ msgstr "Bu kanban kartını silmek istediğinizden emin misiniz? Bu geri alınam
 
 msgid "Are you sure you want to delete this maintenance dispatch? This cannot be undone."
 msgstr "Bu bakım sevkini silmek istediğinizden emin misiniz? Bu geri alınamaz."
+
+msgid "Are you sure you want to delete this passkey? You won't be able to use it to sign in anymore."
+msgstr "Bu geçiş anahtarını silmek istediğinizden emin misiniz? Artık oturum açmak için kullanamazsınız."
 
 msgid "Are you sure you want to delete this quality document?"
 msgstr "Bu kalite belgesini silmek istediğinizden emin misiniz?"
@@ -2120,6 +2247,9 @@ msgstr "Ek"
 msgid "Attachments"
 msgstr "Ekler"
 
+msgid "Attempts"
+msgstr "Denemeler"
+
 msgid "Attribute"
 msgstr "Öznitelik"
 
@@ -2153,6 +2283,12 @@ msgstr "Denetim Kayıtları"
 msgid "Authentication Error"
 msgstr "Kimlik Doğrulama Hatası"
 
+msgid "Authenticator app"
+msgstr "Kimlik Doğrulayıcı Uygulaması"
+
+msgid "Authenticator QR code"
+msgstr "Doğrulayıcı QR kodu"
+
 msgid "Auto apply"
 msgstr "Otomatik uygula"
 
@@ -2168,17 +2304,14 @@ msgstr "Bir işi otomatik olarak başlatmak için Otomatik Serbest Bırakma etki
 msgid "Auto Start Job"
 msgstr "Otomatik İş Başlatma"
 
+msgid "Auto-create"
+msgstr "Otomatik oluştur"
+
 msgid "Auto-generated QR Code"
 msgstr "Otomatik oluşturulan QR kodu"
 
 msgid "Auto-numbering formats for orders, jobs, parts, and more"
 msgstr "Siparişler, işler, parçalar ve daha fazlası için otomatik numaralandırma formatları"
-
-msgid "Auto-start the operator's timer when they open an operation in the MES so time logs are captured from the start."
-msgstr "Operatörün bir işlemi MES'te açtığında zamanlayıcıyı otomatik olarak başlat, böylece zaman günlükleri baştan itibaren kaydedilsin."
-
-msgid "Auto-start timer on open"
-msgstr "Açıldığında zamanlayıcıyı otomatik olarak başlat"
 
 msgid "Auto-suggest purchases from demand and reorder points"
 msgstr "Talep ve yeniden sipariş noktalarından otomatik satın alma önerileri"
@@ -2414,6 +2547,9 @@ msgstr "Carbon ile bir çağrı ayarlayın"
 msgid "Book Depreciation"
 msgstr "Defter Amortismanı"
 
+msgid "Books lock date (manual)"
+msgstr "Defterlerin kilitlenme tarihi (manuel)"
+
 msgid "Both"
 msgstr "Her ikisi"
 
@@ -2645,6 +2781,9 @@ msgstr "Karbon"
 msgid "Carbon + you"
 msgstr "Carbon + siz"
 
+msgid "Carbon account"
+msgstr "Carbon hesabı"
+
 msgid "Carbon client is not available"
 msgstr "Carbon istemcisi mevcut değil"
 
@@ -2669,8 +2808,18 @@ msgstr "Carbon Logosu"
 msgid "Carbon only"
 msgstr "Yalnızca Carbon"
 
+msgid "Carbon Posted"
+msgstr "Carbon Kaydedildi"
+
+msgid "Carbon value"
+msgstr "Carbon değeri"
+
 msgid "Carbon Value"
 msgstr "Carbon Değeri"
+
+#. placeholder {0}: unmapped.length
+msgid "Carbon will use AI to guess a provider account for each of your {0} unmapped accounts. Suggestions are a starting point — you can review them before anything is saved."
+msgstr "Carbon, {0} eşleştirilmemiş hesabınızın her biri için bir sağlayıcı hesabını tahmin etmek için Yapay Zeka kullanacaktır. Öneriler başlangıç noktasıdır — herhangi bir şey kaydedilmeden önce bunları gözden geçirebilirsiniz."
 
 msgid "Carbon-only"
 msgstr "Yalnızca Carbon"
@@ -2726,11 +2875,17 @@ msgstr "Bilgi"
 msgid "Centralized Billing Address"
 msgstr "Merkezi Faturalama Adresi"
 
+msgid "Cert Version"
+msgstr "Sertifika Versiyonu"
+
 msgid "Certificate Number"
 msgstr "Sertifika Numarası"
 
 msgid "Certificate uploaded"
 msgstr "Sertifika Yüklendi"
+
+msgid "Certified"
+msgstr "Sertifikalı"
 
 msgid "Chain"
 msgstr "Zincir"
@@ -2767,6 +2922,9 @@ msgstr "Değişiklik Bildirisi Türleri"
 
 msgid "Change Notices"
 msgstr "Değişiklik Bildirimleri"
+
+msgid "Change notices could not be loaded, so new versions and revisions are blocked. Reload to try again."
+msgstr "Değişiklik Bildirimleri yüklenemedi, bu nedenle yeni sürümler ve revizyonlar engellendi. Tekrar denemek için sayfayı yeniden yükleyin."
 
 msgid "Change order"
 msgstr "Değişim emri"
@@ -2833,6 +2991,9 @@ msgstr "Bir seri numarası seçin"
 
 msgid "Choose another file"
 msgstr "Başka bir dosya seç"
+
+msgid "Choose what appears on the printed job traveler."
+msgstr "Basılı iş talimatında neyin görüneceğini seçin."
 
 msgid "Choose your preferred language for the interface."
 msgstr "Arayüz için tercih ettiğiniz dili seçin."
@@ -3068,9 +3229,6 @@ msgstr "Tamamlanma tarihi"
 msgid "Completed Date"
 msgstr "Tamamlanma Tarihi"
 
-msgid "Completed Job Notifications"
-msgstr "Tamamlanan İş Bildirimleri"
-
 msgid "Completed Qty"
 msgstr "Tamamlanan Miktar"
 
@@ -3079,6 +3237,13 @@ msgstr "Tamamlama Barkodu"
 
 msgid "Completion Time"
 msgstr "Tamamlama Süresi"
+
+#. placeholder {0}: formatRelativeTime(tieOut.computedAt)
+msgid "computed {0}"
+msgstr "hesaplanan {0}"
+
+msgid "Computed At"
+msgstr "Hesaplama Tarihi"
 
 msgid "Condensed P&L with margins and key subtotals"
 msgstr "Marjlar ve kilit alt toplamlarla sıkıştırılmış P&L"
@@ -3176,6 +3341,9 @@ msgstr "Onayla {0}"
 
 msgid "Confirm & release"
 msgstr "Onayla ve yayınla"
+
+msgid "Confirm all"
+msgstr "Tümünü onayla"
 
 msgid "Confirm and sign the scope"
 msgstr "Kapsamı onaylayın ve imzalayın"
@@ -3326,6 +3494,9 @@ msgstr "Yükleniciler"
 
 msgid "Control design changes with revisions / ECOs"
 msgstr "Tasarım değişikliklerini revizyonlar / ECO'lar ile kontrol edin"
+
+msgid "Control how operators pick material and track time on the shop floor."
+msgstr "Operatörlerin malzeme nasıl seçtiğini ve atölye katında zamanı nasıl takip ettiğini kontrol edin."
 
 msgid "Controller, Accountant"
 msgstr "Kontrolör, Muhasebeci"
@@ -3629,6 +3800,9 @@ msgstr "Belgeler yüklenemedi"
 msgid "Couldn't load related documents. Refresh before creating a new one to avoid duplicates."
 msgstr "İlgili belgeler yüklenemedi. Yeni bir tane oluşturmadan önce yenileyerek tekrarları önleyin."
 
+msgid "Couldn't load the provider's dimension targets — check the connection and reload."
+msgstr "Sağlayıcının boyut hedefleri yüklenemedi — bağlantıyı kontrol edin ve sayfayı yeniden yükleyin."
+
 msgid "Couldn't reschedule the job. Please try again."
 msgstr "İş yeniden planlanamadı. Lütfen tekrar deneyin."
 
@@ -3730,6 +3904,9 @@ msgstr "Kanban Oluştur"
 
 msgid "Create new rule"
 msgstr "Yeni kural oluştur"
+
+msgid "Create PO Revision"
+msgstr "PO Revizyonu Oluştur"
 
 msgid "Create Production Event"
 msgstr "Üretim Etkinliği Oluştur"
@@ -4178,6 +4355,9 @@ msgstr "Günlük"
 msgid "Daily check-ins while your team finds its feet on the live system"
 msgstr "Canlı sistemde ekibiniz ayağa kalkarken günlük kontrol toplantıları"
 
+msgid "Daily summary"
+msgstr "Günlük özet"
+
 msgid "Daily Usage"
 msgstr "Günlük Kullanım"
 
@@ -4608,6 +4788,12 @@ msgstr "Parçayı Sil"
 msgid "Delete Partner"
 msgstr "Partneri Sil"
 
+msgid "Delete passkey"
+msgstr "Geçiş Anahtarını Sil"
+
+msgid "Delete Passkey"
+msgstr "Geçiş Anahtarını Sil"
+
 msgid "Delete Payment"
 msgstr "Ödemeyi Sil"
 
@@ -4894,6 +5080,12 @@ msgstr "boyut"
 msgid "Dimension"
 msgstr "Boyut"
 
+msgid "Dimension slots"
+msgstr "Boyut yuvaları"
+
+msgid "Dimension values on posted journals that have no provider mapping yet."
+msgstr "Henüz sağlayıcı eşlemesi olmayan defterlerdeki boyut değerleri."
+
 msgid "dimensions"
 msgstr "boyutlar"
 
@@ -4994,6 +5186,9 @@ msgstr "Durumlar"
 msgid "Do you want to overwrite the user's current permissions with the default permissions for this employee type?"
 msgstr "Kullanıcının mevcut izinlerini bu çalışan türü için varsayılan izinlerle üzerine yazmak ister misiniz?"
 
+msgid "Doc-Backed"
+msgstr "Belge Destekli"
+
 msgid "Docs"
 msgstr "Belgeler"
 
@@ -5017,6 +5212,9 @@ msgstr "Belge:"
 
 msgid "Documents"
 msgstr "Belgeler"
+
+msgid "Documents pushes invoices, bills and payments as native provider documents; their journals are recorded as covered by the document. It also pulls payments recorded in the provider back into Carbon, closing the matching invoice or bill and posting a Carbon GL journal. Off records them as deliberately excluded."
+msgstr "Documents faturaları, muhasebe faturalarını ve ödemeleri sağlayıcı belgesi olarak gönderir; muhasebe kayıtları belge tarafından kapsandığı şekilde kaydedilir. Ayrıca sağlayıcıda kaydedilen ödemeleri Carbon'a geri çekerek, eşleşen fatura veya muhasebe faturasını kapatır ve bir Carbon GL muhasebe kaydı oluşturur. Kapalı, bunları kasıtlı olarak hariç tutulmuş olarak kaydeder."
 
 msgid "Don't Cancel"
 msgstr "İptal Etme"
@@ -5404,6 +5602,9 @@ msgstr "Parç Düzenle"
 msgid "Edit Partner"
 msgstr "Partneri Düzenle"
 
+msgid "Edit Passkey"
+msgstr "Geçiş Anahtarını Düzenle"
+
 msgid "Edit Payment"
 msgstr "Ödemeyi Düzenle"
 
@@ -5733,6 +5934,12 @@ msgstr "PO numarasını girin"
 msgid "Enter text…"
 msgstr "Metin girin…"
 
+msgid "Enter the 6-digit code from your authenticator app"
+msgstr "Doğrulayıcı uygulamanızdaki 6 haneli kodu girin"
+
+msgid "Enter the 6-digit code from your authenticator app to resume."
+msgstr "Devam etmek için kimlik doğrulayıcı uygulamanızdan 6 haneli kodu girin."
+
 msgid "Enter the quantity this movement should have been. An opposite movement for the difference is posted next to the original, in the original's time period."
 msgstr "Bu hareketin olması gereken miktarı girin. Farktaki ters hareket, orijinalin zaman döneminde orijinalin yanında deftere kaydedilir."
 
@@ -5753,6 +5960,15 @@ msgstr "Ayrılacak varlıklar"
 
 msgid "Entity"
 msgstr "Varlık"
+
+msgid "Entity certification: Accepted"
+msgstr "Kuruluş sertifikasyonu: Kabul edildi"
+
+msgid "Entity certification: Expired"
+msgstr "Kuruluş sertifikasyonu: Süresi doldu"
+
+msgid "Entity certification: Pending"
+msgstr "Kuruluş sertifikasyonu: Beklemede"
 
 msgid "Entity Type"
 msgstr "Varlık Türü"
@@ -5934,6 +6150,12 @@ msgstr "İstisnai Sertifika"
 msgid "Exemption Reason"
 msgstr "İstisnai Nedeni"
 
+msgid "Existing mappings. Pick a different provider account to re-map."
+msgstr "Mevcut haritalamalar. Yeniden haritalamak için farklı bir sağlayıcı hesabı seçin."
+
+msgid "Existing mappings. Pick a different provider option to re-map."
+msgstr "Mevcut eşlemeler. Yeniden eşlemek için farklı bir sağlayıcı seçeneği seçin."
+
 msgid "Expand"
 msgstr "Genişlet"
 
@@ -6017,6 +6239,7 @@ msgid "Expired"
 msgstr "Süresi Dolmuş"
 
 #. placeholder {0}: formatDate(date)
+#. placeholder {0}: formatDate(expiresAt)
 msgid "Expired {0}"
 msgstr "Süresi dolmuş {0}"
 
@@ -6028,6 +6251,10 @@ msgstr "Süresi Dolmuş Lotlar"
 
 msgid "Expires"
 msgstr "Süresi Doluyor"
+
+#. placeholder {0}: formatDate(expiresAt)
+msgid "Expires {0}"
+msgstr "{0} tarihinde sona eriyor"
 
 msgid "Expires <0/>"
 msgstr "Süresi doluyor <0/>"
@@ -6065,8 +6292,14 @@ msgstr "Genelletilmiş Fiyat"
 msgid "External"
 msgstr "Harici"
 
+msgid "External Delta"
+msgstr "Harici Fark"
+
 msgid "External document"
 msgstr "Harici belge"
+
+msgid "External ID"
+msgstr "Harici Kimlik"
 
 msgid "External link"
 msgstr "Harici bağlantı"
@@ -6247,6 +6480,9 @@ msgstr "Riskler alınamadı"
 msgid "Failed to fetch suggestions"
 msgstr "Öneriler alınamadı"
 
+msgid "Failed to get options"
+msgstr "Seçenekler alınamadı"
+
 msgid "Failed to initialize Carbon client"
 msgstr "Carbon istemcisini başlatamadı"
 
@@ -6316,6 +6552,9 @@ msgstr "Hesap taşınamadı: {0}"
 
 msgid "Failed to regenerate thumbnail"
 msgstr "Küçük resim yenileme başarısız"
+
+msgid "Failed to register passkey"
+msgstr "Geçiş anahtarı kaydedilemedi"
 
 msgid "Failed to remove image: {errorMessage}"
 msgstr "Görsel kaldırılamadı: {errorMessage}"
@@ -6784,6 +7023,9 @@ msgstr "Oluşturulan kimlikler devre dışı"
 msgid "Generated IDs are enabled"
 msgstr "Oluşturulan Kimlikler etkinleştirilmiş"
 
+msgid "Generating suggestions…"
+msgstr "Öneriler oluşturuluyor…"
+
 msgid "Get live on Carbon: one system running quoting, purchasing, the shop floor, inventory, and finance, replacing the current tools."
 msgstr "Carbon'da canlı yayına geçin: alıntı alma, satın alma, atölye tabanı, envanter ve finansmanı çalıştıran ve mevcut araçları değiştiren tek bir sistem."
 
@@ -7067,6 +7309,9 @@ msgstr "Tarihi Oran (Öz Sermaye)"
 msgid "History"
 msgstr "Geçmiş"
 
+msgid "Hold the journal as a warning to fix."
+msgstr "Günlüğü uyarı olarak tut ve düzelt."
+
 msgid "Holiday"
 msgstr "Tatil"
 
@@ -7220,6 +7465,9 @@ msgstr "Hypercare: ilk haftalar için yoğun destek"
 msgid "I (reduced)"
 msgstr "I (azaltılmış)"
 
+msgid "I have a reasonable basis to believe this individual is a U.S. person as defined in 22 CFR 120.62"
+msgstr "Bu kişinin 22 CFR 120.62'de tanımlanan şekilde ABD vatandaşı olduğuna inanmak için makul bir temelem var"
+
 msgid "I'm Still Working"
 msgstr "Hala Çalışıyorum"
 
@@ -7231,6 +7479,9 @@ msgstr "Kimlik"
 
 msgid "Ideas, suggestions or problems?"
 msgstr "Fikirler, öneriler veya sorunlar?"
+
+msgid "Idempotency key"
+msgstr "İdempotentlik Anahtarı"
 
 msgid "Identifiers"
 msgstr "Tanımlayıcılar"
@@ -7353,17 +7604,11 @@ msgstr "Gelen Muhasebesi"
 msgid "Inbox"
 msgstr "Gelen Kutusu"
 
-msgid "Include a materials (bill of materials) section on the job traveler PDF with item numbers and quantities."
-msgstr "İş yolcu PDF'sine malzemeleri (malzeme listesi) bölümü, madde numaraları ve miktarlarıyla birlikte ekleyin."
-
 msgid "Include extra parts in shipment"
 msgstr "Fazla parçaları sevkiyata dahil et"
 
 msgid "Include Inactive"
 msgstr "Pasifleri Dahil Et"
-
-msgid "Include materials on traveler"
-msgstr "Yolcu üzerinde malzemeleri ekleyin"
 
 msgid "Included"
 msgstr "Dahil"
@@ -7500,6 +7745,9 @@ msgstr "Talimatlar"
 msgid "Instructions are inherited from the procedure."
 msgstr "Talimatlar prosedürden miras alınır."
 
+msgid "Integration"
+msgstr "Entegrasyon"
+
 msgid "Integration not found"
 msgstr "Entegrasyon bulunamadı"
 
@@ -7535,6 +7783,9 @@ msgstr "Bankacılık faaliyetlerinden faiz geliri veya gideri"
 
 msgid "Internal"
 msgstr "Dahili"
+
+msgid "Internal Delta"
+msgstr "Dahili Fark"
 
 msgid "Internal notes"
 msgstr "İç notlar"
@@ -7607,6 +7858,9 @@ msgstr "Envanter Değerlemesi"
 
 msgid "Invite"
 msgstr "Davet et"
+
+msgid "Invite Expired"
+msgstr "Davet Süresi Doldu"
 
 msgid "Invited"
 msgstr "Davetli"
@@ -7767,6 +8021,9 @@ msgstr "Düzenlenme Tarihi"
 msgid "Issues"
 msgstr "Sorunlar"
 
+msgid "ITAR Certifications"
+msgstr "ITAR Sertifikaları"
+
 msgid "item"
 msgstr "öğe"
 
@@ -7845,6 +8102,9 @@ msgstr "Bu aralıktaki ürünler sarı bir rozet alır."
 msgid "Items: item master, BOMs, Bill of Process, engineering changes, CAD"
 msgstr "Öğeler: öğe ana verileri, BOM'lar, İşlem Şeması, mühendislik değişiklikleri, CAD"
 
+msgid "Its design may change before the change notice is released."
+msgstr "Tasarımı, değişiklik bildirisi yayınlanmadan önce değişebilir."
+
 msgid "Job"
 msgstr "İş"
 
@@ -7878,20 +8138,14 @@ msgstr "İş Önceliği"
 msgid "Job readable"
 msgstr "İş okunabilir"
 
-msgid "Job Traveler Materials"
-msgstr "İş Yolcu Malzemeleri"
-
-msgid "Job traveler settings updated"
-msgstr "İş yolcu ayarları güncellendi"
+msgid "Job Traveler"
+msgstr "İş Talimatı"
 
 msgid "Jobs"
 msgstr "İşler"
 
 msgid "Jobs Assigned to Me"
 msgstr "Bana Atanan İşler"
-
-msgid "Jobs in progress"
-msgstr "Devam eden işler"
 
 msgid "Jobs Required"
 msgstr "İşler Gerekli"
@@ -7914,6 +8168,9 @@ msgstr "Bu dönemde tarihli ve hâlâ Taslak durumunda olan muhasebe kayıtları
 
 msgid "Journal Entry"
 msgstr "Muhasebe Kaydı"
+
+msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
+msgstr "Bu tarih veya öncesine tarihlenmiş yevmiyeler kilitli olarak kabul edilir. Her ikisi de mevcut olduğunda sağlayıcı tarafından bildirilen kilitlenme tarihi ile birleştirilir."
 
 msgid "Just one"
 msgstr "Sadece bir"
@@ -7947,6 +8204,9 @@ msgstr "Açık Tut"
 
 msgid "Keep picking"
 msgstr "Seçmeye Devam Et"
+
+msgid "Keeps orders, quotes, and settings behind a second check"
+msgstr "Siparişleri, teklifleri ve ayarları ikinci bir kontrolün arkasında tutar"
 
 msgid "Key"
 msgstr "Anahtar"
@@ -8015,6 +8275,12 @@ msgstr "Dil"
 msgid "Last 6 Months"
 msgstr "Son 6 Ay"
 
+msgid "Last attempt"
+msgstr "Son deneme"
+
+msgid "Last Attempt"
+msgstr "Son Deneme"
+
 msgid "Last Calibration"
 msgstr "Son Kalibrasyon"
 
@@ -8026,6 +8292,9 @@ msgstr "Son gün"
 
 msgid "Last Fiscal Year"
 msgstr "Son Mali Yıl"
+
+msgid "Last Login"
+msgstr "Son Giriş"
 
 msgid "Last Month"
 msgstr "Geçen Ay"
@@ -8044,6 +8313,9 @@ msgstr "Son Çalıştırma"
 
 msgid "Last synced: <0/>"
 msgstr "Son senkronizasyon: <0/>"
+
+msgid "Last used"
+msgstr "Son Kullanılan"
 
 msgid "Latest operation end"
 msgstr "En son işlem sonu"
@@ -8503,6 +8775,12 @@ msgstr "Üretici Parça Numarası"
 msgid "Manufacturing"
 msgstr "Üretim"
 
+msgid "Map accounts"
+msgstr "Hesapları Eşle"
+
+msgid "Map Carbon accounts to the provider's chart of accounts. Posted journals push using the mapped provider account code."
+msgstr "Carbon hesaplarını sağlayıcının hesap planına haritalayın. Deftere nakledilen yevmiyeler, haritalanan sağlayıcı hesap kodunu kullanarak gönderilir."
+
 msgid "Map Extracted Invoice Lines"
 msgstr "Çıkarılan Fatura Satırlarını Eşle"
 
@@ -8514,6 +8792,12 @@ msgstr "Satırları Şimdi Eşle"
 
 msgid "Map your current process, systems, and data"
 msgstr "Mevcut sürecinizi, sistemlerinizi ve verilerinizi eşleyin"
+
+msgid "Mapped accounts"
+msgstr "Haritalanan hesaplar"
+
+msgid "Mapped values"
+msgstr "Eşlenen değerler"
 
 #. placeholder {0}: i18n._(step.gate)
 msgid "Mark \"{0}\" as passed?"
@@ -8585,6 +8869,12 @@ msgstr "Herhangi birine uyacak"
 msgid "Match any (OR)"
 msgstr "Herhangi bir eşleşme (VEYA)"
 
+msgid "Match by code"
+msgstr "Koda göre eşleştir"
+
+msgid "Match by name"
+msgstr "Ada göre eşleştir"
+
 msgid "Match none"
 msgstr "Hiçbiriyle eşleşme"
 
@@ -8633,6 +8923,9 @@ msgstr "Malzeme Kimliği"
 msgid "Material IDs"
 msgstr "Malzeme Kimlikleri"
 
+msgid "Material is pre-selected"
+msgstr "Malzeme önceden seçilmiş"
+
 msgid "Material Properties"
 msgstr "Malzeme Özellikleri"
 
@@ -8674,6 +8967,12 @@ msgstr "Malzemeler"
 
 msgid "Materials"
 msgstr "Malzemeler"
+
+msgid "Materials are included"
+msgstr "Malzemeler dahil"
+
+msgid "Materials are not included"
+msgstr "Malzemeler dahil değil"
 
 msgid "Max Qty"
 msgstr "Maks. Miktar"
@@ -8734,6 +9033,9 @@ msgstr "MES"
 
 msgid "Message"
 msgstr "Mesaj"
+
+msgid "Metadata"
+msgstr "Meta Veri"
 
 msgid "Method"
 msgstr "Yöntem"
@@ -8800,6 +9102,12 @@ msgstr "Dakika/1000 Parça"
 
 msgid "Minutes/Piece"
 msgstr "Dakika/Adet"
+
+msgid "Mismatch"
+msgstr "Uyuşmazlık"
+
+msgid "Missing"
+msgstr "Eksik"
 
 msgid "Missing Information"
 msgstr "Eksik Bilgi"
@@ -8869,6 +9177,9 @@ msgstr "Daha fazla"
 
 msgid "More actions"
 msgstr "Daha fazla işlem"
+
+msgid "More information"
+msgstr "Daha fazla bilgi"
 
 msgid "More options"
 msgstr "Daha fazla seçenek"
@@ -9317,6 +9628,10 @@ msgstr "Hayır"
 msgid "No {0} found"
 msgstr "Hiç {0} bulunamadı"
 
+#. placeholder {0}: status.toLowerCase()
+msgid "No {0} sync operations"
+msgstr "{0} eşitleme işlemi yok"
+
 #. placeholder {0}: copy.pluralNoun
 msgid "No {0} yet"
 msgstr "Henüz {0} yok"
@@ -9326,6 +9641,9 @@ msgstr "Ek yetenek eklenmedi"
 
 msgid "No Access"
 msgstr "Erişim Yok"
+
+msgid "No accounts mapped yet"
+msgstr "Henüz hiçbir hesap haritalanmamış"
 
 msgid "No action needed"
 msgstr "Yapılacak işlem yok"
@@ -9415,6 +9733,12 @@ msgstr "Planlanmış izin yok"
 msgid "No default attachments yet."
 msgstr "Henüz varsayılan ek dosya yok."
 
+msgid "No dimension slots configured"
+msgstr "Yapılandırılmış boyut yuvası yok"
+
+msgid "No dimension values mapped yet"
+msgstr "Henüz hiçbir boyut değeri eşlenmedi"
+
 msgid "No draft make method for this item yet."
 msgstr "Bu öğe için henüz taslak yapım yöntemi yok."
 
@@ -9486,6 +9810,9 @@ msgstr "Öğe yok"
 
 msgid "No items have inventory activity here yet."
 msgstr "Burada henüz hiçbir maddenin envanter hareketi yok."
+
+msgid "No jobs were created"
+msgstr "Hiçbir iş oluşturulmadı"
 
 msgid "No journal lines in scope for this period"
 msgstr "Bu dönem için kapsam içinde günlük satırı yok"
@@ -9568,6 +9895,9 @@ msgstr "Parça kimliği yok"
 msgid "No parts"
 msgstr "Parça yok"
 
+msgid "No passkeys registered yet."
+msgstr "Henüz hiçbir geçiş anahtarı kaydedilmedi."
+
 msgid "No payables"
 msgstr "Ödeme yükümlülüğü yok"
 
@@ -9576,6 +9906,9 @@ msgstr "Henüz ödeme yok."
 
 msgid "No planning data"
 msgstr "Planlama verisi yok"
+
+msgid "No posted journals in this period for this account"
+msgstr "Bu dönem için bu hesapta hiçbir muhasebe kaydı yayınlanmadı"
 
 msgid "No pricing for selected quantity"
 msgstr "Seçilen miktar için fiyat yok"
@@ -9622,6 +9955,9 @@ msgstr "İncelenecek kalan varlık yok."
 msgid "No reports match your search."
 msgstr "Aramanızla eşleşen rapor yok."
 
+msgid "No representative of this company has accepted the Carbon GovCloud Rider yet. An administrator at this company must accept it before anyone can access Carbon — Carbon staff cannot accept it on your behalf."
+msgstr "Bu şirketin hiçbir temsilcisi Carbon GovCloud Rider'ı henüz kabul etmedi. Herhangi biri Carbon'a erişmeden önce bu şirketin bir yöneticisinin kabul etmesi gerekir — Carbon personeli bunu sizin adınıza kabul edemez."
+
 msgid "No results"
 msgstr "Sonuç bulunamadı"
 
@@ -9655,6 +9991,9 @@ msgstr "Depolama birimi yok"
 msgid "No suppliers yet"
 msgstr "Henüz tedarikçi yok"
 
+msgid "No sync operations yet"
+msgstr "Henüz hiçbir eşitleme işlemi yok"
+
 msgid "No time entries for this week"
 msgstr "Bu hafta için zaman girişi yok"
 
@@ -9666,6 +10005,12 @@ msgstr "Bu adım için araç yok"
 
 msgid "No transactions in this period"
 msgstr "Bu dönemde işlem yok"
+
+msgid "No unmapped accounts match a provider code"
+msgstr "Haritalanmamış hesaplar sağlayıcı kodundan herhangi biriyle uyuşmıyor"
+
+msgid "No unmapped values match a provider option name"
+msgstr "Eşlenmemiş değerler hiçbir sağlayıcı seçeneğinin adıyla eşleşmiyor"
 
 msgid "No value needed"
 msgstr "Değer gerekmiyor"
@@ -9733,11 +10078,17 @@ msgstr "Normal"
 msgid "Not a table but a general-ledger balance: cost accumulates as job materials are issued and clears when the job is received to stock."
 msgstr "Bir tablo değil, bir genel muhasebe dengesi: iş malzemeleri verildiğinde maliyetler birikir ve iş envantere alındığında temizlenir."
 
+msgid "Not certified"
+msgstr "Sertifikalı değil"
+
 msgid "Not enough jobs to cover quantity"
 msgstr "Miktarı karşılayacak yeterli iş yok"
 
 msgid "Not reached"
 msgstr "Ulaşılmadı"
+
+msgid "Not recorded"
+msgstr "Kaydedilmedi"
 
 msgid "Not referenced anywhere yet."
 msgstr "Henüz hiçbir yerde referans verilmemiş."
@@ -9747,6 +10098,9 @@ msgstr "Gerekli Değil"
 
 msgid "Not set"
 msgstr "Belirtilmemiş"
+
+msgid "Not set up"
+msgstr "Kurulmadı"
 
 msgid "Not started"
 msgstr "Başlanmadı"
@@ -9826,6 +10180,9 @@ msgstr "OEM (Orijinal Ekipman Üreticisi)"
 
 msgid "of"
 msgstr "adet"
+
+msgid "Off — handled outside the sync"
+msgstr "Kapalı — senkronizasyon dışında işlenir"
 
 msgid "Off — released revisions stay editable"
 msgstr "Kapalı — yayınlanan revizyonlar düzenlenebilir kalır"
@@ -9965,9 +10322,6 @@ msgstr "Açık AR"
 msgid "Open Audit Log"
 msgstr "Denetim Kaydını Aç"
 
-msgid "Open change notices affecting this part"
-msgstr "Bu parçayı etkileyen açık değişiklik bildirimlerini aç"
-
 msgid "Open date"
 msgstr "Açılış tarihi"
 
@@ -10052,6 +10406,9 @@ msgstr "Açık"
 msgid "Opening"
 msgstr "Açılış"
 
+msgid "Opening an operation starts its timer, so time is tracked from the moment work begins."
+msgstr "Bir operasyonu açmak zamanlayıcısını başlatır, böylece zaman çalışma başladığı andan itibaren izlenir."
+
 msgid "Opening balance of depreciation already booked before this asset was added to Carbon (use 0 for new acquisitions)."
 msgstr "Bu varlık Carbon'a eklenmeden önce zaten deftere geçirilmiş amortismanın açılış bakiyesi (yeni satın almalar için 0 kullanın)."
 
@@ -10081,9 +10438,6 @@ msgstr "İşlem miktarı"
 
 msgid "Operation supplier process"
 msgstr "İşlem tedarikçi süreci"
-
-msgid "Operation Timer"
-msgstr "İşlem Zamanlayıcısı"
 
 msgid "Operation type"
 msgstr "İşlem türü"
@@ -10121,6 +10475,12 @@ msgstr "Operatörler"
 msgid "Operators can use shared workstations with PIN authentication."
 msgstr "Operatörler, PIN kimlik doğrulaması ile ortak iş istasyonlarını kullanabilir."
 
+msgid "Operators start on the Scan tab"
+msgstr "Operatörler Tarama sekmesinde başlarlar"
+
+msgid "Operators start the timer themselves when they begin an operation."
+msgstr "Operatörler bir operasyona başladıklarında zamanlayıcıyı kendileri başlatırlar."
+
 msgid "Opportunity"
 msgstr "Fırsat"
 
@@ -10142,8 +10502,14 @@ msgstr "İsteğe bağlı sayfalar ve bölümler"
 msgid "Options"
 msgstr "Seçenekler"
 
+msgid "or"
+msgstr "veya"
+
 msgid "OR"
 msgstr "VEYA"
+
+msgid "Or enter this secret manually:"
+msgstr "Veya bu sırrı manuel olarak girin:"
 
 msgid "Order"
 msgstr "Sipariş"
@@ -10306,6 +10672,9 @@ msgstr "Sahibi: {0}"
 msgid "Packing Slip"
 msgstr "Paketleme Fişi"
 
+msgid "Pad amounts to their currency's decimal places, so 300 appears as 300.00 and columns of figures stay aligned. Turn this off to show only the digits that carry value. Printed documents and stored amounts are unaffected either way."
+msgstr "Miktarları para biriminin ondalık basamaklarına göre doldur, böylece 300, 300,00 olarak görünür ve sayı sütunları hizalı kalır. Yalnızca değer taşıyan rakamları göstermek için bunu kapatın. Yazdırılan belgeler ve depolanan miktarlar her iki durumda da etkilenmez."
+
 msgid "Page"
 msgstr "Sayfa"
 
@@ -10350,6 +10719,12 @@ msgstr "Üst Depolama Birimi"
 
 msgid "Pareto by Type"
 msgstr "Tür Tipine Göre Pareto"
+
+msgid "Park as error"
+msgstr "Hata olarak kaydet"
+
+msgid "Park the journal with a warning until the value is mapped"
+msgstr "Değer eşlenene kadar defterin uyarıyla beklet"
 
 msgid "part"
 msgstr "parçalar"
@@ -10402,6 +10777,18 @@ msgstr "Geçerli"
 msgid "Passed"
 msgstr "Geçti"
 
+msgid "Passkey name"
+msgstr "Geçiş Anahtarı Adı"
+
+msgid "Passkey unlock failed"
+msgstr "Geçiş Anahtarı Kilidini Açma Başarısız Oldu"
+
+msgid "Passkeys"
+msgstr "Geçiş Anahtarları"
+
+msgid "Passkeys are disabled"
+msgstr "Geçiş Anahtarları Devre Dışı Bırakılmış"
+
 msgid "Path"
 msgstr "Yol"
 
@@ -10410,6 +10797,9 @@ msgstr "Ödeme Oranı"
 
 msgid "Payables"
 msgstr "Ödenecek Hesaplar (varsayılan)"
+
+msgid "Payables (AP)"
+msgstr "Ödenecek Hesaplar (AP)"
 
 msgid "Payables (default)"
 msgstr "ödeme terimi"
@@ -10507,6 +10897,9 @@ msgstr "Dönem Kapanışı"
 msgid "Period End"
 msgstr "Dönem Sonu"
 
+msgid "Period lock policy"
+msgstr "Dönem kilit politikası"
+
 msgid "Periodic depreciation expense for fixed assets"
 msgstr "Toplama, izlenen varlıkları en erken son kullanma tarihine göre sunar, bu nedenle en erken son kullanma tarihine sahip stok varsayılan olarak ilk olarak çıkar."
 
@@ -10545,6 +10938,9 @@ msgstr "Atama için kullanılabilecek fiziksel yazıcılar."
 
 msgid "Pick"
 msgstr "Topla"
+
+msgid "Pick a Carbon dimension and the provider target it posts to. Auto-create adds missing provider options by name at push time."
+msgstr "Bir Carbon boyutu ve gönderdiği sağlayıcı hedefini seçin. Otomatik oluştur, gönderim sırasında eksik sağlayıcı seçeneklerini ada göre ekler."
 
 msgid "Pick a column to sort by"
 msgstr "Sıralamak için bir sütun seçin"
@@ -10767,6 +11163,9 @@ msgstr "Yayınlayan"
 msgid "Posted By"
 msgstr "Gönderen"
 
+msgid "Posted journals with these source types always sync. Daily summary groups a day's journals into one provider entry per account."
+msgstr "Bu kaynak türlerine sahip nakledilen yevmiye defterleri her zaman senkronize olur. Günlük özet, bir günün yevmiye defteri kayıtlarını sağlayıcı hesabı başına bir girişe gruplandırır."
+
 msgid "Posted once, corrected {corrections} times."
 msgstr "Bir kez deftere kaydedildi, {corrections} kez düzeltildi."
 
@@ -10790,9 +11189,6 @@ msgstr "Potansiyel Veri Kaybı"
 
 msgid "Pre-filled for a new item when expiry is Fixed Duration."
 msgstr "Son kullanma tarihi Sabit Süre olduğunda yeni bir ürün için önceden doldurulur."
-
-msgid "Pre-select material without a picking list"
-msgstr "Seçim listesi olmadan malzemeyi önceden seç"
 
 msgid "Preferred Supplier"
 msgstr "Tercih Edilen Tedarikçi"
@@ -11057,14 +11453,32 @@ msgstr "Özellikler"
 msgid "Property"
 msgstr "Özellik"
 
+msgid "Proposed matches where the Carbon account number equals the provider account code exactly."
+msgstr "Carbon hesap numarasının sağlayıcı hesap koduyla tam olarak eşleştiği önerilen eşleşmeler."
+
+msgid "Proposed matches where the Carbon dimension value's name equals a provider option name exactly."
+msgstr "Carbon boyut değerinin adı sağlayıcı seçeneğinin adıyla tamamen eşleştiği önerilen eşlemeler."
+
 msgid "Protect the go-live date"
 msgstr "Go-live tarihini koruyun"
 
 msgid "Protect training time and attend"
 msgstr "Eğitim zamanını koru ve katıl"
 
+msgid "Protects your company's data"
+msgstr "Şirketinizin verilerini korur"
+
 msgid "Provide process knowledge and inputs"
 msgstr "Süreç bilgisi ve girdileri sağlayın"
+
+msgid "Provider"
+msgstr "Sağlayıcı"
+
+msgid "Provider account"
+msgstr "Sağlayıcı hesabı"
+
+msgid "Provider option"
+msgstr "Sağlayıcı seçeneği"
 
 msgid "Public"
 msgstr "Herkese açık"
@@ -11079,8 +11493,14 @@ msgstr "Sürüm {0} yayınlanmış mı?"
 msgid "Published by Carbon"
 msgstr "Carbon tarafından yayınlandı"
 
+msgid "Pull"
+msgstr "Çek"
+
 msgid "Pull From"
 msgstr "Çekme Kaynağından"
+
+msgid "Pull from accounting"
+msgstr "Muhasebeden çek"
 
 msgid "Pull from Inventory"
 msgstr "Stoktan Çek"
@@ -11205,8 +11625,20 @@ msgstr "Satın Alma Faturaları"
 msgid "Purchasing Unit of Measure"
 msgstr "Satın Alma Birimi"
 
+msgid "Push"
+msgstr "Gönder"
+
+msgid "Push it re-dated to the first open day, keeping the original date in the narration."
+msgstr "İlk açık güne yeniden tarihlendir, orijinal tarihi açıklamada tut."
+
 msgid "Push record changes to external systems the moment they happen."
 msgstr "Kayıt değişikliklerini gerçekleştiği anda harici sistemlere gönderin."
+
+msgid "Push the journal without the dimension"
+msgstr "Boyutu olmadan defterin gönder"
+
+msgid "Push to accounting"
+msgstr "Muhasebede gönder"
 
 #. placeholder {0}: row.original.replenishmentSystem === "Make" ? "Job" : "Order"
 msgid "QR Code to create a {0} for this kanban"
@@ -11414,8 +11846,14 @@ msgstr "Ham Maddeler"
 msgid "Raw Materials (default)"
 msgstr "Ham Maddeler (varsayılan)"
 
+msgid "Re-date to first open day"
+msgstr "İlk açık güne yeniden tarihlendir"
+
 msgid "Re-keying between quoting, the floor, and finance"
 msgstr "Tekliflendirme, üretim ve muhasebe arasında veri yeniden girişi"
+
+msgid "Re-send"
+msgstr "Yeniden gönder"
 
 msgid "Reactivate"
 msgstr "Yeniden etkinleştir"
@@ -11437,6 +11875,9 @@ msgstr "Revizyon içeren okunabilir kimlik"
 
 msgid "Reading the document..."
 msgstr "Belge okunuyor..."
+
+msgid "Ready"
+msgstr "Hazır"
 
 msgid "Ready for Quote"
 msgstr "Teklif İçin Hazır"
@@ -11510,6 +11951,9 @@ msgstr "Hâlâ Taslak veya Bekleme durumunda olan makbuzlar, sevkiyatlar, satı�
 msgid "Receivables"
 msgstr "Alacak Hesapları (varsayılan)"
 
+msgid "Receivables (AR)"
+msgstr "Alacak Hesapları (AR)"
+
 msgid "Receivables (default)"
 msgstr "Bir satın alma siparişini alınan ve faturalandırılan tutarla uzlaştırma — Carbon'da kapalı, satır miktarları ve GR/IR bakiyesi aracılığıyla."
 
@@ -11567,6 +12011,9 @@ msgstr "Son Oluşturulanlar"
 
 msgid "Reconcile"
 msgstr "Uzlaştır"
+
+msgid "Reconciliation found discrepancies with the provider"
+msgstr "Mutabakat sağlayıcıyla tutarsızlıklar buldu"
 
 msgid "Reconciling a purchase order against what was received and invoiced — implicit in Carbon, via the line quantities and GR/IR balance."
 msgstr "Geri Kazanım Süresi"
@@ -11633,6 +12080,9 @@ msgstr "Kayıtlı"
 
 msgid "Registered"
 msgstr "Kayıtlı"
+
+msgid "Registration failed"
+msgstr "Kayıt Başarısız Oldu"
 
 msgid "Registration Number"
 msgstr "Sicil Numarası"
@@ -11710,6 +12160,9 @@ msgstr "Kaldır {0}"
 msgid "Remove {label}"
 msgstr "{label}'i Kaldır"
 
+msgid "Remove authenticator app"
+msgstr "Kimlik Doğrulayıcı Uygulamasını Kaldır"
+
 msgid "Remove clause"
 msgstr "Maddeyi kaldır"
 
@@ -11746,6 +12199,9 @@ msgstr "Satırı kaldır"
 msgid "Remove slide"
 msgstr "Slaytı kaldır"
 
+msgid "Remove slot"
+msgstr "Yuva kaldır"
+
 msgid "Remove sort by column"
 msgstr "Sıralamayı kaldır"
 
@@ -11754,6 +12210,9 @@ msgstr "Bu depolama türünü tüm referans veren depolama birimlerinden kaldır
 
 msgid "Remove tool"
 msgstr "Aracı kaldır"
+
+msgid "Remove two-factor authentication"
+msgstr "İki Faktörlü Kimlik Doğrulamayı Kaldır"
 
 msgid "Removed"
 msgstr "Kaldırıldı"
@@ -11849,6 +12308,9 @@ msgstr "Raporlar"
 msgid "Reprint"
 msgstr "Yeniden Yazdır"
 
+msgid "Request a new invite"
+msgstr "Yeni bir davet iste"
+
 msgid "Request access"
 msgstr "Erişim İste"
 
@@ -11858,6 +12320,12 @@ msgstr "Onay Talebi Oluştur"
 msgid "Requested Date"
 msgstr "Talep Edilen Tarih"
 
+msgid "Require a 6-digit code from an authenticator app when signing in."
+msgstr "Oturum açarken kimlik doğrulayıcı uygulamasından 6 haneli kod isteyini."
+
+msgid "Require an authenticator app before anyone can open this company. Their other companies are unaffected. Visit the <0>employee accounts page</0> to see each person's status."
+msgstr "Bu şirketi açabilmek için doğrulayıcı uygulamayı gerektir. Diğer şirketleri etkilenmez. Her kişinin durumunu görmek için <0>çalışan hesapları sayfasını</0> ziyaret edin."
+
 msgid "Require approval before suppliers can be set to Active"
 msgstr "Tedarikçilerin Aktif olarak ayarlanabilmesi için onay gerektirir"
 
@@ -11866,6 +12334,9 @@ msgstr "Belirli tutar eşiklerine göre satın alma siparişleri için onay gere
 
 msgid "Require approval for quality documents in your workflow"
 msgstr "İş akışınızdaki kalite belgeleri için onay gerektirir"
+
+msgid "Require two-factor authentication"
+msgstr "İki faktörlü kimlik doğrulamayı gerektir"
 
 msgid "Required"
 msgstr "Gerekli"
@@ -11884,6 +12355,9 @@ msgstr "Gerekli İşlemler (sırayla)"
 
 msgid "Required Date"
 msgstr "Gerekli Tarih"
+
+msgid "Required in a controlled environment — audit logging cannot be turned off."
+msgstr "Kontrollü ortamda gereklidir — denetim günlüğü kapatılamaz."
 
 msgid "Requirement"
 msgstr "Gereksinim"
@@ -11922,6 +12396,14 @@ msgstr "PIN'i Sıfırla"
 #. placeholder {1}: operator.lastName
 msgid "Reset PIN for {0} {1}"
 msgstr "PIN'i sıfırla {0} {1}"
+
+msgid "Reset Two-Factor Auth"
+msgstr "İki Faktörlü Kimlik Doğrulamayı Sıfırla"
+
+#. placeholder {0}: user.firstName
+#. placeholder {1}: user.lastName
+msgid "Reset two-factor authentication for {0} {1}"
+msgstr "İki faktörlü kimlik doğrulamayı {0} {1} için sıfırla"
 
 msgid "Reset view"
 msgstr "Görünümü sıfırla"
@@ -11977,6 +12459,9 @@ msgstr "Bir varlığı hurdaya ayırarak veya satarak hizmetten çekmek; net def
 msgid "Retry"
 msgstr "Tekrar Dene"
 
+msgid "Retry all"
+msgstr "Tümünü yeniden dene"
+
 msgid "Return Home"
 msgstr "Ana Sayfaya Dön"
 
@@ -12027,6 +12512,9 @@ msgstr "Her ürünün değişikliklerini gözden geçirin, sonra onaylayın — 
 
 msgid "Review the period's balance sheet and income statement and confirm the figures look right. This is a manual sign-off — mark it done once you have reviewed them."
 msgstr "Dönemin bilançosunu ve gelir tablosunu gözden geçirin ve rakamların doğru göründüğünü doğrulayın. Bu manuel bir onay — bunları gözden geçirdikten sonra bitti olarak işaretleyin."
+
+msgid "Review the suggested matches before applying. These are a best guess — confirm each is correct."
+msgstr "Uygulamadan önce önerilen eşleşmeleri gözden geçirin. Bunlar en iyi tahmindir — her birini onaylayın."
 
 msgid "Review the warnings below, then post the count to apply the adjustments."
 msgstr "Aşağıdaki uyarıları gözden geçirin, ardından ayarlamaları uygulamak için sayımı gönderin."
@@ -12082,6 +12570,13 @@ msgstr "Teklif Numarası"
 
 msgid "RFQs"
 msgstr "Teklif Talepleri"
+
+msgid "Ride Carbon dimensions along on pushed journals. Each slot maps one Carbon dimension to one provider analytics target; the value mapping below pairs individual dimension values with provider options."
+msgstr "Carbon boyutlarını gönderilen defterlerle birlikte taşıyın. Her yuva bir Carbon boyutunu bir sağlayıcı analitik hedefine eşler; aşağıdaki değer eşlemesi bireysel boyut değerlerini sağlayıcı seçenekleriyle eşleştirir."
+
+#. placeholder {0}: certification.docVersion
+msgid "Rider v{0}"
+msgstr "Rider v{0}"
 
 msgid "Right item"
 msgstr "Sağ öğe"
@@ -12369,6 +12864,9 @@ msgstr "Uygulamaları kaydet"
 msgid "Save contacts"
 msgstr "Kişileri kaydet"
 
+msgid "Save dimension settings"
+msgstr "Boyut ayarlarını kaydet"
+
 msgid "Save Method"
 msgstr "Yöntemi Kaydet"
 
@@ -12413,6 +12911,12 @@ msgstr "Tarama veya arayın..."
 
 msgid "Scan or select a tracked entity from this lot to add it as a sample column, then record its result in the grid."
 msgstr "Bu lottan izlenen bir varlığı taramak veya seçmek için bunu örnek sütun olarak ekleyin, ardından sonucunu ızgarada kaydedin."
+
+msgid "Scan this QR code with your authenticator app (e.g. Google Authenticator or 1Password), then enter the 6-digit code it shows."
+msgstr "Bu QR kodunu kimlik doğrulayıcı uygulamanız (örn. Google Authenticator veya 1Password) ile tarayın, ardından gösterdiği 6 haneli kodu girin."
+
+msgid "Scan this with your authenticator app, then enter the 6-digit code it shows."
+msgstr "Bunu doğrulayıcı uygulamanızla tarayın, ardından gösterdiği 6 haneli kodu girin."
 
 msgid "SCAR"
 msgstr "SCAR"
@@ -12573,8 +13077,17 @@ msgstr "Tamamlanmak için gereken saniye"
 msgid "Seconds/Piece"
 msgstr "Saniye/Parça"
 
+msgid "Secret copied to clipboard"
+msgstr "Gizli, panoya kopyalandı"
+
 msgid "Section"
 msgstr "Bölüm"
+
+msgid "Secure your account with 2FA"
+msgstr "Hesabınızı 2FA ile güvenli hale getirin"
+
+msgid "Security"
+msgstr "Güvenlik"
 
 msgid "Segments that drive customer pricing and terms"
 msgstr "Müşteri fiyatlandırması ve koşullarını belirleyen segmentler"
@@ -12685,6 +13198,9 @@ msgstr "Müşteri türü seçin"
 msgid "Select customers"
 msgstr "Müşterileri seçin"
 
+msgid "Select dimension"
+msgstr "Boyut seç"
+
 msgid "Select Employee"
 msgstr "Çalışan Seç"
 
@@ -12720,6 +13236,15 @@ msgstr "Yöntem seçin..."
 
 msgid "Select Printer"
 msgstr "Yazıcı Seçin"
+
+msgid "Select provider account"
+msgstr "Sağlayıcı hesabı seç"
+
+msgid "Select provider target"
+msgstr "Sağlayıcı hedefini seç"
+
+msgid "Select provider value"
+msgstr "Sağlayıcı değerini seç"
 
 msgid "Select Quantities"
 msgstr "Miktarları Seçin"
@@ -12872,6 +13397,9 @@ msgstr "hizmetler"
 msgid "Services"
 msgstr "Hizmetler"
 
+msgid "Session locked"
+msgstr "Oturum Kilitli"
+
 msgid "Set a target"
 msgstr "Hedef belirle"
 
@@ -12902,8 +13430,14 @@ msgstr "Fiyatlandırmayı Ayarla"
 msgid "Set Quantity"
 msgstr "Miktarı Ayarla"
 
+msgid "Set up authenticator app"
+msgstr "Doğrulayıcı uygulamayı ayarla"
+
 msgid "Set up the right way"
 msgstr "Doğru şekilde ayarla"
+
+msgid "Set up two-factor authentication"
+msgstr "İki Faktörlü Kimlik Doğrulamayı Ayarla"
 
 msgid "Set up your company with a step-by-step implementation plan covering setup, data, training, and go-live."
 msgstr "Kurulum, veri, eğitim ve canlıya geçişi kapsayan adım adım bir uygulama planıyla şirketinizi kurun."
@@ -12929,6 +13463,9 @@ msgstr "Kurulum"
 
 msgid "Setup & Controls"
 msgstr "Kurulum ve Kontroller"
+
+msgid "Setup failed"
+msgstr "Kurulum başarısız"
 
 msgid "Setup instructions"
 msgstr "Kurulum talimatları"
@@ -13152,6 +13689,9 @@ msgstr "Tedarikçi Kimliklerini Göster"
 msgid "Show sync options"
 msgstr "Senkronizasyon seçeneklerini göster"
 
+msgid "Show Trailing Zeros"
+msgstr "Sondaki Sıfırları Göster"
+
 #. placeholder {0}: data.length
 msgid "Showing {0} of {totalCount} — refine your search"
 msgstr "{0} / {totalCount} gösteriliyor — aramanızı daraltın"
@@ -13162,6 +13702,9 @@ msgstr "{parentCurrency} cinsinden gösteriliyor"
 msgid "Showing the first 500 lines"
 msgstr "İlk 500 satır gösteriliyor"
 
+msgid "Showing the newest 200 journals"
+msgstr "En yeni 200 muhasebe kaydı gösteriliyor"
+
 msgid "Showing the top 1,000 groups by amount"
 msgstr "Miktar açısından ilk 1.000 grup gösteriliyor"
 
@@ -13170,6 +13713,9 @@ msgstr "Oluşturulan PDF'lerin her sayfasının arkasında soluk bir arka plan o
 
 msgid "Shown to the user when this rule fails."
 msgstr "Bu kural başarısız olduğunda kullanıcıya gösterilir."
+
+msgid "Sign in with biometrics instead of a magic link. Passkeys are secured by Face ID, Touch ID, or your device PIN."
+msgstr "Sihirli bağlantı yerine biyometrik kimlik doğrulama ile oturum açın. Geçiş Anahtarları Face ID, Touch ID veya cihaz PIN'iniz tarafından korunur."
 
 msgid "Sign in with Email"
 msgstr "E-posta ile Giriş Yap"
@@ -13183,8 +13729,14 @@ msgstr "Outlook ile giriş yap"
 msgid "Sign in with Passkey"
 msgstr "Passkey ile Giriş Yap"
 
+msgid "Sign out"
+msgstr "Çıkış yap"
+
 msgid "Sign Out"
 msgstr "Oturumu Kapat"
+
+msgid "Sign out instead"
+msgstr "Bunun yerine Oturumu Kapat"
 
 msgid "Sign-off review before moving to the next step"
 msgstr "Bir sonraki adıma geçmeden önce onay incelemesi"
@@ -13197,6 +13749,12 @@ msgstr "Oturum açıldı olarak {name}"
 
 msgid "Signed quantity — negative for outbound movements"
 msgstr "İmzalı miktar — giden hareketler için negatif"
+
+msgid "Signing in also requires a one-time code from your authenticator app"
+msgstr "Oturum açma ayrıca doğrulayıcı uygulamanızdan bir kerelik kod gerektirir"
+
+msgid "Signing in will no longer require a code. Enter the current 6-digit code from your authenticator app to confirm."
+msgstr "Oturum açma artık kod gerektirmez. Onaylamak için kimlik doğrulayıcı uygulamanızdan mevcut 6 haneli kodu girin."
 
 msgid "Sites & locations"
 msgstr "Siteler & konumlar"
@@ -13305,6 +13863,9 @@ msgstr "Kaynak listesi"
 
 msgid "Source Method"
 msgstr "Kaynak Yöntem"
+
+msgid "Source types"
+msgstr "Kaynak türleri"
 
 msgid "Source Version"
 msgstr "Kaynak Sürüm"
@@ -13644,6 +14205,15 @@ msgstr "Halef Parça"
 msgid "Suffix"
 msgstr "Sonek"
 
+msgid "Suggest mappings"
+msgstr "Eşlemeleri Öner"
+
+msgid "Suggest mappings with AI"
+msgstr "Yapay Zeka ile Eşlemeleri Öner"
+
+msgid "Suggest with AI"
+msgstr "Yapay Zeka ile Öner"
+
 msgid "Suggested orders you haven't placed yet."
 msgstr "Henüz yerleştirmediğiniz önerilen siparişler."
 
@@ -13848,6 +14418,18 @@ msgstr "Çalışan türünü burada değiştirmek mevcut izinlerini değiştirme
 
 msgid "Sync"
 msgstr "Senkronize Et"
+
+msgid "Sync Activity"
+msgstr "Senkronizasyon Etkinliği"
+
+msgid "Sync operation"
+msgstr "Senkronizasyon işlemi"
+
+msgid "Sync Tie-Out"
+msgstr "Senkronizasyon Uyumu"
+
+msgid "Synced"
+msgstr "Eşitlendi"
 
 msgid "System"
 msgstr "Sistem"
@@ -14522,6 +15104,9 @@ msgstr "Teknikerin bu bakım gerçekleştirildiğinde izlediği prosedür; krono
 msgid "The processes this work center can run; appears in process-pickers when scheduling operations, and limits which jobs can route through this work center."
 msgstr "Bu iş merkezinin çalıştırabileceği süreçler; işlem planlanırken işlem seçicilerinde görünür ve hangi işlerin bu iş merkezi aracılığıyla yönlendirilebileceğini sınırlar."
 
+msgid "The provider offers no dimension targets. Enable the feature in the provider first (e.g. tracking categories, class tracking, or fields)."
+msgstr "Sağlayıcı boyut hedefleri sunmaz. Önce sağlayıcıda özelliği etkinleştirin (örneğin, izleme kategorileri, sınıf izleme veya alanlar)."
+
 msgid "The quantity breakpoints this line is priced at; each column carries its own per-unit price for buyer–supplier negotiation and for converting to downstream documents."
 msgstr "Bu satırın fiyatlandırıldığı miktar kırılım noktaları; her sütun, alıcı-tedarikçi müzakere ve aşağı akış belgelere dönüştürme için kendi birim fiyatını taşır."
 
@@ -14682,6 +15267,12 @@ msgstr "Sistem, yapılandırılmış sisteminizde kapsamdaki her kabul testini g
 msgid "The thread linking a sales RFQ, its quote, and the resulting sales order — a join, not a document with its own status."
 msgstr "Satış RFQ'sunu, kendi alıntısını ve ortaya çıkan satış siparişini bağlayan iş parçacığı - bir birleştirme, kendi durumu olan bir belge değildir."
 
+msgid "The timer starts automatically"
+msgstr "Zamanlayıcı otomatik olarak başlar"
+
+msgid "The timer starts manually"
+msgstr "Zamanlayıcı manuel olarak başlar"
+
 msgid "The tooling and fixtures your operations rely on"
 msgstr "Operasyonlarınızın güvendiği takım tezgahları ve demirbaşlar"
 
@@ -14690,6 +15281,9 @@ msgstr "Bu toplu partide oluşturulan tüm işlerde yapılacak toplam; kaç iş 
 
 msgid "The traceable reference (e.g. NIST standard, master gauge serial) the calibration values were compared against."
 msgstr "Kalibrasyon değerlerinin karşılaştırıldığı izlenebilir referans (örneğin NIST standardı, ana ölçü seri numarası)."
+
+msgid "The traveler lists each item on the bill of materials with its quantity."
+msgstr "Talimat, malzeme listesindeki her parçayı ve miktarını listeler."
 
 msgid "The type controls which default permissions the new employee receives; selecting it here pre-fills the permission matrix from the type's template."
 msgstr "Tür, yeni çalışanın aldığı varsayılan izinleri kontrol eder; buradan seçmek, tür şablonundan izin matrisini önceden doldurur."
@@ -14820,11 +15414,24 @@ msgstr "Bu bilgiler tüm kullanıcılar tarafından görülecektir, bu yüzden n
 msgid "this inspection plan"
 msgstr "bu muayene planı"
 
+#. placeholder {0}: company?.name ?? "Carbon"
+msgid "This invitation to join {0} has expired. You can request a new invite to be sent to your email."
+msgstr "{0} kuruluşuna katılmak için gönderilen bu davet süresi dolmuştur. E-postanıza yeni bir davet gönderilmesini isteyebilirsiniz."
+
+msgid "This is a controlled environment, so an authenticator app is required."
+msgstr "Bu kontrollü bir ortamdır, bu nedenle doğrulayıcı uygulaması gereklidir."
+
+msgid "This is a controlled environment, so two-factor authentication is required for everyone and cannot be turned off."
+msgstr "Bu kontrollü bir ortamdır, bu nedenle iki faktörlü kimlik doğrulaması herkese gereklidir ve kapatılamaz."
+
 msgid "This is a purchased item — it has no BoM/BoP; only its attributes and documents can change."
 msgstr "Bu satın alınan bir üründür — BoM/BoP'si yoktur; yalnızca öznitelikleri ve belgeleri değişebilir."
 
 msgid "This is a unique identifier for the webhook"
 msgstr "Bu, web kancası için benzersiz bir tanımlayıcıdır"
+
+msgid "This is an ITAR-controlled environment. Access is restricted to U.S. Persons."
+msgstr "Bu ITAR tarafından kontrol edilen bir ortamdır. Erişim yalnızca ABD vatandaşları ile sınırlıdır."
 
 msgid "This is the month your fiscal year starts."
 msgstr "Bu, mali yılınızın başladığı aydır."
@@ -14868,6 +15475,9 @@ msgstr "Bu Implementation Hub sayfası şu anda inşa edilmektedir. Biz bitirirk
 msgid "This part has {quantityOnHand} on hand at this location. No Stock means it will be neither planned nor consumed."
 msgstr "Bu parça bu konumda {quantityOnHand} adet stokta bulunmaktadır. Stok Yok, bunun ne planlanacağı ne de tüketileceği anlamına gelir."
 
+msgid "This part is activated when change notice {activationLockId} is released."
+msgstr "Bu parça, {activationLockId} değişiklik bildirisi yayınlandığında etkinleştirilir."
+
 msgid "This part is being phased out."
 msgstr "Bu parça aşamalı olarak kullanımdan kaldırılıyor."
 
@@ -14883,8 +15493,14 @@ msgstr "Bu yol yalnızca sonra ne çalışacağını belirler"
 msgid "This period has no journal entries posted to it and can be permanently deleted. This cannot be undone."
 msgstr "Bu döneme nakledilen günlük girişi yoktur ve kalıcı olarak silinebilir. Bu geri alınamaz."
 
+msgid "this purchase order"
+msgstr "bu satın alma siparişi"
+
 msgid "This Quarter"
 msgstr "Bu Çeyrek"
+
+msgid "This removes their authenticator app, so their next sign-in only needs a magic link. Use this when they have lost access to their authenticator. It affects their sign-in for every company they belong to."
+msgstr "Bu, onların doğrulayıcı uygulamasını kaldırır, bu nedenle bir sonraki oturum açışında yalnızca sihirli bir bağlantıya ihtiyaç duyar. Doğrulayıcıya erişimini kaybettiklerinde bunu kullanın. Ait oldukları her şirket için oturum açışlarını etkiler."
 
 msgid "This revision is released (Production). Changes should normally flow through a change notice."
 msgstr "Bu revizyon yayınlanmıştır (Üretim). Değişiklikler normalde bir değişiklik bildirisi yoluyla akmalıdır."
@@ -14911,8 +15527,14 @@ msgstr "Bu depolama türü şu anda {usageCount} depolama birimi{0} tarafından 
 msgid "this supplier"
 msgstr "bu tedarikçi"
 
+msgid "This tool is activated when change notice {activationLockId} is released."
+msgstr "Bu alet, {activationLockId} değişiklik bildirisi yayınlandığında etkinleştirilir."
+
 msgid "This updates the theme for all users of the application"
 msgstr "Bu, uygulamanın tüm kullanıcıları için temayı günceller"
+
+msgid "This user does not have two-factor authentication enabled."
+msgstr "Bu kullanıcının iki faktörlü kimlik doğrulaması etkin değildir."
 
 msgid "This version belongs to an open <0>change notice</0>. Edit it there."
 msgstr "Bu sürüm açık bir <0>değişiklik bildirimine</0> aittir. Orada düzenleyin."
@@ -14992,6 +15614,9 @@ msgstr "Perşembe"
 
 msgid "Tie shipments through to an invoice with no re-keying"
 msgstr "Sevkiyatları faturaya bağlayın, yeniden veri girişi olmadan"
+
+msgid "Tie-out"
+msgstr "Uyum"
 
 msgid "Tie-Out"
 msgstr "Mutabakat Kontrolü"
@@ -15218,6 +15843,9 @@ msgstr "Takip Edilen Varlık"
 msgid "Tracked entity ID is required but none was found"
 msgstr "Takip edilen varlık kimliği gerekli ancak hiçbiri bulunamadı"
 
+msgid "Tracked material is pre-selected by pick order (FEFO), even without a picking list."
+msgstr "Takip edilen malzeme, bir çekme listesi olmasa bile, çekme sırasına göre (FEFO) önceden seçilir."
+
 msgid "Tracking"
 msgstr "Takip"
 
@@ -15317,6 +15945,24 @@ msgstr "Salı"
 msgid "Turn on the built-in pieces"
 msgstr "Yerleşik parçaları açın"
 
+msgid "Two-Factor"
+msgstr "İki Faktörlü"
+
+msgid "Two-factor authentication"
+msgstr "İki faktörlü kimlik doğrulaması"
+
+msgid "Two-factor authentication disabled"
+msgstr "İki Faktörlü Kimlik Doğrulama Devre Dışı Bırakıldı"
+
+msgid "Two-factor authentication enabled"
+msgstr "İki Faktörlü Kimlik Doğrulama Etkinleştirildi"
+
+msgid "Two-Factor Authentication Enforcement"
+msgstr "İki Faktörlü Kimlik Doğrulaması Zorunluluğu"
+
+msgid "Two-factor authentication is not enabled."
+msgstr "İki Faktörlü Kimlik Doğrulama Etkin Değildir."
+
 msgid "Type"
 msgstr "Tür"
 
@@ -15343,6 +15989,12 @@ msgstr "Tip:"
 
 msgid "Types"
 msgstr "Tipler"
+
+msgid "U.S. Person Attestation"
+msgstr "ABD Vatandaşı Tasdiki"
+
+msgid "Unable to unlock"
+msgstr "Kilit Açılamadı"
 
 msgid "Unapplied"
 msgstr "Uygulanmamış"
@@ -15446,8 +16098,20 @@ msgstr "İş emrini satış siparişinden ayır?"
 msgid "Unlock"
 msgstr "Kilidi Aç"
 
+msgid "Unlock with passkey"
+msgstr "Geçiş Anahtarı ile Kilit Aç"
+
+msgid "Unmapped accounts"
+msgstr "Eşleştirilmemiş hesaplar"
+
+msgid "Unmapped dimension values"
+msgstr "Eşlenmemiş boyut değerleri"
+
 msgid "Unmapped Extracted Lines"
 msgstr "Eşlenmemiş Çıkarılan Satırlar"
+
+msgid "Unmapped values"
+msgstr "Eşlenmemiş değerler"
 
 msgid "Unmatched"
 msgstr "Eşleşmemiş"
@@ -15665,6 +16329,9 @@ msgstr "Sonraki hizmet kimliğini almak için ... kullan"
 msgid "Use ... to get the next tool ID"
 msgstr "Sonraki araç kimliğini almak için ..."
 
+msgid "Use a different account"
+msgstr "Farklı bir hesap kullan"
+
 msgid "Use a different email"
 msgstr "Farklı bir e-posta kullan"
 
@@ -15803,6 +16470,15 @@ msgstr "Satıcı Silme Geliri"
 msgid "Verification Error"
 msgstr "Doğrulama Hatası"
 
+msgid "Verification failed"
+msgstr "Doğrulama başarısız"
+
+msgid "Verify"
+msgstr "Doğrula"
+
+msgid "Verify and continue"
+msgstr "Doğrula ve devam et"
+
 msgid "Verify inventory and financial balances tie out"
 msgstr "Envanter ve finansal bakiyelerin uyumlu olduğunu doğrulayın"
 
@@ -15836,6 +16512,9 @@ msgstr "Aktif İşleri Görüntüle"
 
 msgid "View Active Quotes"
 msgstr "Aktif Teklifleri Görüntüle"
+
+msgid "View all"
+msgstr "Tümünü Görüntüle"
 
 msgid "View All"
 msgstr "Tümünü Gör"
@@ -15986,6 +16665,9 @@ msgstr "Öneri Görüntüle"
 
 msgid "View Suppliers"
 msgstr "Tedarikçileri Görüntüle"
+
+msgid "View tie-out"
+msgstr "Uyumu Görüntüle"
 
 msgid "View Traceability Graph"
 msgstr "İzlenebilirlik Grafiğini Görüntüle"
@@ -16193,6 +16875,9 @@ msgstr "Hangi veri"
 msgid "What drove inventory up or down, by any dimension"
 msgstr "Envanterin yükselmesine veya düşmesine neyin sebep olduğu, herhangi bir boyuta göre"
 
+msgid "What happens when a journal is dated in a locked period."
+msgstr "Kilitli bir dönemde günlüğe tarih atanırsa ne olur?"
+
 msgid "What is {translatedTerm}?"
 msgstr "{translatedTerm} nedir?"
 
@@ -16271,17 +16956,11 @@ msgstr "Etkinleştirildiğinde, bu kategorideki öznitelikler bir kişinin genel
 msgid "When on, employees can edit this attribute's value on their own profile; otherwise only admins can."
 msgstr "Etkinleştirildiğinde, çalışanlar bu özniteliğin değerini kendi profillerinde düzenleyebilir; aksi takdirde yalnızca yöneticiler bunu yapabilir."
 
-msgid "When on, opening an operation starts its timer automatically."
-msgstr "Açık olduğunda, bir işlemi açmak zamanlayıcıyı otomatik olarak başlatır."
-
 msgid "When on, pricing rules (volume discounts, promotions) still apply on top of this override; when off, this override is the final price."
 msgstr "Etkinleştirildiğinde, fiyatlandırma kuralları (hacim indirimler, promosyonlar) hala bu geçersiz kılmanın üstüne uygulanır; devre dışı bırakıldığında, bu geçersiz kılma nihai fiyattır."
 
 msgid "When on, scanning this process's operation barcode reports all remaining open quantity as complete in one action; turn off when operators routinely report partials."
 msgstr "Etkinleştirildiğinde, bu işlemin işlem barkodunu taramak, kalan tüm açık miktarı bir işlemde tamamlandı olarak bildirir; operatörler düzenli olarak kısmiları bildirdiğinde devre dışı bırakın."
-
-msgid "When on, the traveler PDF lists the job's required materials."
-msgstr "Açık olduğunda, yolcu PDF'si işin gerekli malzemelerini listeler."
 
 msgid "When on, this party's invoices skip tax calculation; the party is responsible for keeping the exemption certificate current."
 msgstr "Etkinleştirildiğinde, bu tarafın faturaları vergi hesaplamasını atlar; taraf, muafiyet sertifikasını güncel tutmaktan sorumludur."
@@ -16291,9 +16970,6 @@ msgstr "Etkinleştirildiğinde, bu fiyat geçersiz kılması eşleşen siparişl
 
 msgid "When on, this rule fires for every target of its type. Assignment rows are ignored but preserved."
 msgstr "Açıkken bu kural, türündeki her hedef için tetiklenir. Atama satırları yok sayılır ancak korunur."
-
-msgid "When on, tracked material is pre-selected by pick order (FEFO) even without a picking list. When off, operators start on the Scan tab."
-msgstr "Açık olduğunda, izlenen malzeme, seçim listesi olmasa bile seçim sırasına (FEFO) göre önceden seçilir. Kapalı olduğunda, operatörler Tarama sekmesinde başlar."
 
 msgid "When supplier responses are expected back; suppliers see this date on the RFQ portal and Carbon stops accepting late responses after it (configurable)."
 msgstr "Tedarikçi yanıtlarının ne zaman beklenmesi gerektiği; tedarikçiler RFQ portalında bu tarihi görür ve Carbon bundan sonra geç yanıtları kabul etmeyi durdurur (yapılandırılabilir)."
@@ -16505,6 +17181,9 @@ msgstr "Pencere:"
 msgid "WIP"
 msgstr "Yarı Mamul"
 
+msgid "Without a picking list, operators pick material from the Scan tab."
+msgstr "Çekme listesi olmadan, operatörler malzemeyi Tarama sekmesinden seçerler."
+
 #. placeholder {0}: quarter.start + 1
 #. placeholder {1}: quarter.end
 msgid "Wk {0}–{1}"
@@ -16692,6 +17371,9 @@ msgstr "Carbon'ı kendiniz kendi hızınızda ayarlıyorsunuz"
 msgid "You've been clocked in for {hoursElapsed} hours. Did you forget to clock out?"
 msgstr "Ne kadar süredir giriş yaptınız? Çıkış yapmayı unuttunuz mu?"
 
+msgid "Your account stays safe even if your login is stolen"
+msgstr "Oturum açma bilgileriniz çalınsa bile hesabınız güvenli kalır"
+
 msgid "Your books and how money flows."
 msgstr "Muhasebe defterleriniz ve paranın akışı."
 
@@ -16737,6 +17419,9 @@ msgstr "Ana iletişim noktanız"
 msgid "Your Name"
 msgstr "Adınız"
 
+msgid "Your organization requires an authenticator app."
+msgstr "Kuruluşunuz doğrulayıcı uygulamasını gerektiriyor."
+
 msgid "Your part numbers"
 msgstr "Parça numaralarınız"
 
@@ -16751,6 +17436,9 @@ msgstr "Proje Ekibiniz"
 
 msgid "Your real data is loaded and you have checked a sample and approved it."
 msgstr "Gerçek verileriniz yüklendi ve bir örneği kontrol ederek onayladınız."
+
+msgid "Your session was locked after inactivity."
+msgstr "Oturumunuz hareketsizlikten sonra kilitlendi."
 
 msgid "Your source data is accessible and reasonably clean"
 msgstr "Kaynak verileriniz erişilebilir ve makul ölçüde temizdir"

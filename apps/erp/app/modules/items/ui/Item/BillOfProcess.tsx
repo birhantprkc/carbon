@@ -37,6 +37,7 @@ import {
   VStack
 } from "@carbon/react";
 import { Editor } from "@carbon/react/Editor";
+import { getItemById, INPUT_FORMAT } from "@carbon/utils";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { Trans, useLingui } from "@lingui/react/macro";
 import type { DragControls } from "framer-motion";
@@ -112,7 +113,7 @@ import {
   SortableListItemToggle
 } from "~/components/SortableList";
 import { StepLinkEditor } from "~/components/StepLinkEditor";
-import { usePermissions, useUser } from "~/hooks";
+import { useCurrencyDecimals, usePermissions, useUser } from "~/hooks";
 import { useTags } from "~/hooks/useTags";
 import type {
   OperationParameter,
@@ -260,6 +261,7 @@ const BillOfProcess = ({
   const { id: userId } = useUser();
 
   const [allItems] = useItems();
+  const itemName = getItemById(allItems, makeMethod.itemId)?.name;
 
   const materialItemIds = useMemo(
     () => new Set((materials ?? []).map((m) => m.itemId)),
@@ -818,6 +820,11 @@ const BillOfProcess = ({
         <CardHeader>
           <CardTitle className="flex flex-row items-center gap-2">
             <Trans>Bill of Process</Trans>
+            {itemName && (
+              <span className="text-xs text-muted-foreground font-normal">
+                {itemName}
+              </span>
+            )}
             {isReadOnly && (
               <Tooltip>
                 <TooltipTrigger className="text-muted-foreground">
@@ -949,6 +956,7 @@ function OperationForm({
   const { carbon } = useCarbon();
 
   const baseCurrency = company?.baseCurrencyCode ?? "USD";
+  const currencyDecimals = useCurrencyDecimals(baseCurrency);
 
   useEffect(() => {
     // Remove from temporary items after successful submission
@@ -1176,10 +1184,7 @@ function OperationForm({
               label={t`Minimum Cost`}
               minValue={0}
               value={processData.operationMinimumCost}
-              formatOptions={{
-                style: "currency",
-                currency: baseCurrency
-              }}
+              formatOptions={INPUT_FORMAT.rate(baseCurrency, currencyDecimals)}
               onChange={(newValue) =>
                 setProcessData((d) => ({
                   ...d,
@@ -1192,10 +1197,7 @@ function OperationForm({
               label={t`Unit Cost`}
               minValue={0}
               value={processData.operationUnitCost}
-              formatOptions={{
-                style: "currency",
-                currency: baseCurrency
-              }}
+              formatOptions={INPUT_FORMAT.rate(baseCurrency, currencyDecimals)}
               onChange={(newValue) =>
                 setProcessData((d) => ({
                   ...d,
