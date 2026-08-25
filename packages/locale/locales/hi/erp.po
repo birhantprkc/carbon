@@ -210,7 +210,7 @@ msgstr "{total} phases to get your company live on Carbon. Each one ends at a ch
 msgid "{total} phases to go live"
 msgstr "{total} चरण लाइव होने के लिए"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "किसी शिपमेंट की स्थिति में �
 
 msgid "A shipment's tracking number changes"
 msgstr "एक शिपमेंट का ट्रैकिंग नंबर बदल जाता है"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "एक चरण को एक नाम की आवश्यकता है।"
@@ -2724,6 +2721,9 @@ msgstr "बाहरी URL को कॉल करें"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "कार्बन में एक विधि कहा जाता है — घटक और संचालन जो एक हिस्सा तैयार करते हैं।"
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "इस अवधि को हटाया नहीं जा सकता"
 
@@ -2783,9 +2783,6 @@ msgstr "असहेजे ऑपरेशन में चरण नहीं �
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "असहेजे ऑपरेशन में उपकरण नहीं जोड़ सकते"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "अभी बंद नहीं कर सकते"
@@ -3012,6 +3009,9 @@ msgstr "अवधि के अंत तक नकारात्मक मौ�
 
 msgid "Check your email"
 msgstr "अपना ईमेल जांचें"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "उद्धरणों की तुलना करें"
 
 msgid "Compare Supplier Quotes"
 msgstr "आपूर्तिकर्ता उद्धरणों की तुलना करें"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "पूर्ण करें"
@@ -5185,6 +5182,9 @@ msgstr "अक्षम"
 msgid "Discard"
 msgstr "त्यागें"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "डिस्कनेक्ट करें"
 
@@ -6198,9 +6198,6 @@ msgstr "बाकी सब कुछ लोगों, आयातों, ए�
 msgid "Everything from Starter"
 msgstr "स्टार्टर से सब कुछ"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "{PO_EMAIL_ATTACHMENT_LIMIT_MB} MB से अधिक है — भेजने के लिए कुछ अटैचमेंट हटाएं।"
 
@@ -6830,6 +6827,9 @@ msgstr "यहां संलग्न की गई फाइलें इस 
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "इस कंपनी को एक यथार्थवादी उद्योग की कहानी से भरें ताकि हर स्क्रीन में कुछ न कुछ हो। आप पहले जो यहां था उसे वापस डाल सकते हैं।"
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "फ़िल्टर"
@@ -8286,9 +8286,6 @@ msgstr "रखें"
 msgid "Keep Current"
 msgstr "वर्तमान रखें"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "मौजूदा मूल्य निर्धारण रखें, केवल नई वस्तुएं जोड़ें"
 
@@ -9399,9 +9396,6 @@ msgstr "शुद्ध आय"
 msgid "Never"
 msgstr "कभी नहीं"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "नया"
 
@@ -10191,6 +10185,9 @@ msgstr "प्रमाणित नहीं"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "पर्याप्त नौकरियां नहीं हैं मात्रा को कवर करने के लिए"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "प्राप्त नहीं"
@@ -12410,9 +12407,6 @@ msgstr "मौजूदा मूल्य निर्धारण को स�
 msgid "Replace PDF"
 msgstr "PDF को बदलें"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "इस कंपनी के डेटा को डेमो डेटासेट से बदलें — पहले स्नैपशॉट लिया जाता है, ताकि आप पूर्ववत् कर सकें।"
 
@@ -12561,6 +12555,9 @@ msgstr "संसाधन"
 msgid "Resources"
 msgstr "संसाधन"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "ट्रैश से पुनः स्थापित करें"
 
@@ -12656,9 +12653,6 @@ msgstr "उलट दिया गया"
 
 msgid "Revert"
 msgstr "पूर्ववत् करें"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "पूर्ववत् कर रहे हैं"
@@ -13978,7 +13972,7 @@ msgstr "समाधान इंजीनियर"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "PDF से निकाली गई कुछ पंक्तियों को आपकी इन्वेंटरी आइटम्स से स्वचालित रूप से मैप नहीं किया जा सका। नीचे प्रत्येक पंक्ति की समीक्षा करें और मैप करें।"
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "इन कार्यों के पास इस कार्य क
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "ये जर्नल प्रविष्टियाँ अभी भी ड्राफ्ट हैं, इसलिए उनके डेबिट और क्रेडिट इस अवधि के लिए लेजर में नहीं हैं। प्रत्येक को पोस्ट करें, या इसे बाद की खुली अवधि में पुनः दिनांकित करें।"
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "यह परिवर्तन सूचना लागू की ज�
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "यह परिवर्तन सूचना बंद है, इसलिए इसके परिवर्तन केवल पढ़ने के लिए हैं।"
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "यह Discovery चरण को पूरा करता है।"
@@ -17393,12 +17390,6 @@ msgstr "स्टॉक क्यों बदल रहा है — सका
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "यह पंक्ति क्यों अस्वीकार की जा रही है; मुद्रण योग्य उद्धरण पर प्रदर्शित और जीत-हानि रिपोर्टिंग के लिए दर्ज।"
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "टिप्पणी पंक्ति के रूप में रहेगा"

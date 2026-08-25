@@ -210,7 +210,7 @@ msgstr "귀사가 Carbon을 도입하기까지 {total}단계가 있습니다. �
 msgid "{total} phases to go live"
 msgstr "도입까지 {total}단계"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "배송의 상태가 변경되었습니다"
 
 msgid "A shipment's tracking number changes"
 msgstr "배송 추적 번호가 변경됨"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "단계에 이름이 필요합니다."
@@ -2724,6 +2721,9 @@ msgstr "외부 URL 호출"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Carbon에서는 이를 방법(method)이라고 부릅니다 — 품목을 만드는 구성품과 공정작업의 조합입니다."
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "이 기간은 삭제할 수 없습니다"
 
@@ -2783,9 +2783,6 @@ msgstr "저장되지 않은 공정작업에는 단계를 추가할 수 없습니
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "저장되지 않은 공정작업에는 공구를 추가할 수 없습니다"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "아직 종료할 수 없습니다"
@@ -3012,6 +3009,9 @@ msgstr "기간 종료 시점의 음수 수량 보유 항목에 대해 항목 원
 
 msgid "Check your email"
 msgstr "이메일을 확인하세요"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "견적 비교"
 
 msgid "Compare Supplier Quotes"
 msgstr "공급업체 견적 비교"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "완료"
@@ -5185,6 +5182,9 @@ msgstr "비활성화됨"
 msgid "Discard"
 msgstr "폐기"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "연결 해제"
 
@@ -6198,9 +6198,6 @@ msgstr "그 외 모든 것은 사람, 가져오기, 통합 및 API를 포함합�
 msgid "Everything from Starter"
 msgstr "스타터의 모든 기능 포함"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "총 {PO_EMAIL_ATTACHMENT_LIMIT_MB}MB를 초과합니다 — 발송하려면 일부 첨부 파일을 제거하세요."
 
@@ -6830,6 +6827,9 @@ msgstr "여기에 첨부한 파일은 이 공급업체에 전송되는 모든 �
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "이 회사를 현실적인 산업 시나리오로 채워서 모든 화면에 데이터가 표시되도록 합니다. 이전 상태로 복원할 수 있습니다."
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "필터"
@@ -8286,9 +8286,6 @@ msgstr "유지"
 msgid "Keep Current"
 msgstr "현재 값 유지"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "기존 가격은 유지하고 새 품목만 추가"
 
@@ -9399,9 +9396,6 @@ msgstr "순이익"
 msgid "Never"
 msgstr "안 함"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "신규"
 
@@ -10191,6 +10185,9 @@ msgstr "인증되지 않음"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "수량을 충족할 만큼 작업이 충분하지 않습니다"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "도달하지 않음"
@@ -12410,9 +12407,6 @@ msgstr "기존 가격을 원본 값으로 교체"
 msgid "Replace PDF"
 msgstr "PDF 교체"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "이 회사의 데이터를 데모 데이터셋으로 교체합니다 — 먼저 스냅샷을 저장하여 나중에 복원할 수 있습니다."
 
@@ -12561,6 +12555,9 @@ msgstr "리소스"
 msgid "Resources"
 msgstr "리소스"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "휴지통에서 복원"
 
@@ -12656,9 +12653,6 @@ msgstr "역순됨"
 
 msgid "Revert"
 msgstr "복원"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "복원 중"
@@ -13978,7 +13972,7 @@ msgstr "솔루션 엔지니어"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "PDF에서 추출된 일부 라인을 재고 품목에 자동으로 매핑할 수 없습니다. 아래에서 각 라인을 검토하고 매핑하세요."
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "다음 작업에 이 작업장이 지정된 공정작업이 있습니다
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "이 분개들은 아직 임시이므로 그 차변과 대변이 이 기간의 총계정원장에 없습니다. 각각을 전기하거나 나중의 개방된 기간으로 재날짜하세요."
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "이 변경 사항은 구현 중이므로 변경 사항이 잠겨 있습�
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "이 변경 사항은 닫혀 있으므로 변경 사항이 읽기 전용입니다."
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "이것으로 발견(Discovery) 단계가 완료됩니다."
@@ -17393,12 +17390,6 @@ msgstr "재고가 변경되는 이유 — 양수(발견), 음수(분실/스크�
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "이 라인이 거절되는 이유로, 인쇄용 견적서에 표시되며 수주/실주 보고를 위해 기록됩니다."
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "댓글 라인으로 유지됩니다"

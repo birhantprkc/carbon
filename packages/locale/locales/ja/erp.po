@@ -210,7 +210,7 @@ msgstr "{total}個のフェーズでお客様の企業をCarbonで稼働させ�
 msgid "{total} phases to go live"
 msgstr "{total}個のフェーズをライブにする"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "出荷のステータスが変更される"
 
 msgid "A shipment's tracking number changes"
 msgstr "配送の追跡番号が変更される"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "ステップには名前が必要です。"
@@ -2724,6 +2721,9 @@ msgstr "外部URLを呼び出す"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Carbonで呼ばれるメソッド—部品を生成するコンポーネントと操作。"
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "この期間は削除できません"
 
@@ -2783,9 +2783,6 @@ msgstr "保存されていない操作にステップを追加できません"
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "保存されていない操作にツールを追加できません"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "まだ閉じることができません"
@@ -3012,6 +3009,9 @@ msgstr "期末時点で保有数量がマイナスの品目がないか品目台
 
 msgid "Check your email"
 msgstr "メールを確認してください"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "見積もりを比較"
 
 msgid "Compare Supplier Quotes"
 msgstr "サプライヤー見積もりを比較"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "完了"
@@ -5185,6 +5182,9 @@ msgstr "無効"
 msgid "Discard"
 msgstr "破棄"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "切断"
 
@@ -6198,9 +6198,6 @@ msgstr "その他すべてには、人、インポート、統合、およびAPI
 msgid "Everything from Starter"
 msgstr "スターターのすべての機能"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "{PO_EMAIL_ATTACHMENT_LIMIT_MB} MB を超えています — 送信するには添付ファイルを削除してください。"
 
@@ -6830,6 +6827,9 @@ msgstr "ここに添付されたファイルは、このサプライヤーに送
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "現実的なインダストリストーリーでこのコンパニーを埋めて、すべての画面に何か表示されるようにしてください。以前の状態に戻すことができます。"
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "フィルター"
@@ -8286,9 +8286,6 @@ msgstr "保持"
 msgid "Keep Current"
 msgstr "現在の設定を保持"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "既存の価格を保持し、新しい項目のみを追加"
 
@@ -9399,9 +9396,6 @@ msgstr "純利益"
 msgid "Never"
 msgstr "なし"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "新規"
 
@@ -10191,6 +10185,9 @@ msgstr "認定されていない"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "数量をカバーするのに十分なジョブがありません"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "未到達"
@@ -12410,9 +12407,6 @@ msgstr "既存の価格を元の値に置き換える"
 msgid "Replace PDF"
 msgstr "PDFを置き換える"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "このコンパニーのデータをデモデータセットで置き換えます。最初にスナップショットを取得するため、リバートできます。"
 
@@ -12561,6 +12555,9 @@ msgstr "リソース"
 msgid "Resources"
 msgstr "リソース"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "ゴミ箱から復元"
 
@@ -12656,9 +12653,6 @@ msgstr "反転"
 
 msgid "Revert"
 msgstr "リバート"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "リバート中"
@@ -13978,7 +13972,7 @@ msgstr "ソリューションズエンジニア"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "PDFから抽出された一部の行は、在庫アイテムに自動的にマップできませんでした。以下の各行を確認してマップしてください。"
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "これらのジョブにはこのワークセンターに割り当てら
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "これらの仕訳はまだ下書きであるため、それらの借方と貸方は当期の元帳に含まれていません。各仕訳を転記するか、後の開いている期間に再度日付を付け直してください。"
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "この変更通知は実装中であるため、変更がロックされ
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "この変更通知は閉じられているため、変更は読み取り専用です。"
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "これはDiscoveryステップを完了します。"
@@ -17393,12 +17390,6 @@ msgstr "在庫が変わる理由 — ポジティブ(見つかった)、ネガ�
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "この行が拒否されている理由。印刷可能な見積もりに表示され、win-loss報告用に記録されます。"
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "コメント行として残ります"

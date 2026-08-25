@@ -210,7 +210,7 @@ msgstr "{total} fases para colocar sua empresa ao vivo no Carbon. Cada uma termi
 msgid "{total} phases to go live"
 msgstr "{total} fases para entrar em produção"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "O status de um envio muda"
 
 msgid "A shipment's tracking number changes"
 msgstr "O número de rastreamento de uma remessa muda"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "Uma etapa precisa de um nome."
@@ -2724,6 +2721,9 @@ msgstr "Chamar uma URL externa"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Chamada uma método em Carbon — os componentes mais as operações que produzem uma parte."
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "Não é possível deletar este período"
 
@@ -2783,9 +2783,6 @@ msgstr "Não é possível adicionar etapas a uma operação não salva"
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "Não é possível adicionar ferramentas a uma operação não salva"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "Não é possível fechar ainda"
@@ -3012,6 +3009,9 @@ msgstr "Verifique o razão de itens para qualquer item com quantidade em mão ne
 
 msgid "Check your email"
 msgstr "Verifique seu email"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "Comparar Cotações"
 
 msgid "Compare Supplier Quotes"
 msgstr "Comparar Cotações de Fornecedores"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "Concluir"
@@ -5185,6 +5182,9 @@ msgstr "Desativado"
 msgid "Discard"
 msgstr "Descartar"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "Desconectar"
 
@@ -6198,9 +6198,6 @@ msgstr "Tudo mais cobre pessoas, importações, integrações e a API — qualqu
 msgid "Everything from Starter"
 msgstr "Tudo do Starter"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "Excede {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB no total — remova alguns anexos para enviar."
 
@@ -6830,6 +6827,9 @@ msgstr "Arquivos anexados aqui são incluídos em todos os emails de pedido de c
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "Preencha esta empresa com uma história de indústria realista para que cada tela tenha algo. Pode colocar de volta o que estava aqui antes."
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "Filtro"
@@ -8286,9 +8286,6 @@ msgstr "Manter"
 msgid "Keep Current"
 msgstr "Manter Atual"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "Manter preços existentes, adicionar apenas novos itens"
 
@@ -9399,9 +9396,6 @@ msgstr "Lucro Líquido"
 msgid "Never"
 msgstr "Nunca"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "Novo"
 
@@ -10191,6 +10185,9 @@ msgstr "Não certificado"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Não há trabalhos suficientes para cobrir a quantidade"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "Não atingido"
@@ -12410,9 +12407,6 @@ msgstr "Substituir preços existentes pelos valores de origem"
 msgid "Replace PDF"
 msgstr "Substituir PDF"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "Substitua os dados desta empresa por um conjunto de dados de demonstração — capturado primeiro, para que você possa reverter."
 
@@ -12561,6 +12555,9 @@ msgstr "recursos"
 msgid "Resources"
 msgstr "Recursos"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "Restaurar da Lixeira"
 
@@ -12656,9 +12653,6 @@ msgstr "Revertido"
 
 msgid "Revert"
 msgstr "Reverter"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "Revertendo"
@@ -13978,7 +13972,7 @@ msgstr "Engenheiro de Soluções"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Algumas linhas extraídas do PDF não puderam ser mapeadas automaticamente para seus itens de inventário. Revise e mapeie cada linha abaixo."
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "Estes trabalhos têm operações atribuídas a este centro de trabalho:"
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "Estes lançamentos de diário ainda estão em Rascunho, portanto seus débitos e créditos não estão no livro-razão para este período. Lance cada um, ou redatē-o para um período aberto posterior."
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "Este aviso de mudança está sendo implementado, portanto suas alteraç�
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "Este aviso de mudança está fechado, portanto suas alterações são somente leitura."
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "Isto completa a etapa de Descoberta."
@@ -17393,12 +17390,6 @@ msgstr "Por que o estoque está mudando — Positivo (encontrado), Negativo (per
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "Por que esta linha está sendo recusada; mostrado na cotação imprimível e registrado para relatórios de ganho-perda."
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "Permanecerá como uma linha de comentário"

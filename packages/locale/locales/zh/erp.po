@@ -210,7 +210,7 @@ msgstr "{total}个阶段让您的公司在Carbon上线。每个阶段都以检�
 msgid "{total} phases to go live"
 msgstr "{total} 个阶段即可上线"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "发货单的状态已更改"
 
 msgid "A shipment's tracking number changes"
 msgstr "货物的跟踪号已更改"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "步骤需要一个名称。"
@@ -2724,6 +2721,9 @@ msgstr "调用外部 URL"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "在Carbon中称为方法—生成零件的组件和操作。"
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "无法删除此期间"
 
@@ -2783,9 +2783,6 @@ msgstr "无法向未保存的操作添加步骤"
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "无法向未保存的操作添加工具"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "无法关闭"
@@ -3012,6 +3009,9 @@ msgstr "检查物料分类账中期末库存数量为负的任何物料——通
 
 msgid "Check your email"
 msgstr "检查您的电子邮件"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "比较报价"
 
 msgid "Compare Supplier Quotes"
 msgstr "比较供应商报价"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "完成"
@@ -5185,6 +5182,9 @@ msgstr "已禁用"
 msgid "Discard"
 msgstr "丢弃"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "断开连接"
 
@@ -6198,9 +6198,6 @@ msgstr "其他所有内容涵盖人员、导入、集成和 API — 任何不属
 msgid "Everything from Starter"
 msgstr "Starter 中的所有功能"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "超过 {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB 总限制 — 请删除一些附件以发送。"
 
@@ -6830,6 +6827,9 @@ msgstr "此处附加的文件将随附在发送给此供应商的每份采购订
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "用逼真的行业故事填充此公司，使每个屏幕都有内容。您可以恢复之前的内容。"
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "筛选"
@@ -8286,9 +8286,6 @@ msgstr "保留"
 msgid "Keep Current"
 msgstr "保持当前"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "保留现有定价，仅添加新项目"
 
@@ -9399,9 +9396,6 @@ msgstr "净收入"
 msgid "Never"
 msgstr "永不"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "新建"
 
@@ -10191,6 +10185,9 @@ msgstr "未认证"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "工作数量不足以覆盖数量"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "未到达"
@@ -12410,9 +12407,6 @@ msgstr "用源值替换现有定价"
 msgid "Replace PDF"
 msgstr "替换 PDF"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "用演示数据集替换此公司的数据——首先快照，以便您可以还原。"
 
@@ -12561,6 +12555,9 @@ msgstr "资源"
 msgid "Resources"
 msgstr "资源"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "从垃圾箱恢复"
 
@@ -12656,9 +12653,6 @@ msgstr "已冲销"
 
 msgid "Revert"
 msgstr "还原"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "正在还原"
@@ -13978,7 +13972,7 @@ msgstr "解决方案工程师"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "从PDF提取的某些行无法自动映射到您的库存项目。请查看并映射下面的每一行。"
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "这些工作有分配给此工作中心的操作："
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "这些日记账条目仍为草稿状态，因此其借贷金额不在本期分类账中。过账每一份，或将其重新标记日期至较晚的开放期间。"
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "此变更通知正在实施中，因此其更改已锁定。重新打开
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "此变更通知已关闭，因此其更改为只读。"
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "这完成了发现步骤。"
@@ -17393,12 +17390,6 @@ msgstr "库存为何变化 — 正数(已找到)、负数(丢失/报废)或设�
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "该行被拒绝的原因;显示在可打印报价上,并为损益报告记录。"
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "将保留为注释行"

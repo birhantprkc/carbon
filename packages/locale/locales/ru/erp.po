@@ -210,7 +210,7 @@ msgstr "{total} этапов, чтобы ваша компания начала 
 msgid "{total} phases to go live"
 msgstr "{total} этапов до запуска"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "Статус отправки меняется"
 
 msgid "A shipment's tracking number changes"
 msgstr "Номер отслеживания отправки изменяется"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "Шаг должен иметь имя."
@@ -2724,6 +2721,9 @@ msgstr "Вызвать внешний URL"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Называется метод в Carbon — компоненты плюс операции, которые создают деталь."
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "Невозможно удалить этот период"
 
@@ -2783,9 +2783,6 @@ msgstr "Невозможно добавить шаги к несохраненн
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "Невозможно добавить инструменты к несохраненной операции"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "Пока нельзя закрыть"
@@ -3012,6 +3009,9 @@ msgstr "Проверьте реестр товаров на наличие то�
 
 msgid "Check your email"
 msgstr "Проверьте вашу почту"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "Сравнить предложения"
 
 msgid "Compare Supplier Quotes"
 msgstr "Сравнить предложения поставщиков"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "Завершить"
@@ -5185,6 +5182,9 @@ msgstr "Отключено"
 msgid "Discard"
 msgstr "Отклонить"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "Отключить"
 
@@ -6198,9 +6198,6 @@ msgstr "Все остальное охватывает людей, импорт,
 msgid "Everything from Starter"
 msgstr "Всё из Starter"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "Превышает {PO_EMAIL_ATTACHMENT_LIMIT_MB} МБ всего — удалите некоторые вложения для отправки."
 
@@ -6830,6 +6827,9 @@ msgstr "Файлы, прикрепленные здесь, отправляют�
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "Заполните эту компанию реалистичной историей отрасли, чтобы на каждом экране было что-нибудь. Вы можете вернуть то, что было раньше."
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "Фильтр"
@@ -8286,9 +8286,6 @@ msgstr "Сохранить"
 msgid "Keep Current"
 msgstr "Сохранить текущие"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "Сохранить существующие цены, добавить только новые товары"
 
@@ -9399,9 +9396,6 @@ msgstr "Чистый доход"
 msgid "Never"
 msgstr "Никогда"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "Новый"
 
@@ -10191,6 +10185,9 @@ msgstr "Не сертифицировано"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Недостаточно заданий для покрытия количества"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "Не достигнуто"
@@ -12410,9 +12407,6 @@ msgstr "Заменить существующие цены на значения
 msgid "Replace PDF"
 msgstr "Заменить PDF"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "Замените данные этой компании набором демо-данных — сначала создан снимок, чтобы вы могли восстановить исходные данные."
 
@@ -12561,6 +12555,9 @@ msgstr "ресурсы"
 msgid "Resources"
 msgstr "Ресурсы"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "Восстановить из корзины"
 
@@ -12656,9 +12653,6 @@ msgstr "Сторнировано"
 
 msgid "Revert"
 msgstr "Восстановить"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "Восстановление"
@@ -13978,7 +13972,7 @@ msgstr "Инженер решений"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Некоторые строки, извлеченные из PDF, не удалось автоматически сопоставить с элементами вашего инвентаря. Проверьте и сопоставьте каждую строку ниже."
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "Эти задания имеют операции, назначенны�
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "Эти записи в журнале всё ещё находятся в статусе «Черновик», поэтому их дебеты и кредиты не находятся в главной книге за этот период. Опубликуйте каждую или переделируйте её на более поздний открытый период."
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "Это уведомление об изменении реализует
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "Это уведомление об изменении закрыто, поэтому его изменения доступны только для чтения."
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "Это завершает этап Discovery."
@@ -17393,12 +17390,6 @@ msgstr "Почему запас меняется — Положительный 
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "Почему эта строка отклоняется; отображается в печатаемом предложении и записывается для отчетов по победам и потерям."
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "Останется в виде строки комментария"

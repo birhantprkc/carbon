@@ -15,10 +15,8 @@ import { useMemo, useState } from "react";
 import { LuCircleAlert, LuInfo, LuTriangleAlert } from "react-icons/lu";
 import { tableArea } from "../../backups.areas";
 import type { CompanyBackupSummary } from "../../backups.service";
+import { CONFIRM_WORD, disclosureState } from "./disclosure-state";
 import { formatBackupDate, formatBackupName } from "./format";
-
-/** The word a person types to confirm a restore that discards data. */
-const CONFIRM_WORD = "restore";
 
 type Finding = CompanyBackupSummary["compatibility"]["findings"][number];
 type Excluded = CompanyBackupSummary["excludedRows"][number];
@@ -56,14 +54,7 @@ export function RestoreDisclosure({
   const findings = backup?.compatibility.findings ?? [];
   const checkedAt = backup?.compatibility.checkedAt ?? null;
   const excluded = backup?.excludedRows ?? [];
-  const blocked = findings.some((f) => f.kind === "blocked");
-  // Excluded rows count as a discard. They are not in the backup, they DO exist
-  // in the company today, and a restore deletes today's data — so confirming
-  // this restore loses them for good. That they were unrestorable junk does not
-  // make their disappearance something to find out about afterwards.
-  const discards =
-    findings.some((f) => f.kind === "discarded") || excluded.length > 0;
-  const confirmed = !discards || typed.trim().toLowerCase() === CONFIRM_WORD;
+  const { blocked, discards, canConfirm } = disclosureState(backup, typed);
 
   const close = () => {
     setOpen(false);
@@ -97,42 +88,26 @@ export function RestoreDisclosure({
                     ? ` · ${formatBackupDate(backup.exportedAt)}`
                     : ""}
                 </p>
-              ) : (
+              ) : null}
+
+              {/* Two sentences, always shown: what happens, and the way back.
+                  Keep/Revert are explained on the review row afterwards, where
+                  they are the actual decision. */}
+              <p className="text-sm">
+                <Trans>
+                  This company's data is replaced with the contents of this
+                  backup. Today's data is saved first, so you can revert.
+                </Trans>
+              </p>
+
+              {backup ? null : (
                 <p className="text-sm text-muted-foreground">
                   <Trans>
-                    This backup has not been compared to the current schema yet.
-                    Differences will be found when the restore runs.
+                    This backup hasn't been checked yet. Any differences are
+                    found when the restore runs.
                   </Trans>
                 </p>
               )}
-
-              {/* Always stated, in this order, findings or not — these are the
-                  consequences of the operation itself, not of any difference
-                  between the backup and today's schema. */}
-              <VStack spacing={1}>
-                <p className="text-sm">
-                  <Trans>
-                    Everything in this company today will be deleted and
-                    replaced with what is in this backup.
-                  </Trans>
-                </p>
-                <p className="text-sm">
-                  <Trans>
-                    A snapshot of today's data is taken first, before anything
-                    is deleted.
-                  </Trans>
-                </p>
-                <p className="text-sm">
-                  <Trans>
-                    Revert puts that snapshot back, exactly as it was.
-                  </Trans>
-                </p>
-                <p className="text-sm">
-                  <Trans>
-                    Keep drops the snapshot. After Keep, this cannot be undone.
-                  </Trans>
-                </p>
-              </VStack>
 
               {excluded.length > 0 ? (
                 <ExcludedRows excluded={excluded} />
@@ -148,7 +123,7 @@ export function RestoreDisclosure({
                     {/* Covers both losses above: values the schema will drop,
                         and rows the backup never contained. */}
                     <Trans>
-                      Some of your data will not survive this restore. Type{" "}
+                      Some records won't come back. Type{" "}
                       <span className="font-medium">{CONFIRM_WORD}</span> to
                       continue.
                     </Trans>
@@ -173,7 +148,7 @@ export function RestoreDisclosure({
                 next step is to pick a different backup. */}
             {blocked ? null : (
               <Button
-                isDisabled={!confirmed}
+                isDisabled={!canConfirm}
                 onClick={() => {
                   onConfirm({
                     source: source ?? "",
@@ -182,7 +157,7 @@ export function RestoreDisclosure({
                   close();
                 }}
               >
-                {t`Replace this company's data`}
+                {t`Restore`}
               </Button>
             )}
           </ModalFooter>
@@ -213,12 +188,11 @@ function ExcludedRows({ excluded }: { excluded: Excluded[] }) {
     <VStack spacing={1}>
       <span className="flex items-center gap-1.5 text-sm font-medium">
         <LuTriangleAlert className="h-4 w-4 shrink-0" />
-        <Trans>Never included in this backup</Trans>
+        <Trans>Not in this backup</Trans>
       </span>
       <span className="text-sm text-muted-foreground">
         <Trans>
-          {total} records referenced another company's data, so they could not
-          be backed up. They exist today and will be gone after this restore.
+          {total} records couldn't be backed up and won't be here afterwards.
         </Trans>
       </span>
       {/* The area, not the table — same rule as the findings below. */}
@@ -262,9 +236,9 @@ function FindingGroups({
 }) {
   const { t } = useLingui();
   const kindLabel: Record<Finding["kind"], string> = {
-    blocked: t`Cannot be restored`,
-    discarded: t`Will be discarded`,
-    defaulted: t`Will be filled with a default`
+    blocked: t`Can't be restored`,
+    discarded: t`Discarded`,
+    defaulted: t`Filled with a default`
   };
 
   return (
@@ -308,8 +282,7 @@ function FindingGroups({
       )}
       {checkedAt ? (
         <span className="text-xs text-muted-foreground">
-          <Trans>Compared to the current schema on</Trans>{" "}
-          {formatBackupDate(checkedAt)}
+          <Trans>Checked</Trans> {formatBackupDate(checkedAt)}
         </span>
       ) : null}
     </VStack>

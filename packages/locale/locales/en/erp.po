@@ -210,8 +210,8 @@ msgstr "{total} phases to get your company live on Carbon. Each one ends at a ch
 msgid "{total} phases to go live"
 msgstr "{total} phases to go live"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
-msgstr "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
+msgstr "{total} records couldn't be backed up and won't be here afterwards."
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "A shipment's status changes"
 
 msgid "A shipment's tracking number changes"
 msgstr "A shipment's tracking number changes"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr "A snapshot of today's data is taken first, before anything is deleted."
 
 msgid "A step needs a name."
 msgstr "A step needs a name."
@@ -2724,6 +2721,9 @@ msgstr "Call an outside URL"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Called a method in Carbon — the components plus operations that produce a part."
 
+msgid "Can't be restored"
+msgstr "Can't be restored"
+
 msgid "Can't delete this period"
 msgstr "Can't delete this period"
 
@@ -2783,9 +2783,6 @@ msgstr "Cannot add steps to unsaved operation"
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "Cannot add tools to unsaved operation"
-
-msgid "Cannot be restored"
-msgstr "Cannot be restored"
 
 msgid "Cannot close yet"
 msgstr "Cannot close yet"
@@ -3012,6 +3009,9 @@ msgstr "Check the item ledger for any items with a negative on-hand quantity as 
 
 msgid "Check your email"
 msgstr "Check your email"
+
+msgid "Checked"
+msgstr "Checked"
 
 msgid "Checking Stripe for this customer…"
 msgstr "Checking Stripe for this customer…"
@@ -3249,9 +3249,6 @@ msgstr "Compare Quotes"
 
 msgid "Compare Supplier Quotes"
 msgstr "Compare Supplier Quotes"
-
-msgid "Compared to the current schema on"
-msgstr "Compared to the current schema on"
 
 msgid "Complete"
 msgstr "Complete"
@@ -5185,6 +5182,9 @@ msgstr "Disabled"
 msgid "Discard"
 msgstr "Discard"
 
+msgid "Discarded"
+msgstr "Discarded"
+
 msgid "Disconnect"
 msgstr "Disconnect"
 
@@ -6198,9 +6198,6 @@ msgstr "Everything else covers people, imports, integrations and the API — any
 msgid "Everything from Starter"
 msgstr "Everything from Starter"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr "Everything in this company today will be deleted and replaced with what is in this backup."
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 
@@ -6830,6 +6827,9 @@ msgstr "Files attached here ride along on every purchase order email sent to thi
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
+
+msgid "Filled with a default"
+msgstr "Filled with a default"
 
 msgid "Filter"
 msgstr "Filter"
@@ -8286,9 +8286,6 @@ msgstr "Keep"
 msgid "Keep Current"
 msgstr "Keep Current"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr "Keep drops the snapshot. After Keep, this cannot be undone."
-
 msgid "Keep existing pricing, only add new items"
 msgstr "Keep existing pricing, only add new items"
 
@@ -9399,9 +9396,6 @@ msgstr "Net Income"
 msgid "Never"
 msgstr "Never"
 
-msgid "Never included in this backup"
-msgstr "Never included in this backup"
-
 msgid "New"
 msgstr "New"
 
@@ -10191,6 +10185,9 @@ msgstr "Not certified"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Not enough jobs to cover quantity"
+
+msgid "Not in this backup"
+msgstr "Not in this backup"
 
 msgid "Not reached"
 msgstr "Not reached"
@@ -12410,9 +12407,6 @@ msgstr "Replace existing pricing with source values"
 msgid "Replace PDF"
 msgstr "Replace PDF"
 
-msgid "Replace this company's data"
-msgstr "Replace this company's data"
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 
@@ -12561,6 +12555,9 @@ msgstr "resources"
 msgid "Resources"
 msgstr "Resources"
 
+msgid "Restore"
+msgstr "Restore"
+
 msgid "Restore from Trash"
 msgstr "Restore from Trash"
 
@@ -12656,9 +12653,6 @@ msgstr "Reversed"
 
 msgid "Revert"
 msgstr "Revert"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr "Revert puts that snapshot back, exactly as it was."
 
 msgid "Reverting"
 msgstr "Reverting"
@@ -13978,8 +13972,8 @@ msgstr "Solutions Engineer"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
-msgstr "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
+msgstr "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 
 msgid "Something went wrong. Please try again."
 msgstr "Something went wrong. Please try again."
@@ -15570,8 +15564,8 @@ msgstr "These jobs have operations assigned to this work center:"
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
-msgstr "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
+msgstr "This backup hasn't been checked yet. Any differences are found when the restore runs."
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "This change notice is being implemented, so its changes are locked. Reop
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "This change notice is closed, so its changes are read-only."
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
 
 msgid "This completes the Discovery step."
 msgstr "This completes the Discovery step."
@@ -17393,12 +17390,6 @@ msgstr "Why stock is changing — Positive (found), Negative (lost/scrap), or Se
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
-
-msgid "Will be discarded"
-msgstr "Will be discarded"
-
-msgid "Will be filled with a default"
-msgstr "Will be filled with a default"
 
 msgid "Will remain as a comment line"
 msgstr "Will remain as a comment line"

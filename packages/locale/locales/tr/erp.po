@@ -210,7 +210,7 @@ msgstr "{total} aşama şirketinizi Carbon'da canlı hale getirmek için. Her bi
 msgid "{total} phases to go live"
 msgstr "{total} aşama canlı yayına alınacak"
 
-msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgid "{total} records couldn't be backed up and won't be here afterwards."
 msgstr ""
 
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
@@ -750,9 +750,6 @@ msgstr "Sevkiyatın durumu değişti"
 
 msgid "A shipment's tracking number changes"
 msgstr "Bir sevkiyatın takip numarası değişti"
-
-msgid "A snapshot of today's data is taken first, before anything is deleted."
-msgstr ""
 
 msgid "A step needs a name."
 msgstr "Bir adım bir ada ihtiyaç duyuyor."
@@ -2724,6 +2721,9 @@ msgstr "Harici bir URL çağır"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Carbon'da çağrılan bir yöntem — bir parça üreten bileşenler ve işlemler."
 
+msgid "Can't be restored"
+msgstr ""
+
 msgid "Can't delete this period"
 msgstr "Bu dönem silinemez"
 
@@ -2783,9 +2783,6 @@ msgstr "Kaydedilmemiş işleme adım eklenemez"
 
 msgid "Cannot add tools to unsaved operation"
 msgstr "Kaydedilmemiş işleme araç eklenemez"
-
-msgid "Cannot be restored"
-msgstr ""
 
 msgid "Cannot close yet"
 msgstr "Henüz kapatılamaz"
@@ -3012,6 +3009,9 @@ msgstr "Dönem sonunda negatif el altında miktarı olan herhangi bir madde içi
 
 msgid "Check your email"
 msgstr "E-postanızı kontrol edin"
+
+msgid "Checked"
+msgstr ""
 
 msgid "Checking Stripe for this customer…"
 msgstr ""
@@ -3249,9 +3249,6 @@ msgstr "Teklifleri Karşılaştır"
 
 msgid "Compare Supplier Quotes"
 msgstr "Tedarikçi Tekliflerini Karşılaştır"
-
-msgid "Compared to the current schema on"
-msgstr ""
 
 msgid "Complete"
 msgstr "Tamamla"
@@ -5185,6 +5182,9 @@ msgstr "Devre Dışı"
 msgid "Discard"
 msgstr "Atıkla"
 
+msgid "Discarded"
+msgstr ""
+
 msgid "Disconnect"
 msgstr "Bağlantıyı kes"
 
@@ -6198,9 +6198,6 @@ msgstr "Her şey başka, insanları, ithalatları, entegrasyonları ve API'yi ka
 msgid "Everything from Starter"
 msgstr "Başlangıç'tan her şey"
 
-msgid "Everything in this company today will be deleted and replaced with what is in this backup."
-msgstr ""
-
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "Toplamda {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB'ı aşıyor — göndermek için bazı ekler kaldırın."
 
@@ -6830,6 +6827,9 @@ msgstr "Buraya eklenen dosyalar, bu tedarikçiye gönderilen her satın alma sip
 
 msgid "Fill this company with a realistic industry story so every screen has something in it. You can put back what was here before."
 msgstr "Bu şirketi gerçekçi bir endüstri hikayesiyle doldurun, böylece her ekran bir şey içerir. Önceki durumu geri getirebilirsiniz."
+
+msgid "Filled with a default"
+msgstr ""
 
 msgid "Filter"
 msgstr "Filtre"
@@ -8286,9 +8286,6 @@ msgstr "Tut"
 msgid "Keep Current"
 msgstr "Mevcut Tut"
 
-msgid "Keep drops the snapshot. After Keep, this cannot be undone."
-msgstr ""
-
 msgid "Keep existing pricing, only add new items"
 msgstr "Mevcut fiyatlandırmayı koru, yalnızca yeni öğeler ekle"
 
@@ -9399,9 +9396,6 @@ msgstr "Net Gelir"
 msgid "Never"
 msgstr "Asla"
 
-msgid "Never included in this backup"
-msgstr ""
-
 msgid "New"
 msgstr "Yeni"
 
@@ -10191,6 +10185,9 @@ msgstr "Sertifikalı değil"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Miktarı karşılayacak yeterli iş yok"
+
+msgid "Not in this backup"
+msgstr ""
 
 msgid "Not reached"
 msgstr "Ulaşılmadı"
@@ -12410,9 +12407,6 @@ msgstr "Mevcut fiyatlandırmayı kaynak değerlerle değiştir"
 msgid "Replace PDF"
 msgstr "PDF'i Değiştir"
 
-msgid "Replace this company's data"
-msgstr ""
-
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "Bu şirketin verilerini bir demo veri seti ile değiştirin — önce anlık görüntü alınır, böylece geri alabilirsiniz."
 
@@ -12561,6 +12555,9 @@ msgstr "kaynaklar"
 msgid "Resources"
 msgstr "Kaynaklar"
 
+msgid "Restore"
+msgstr ""
+
 msgid "Restore from Trash"
 msgstr "Çöp'ten Geri Yükle"
 
@@ -12656,9 +12653,6 @@ msgstr "Ters Çevrilmiş"
 
 msgid "Revert"
 msgstr "Geri Al"
-
-msgid "Revert puts that snapshot back, exactly as it was."
-msgstr ""
 
 msgid "Reverting"
 msgstr "Geri alınıyor"
@@ -13978,7 +13972,7 @@ msgstr "Çözüm Mühendisi"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "PDF'den çıkarılan bazı satırlar envanter öğelerinize otomatik olarak eşleştirilemedi. Aşağıdaki her satırı gözden geçirin ve eşleştirin."
 
-msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr ""
 
 msgid "Something went wrong. Please try again."
@@ -15570,7 +15564,7 @@ msgstr "Bu işler bu iş merkezine atanmış işlemlere sahiptir:"
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "Bu muhasebe kayıtları hâlâ Taslak durumundadır, bu nedenle borç ve alacakları bu dönem için defteri kebir'de değildir. Her birini deftere geçirin veya daha sonraki bir açık döneme yeniden tarihlendiriniz."
 
-msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
@@ -15581,6 +15575,9 @@ msgstr "Bu değişiklik bildirimi uygulanmakta olduğundan, değişiklikleri kil
 
 msgid "This change notice is closed, so its changes are read-only."
 msgstr "Bu değişiklik bildirimi kapalı olduğundan, değişiklikleri salt okunurdur."
+
+msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
+msgstr ""
 
 msgid "This completes the Discovery step."
 msgstr "Bu, Keşif adımını tamamlar."
@@ -17393,12 +17390,6 @@ msgstr "Stok neden değişiyor — Pozitif (bulundu), Negatif (kayıp/hurda) vey
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "Bu satırın neden reddedildiği; yazdırılabilir teklifte gösterilir ve kazanç-kayıp raporlaması için kaydedilir."
-
-msgid "Will be discarded"
-msgstr ""
-
-msgid "Will be filled with a default"
-msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "Yorum satırı olarak kalacak"
