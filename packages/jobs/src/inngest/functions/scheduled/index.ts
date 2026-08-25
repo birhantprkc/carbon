@@ -7,6 +7,7 @@ export {
 export { mrpFunction } from "./mrp";
 export { notificationDigestFunction } from "./notification-digest";
 export { notificationPurgeFunction } from "./notification-purge";
+export { tenantIntegrityFunction } from "./tenant-integrity";
 export { updateExchangeRatesFunction } from "./update-exchange-rates";
 export { weeklyFunction } from "./weekly";
 export { workflowRunRetentionFunction } from "./workflow-run-retention";

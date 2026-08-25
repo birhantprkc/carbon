@@ -35,6 +35,25 @@ serve(async (req: Request) => {
 
     const client = await requirePermissions(req, companyId, userId, { update: "production" });
 
+    // `requirePermissions` proved the caller may update production in
+    // `companyId`. It did NOT prove `jobId` belongs to that company — both
+    // arrive in the same payload, from callers that pass a URL segment straight
+    // through on a service-role client. Without this, a request pairing one
+    // company's id with another company's job rebuilds the victim's dependency
+    // rows stamped with the caller's `companyId`.
+    // See .ai/specs/2026-08-25-backup-durability.md Part 3.
+    const job = await db
+      .selectFrom("job")
+      .select(["id", "companyId"])
+      .where("id", "=", jobId)
+      .executeTakeFirst();
+
+    // 404, not 403: a job in another company must be indistinguishable from a
+    // job that does not exist.
+    if (!job || job.companyId !== companyId) {
+      return errorResponse("Job not found in this company", 404);
+    }
+
     const engine = new SchedulingEngine({
       client,
       db,

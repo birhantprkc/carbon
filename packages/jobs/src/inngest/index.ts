@@ -61,6 +61,7 @@ import {
   mrpFunction,
   notificationDigestFunction,
   notificationPurgeFunction,
+  tenantIntegrityFunction,
   updateExchangeRatesFunction,
   weeklyFunction,
   workflowRunRetentionFunction
@@ -147,6 +148,7 @@ export const functions = [
   notificationDigestFunction,
   notificationPurgeFunction,
   workflowRunRetentionFunction,
+  tenantIntegrityFunction,
   // Integrations
   jiraSyncFunction,
   linearSyncFunction,
