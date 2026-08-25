@@ -11,6 +11,7 @@ import {
   validator
 } from "@carbon/form";
 import {
+  Badge,
   Button,
   Card,
   CardContent,
@@ -56,16 +57,19 @@ import {
   revertCompanyRestore,
   startCompanyRestore
 } from "~/modules/settings/backups.server";
+import type { BackupStatus } from "~/modules/settings/ui/Backups";
 import {
   BackupContentsInfo,
   BackupSourcePicker,
+  backupStatusLabel,
+  backupStatusVariant,
   formatBackupDate,
   formatBackupName,
   IncludeStorageChoice,
   JobProgressModal,
+  RestoreDisclosure,
   RestoreIncludeChoice,
-  RestoreReviewRow,
-  RestoreSubmit
+  RestoreReviewRow
 } from "~/modules/settings/ui/Backups";
 import { canAccessBackups } from "~/utils/backups";
 import { getEdgeFunctionErrorMessage } from "~/utils/error";
@@ -452,7 +456,18 @@ export default function BackupsRoute() {
                 </div>
               </CardContent>
               <CardFooter>
-                <RestoreSubmit />
+                {/* The disclosure screen is the only way this form submits — it
+                    submits through the fetcher rather than the form's own submit
+                    button, because the modal is portaled outside the <form>. */}
+                <RestoreDisclosure
+                  backups={files.filter((f) => f.status === "ready")}
+                  onConfirm={({ source, includeStorage }) =>
+                    fetcher.submit(
+                      { intent: "restore", source, includeStorage },
+                      { method: "post" }
+                    )
+                  }
+                />
               </CardFooter>
             </ValidatedForm>
           </Card>
@@ -520,10 +535,14 @@ export default function BackupsRoute() {
                   <HStack className="w-full justify-between rounded-lg border border-destructive/50 bg-destructive/5 p-3">
                     <VStack spacing={0} className="min-w-0">
                       <span className="text-sm font-medium">Backup failed</span>
+                      {/* Never "the system", and never "contact support" for
+                          something the reason already explains — the old copy
+                          blamed the product for what is usually a data problem
+                          the message itself names. */}
                       <span className="break-words text-xs text-muted-foreground">
-                        The system created an invalid backup — please contact
-                        Carbon support.
-                        {exportRun?.error ? ` (${exportRun.error})` : null}
+                        {exportRun?.error
+                          ? `This backup could not be completed. ${exportRun.error}`
+                          : "This backup could not be completed."}
                       </span>
                     </VStack>
                     <Button
@@ -592,6 +611,10 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
     );
   });
   const name = file.label || formatBackupName(file.name);
+  // A half-written folder has no verdict to report — the incompleteness is the
+  // whole story, so it outranks whatever compatibility.json may or may not say.
+  const status: BackupStatus =
+    file.status === "pending" ? "incomplete" : file.compatibility.status;
 
   return (
     <HStack
@@ -600,7 +623,12 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
       }`}
     >
       <VStack spacing={0}>
-        <span className="text-sm font-medium">{name}</span>
+        <HStack spacing={2}>
+          <span className="text-sm font-medium">{name}</span>
+          <Badge variant={backupStatusVariant(status)}>
+            {backupStatusLabel(status)}
+          </Badge>
+        </HStack>
         <span className="text-xs text-muted-foreground">
           {file.status === "pending" ? (
             // A pending folder with no running export is a dead partial — never
@@ -613,6 +641,16 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
                 <>
                   {" · "}
                   {convertKbToString(Math.round(file.sizeBytes / 1024))}
+                </>
+              ) : null}
+              {/* A number, not an adjective. These rows referenced another
+                  company's data, so they could never have been restored —
+                  the backup is complete without them, and saying so beats
+                  silence. */}
+              {file.excludedRowCount > 0 ? (
+                <>
+                  {" · "}
+                  {file.excludedRowCount.toLocaleString()} rows excluded
                 </>
               ) : null}
             </>

@@ -1,72 +1,8 @@
 import { requirePermissions } from "@carbon/auth/auth.server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { LoaderFunctionArgs } from "react-router";
+import { BACKUP_SUMMARY_GROUPS } from "~/modules/settings/backups.areas";
 import { canAccessBackups } from "~/utils/backups";
-
-// Recognizable entities a backup carries, grouped for the "what's in a backup"
-// popover. Not exhaustive (the export covers every scoped table) — just the
-// meaningful headline counts. `scope` is the column rows are counted by:
-// "company" (companyId, the default) or "group" (companyGroupId — the shared
-// chart of accounts / currencies / dimensions).
-type Scope = "company" | "group";
-type Entity = [label: string, table: string, scope?: Scope];
-
-const GROUPS: { title: string; entities: Entity[] }[] = [
-  {
-    title: "Sales",
-    entities: [
-      ["Customers", "customer"],
-      ["Quotes", "quote"],
-      ["Sales orders", "salesOrder"],
-      ["Sales invoices", "salesInvoice"],
-      ["Shipments", "shipment"]
-    ]
-  },
-  {
-    title: "Purchasing",
-    entities: [
-      ["Suppliers", "supplier"],
-      ["Purchase orders", "purchaseOrder"],
-      ["Purchase invoices", "purchaseInvoice"],
-      ["Receipts", "receipt"]
-    ]
-  },
-  {
-    title: "Items",
-    entities: [
-      ["Parts", "part"],
-      ["Materials", "material"],
-      ["Tools", "tool"]
-    ]
-  },
-  {
-    title: "Production",
-    entities: [
-      ["Jobs", "job"],
-      ["Work centers", "workCenter"],
-      ["Processes", "process"]
-    ]
-  },
-  {
-    title: "Accounting",
-    entities: [
-      ["Accounts", "account", "group"],
-      ["Currencies", "currency", "group"],
-      ["Dimensions", "dimension", "group"],
-      ["Journal lines", "journalLine"],
-      ["Item ledger", "itemLedger"],
-      ["Cost ledger", "costLedger"]
-    ]
-  },
-  {
-    title: "Quality",
-    entities: [
-      ["Non-conformances", "nonConformance"],
-      ["Gauges", "gauge"]
-    ]
-  },
-  { title: "People", entities: [["Employees", "employee"]] }
-];
 
 async function countEntity(
   client: SupabaseClient,
@@ -97,7 +33,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     throw new Response("Not found", { status: 404 });
 
   const groups = await Promise.all(
-    GROUPS.map(async (group) => {
+    BACKUP_SUMMARY_GROUPS.map(async (group) => {
       const rows = await Promise.all(
         group.entities.map(async ([label, table, scope]) =>
           scope === "group"

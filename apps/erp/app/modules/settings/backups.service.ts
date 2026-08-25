@@ -62,6 +62,51 @@ export type CompanyBackupSummary = {
   rows: number;
   /** Total bundled asset bytes (the bulk of a backup's footprint). */
   sizeBytes: number;
+  /**
+   * Rows the export deliberately left out because a NOT-NULL reference escaped
+   * company scope. The backup is still restorable — these rows could never have
+   * been. Surfaced so the omission is disclosed rather than silent. Empty for
+   * manifests written before the field existed.
+   *
+   * Carried in FULL, not as a bare count: a restore deletes today's data and
+   * replaces it with the backup, so these rows exist right now and will be gone
+   * afterwards. `RestoreDisclosure` needs the table to name the product area, and
+   * "4 rows excluded" cannot tell anyone which part of their company that is.
+   */
+  excludedRows: Array<{
+    table: string;
+    column: string;
+    refTable: string;
+    rows: number;
+  }>;
+  /** Sum of `excludedRows[].rows` — the list row shows the number alone. */
+  excludedRowCount: number;
+  /**
+   * The verdict from `compatibility.json`, written beside the manifest by the
+   * export job and never refreshed — so `checkedAt` is the export date, and the
+   * row's own exported-at line already dates it. Read as a plain file rather than
+   * recomputed here: the comparison needs the live schema and lives in
+   * `@carbon/jobs`, which app code may not import.
+   *
+   * A badge is therefore a dated fact, not a live promise. That is deliberate:
+   * the hard refusal runs against the live schema inside the restore
+   * (`assertBackupImportable`), and `RestoreDisclosure` prints `checkedAt` at the
+   * one moment the answer changes a decision. Do not add a job to keep this fresh
+   * — one existed and was removed for finding problems nobody was told about.
+   *
+   * `checkedAt: null` means no verdict has been written yet — the row says "not yet
+   * checked", never "not restorable". An absent answer is not a bad one.
+   */
+  compatibility: {
+    checkedAt: string | null;
+    status: "ready" | "restorable-with-changes" | "not-restorable";
+    findings: Array<{
+      kind: "defaulted" | "discarded" | "blocked";
+      table: string;
+      column?: string;
+      reason: string;
+    }>;
+  };
 };
 
 /**
@@ -90,11 +135,35 @@ export async function listCompanyBackups(
         exportedAt: null,
         label: null,
         rows: 0,
-        sizeBytes: 0
+        sizeBytes: 0,
+        excludedRows: [],
+        excludedRowCount: 0,
+        compatibility: { checkedAt: null, status: "ready", findings: [] }
       };
-      const mf = await client.storage
-        .from(companyId)
-        .download(`exports/${folder.name}/manifest.json`);
+      // Both objects are tiny and independent — fetch them together so adding the
+      // verdict costs a parallel request, not a second serial round trip per row.
+      const [mf, cf] = await Promise.all([
+        client.storage
+          .from(companyId)
+          .download(`exports/${folder.name}/manifest.json`),
+        client.storage
+          .from(companyId)
+          .download(`exports/${folder.name}/compatibility.json`)
+      ]);
+      if (cf.data) {
+        try {
+          const c = JSON.parse(
+            await cf.data.text()
+          ) as CompanyBackupSummary["compatibility"];
+          summary.compatibility = {
+            checkedAt: c.checkedAt ?? null,
+            status: c.status ?? "ready",
+            findings: c.findings ?? []
+          };
+        } catch {
+          // Unreadable verdict is the same as an absent one: not yet checked.
+        }
+      }
       if (mf.data) {
         try {
           const m = JSON.parse(await mf.data.text()) as {
@@ -102,6 +171,12 @@ export async function listCompanyBackups(
             label?: string | null;
             tables?: Array<{ rows?: number }>;
             storage?: Array<{ size?: number; included?: boolean }>;
+            excludedRows?: Array<{
+              table?: string;
+              column?: string;
+              refTable?: string;
+              rows?: number;
+            }>;
           };
           summary.status = "ready";
           summary.exportedAt = m.exportedAt ?? null;
@@ -113,6 +188,26 @@ export async function listCompanyBackups(
           summary.sizeBytes = (m.storage ?? [])
             .filter((x) => x.included)
             .reduce((sum, x) => sum + (x.size ?? 0), 0);
+          // Absent on manifests predating the field — read as empty, never as
+          // "unknown", so an older backup does not display a scary blank. An
+          // entry with no table name is dropped rather than rendered as a
+          // mystery row: it could not be assigned to a product area anyway.
+          summary.excludedRows = (m.excludedRows ?? []).flatMap((x) =>
+            x.table
+              ? [
+                  {
+                    table: x.table,
+                    column: x.column ?? "",
+                    refTable: x.refTable ?? "",
+                    rows: x.rows ?? 0
+                  }
+                ]
+              : []
+          );
+          summary.excludedRowCount = (m.excludedRows ?? []).reduce(
+            (sum, x) => sum + (x.rows ?? 0),
+            0
+          );
         } catch {
           // Manifest present but unreadable — treat as a partial/aborted export
           // (stays "pending"); still listed by name so the user can delete it.

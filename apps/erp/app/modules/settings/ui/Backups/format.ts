@@ -36,6 +36,54 @@ export function formatElapsed(ms: number): string {
   return m > 0 ? `${m}m ${String(s % 60).padStart(2, "0")}s` : `${s}s`;
 }
 
+/**
+ * The ONLY five words a backup row is allowed to say about itself. Anything a
+ * person reads here they may act on, so the vocabulary is closed: a new state gets
+ * added here, with copy, rather than invented at a call site.
+ *
+ * `ready` doubles as "not yet checked" — a backup whose verdict has not been
+ * written is not a problem to report, it is simply a backup nobody has compared to
+ * the current schema yet.
+ */
+export type BackupStatus =
+  | "ready"
+  | "restorable-with-changes"
+  | "not-restorable"
+  | "incomplete"
+  | "failed";
+
+export function backupStatusLabel(status: BackupStatus): string {
+  switch (status) {
+    case "ready":
+      return "Ready";
+    case "restorable-with-changes":
+      return "Restorable with changes";
+    case "not-restorable":
+      return "Not restorable";
+    case "incomplete":
+      return "Incomplete";
+    case "failed":
+      return "Failed";
+  }
+}
+
+/** Which of the four badge colours a status wears. */
+export function backupStatusVariant(
+  status: BackupStatus
+): "green" | "yellow" | "red" | "secondary" {
+  switch (status) {
+    case "ready":
+      return "green";
+    case "restorable-with-changes":
+      return "yellow";
+    case "not-restorable":
+    case "failed":
+      return "red";
+    case "incomplete":
+      return "secondary";
+  }
+}
+
 export function formatBackupDate(
   iso: string | null | undefined,
   withTime = true
