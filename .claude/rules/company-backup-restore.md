@@ -12,6 +12,8 @@ paths:
   - "apps/erp/app/routes/api+/settings.backup-restore-status.$restoreRunId.ts"
   - "apps/erp/app/services/onboarding.server.ts"
   - "apps/erp/app/services/onboarding-draft.server.ts"
+  - "packages/jobs/src/scripts/check-backups.ts"
+  - "packages/jobs/manifests/**"
   - "ci/src/upload-backup-templates.ts"
   - "packages/database/supabase/backups/**"
 ---
@@ -72,11 +74,21 @@ The catalog is **schema-introspected**, not a hand-maintained list:
   `RESEED_SKIPPED_TABLES` (memberships/invites/employee/externalIntegrationMapping
   — skipped on onboarding reseed), `IN_PLACE_SKIPPED_TABLES` (access/identity
   tables a restore must keep so the user isn't locked out).
-- Format: the gz is **NDJSON** — line 1 is `{ manifest }`, every later line is one
-  `{ t, r }` table row. Written/read a line at a time (`serializeBackup` /
-  `deserializeBackup` in `company-backup.ts`) so a large backup never materializes
-  as one `>512MB` string (V8's max) nor a single giant `JSON.parse`. The old
-  whole-file `{ manifest, data }` JSON broke at ~512MB of row data.
+- Format: a backup is a **FOLDER**, not a file — `exports/<name>/` holding
+  `manifest.json`, one `tables/<table>.ndjson.gz` per NON-EMPTY table, and
+  `assets/<path>` files. Paths come from `backupDir` / `backupManifestPath` /
+  `backupTablePath` / `backupTablesDir` / `backupAssetsDir`; each table is written
+  and read a line at a time (`serializeTable` / `deserializeTable`), so a huge
+  table never materializes as one `>512MB` string (V8's max). Tables are dumped and
+  loaded in parallel (`mapWithConcurrency`, `TABLE_CONCURRENCY = 6`). The whole
+  folder bundles into one `.carbon.tar.gz` only for cross-environment download and
+  upload. There is **no single `.carbon.json.gz` artifact and no `BACKUP_GZ_SUFFIX`**
+  — that was the retired one-file format, whose whole-file `{ manifest, data }`
+  JSON broke at ~512MB of row data.
+- `manifest.json` is written **LAST**, by `writeBackupManifest`, after every table
+  file and asset is in place. Its presence IS the "backup is complete" marker: the
+  UI lists a manifest-less folder as `Incomplete`, and restore/import refuse to
+  read one.
 - Versioning: `BACKUP_VERSION` (currently **1** — single supported format, no
   legacy branch) in the manifest; `assertBackupImportable` rejects a file whose
   version no longer matches or that's missing a now-required column.
@@ -91,32 +103,50 @@ The catalog is **schema-introspected**, not a hand-maintained list:
   never carries them; a restored model keeps its thumbnail and regenerates its 3D
   artifacts if the raw is re-uploaded.
 - Asset transport: `copyAssetsToBackup` (server-side `storage.copy`
-  of `private/{companyId}/…` files into a backup's `.assets/` folder) and
+  of `private/{companyId}/…` files into a backup's `assets/` folder) and
   `restoreAssetsFromBackup` (copy them back to `private/`, rewriting paths +
   guarding every write to the target `{companyId}/` prefix). `removeStoragePrefix`
-  recursively deletes a backup's `.assets/` folder. `backupAssetPrefix(gzPath)`
-  derives `exports/<name>.assets` from `exports/<name>.carbon.json.gz`
-  (`BACKUP_GZ_SUFFIX`). Copies are server-side — **no asset bytes pass through the
-  job process**, so memory stays flat regardless of asset size.
+  recursively deletes a backup's asset folder, which is `backupAssetsDir(name)` =
+  `exports/<name>/assets` — derived from the folder name, not from a file suffix.
+  Copies are server-side — **no asset bytes pass through the job process**, so
+  memory stays flat regardless of asset size.
 
 Buckets (important, two different things):
 - `STORAGE_BUCKET = "private"` — the **shared** bucket holding every company's
   uploaded assets under a `{companyId}/` prefix.
-- The **per-company bucket named by `companyId`** holds the backup `.gz` files
-  (`exports/<name>.carbon.json.gz`), each backup's sibling `.assets/` folder of
-  copied storage files (`exports/<name>.assets/{companyId}/…`), and pre-restore
-  snapshots — see `client.storage.from(companyId)`.
+- The **per-company bucket named by `companyId`** holds one folder per backup
+  (`exports/<name>/` — its `manifest.json`, `tables/`, `assets/{companyId}/…`) and
+  pre-restore snapshots under the same prefix — see `client.storage.from(companyId)`.
 - `TEMPLATE_BUCKET = "company-templates"`, `TEMPLATE_ASSET_PREFIX = "_templates"`.
 
 ## Export — `company-export.ts`
 
-Dumps each catalog table scoped by its scope column into a **data-only** NDJSON gz
-(`serializeBackup`, line-streamed). **Empty tables are skipped**
+Dumps each catalog table scoped by its scope column into its own **data-only**
+`tables/<table>.ndjson.gz` (`serializeTable`, line-streamed). **Empty tables are
+skipped**
 (`if (result.rows.length === 0) continue`) — so a backup of a company with no GL
 postings simply has no `journalLine`/`costLedger` rows; that is data-absence, not a
 coverage gap. With `includeStorage: "all"`, `buildCompanyBackup` records the
 in-scope asset paths in `manifest.storage` and returns them; the job then
-`copyAssetsToBackup` them server-side into the backup's `.assets/` folder.
+`copyAssetsToBackup` them server-side into the backup's `assets/` folder.
+- **Out-of-scope rows are EXCLUDED, not fatal** (`manifest.excludedRows`, a
+  `ScopeViolation[]`). `findExportScopeViolationDetails` counts rows whose NOT-NULL
+  FK points outside the company's scope; the dump then appends the SAME predicate,
+  negated (`outOfScopeRefPredicate`), so the guard's count and the dump's omission
+  cannot drift. One `logger.warn` per edge, `excludedRowCount` on the list row.
+  Such a row is meaningless without the parent it points at, and the previous
+  behaviour — refusing the whole export — left the company with no backup at all
+  and reported it as `The system created an invalid backup`, blaming the product for
+  a data-integrity finding. Absent on manifests predating the field; read it as `[]`.
+  The only remaining hard export failure is a company with no `companyGroupId`.
+- **`compatibility.json`**, written by `writeBackupCompatibility`
+  (`company-compatibility.ts`) immediately AFTER the manifest — never before, since
+  the manifest is the completion flag. Holds `{ checkedAt, schemaVersion, status,
+  findings }` from `reportBackupCompatibility(catalog, manifest)`. Best-effort: a
+  failed write leaves the backup committed and the verdict simply absent, which the
+  UI reads as "not yet checked". It exists because the comparison needs the live
+  schema and lives in this package, and app code may not import job internals — so
+  the verdict is precomputed here and read as an ordinary file there.
 - **Progress/failure marker**: one `externalIntegrationMapping` row per company
   (`integration = "company-export"`, no run id — exports are one-at-a-time per
   company). The job writes `{ status: "running", startedAt, progress }` heartbeats
@@ -135,6 +165,147 @@ in-scope asset paths in `manifest.storage` and returns them; the job then
   only (server-side copy is memory-flat) — each backup duplicates the bundled bytes.
   The old `25MiB`-per-file / `200MiB`-total caps silently dropped legit large media.
 
+## The drift check — `pnpm db:check:backups`
+
+A migration can make a backup a customer already holds unrestorable **without the
+backup changing at all**: add a NOT NULL column with no DEFAULT and every backup
+taken before today stops loading. This is the ONLY thing in the system that
+prevents that, and prevention at commit time is the only place it can be done —
+once the migration is in production the backup is already dead, and every
+downstream mechanism can do no more than say so.
+
+That is why there is **no nightly re-check** of stored verdicts. One was built and
+removed (2026-08-25): it recomputed `compatibility.json` every night, fired no
+alert, repaired nothing, and its only real effect was keeping a badge fresh. Do not
+reintroduce it without a consumer that ACTS on a finding. What remains after it:
+`compatibility.json` is written once at export and is a dated fact (`checkedAt` =
+the export date, which the row already shows); `RestoreDisclosure` prints that date
+at the one moment the answer changes a decision; and the hard refusal is
+`assertBackupImportable`, which runs against the LIVE schema inside
+`company-restore.ts` and cannot go stale.
+
+`packages/jobs/src/scripts/check-backups.ts` compares ONE committed **schema
+baseline** — `packages/jobs/manifests/schema.json`, every exportable table with its
+column list and `rows: 0`, `SECRET_TABLES` excluded exactly as a real export
+excludes them — against the live schema through `reportBackupCompatibility`. Any
+`blocked` finding fails the check.
+
+**Nobody maintains that file.** On success with `--stage` (which the hook passes,
+and only the hook) the script regenerates it from the live catalog and `git add`s
+it, announced on stdout. A manual `pnpm db:check:backups` stays read-only. There is
+no `--write` and no directory of dated vintages — that was the earlier design, and
+it depended on a person remembering at each release.
+
+**The baseline is the copy on `main`, never the working-tree copy** — a file that
+regenerates itself cannot be its own baseline. `resolveBaseline` fetches
+`https://raw.githubusercontent.com/<owner>/<repo>/main/packages/jobs/manifests/schema.json`,
+slug parsed from `git remote get-url origin` so a fork checks itself, with a 3s
+timeout. On any fetch failure (including a 404 while the file is not yet on `main`)
+it warns — naming the STALENESS, not just the failure — and falls back to
+`git show origin/main:…`. A network problem never fails a commit. A local copy that
+is months behind is a STRICTER baseline, never a blinder one, but it can flag a
+column a teammate already removed, and an unexplained false alarm is what earns a
+`--no-verify`. Found in **neither** place is a hard `exit 1`: a missing baseline
+skipped quietly is indistinguishable from a passing check. The contract is in
+`packages/jobs/manifests/README.md`.
+
+A schema-shaped manifest with no rows is exactly as informative as a real customer
+backup, because compatibility is decided entirely by table and column names. That is
+what makes this checkable from a committed file rather than from a database.
+
+It runs from `.husky/pre-commit` when a staged file is under
+`packages/database/supabase/migrations/`, alongside `db:check:datasets`, and skips
+with `CARBON_SKIP_BACKUP_CHECK=1`. Read-only — one connection, `information_schema`
+queries, no writes.
+
+**Three honest limits.** A hook is bypassable with `--no-verify`, so this is a safety
+net rather than a gate (the same limitation `db:check:datasets` has). It reads the
+LIVE schema, so it is only as good as the developer's `pnpm db:migrate` — which is
+why it **refuses rather than passes** when migrations are pending: an unapplied
+migration means the schema does not yet contain the change being committed, so the
+baseline would pass for the wrong reason. And it asserts against the LAST SHIPPED
+schema only — every migration commit is checked, so a break is caught the moment it
+is introduced, but the check cannot pre-certify a two-year-old backup. Git holds
+every past version of the one file, so looking further back is
+`git show <commit>:packages/jobs/manifests/schema.json`, not a committed pile.
+
+This deliberately is **not** a CI job. The design that was tried first replayed
+migrations against a throwaway Postgres to rebuild an old schema, and that cannot
+work cheaply: a bare Postgres has no `auth` or `storage` schema (`ERROR: relation
+"storage.buckets" does not exist` on the 9th migration) because the Storage and
+GoTrue services build those when their own containers boot, so the job needed most of
+the compose stack. A developer's machine already has all three schemas, and once the
+check runs there the replay is unnecessary — the committed baseline already IS the old
+schema. Note that a backup itself never reads the other two schemas:
+`getCompanyTableCatalog` filters on `table_schema = 'public'`.
+
+`@carbon/checks` also carries `no-required-column-without-default`, which catches the
+most common cause at the SQL level. The two are complements: that check reads
+migration text, this one reads the resulting schema and knows what the backups
+actually contain.
+
+### What the pair does NOT catch — the honest coverage list
+
+Neither check is complete, and the shape of the gap follows from `manifest.tables`
+being `Array<{ name, rows, columns: string[] }>`. **Columns are NAMES ONLY** — no
+type, no nullability, no constraint. So compatibility is decided entirely at the name
+level, and everything below passes green today:
+
+- **`ALTER COLUMN … SET NOT NULL` on a column that already existed.** The biggest
+  hole, and a common migration (25 existing migrations do it). `reportBackupCompatibility`
+  tests `backupCols.has(c.name)` FIRST, so a column present in the baseline is skipped
+  before nullability is ever considered; and the SQL check deliberately matches only
+  the `ADD COLUMN` form. Whether it actually breaks a restore is a DATA question —
+  do that company's old rows have nulls there — which a rows-free manifest cannot
+  answer even in principle.
+- **Type changes** (`ALTER COLUMN … TYPE`, 17 existing migrations). `text` → `numeric`
+  restores fine or fails per row depending on the data; the manifest cannot tell.
+- **New `CHECK` / `UNIQUE` constraints, and new FKs.** Old rows may violate them.
+  `demandForecastSource` is the precedent for how bad this gets — its discriminator
+  CHECK made a remapped restore crash, and the fix was excluding the table entirely.
+- **Removing a value from an enum** that old rows still carry.
+- **Anything data-shaped at all** — the baseline has `rows: 0` by design.
+
+Two more limits that are procedural rather than structural: a developer can pass
+`--no-verify`, and the check refuses (rather than passes) when their database is
+behind. Both are stated above.
+
+Do NOT close these by teaching the baseline format about types and constraints. The
+copy on `main` would lack the new fields until it is next regenerated, so the check
+would be blind for exactly the window it exists to cover, and a richer manifest still could not
+answer the data questions that make `SET NOT NULL` and type changes dangerous. The
+honest reading is that this pair catches the whole class of *structural* breakage —
+a table or column the backup has nothing to say about — and that the *value*-shaped
+breakage is what `RestoreDisclosure` and the snapshot-and-revert path exist for.
+
+## No nightly housekeeping — deliberately
+
+A backup exists because a person took one, and stays until a person deletes it.
+There is **no cron in this feature at all**. A `backupMaintenanceFunction`
+(`0 3 * * *`) briefly existed with three passes; every one has been removed and it
+should not come back:
+
+- **Compatibility re-check** — removed 2026-08-25. Recomputed `compatibility.json`
+  nightly, alerted nobody, repaired nothing. Do not reintroduce a detector with no
+  consumer that ACTS on a finding.
+- **`expireBackups`** (delete past `BACKUP_RETENTION_DAYS = 90`) — removed
+  2026-08-25, never shipped. It could not tell a backup a person deliberately took
+  from one a cron took for them, so the one the customer chose was the one that
+  disappeared. Deleting customer data on a timer nobody asked for.
+- **`scheduleStaleExports`** (take one for any company whose newest is over
+  `BACKUP_MAX_AGE_DAYS = 7`) — removed 2026-08-25, never shipped. Each run is a
+  separate folder, so within months the person's own backup sat buried among rows
+  labelled `Scheduled` they never made, and we paid to store all of them.
+
+Both constants are gone from `@carbon/utils` (`const.ts`) with it. The parent
+spec's D7 wanted scheduled creation; that is dropped, not deferred — **not as a
+setting either**. See `.ai/specs/2026-08-25-backup-durability.md`.
+
+Pre-restore and pre-template snapshots (`_pre-*`) were never touched by that job
+and still are not: they are dropped by the keep/revert path in `company-restore.ts`
+and `company-template.ts`. A stalled restore can still strand one — pre-existing,
+and nothing here changed it.
+
 ## Restore — `company-restore.ts`
 
 Three Inngest fns: `companyRestoreFunction`, `companyRestoreFinalizeFunction`,
@@ -143,8 +314,9 @@ Three Inngest fns: `companyRestoreFunction`, `companyRestoreFinalizeFunction`,
 per company at a time.
 
 Forward flow:
-1. `downloadBackup` from the per-company bucket; `deserializeBackup` (streamed
-   NDJSON gunzip — never a single `>512MB` string).
+1. `readBackup` from the per-company bucket — `manifest.json` first, then each
+   `tables/<table>.ndjson.gz` through `deserializeTable` (streamed NDJSON gunzip,
+   never a single `>512MB` string).
 2. Compute `targetGroupId`, then `groupCompanyCount` (count of companies with that
    `companyGroupId`). `includeGroup = groupCompanyCount === 1`. A **foreign**
    backup (`manifest.sourceCompanyId !== companyId`) onto a shared group
@@ -174,7 +346,7 @@ Forward flow:
      `SECRET_TABLES` still carries its rows (e.g. `apiKeyRateLimit` → the stripped
      `apiKey`); they're ignored on load, so the preflight ignores them too.
 5. `restoreAssetsFromBackup` (outside the txn, non-transactional) copies the files
-   from the backup's `.assets/` folder back to `private/<rewritten path>`,
+   from the backup's `assets/` folder back to `private/<rewritten path>`,
    server-side. It runs **before** the `ready` marker (step below) so the progress
    dialog only reports "complete" once data AND files are in place — but it never
    throws (per-file warnings), so a storage hiccup still can't fail a committed
@@ -201,8 +373,8 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
   write guard (`targetPath.startsWith(\`${companyId}/\`)`) IS now in
   `restoreAssetsFromBackup`.
 - **Asset copy duplicates bytes** — a self-contained backup copies the company's
-  assets into its `.assets/` folder, so each backup costs roughly its asset size in
-  storage. Snapshots are transient (their `.assets/` is removed on keep/revert);
+  assets into its `assets/` folder, so each backup costs roughly its asset size in
+  storage. Snapshots are transient (their `assets/` is removed on keep/revert);
   exports persist until deleted (`deleteCompanyBackupExport` removes the folder).
 - **`company-import` id-gate drift** — restore gates id remap on column type
   (text/uuid); import still uses a `typeof row.id === "string"` heuristic. Share
@@ -237,15 +409,48 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
   (reload / another tab); its `baseline` = ready backups when tracking began, and
   completion = a ready backup outside the baseline appearing in the revalidated
   list (page revalidates every 2.5s while the modal is closed). A "failed" marker
-  renders a banner ("The system created an invalid backup — please contact Carbon
-  support." + error) with a Dismiss button; "pending" folders with no tracked
-  export are labeled "Incomplete backup — not restorable" (never "Preparing…").
+  renders a banner ("This backup could not be completed." + the job's own error)
+  with a Dismiss button — the old copy blamed the product ("The system created an
+  invalid backup — please contact Carbon support.") for what was usually a
+  data-integrity finding the error string already named.
 - `routes/api+/settings.backup-summary.ts` — lazy "what's in a backup" counts,
   grouped, per-entity `scope: company|group`.
 - `routes/api+/settings.backup-restore-status.$restoreRunId.ts` — poll; `companyId`
   from `requirePermissions`, so a user can't poll another company's run.
+- **One status vocabulary, five words** (`ui/Backups/format.ts`: `BackupStatus`,
+  `backupStatusLabel`, `backupStatusVariant`). No synonyms anywhere:
+
+  | Status | Meaning | Restorable? |
+  |---|---|---|
+  | `Ready` | loads into today's schema unchanged — also what a not-yet-checked backup shows | yes |
+  | `Restorable with changes` | loads, but N things differ; disclosure required | yes, after confirming |
+  | `Not restorable` | a hard refusal, with the reason | no |
+  | `Incomplete` | no `manifest.json` — the export died partway | no |
+  | `Failed` | the export itself failed, with the reason | no |
+
+  `Incomplete` outranks any stored verdict (a half-written folder's incompleteness
+  is the whole story) and is never rendered as "Preparing…" once no export is being
+  tracked — that was the bug where a dead folder looked alive forever. A row shows
+  its taken date, size, label and this badge, and deliberately **no expiry date**:
+  a printed date reads as a promise the backup is good until then, which nothing
+  can make. The badge answers the real question, for today.
 - UI: `modules/settings/ui/Backups/` — `BackupChoices` (Data only / Data + files),
   `BackupSourcePicker`, `BackupProgressModal`, `RestoreReviewRow` (Keep/Revert),
+  `RestoreDisclosure` (the pre-restore screen — the ONLY path to a restore now;
+  it groups the stored verdict's findings by `tableArea` from `backups.areas.ts`,
+  always states delete-and-replace / snapshot / Revert / Keep in that order,
+  requires a typed confirmation only when something will be DISCARDED, and offers
+  no confirm button at all when a finding blocks). It renders TWO kinds of loss,
+  excluded rows FIRST and schema findings after, because they have different
+  causes: `ExcludedRows` reports rows the export never wrote (`manifest.excludedRows`,
+  a `ScopeViolation[]` of `{table, column, refTable, rows}`, carried through
+  `CompanyBackupSummary.excludedRows` in full rather than as the list row's bare
+  count) while a finding reports the schema drifting since. **Both gate the typed
+  confirmation** — an excluded row exists in the company TODAY and a restore
+  deletes today's data, so confirming loses it for good; that it was unrestorable
+  junk is not a reason to learn about it afterwards. Both group by `tableArea`, so
+  the real case reads "Items, Production" rather than `pickMethod` /
+  `jobOperationDependency`,
   `BackupContentsInfo` (lazy popover), `format.ts`. `JobProgressModal` tracks real
   completion, not a timer: restore/revert poll the status marker; **export** has no
   marker, so the route component revalidates the list and passes `completed` once

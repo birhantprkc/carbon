@@ -34,7 +34,21 @@ Background job system built on Inngest. Handles event system processing (webhook
 pnpm --filter @carbon/jobs test
 pnpm --filter @carbon/jobs typecheck
 pnpm --filter @carbon/jobs dev:jobs   # Start local Inngest dev server
+pnpm db:check:backups                 # Would existing customer backups still restore?
 ```
+
+`db:check:backups` (`src/scripts/check-backups.ts`) runs from `.husky/pre-commit` when a staged
+file is under `packages/database/supabase/migrations/`. It compares `manifests/schema.json` **as
+it stands on `main`** (fetched from raw.githubusercontent.com, slug from your `origin` remote,
+falling back with a staleness warning to `git show origin/main:…`) against your live schema, and
+skips rather than passes when your database is behind. Nobody maintains that file: the hook passes
+`--stage`, which regenerates and `git add`s it on success. A bare `pnpm db:check:backups` is
+read-only. See `manifests/README.md` and `.claude/rules/company-backup-restore.md`.
+
+Scripts under `src/scripts/` run through bare `tsx`, which does NOT paper over CJS/ESM interop the
+way Vite and vitest do. A **named** import of a workspace package that lacks `"type": "module"`
+(`@carbon/database`, `@carbon/utils`) throws `does not provide an export named …` at run time even
+though it typechecks. Import types only from those, or use a package that has it.
 
 ## Key Exports
 
