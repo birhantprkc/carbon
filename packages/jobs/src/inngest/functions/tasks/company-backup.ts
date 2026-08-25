@@ -8,6 +8,7 @@ import { getLogger } from "@carbon/logger";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { type Kysely, type RawBuilder, sql } from "kysely";
 import { nanoid } from "nanoid";
+import { TABLE_RENAMES } from "./company-backup.renames";
 
 const log = getLogger("jobs", "company-backup");
 
@@ -291,6 +292,35 @@ export type Catalog = {
   tables: TableInfo[];
 };
 
+/**
+ * What a backup contains, decided in ONE place.
+ *
+ * The drift check's baseline (`packages/jobs/manifests/schema.json`) exists to
+ * describe what a real export produces, so the two must be the same rule rather
+ * than two implementations that happen to agree. If they diverge, the baseline
+ * quietly stops describing a real backup and the check keeps reporting
+ * `restorable` — a drift check whose own model has drifted, which is worse than
+ * none because it is trusted.
+ */
+export function selectExportableTables(catalog: Catalog): {
+  exportable: TableInfo[];
+  excludedTables: string[];
+} {
+  const secret = new Set<string>(SECRET_TABLES);
+  const exportable: TableInfo[] = [];
+  const excludedTables: string[] = [];
+  for (const table of catalog.tables) {
+    if (secret.has(table.name)) excludedTables.push(table.name);
+    else exportable.push(table);
+  }
+  return { exportable, excludedTables };
+}
+
+/** The columns a backup actually carries: generated ones are recomputed on load. */
+export function exportableColumns(table: TableInfo): ColumnInfo[] {
+  return table.columns.filter((c) => !c.isGenerated);
+}
+
 export type Manifest = {
   kind: typeof BACKUP_KIND;
   version: typeof BACKUP_VERSION;
@@ -305,6 +335,12 @@ export type Manifest = {
   tables: Array<{ name: string; rows: number; columns: string[] }>;
   storage: Array<{ path: string; size: number; included: boolean }>;
   excludedTables: string[];
+  /**
+   * Rows left OUT of this backup because a NOT-NULL reference escaped company
+   * scope, so including them would produce a backup that could never be restored.
+   * Absent on manifests written before this field existed — read it as `[]`.
+   */
+  excludedRows?: ScopeViolation[];
 };
 
 export type CompanyBackup = {
@@ -796,6 +832,141 @@ export function assertBackupImportable(
   return { ok: true };
 }
 
+export type CompatibilityFinding = {
+  /**
+   * `defaulted` — a column added since this backup, which will take its DEFAULT.
+   * `discarded` — a column removed since this backup; its values land nowhere.
+   * `blocked`   — the restore cannot proceed.
+   */
+  kind: "defaulted" | "discarded" | "blocked";
+  table: string;
+  column?: string;
+  reason: string;
+};
+
+/**
+ * Report-mode counterpart to `assertBackupImportable`.
+ *
+ * The gate answers yes/no; this answers "what exactly differs", so the UI can
+ * disclose it and let the person decide instead of being refused. Deliberately a
+ * SEPARATE function rather than a rewrite of the gate: the gate stays the boolean
+ * check that CI and the loader call, and the two are kept consistent by applying
+ * the same rules in the same order rather than by sharing a return type.
+ *
+ * A NULLABLE column added since the backup is not reported. It simply becomes
+ * NULL, which is the ordinary additive case — surfacing every one of them would
+ * bury the findings that matter under months of routine schema growth.
+ */
+export function reportBackupCompatibility(
+  catalog: Catalog,
+  manifest: Manifest
+): { findings: CompatibilityFinding[]; blocked: boolean } {
+  const findings: CompatibilityFinding[] = [];
+
+  if (manifest.version !== BACKUP_VERSION) {
+    findings.push({
+      kind: "blocked",
+      table: "*",
+      reason: `its format (generation ${manifest.version}) is no longer supported (current is ${BACKUP_VERSION})`
+    });
+  }
+
+  // Account defaults reference the chart of accounts, so the two must travel
+  // together — defaults without accounts would leave a dangling FK. Read from the
+  // manifest rather than the loaded rows: an empty table is omitted from the
+  // manifest entirely, so an absent entry IS a zero count, and the verdict can be
+  // reached without downloading a single table file.
+  const rowsIn = (table: string) =>
+    manifest.tables.find((t) => t.name === table)?.rows ?? 0;
+  if (rowsIn("accountDefault") > 0 && rowsIn("account") === 0) {
+    findings.push({
+      kind: "blocked",
+      table: "accountDefault",
+      reason:
+        "it has account defaults but no chart of accounts (exported from a company with no group)"
+    });
+  }
+
+  const liveByName = new Map(catalog.tables.map((t) => [t.name, t]));
+  for (const backupTable of manifest.tables) {
+    // A table the catalog now excludes by design (MRP output, the company shell)
+    // is not drift — its rows are ignored on load.
+    if (CATALOG_EXCLUDED_TABLES.has(backupTable.name)) continue;
+
+    // A table missing from the catalog is resolved through TABLE_RENAMES:
+    // a mapped name is read as the new table, an explicit null was dropped with
+    // its feature, and an UNMAPPED name blocks — see company-backup.renames.ts
+    // for why guessing between those is unacceptable.
+    let live = liveByName.get(backupTable.name);
+    if (!live) {
+      const renamedTo = TABLE_RENAMES[backupTable.name];
+      if (renamedTo === undefined) {
+        findings.push({
+          kind: "blocked",
+          table: backupTable.name,
+          reason: `table "${backupTable.name}" is not in the current schema and has no rename mapping`
+        });
+        continue;
+      }
+      if (renamedTo === null) {
+        findings.push({
+          kind: "discarded",
+          table: backupTable.name,
+          reason:
+            "this table was removed along with its feature; its rows will not be restored"
+        });
+        continue;
+      }
+      live = liveByName.get(renamedTo);
+      if (!live) {
+        findings.push({
+          kind: "blocked",
+          table: backupTable.name,
+          reason: `it maps to "${renamedTo}", which is not in the current schema either`
+        });
+        continue;
+      }
+    }
+
+    const backupCols = new Set(backupTable.columns);
+    for (const c of live.columns) {
+      if (backupCols.has(c.name) || c.isGenerated || c.isNullable) continue;
+      if (c.hasDefault) {
+        findings.push({
+          kind: "defaulted",
+          table: backupTable.name,
+          column: c.name,
+          reason: "added since this backup; will take its default value"
+        });
+      } else {
+        findings.push({
+          kind: "blocked",
+          table: backupTable.name,
+          column: c.name,
+          reason:
+            "required since this backup, with no default value to fall back on"
+        });
+      }
+    }
+
+    const liveCols = new Set(live.columns.map((c) => c.name));
+    for (const name of backupTable.columns) {
+      if (liveCols.has(name)) continue;
+      findings.push({
+        kind: "discarded",
+        table: backupTable.name,
+        column: name,
+        reason: "removed since this backup; its values will not be restored"
+      });
+    }
+  }
+
+  return {
+    findings,
+    blocked: findings.some((f) => f.kind === "blocked")
+  };
+}
+
 /**
  * FK targets a restore resolves WITHOUT the referenced row being in the backup:
  * `user` (global identity table, never in the catalog) and `company` (structural),
@@ -939,6 +1110,135 @@ export function buildScopeFilter(
  * (restore nulls a missing nullable ref) and refs to retained/global/secret
  * tables (`user`, `company`, …, and anything not exported).
  */
+export type ScopeViolation = {
+  table: string;
+  column: string;
+  refTable: string;
+  rows: number;
+};
+
+/**
+ * The predicate identifying a row whose NOT-NULL FK escapes the referenced
+ * table's export scope.
+ *
+ * Exported because TWO callers need it and they must never disagree: the guard
+ * below counts rows it matches, and `buildCompanyBackup` excludes those same rows
+ * from the dump with `NOT (…)`. Two hand-written copies of this expression would
+ * eventually diverge, and the failure mode is silent — a backup that claims to
+ * have excluded the unrestorable rows while still carrying some.
+ *
+ * A NOT-NULL FK is only a real gap when it points at ANOTHER company's row. A
+ * `companyId IS NULL` row is shared substrate (seeded `material*`, currencies, …)
+ * present in every target, so it is never a gap — the existence set is widened to
+ * include it. A ref to a row owned by a different company is still NOT matched,
+ * so it still surfaces. This is the one cross-tenant rule, no per-table
+ * allow-list.
+ */
+export function outOfScopeRefPredicate(
+  fk: ForeignKey,
+  parent: TableInfo,
+  byName: Map<string, TableInfo>,
+  companyId: string,
+  companyGroupId: string | null
+): RawBuilder<unknown> {
+  const parentScope = buildScopeFilter(
+    parent,
+    byName,
+    companyId,
+    companyGroupId
+  );
+  const parentExistence =
+    parent.scope.kind === "direct"
+      ? sql`${parentScope} OR ${sql.id(parent.scope.column)} IS NULL`
+      : parentScope;
+  return sql`${sql.id(fk.column)} IS NOT NULL
+    AND ${sql.id(fk.column)} NOT IN (
+      SELECT ${sql.id(fk.refColumn)}
+      FROM ${sql.id(parent.name)}
+      WHERE ${parentExistence}
+    )`;
+}
+
+/**
+ * The FK edges this guard considers: NOT-NULL, `id`-targeting, and pointing at
+ * another exportable scoped table. Shared by the guard and the exclusion pass for
+ * the same reason `outOfScopeRefPredicate` is.
+ */
+export function closureCheckedForeignKeys(
+  table: TableInfo,
+  exportableNames: Set<string>
+): ForeignKey[] {
+  const colByName = new Map(table.columns.map((c) => [c.name, c]));
+  return table.foreignKeys.filter((fk) => {
+    if (fk.refColumn !== "id") return false;
+    if (RETAINED_REF_TABLES.has(fk.refTable)) return false;
+    // global/secret → not in closure
+    if (!exportableNames.has(fk.refTable)) return false;
+    const col = colByName.get(fk.column);
+    // nullable → restore nulls a missing ref
+    if (!col || col.isNullable) return false;
+    return true;
+  });
+}
+
+/**
+ * Structured form of the export-time closure guard. Counts, per FK edge, the rows
+ * in this company's export scope whose reference falls outside the referenced
+ * table's export scope. DB-level and count-only, so no rows are held in memory.
+ */
+export async function findExportScopeViolationDetails(
+  db: Kysely<KyselyDatabase>,
+  exportable: TableInfo[],
+  byName: Map<string, TableInfo>,
+  companyId: string,
+  companyGroupId: string | null
+): Promise<ScopeViolation[]> {
+  const exportableNames = new Set(exportable.map((t) => t.name));
+  const checks: Array<{
+    violation: Omit<ScopeViolation, "rows">;
+    query: RawBuilder<{ n: string }>;
+  }> = [];
+  for (const t of exportable) {
+    for (const fk of closureCheckedForeignKeys(t, exportableNames)) {
+      const parent = byName.get(fk.refTable)!;
+      const childScope = buildScopeFilter(t, byName, companyId, companyGroupId);
+      checks.push({
+        violation: { table: t.name, column: fk.column, refTable: fk.refTable },
+        query: sql<{ n: string }>`
+          SELECT count(*)::text AS n
+          FROM ${sql.id(t.name)}
+          WHERE ${childScope}
+            AND ${outOfScopeRefPredicate(
+              fk,
+              parent,
+              byName,
+              companyId,
+              companyGroupId
+            )}`
+      });
+    }
+  }
+
+  const violations: ScopeViolation[] = [];
+  await mapWithConcurrency(checks, 6, async (c) => {
+    const r = await c.query.execute(db);
+    const n = Number(r.rows[0]?.n ?? 0);
+    if (n > 0) violations.push({ ...c.violation, rows: n });
+  });
+  return violations;
+}
+
+/** Human-readable form of one violation, e.g. `pickMethod.itemId → item (1 row)`. */
+export function formatScopeViolation(v: ScopeViolation): string {
+  return `${v.table}.${v.column} → ${v.refTable} (${v.rows} row${
+    v.rows === 1 ? "" : "s"
+  })`;
+}
+
+/**
+ * Export-time closure guard, string form — kept for the monitor and for log
+ * messages. A thin formatter over `findExportScopeViolationDetails`.
+ */
 export async function findExportScopeViolations(
   db: Kysely<KyselyDatabase>,
   exportable: TableInfo[],
@@ -946,57 +1246,14 @@ export async function findExportScopeViolations(
   companyId: string,
   companyGroupId: string | null
 ): Promise<string[]> {
-  const exportableNames = new Set(exportable.map((t) => t.name));
-  const checks: Array<{ desc: string; query: RawBuilder<{ n: string }> }> = [];
-  for (const t of exportable) {
-    const colByName = new Map(t.columns.map((c) => [c.name, c]));
-    for (const fk of t.foreignKeys) {
-      if (fk.refColumn !== "id") continue;
-      if (RETAINED_REF_TABLES.has(fk.refTable)) continue;
-      if (!exportableNames.has(fk.refTable)) continue; // global/secret → not in closure
-      const col = colByName.get(fk.column);
-      if (!col || col.isNullable) continue; // nullable → restore nulls a missing ref
-      const parent = byName.get(fk.refTable)!;
-      const childScope = buildScopeFilter(t, byName, companyId, companyGroupId);
-      const parentScope = buildScopeFilter(
-        parent,
-        byName,
-        companyId,
-        companyGroupId
-      );
-      // A NOT-NULL FK is only a real gap when it points at ANOTHER company's row.
-      // A `companyId IS NULL` row is shared substrate (seeded `material*`,
-      // currencies, …) present in every target, so it is never a gap — widen the
-      // existence set to include it. A ref to a row owned by a different company
-      // (scopeCol = some other value) is still NOT matched, so it still surfaces.
-      // This is the one cross-tenant rule, no per-table allow-list.
-      const parentExistence =
-        parent.scope.kind === "direct"
-          ? sql`${parentScope} OR ${sql.id(parent.scope.column)} IS NULL`
-          : parentScope;
-      checks.push({
-        desc: `${t.name}.${fk.column} → ${fk.refTable}`,
-        query: sql<{ n: string }>`
-          SELECT count(*)::text AS n
-          FROM ${sql.id(t.name)}
-          WHERE ${childScope}
-            AND ${sql.id(fk.column)} IS NOT NULL
-            AND ${sql.id(fk.column)} NOT IN (
-              SELECT ${sql.id(fk.refColumn)}
-              FROM ${sql.id(parent.name)}
-              WHERE ${parentExistence}
-            )`
-      });
-    }
-  }
-
-  const violations: string[] = [];
-  await mapWithConcurrency(checks, 6, async (c) => {
-    const r = await c.query.execute(db);
-    const n = Number(r.rows[0]?.n ?? 0);
-    if (n > 0) violations.push(`${c.desc} (${n} row${n === 1 ? "" : "s"})`);
-  });
-  return violations;
+  const details = await findExportScopeViolationDetails(
+    db,
+    exportable,
+    byName,
+    companyId,
+    companyGroupId
+  );
+  return details.map(formatScopeViolation);
 }
 
 /**

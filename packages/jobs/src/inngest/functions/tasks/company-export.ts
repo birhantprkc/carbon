@@ -2,7 +2,12 @@ import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { sql } from "kysely";
 import { getJobDatabaseClient, type JobDatabase } from "../../../db";
 import { inngest } from "../../client";
-import type { Manifest } from "./company-backup";
+import type {
+  Catalog,
+  ForeignKey,
+  Manifest,
+  ScopeViolation
+} from "./company-backup";
 import {
   BACKUP_INTEGRATION,
   BACKUP_KIND,
@@ -10,16 +15,21 @@ import {
   backupAssetsDir,
   backupTablePath,
   buildScopeFilter,
+  closureCheckedForeignKeys,
   copyAssetsToBackup,
   encodeValue,
-  findExportScopeViolations,
+  exportableColumns,
+  findExportScopeViolationDetails,
+  formatScopeViolation,
   getCompanyTableCatalog,
   mapWithConcurrency,
-  SECRET_TABLES,
+  outOfScopeRefPredicate,
   STORAGE_BUCKET,
+  selectExportableTables,
   serializeTable,
   writeBackupManifest
 } from "./company-backup";
+import { writeBackupCompatibility } from "./company-compatibility";
 
 // Assets are copied server-side into the backup's `assets/` folder (no bytes pass
 // through this process), so there's no memory reason to cap a single file — the
@@ -61,9 +71,13 @@ export async function buildCompanyBackup(
 ): Promise<{
   name: string;
   manifest: Manifest;
+  /** The schema this backup was taken against — the compatibility verdict's baseline. */
+  catalog: Catalog;
   rows: number;
   /** `private`-bucket paths to copy into the backup's `assets/` folder. */
   assetSourcePaths: string[];
+  /** Rows omitted because a NOT-NULL reference escaped company scope. */
+  excludedRows: ScopeViolation[];
 }> {
   const { companyId, userId, includeStorage } = opts;
   const label = opts.label ?? null;
@@ -100,50 +114,73 @@ export async function buildCompanyBackup(
   // Secrets (credentials/tokens) never travel — they belong to the source
   // company, not a copy. (Billing identity like companyPlan never enters the
   // catalog: it's a company-singleton deliberately left out of the scoped set.)
-  const secretTables = new Set<string>(SECRET_TABLES);
-  const excludedTables = catalog.tables
-    .filter((t) => secretTables.has(t.name))
-    .map((t) => t.name);
-  const exportable = catalog.tables.filter((t) => !secretTables.has(t.name));
+  const { exportable, excludedTables } = selectExportableTables(catalog);
   const byName = new Map(catalog.tables.map((t) => [t.name, t]));
 
   // Closure guard — never write a backup that couldn't be restored. A NOT-NULL FK
   // pointing outside the company's scope (cross-company / out-of-scope) would dump
-  // the child but not its parent, dangling on restore. Fail BEFORE writing any
-  // table file, listing every offending FK.
-  const scopeViolations = await findExportScopeViolations(
+  // the child but not its parent, dangling on restore.
+  //
+  // These rows are EXCLUDED rather than fatal. Refusing the whole export left a
+  // company with no backup at all over a handful of rows that are meaningless
+  // without the parent they point at — and reported it as "the system created an
+  // invalid backup", blaming the product for a data-integrity finding. The
+  // exclusion is recorded in the manifest and surfaced in the UI so it is a
+  // disclosed omission, not a silent one.
+  const scopeViolations = await findExportScopeViolationDetails(
     db,
     exportable,
     byName,
     companyId,
     companyGroupId
   );
-  if (scopeViolations.length > 0) {
-    throw new Error(
-      `Refusing to export ${companyId}: ${scopeViolations.length} NOT-NULL reference(s) ` +
-        `escape company scope, so the backup could never be restored:\n  ${scopeViolations.join(
-          "\n  "
-        )}`
+  // table → the FK edges whose out-of-scope rows must be excluded from its dump.
+  const exclusionsByTable = new Map<string, ForeignKey[]>();
+  const exportableNames = new Set(exportable.map((t) => t.name));
+  for (const v of scopeViolations) {
+    const table = byName.get(v.table)!;
+    const fk = closureCheckedForeignKeys(table, exportableNames).find(
+      (f) => f.column === v.column && f.refTable === v.refTable
     );
+    if (!fk) continue;
+    exclusionsByTable.set(v.table, [
+      ...(exclusionsByTable.get(v.table) ?? []),
+      fk
+    ]);
   }
 
   // Dump each non-empty table to its own `tables/<table>.ndjson.gz`, in parallel.
   const tableManifest: Manifest["tables"] = [];
   let dumped = 0; // incremented as each table completes (single-threaded → safe)
   await mapWithConcurrency(exportable, TABLE_CONCURRENCY, async (table) => {
-    const columns = table.columns.filter((c) => !c.isGenerated);
+    const columns = exportableColumns(table);
     // a prior import's revert ledger must never travel in an artifact
     const ledgerFilter =
       table.name === "externalIntegrationMapping"
         ? sql` AND ${sql.id("integration")} != ${BACKUP_INTEGRATION}`
         : sql``;
+    // Rows whose NOT-NULL reference escapes company scope are dropped here, using
+    // the SAME predicate the guard above counted them with, negated. One
+    // expression, two uses — the guard's count and the dump's omission cannot
+    // drift apart.
+    const exclusionFilter = (exclusionsByTable.get(table.name) ?? []).reduce(
+      (acc, fk) =>
+        sql`${acc} AND NOT (${outOfScopeRefPredicate(
+          fk,
+          byName.get(fk.refTable)!,
+          byName,
+          companyId,
+          companyGroupId
+        )})`,
+      sql``
+    );
     // Direct-scoped tables filter by their companyId/companyGroupId column;
     // transitively-scoped child tables (contacts, line prices, …) filter through
     // their parent FK — see buildScopeFilter.
     const result = await sql<Record<string, unknown>>`
       SELECT ${sql.join(columns.map((c) => sql.id(c.name)))}
       FROM ${sql.id(table.name)}
-      WHERE ${buildScopeFilter(table, byName, companyId, companyGroupId)}${ledgerFilter}
+      WHERE ${buildScopeFilter(table, byName, companyId, companyGroupId)}${ledgerFilter}${exclusionFilter}
     `.execute(db);
 
     if (result.rows.length === 0) {
@@ -223,13 +260,21 @@ export async function buildCompanyBackup(
     includeStorage,
     tables: tableManifest,
     storage: storageManifest,
-    excludedTables
+    excludedTables,
+    excludedRows: scopeViolations
   };
 
   // The manifest is NOT written here — the caller writes it LAST (after assets)
   // via writeBackupManifest, so its presence marks the backup as complete.
   const rows = tableManifest.reduce((sum, t) => sum + t.rows, 0);
-  return { name, manifest, rows, assetSourcePaths };
+  return {
+    name,
+    manifest,
+    catalog,
+    rows,
+    assetSourcePaths,
+    excludedRows: scopeViolations
+  };
 }
 
 // One company-scoped progress marker (exports run one-at-a-time, so no run id).
@@ -326,14 +371,36 @@ export const companyExportFunction = inngest.createFunction(
       };
 
       try {
-        const { name, manifest, rows, assetSourcePaths } =
-          await buildCompanyBackup(client, db, {
+        const {
+          name,
+          manifest,
+          catalog,
+          rows,
+          assetSourcePaths,
+          excludedRows
+        } = await buildCompanyBackup(client, db, {
+          companyId,
+          userId,
+          label,
+          includeStorage,
+          onProgress: report
+        });
+
+        // One line per excluded edge. A cross-tenant reference is an engineering
+        // escalation even though the export now succeeds — the nightly
+        // tenant-integrity monitor is the systematic detector, this is the
+        // in-context record of what this particular backup left out.
+        for (const v of excludedRows) {
+          logger.warn("Company export excluded out-of-scope rows", {
             companyId,
-            userId,
-            label,
-            includeStorage,
-            onProgress: report
+            name,
+            table: v.table,
+            column: v.column,
+            refTable: v.refTable,
+            rows: v.rows,
+            detail: formatScopeViolation(v)
           });
+        }
 
         // Copy the in-scope assets server-side into the backup's `assets/` folder.
         // Best-effort (matches restore/import): the table files are already
@@ -356,6 +423,31 @@ export const companyExportFunction = inngest.createFunction(
         // Manifest LAST — its presence marks the backup complete, so the list
         // never shows a half-written backup as ready.
         await writeBackupManifest(client, companyId, name, manifest);
+
+        // The compatibility verdict, written AFTER the manifest so it can never
+        // make an unfinished backup look complete. This is the ONLY place it is
+        // written. Best-effort: a backup whose verdict failed to write reads as
+        // "not yet checked", and an absent answer is not a bad one — losing a
+        // committed backup over a missing advisory badge would be.
+        try {
+          await writeBackupCompatibility(
+            client,
+            companyId,
+            name,
+            catalog,
+            manifest,
+            manifest.exportedAt
+          );
+        } catch (err) {
+          logger.warn(
+            "Company export could not record a compatibility verdict",
+            {
+              companyId,
+              name,
+              error: err instanceof Error ? err.message : String(err)
+            }
+          );
+        }
 
         logger.info("Company export complete", {
           companyId,
