@@ -210,6 +210,9 @@ msgstr "{total} phases to get your company live on Carbon. Each one ends at a ch
 msgid "{total} phases to go live"
 msgstr "{total} चरण लाइव होने के लिए"
 
+msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgstr ""
+
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# इकाई} other {# इकाइयाँ}}"
 
@@ -747,6 +750,9 @@ msgstr "किसी शिपमेंट की स्थिति में �
 
 msgid "A shipment's tracking number changes"
 msgstr "एक शिपमेंट का ट्रैकिंग नंबर बदल जाता है"
+
+msgid "A snapshot of today's data is taken first, before anything is deleted."
+msgstr ""
 
 msgid "A step needs a name."
 msgstr "एक चरण को एक नाम की आवश्यकता है।"
@@ -2778,6 +2784,9 @@ msgstr "असहेजे ऑपरेशन में चरण नहीं �
 msgid "Cannot add tools to unsaved operation"
 msgstr "असहेजे ऑपरेशन में उपकरण नहीं जोड़ सकते"
 
+msgid "Cannot be restored"
+msgstr ""
+
 msgid "Cannot close yet"
 msgstr "अभी बंद नहीं कर सकते"
 
@@ -3240,6 +3249,9 @@ msgstr "उद्धरणों की तुलना करें"
 
 msgid "Compare Supplier Quotes"
 msgstr "आपूर्तिकर्ता उद्धरणों की तुलना करें"
+
+msgid "Compared to the current schema on"
+msgstr ""
 
 msgid "Complete"
 msgstr "पूर्ण करें"
@@ -6186,6 +6198,9 @@ msgstr "बाकी सब कुछ लोगों, आयातों, ए�
 msgid "Everything from Starter"
 msgstr "स्टार्टर से सब कुछ"
 
+msgid "Everything in this company today will be deleted and replaced with what is in this backup."
+msgstr ""
+
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "{PO_EMAIL_ATTACHMENT_LIMIT_MB} MB से अधिक है — भेजने के लिए कुछ अटैचमेंट हटाएं।"
 
@@ -8271,6 +8286,9 @@ msgstr "रखें"
 msgid "Keep Current"
 msgstr "वर्तमान रखें"
 
+msgid "Keep drops the snapshot. After Keep, this cannot be undone."
+msgstr ""
+
 msgid "Keep existing pricing, only add new items"
 msgstr "मौजूदा मूल्य निर्धारण रखें, केवल नई वस्तुएं जोड़ें"
 
@@ -9380,6 +9398,9 @@ msgstr "शुद्ध आय"
 
 msgid "Never"
 msgstr "कभी नहीं"
+
+msgid "Never included in this backup"
+msgstr ""
 
 msgid "New"
 msgstr "नया"
@@ -12389,6 +12410,9 @@ msgstr "मौजूदा मूल्य निर्धारण को स�
 msgid "Replace PDF"
 msgstr "PDF को बदलें"
 
+msgid "Replace this company's data"
+msgstr ""
+
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "इस कंपनी के डेटा को डेमो डेटासेट से बदलें — पहले स्नैपशॉट लिया जाता है, ताकि आप पूर्ववत् कर सकें।"
 
@@ -12540,11 +12564,17 @@ msgstr "संसाधन"
 msgid "Restore from Trash"
 msgstr "ट्रैश से पुनः स्थापित करें"
 
+msgid "Restore this company from a backup"
+msgstr ""
+
 msgid "Restore this entity to available stock at the bin and cost it was scrapped from."
 msgstr "इस इकाई को उसी बिन और लागत पर उपलब्ध स्टॉक में पुनः स्थापित करें जहां से इसे स्क्रैप किया गया था।"
 
 msgid "Restore tracked entities to available"
 msgstr "ट्रैक किए गए इकाइयों को उपलब्ध में पुनः स्थापित करें"
+
+msgid "Restore…"
+msgstr ""
 
 msgid "Restoring files"
 msgstr "फ़ाइलें पुनः स्थापित कर रहे हैं"
@@ -12626,6 +12656,9 @@ msgstr "उलट दिया गया"
 
 msgid "Revert"
 msgstr "पूर्ववत् करें"
+
+msgid "Revert puts that snapshot back, exactly as it was."
+msgstr ""
 
 msgid "Reverting"
 msgstr "पूर्ववत् कर रहे हैं"
@@ -13944,6 +13977,9 @@ msgstr "समाधान इंजीनियर"
 
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "PDF से निकाली गई कुछ पंक्तियों को आपकी इन्वेंटरी आइटम्स से स्वचालित रूप से मैप नहीं किया जा सका। नीचे प्रत्येक पंक्ति की समीक्षा करें और मैप करें।"
+
+msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgstr ""
 
 msgid "Something went wrong. Please try again."
 msgstr "कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
@@ -15533,6 +15569,9 @@ msgstr "इन कार्यों के पास इस कार्य क
 
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "ये जर्नल प्रविष्टियाँ अभी भी ड्राफ्ट हैं, इसलिए उनके डेबिट और क्रेडिट इस अवधि के लिए लेजर में नहीं हैं। प्रत्येक को पोस्ट करें, या इसे बाद की खुली अवधि में पुनः दिनांकित करें।"
+
+msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "इस Carbon इंस्टेंस में Onshape OAuth क्रेडेंशियल नहीं हैं। किसी व्यवस्थापक से उन्हें सेट करने के लिए कहें।"
@@ -17354,6 +17393,12 @@ msgstr "स्टॉक क्यों बदल रहा है — सका
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "यह पंक्ति क्यों अस्वीकार की जा रही है; मुद्रण योग्य उद्धरण पर प्रदर्शित और जीत-हानि रिपोर्टिंग के लिए दर्ज।"
+
+msgid "Will be discarded"
+msgstr ""
+
+msgid "Will be filled with a default"
+msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "टिप्पणी पंक्ति के रूप में रहेगा"

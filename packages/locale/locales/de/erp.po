@@ -210,6 +210,9 @@ msgstr "{total} Phasen, um Ihr Unternehmen auf Carbon live zu schalten. Jede end
 msgid "{total} phases to go live"
 msgstr "{total} Phasen bis zur Live-Schaltung"
 
+msgid "{total} records referenced another company's data, so they could not be backed up. They exist today and will be gone after this restore."
+msgstr ""
+
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# Einheit} other {# Einheiten}}"
 
@@ -747,6 +750,9 @@ msgstr "Der Status eines Versands ändert sich"
 
 msgid "A shipment's tracking number changes"
 msgstr "Die Verfolgungsnummer einer Sendung ändert sich"
+
+msgid "A snapshot of today's data is taken first, before anything is deleted."
+msgstr ""
 
 msgid "A step needs a name."
 msgstr "Ein Schritt benötigt einen Namen."
@@ -2778,6 +2784,9 @@ msgstr "Schritte können nicht zu nicht gespeichertem Vorgang hinzugefügt werde
 msgid "Cannot add tools to unsaved operation"
 msgstr "Werkzeuge können nicht zu nicht gespeicherten Vorgängen hinzugefügt werden"
 
+msgid "Cannot be restored"
+msgstr ""
+
 msgid "Cannot close yet"
 msgstr "Kann noch nicht geschlossen werden"
 
@@ -3240,6 +3249,9 @@ msgstr "Angebote vergleichen"
 
 msgid "Compare Supplier Quotes"
 msgstr "Lieferantenofferte vergleichen"
+
+msgid "Compared to the current schema on"
+msgstr ""
 
 msgid "Complete"
 msgstr "Abschließen"
@@ -6186,6 +6198,9 @@ msgstr "Alles andere umfasst Personen, Importe, Integrationen und die API – al
 msgid "Everything from Starter"
 msgstr "Alles aus dem Starter-Plan"
 
+msgid "Everything in this company today will be deleted and replaced with what is in this backup."
+msgstr ""
+
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "Überschreitet {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB insgesamt – entfernen Sie einige Anhänge zum Senden."
 
@@ -8271,6 +8286,9 @@ msgstr "Behalten"
 msgid "Keep Current"
 msgstr "Aktuell behalten"
 
+msgid "Keep drops the snapshot. After Keep, this cannot be undone."
+msgstr ""
+
 msgid "Keep existing pricing, only add new items"
 msgstr "Behalten Sie bestehende Preise, fügen Sie nur neue Artikel hinzu"
 
@@ -9380,6 +9398,9 @@ msgstr "Nettoeinkommen"
 
 msgid "Never"
 msgstr "Nie"
+
+msgid "Never included in this backup"
+msgstr ""
 
 msgid "New"
 msgstr "Neu"
@@ -12389,6 +12410,9 @@ msgstr "Ersetzen Sie vorhandene Preise durch Quellwerte"
 msgid "Replace PDF"
 msgstr "PDF ersetzen"
 
+msgid "Replace this company's data"
+msgstr ""
+
 msgid "Replace this company's data with a demo dataset — snapshotted first, so you can revert."
 msgstr "Ersetzen Sie die Daten dieses Unternehmens durch einen Demo-Datensatz – zunächst ein Snapshot erstellt, damit Sie zurücksetzen können."
 
@@ -12540,11 +12564,17 @@ msgstr "Ressourcen"
 msgid "Restore from Trash"
 msgstr "Aus dem Papierkorb wiederherstellen"
 
+msgid "Restore this company from a backup"
+msgstr ""
+
 msgid "Restore this entity to available stock at the bin and cost it was scrapped from."
 msgstr "Diese Entität zum verfügbaren Bestand in dem Behälter und den Kosten zurückholen, von denen sie verschrottet wurde."
 
 msgid "Restore tracked entities to available"
 msgstr "Nachverfolgter Entitäten als verfügbar wiederherstellen"
+
+msgid "Restore…"
+msgstr ""
 
 msgid "Restoring files"
 msgstr "Dateien werden wiederhergestellt"
@@ -12626,6 +12656,9 @@ msgstr "Rückgängig gemacht"
 
 msgid "Revert"
 msgstr "Zurücksetzen"
+
+msgid "Revert puts that snapshot back, exactly as it was."
+msgstr ""
 
 msgid "Reverting"
 msgstr "Wird zurückgesetzt"
@@ -13944,6 +13977,9 @@ msgstr "Lösungsingenieur"
 
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Einige aus dem PDF extrahierte Zeilen konnten nicht automatisch Ihren Bestandsartikeln zugeordnet werden. Überprüfen und ordnen Sie jede Zeile unten zu."
+
+msgid "Some of your data will not survive this restore. Type <0>{CONFIRM_WORD}</0> to continue."
+msgstr ""
 
 msgid "Something went wrong. Please try again."
 msgstr "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
@@ -15533,6 +15569,9 @@ msgstr "Diese Aufträge haben Operationen, die diesem Arbeitszentrum zugewiesen 
 
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "Diese Journaleinträge sind noch im Entwurf, daher befinden sich ihre Belastungen und Gutschriften nicht im Ledger für diese Periode. Buchen Sie jeden Eintrag, oder buchen Sie ihn in eine spätere offene Periode um."
+
+msgid "This backup has not been compared to the current schema yet. Differences will be found when the restore runs."
+msgstr ""
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "Dieser Carbon-Instanz fehlen die Onshape-OAuth-Anmeldedaten. Bitten Sie einen Administrator, sie einzurichten."
@@ -17354,6 +17393,12 @@ msgstr "Warum sich der Bestand ändert — Positiv (gefunden), Negativ (verloren
 
 msgid "Why this line is being declined; surfaced on the printable quote and recorded for win-loss reporting."
 msgstr "Warum diese Zeile abgelehnt wird; auf dem druckbaren Angebot angezeigt und für Win-Loss-Berichterstattung aufgezeichnet."
+
+msgid "Will be discarded"
+msgstr ""
+
+msgid "Will be filled with a default"
+msgstr ""
 
 msgid "Will remain as a comment line"
 msgstr "Bleibt als Kommentarzeile erhalten"
