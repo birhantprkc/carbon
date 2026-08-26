@@ -47,12 +47,15 @@ export function RestoreDisclosure({
     [backups, source]
   );
 
-  // An UPLOADED backup is not in the list, so it has no stored verdict. The
+  // No stored verdict — an uploaded backup, or one whose check never landed. The
   // consequences below still apply and are still shown; only the findings are
   // unknown, which the screen says rather than implying a clean bill of health.
   const findings = backup?.compatibility.findings ?? [];
   const checkedAt = backup?.compatibility.checkedAt ?? null;
-  const { blocked, discards, canConfirm } = disclosureState(backup, typed);
+  const { unchecked, blocked, discards, canConfirm } = disclosureState(
+    backup,
+    typed
+  );
 
   const close = () => {
     setOpen(false);
@@ -98,14 +101,14 @@ export function RestoreDisclosure({
                 </Trans>
               </p>
 
-              {backup ? null : (
+              {unchecked ? (
                 <p className="text-sm text-muted-foreground">
                   <Trans>
                     This backup hasn't been checked yet. Any differences are
                     found when the restore runs.
                   </Trans>
                 </p>
-              )}
+              ) : null}
 
               {findings.length > 0 ? (
                 <FindingGroups findings={findings} checkedAt={checkedAt} />

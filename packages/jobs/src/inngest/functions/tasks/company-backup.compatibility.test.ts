@@ -277,6 +277,22 @@ describe("assertBackupImportable", () => {
     });
   });
 
+  it("REFUSES a rename whose target the backup also carries", () => {
+    // Applying the rename would merge two tables; the loader keys off name, so
+    // letting it through drops oldName's rows in silence.
+    const result = gate(
+      catalog([table("newName", [col("id")])]),
+      backup([
+        { name: "oldName", rows: 2, columns: ["id"] },
+        { name: "newName", rows: 5, columns: ["id"] }
+      ])
+    );
+    expect(result.ok).toBe(false);
+    expect((result as { reason: string }).reason).toContain(
+      "which this backup also contains"
+    );
+  });
+
   it("ACCEPTS a renamed table, the case the hand-kept copy used to refuse", () => {
     expect(
       gate(

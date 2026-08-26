@@ -488,7 +488,7 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "Yeni bir boyut, mevcut boyutun bir kopyası kullanılarak oluşturulacaktır"
 
 msgid "A new Stripe customer will be created"
-msgstr ""
+msgstr "Yeni bir Stripe müşterisi oluşturulacak"
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
 msgstr "Bir faturayı bir sebep hesabına karşı ödeyen nakitsiz bir belge: alacak, borçlu olunan tutarı azaltır, borç artırır."
@@ -2719,7 +2719,7 @@ msgid "Called a method in Carbon — the components plus operations that produce
 msgstr "Carbon'da çağrılan bir yöntem — bir parça üreten bileşenler ve işlemler."
 
 msgid "Can't be restored"
-msgstr ""
+msgstr "Geri yüklenemez"
 
 msgid "Can't delete this period"
 msgstr "Bu dönem silinemez"
@@ -2800,7 +2800,7 @@ msgid "Cannot send RFQ"
 msgstr "RFQ gönderilemiyor"
 
 msgid "Cannot send through Stripe"
-msgstr ""
+msgstr "Stripe aracılığıyla gönderilemez"
 
 msgid "Cannot upload — supplier interaction not yet created"
 msgstr "Yüklenemiyor — tedarikçi etkileşimi henüz oluşturulmadı"
@@ -3008,10 +3008,10 @@ msgid "Check your email"
 msgstr "E-postanızı kontrol edin"
 
 msgid "Checked"
-msgstr ""
+msgstr "İşaretlendi"
 
 msgid "Checking Stripe for this customer…"
-msgstr ""
+msgstr "Bu müşteri için Stripe kontrol ediliyor…"
 
 msgid "Checkpoint ·"
 msgstr "Kontrol Noktası ·"
@@ -3912,7 +3912,7 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "Satış siparişini yerine getirmek için yeni bir üretim işi oluşturun"
 
 msgid "Create a new Stripe customer instead"
-msgstr ""
+msgstr "Bunun yerine yeni bir Stripe müşterisi oluşturun"
 
 msgid "Create a new version"
 msgstr "Yeni bir sürüm oluşturun"
@@ -5180,7 +5180,7 @@ msgid "Discard"
 msgstr "Atıkla"
 
 msgid "Discarded"
-msgstr ""
+msgstr "İptal edildi"
 
 msgid "Disconnect"
 msgstr "Bağlantıyı kes"
@@ -6232,7 +6232,7 @@ msgid "Existing mappings. Pick a different provider option to re-map."
 msgstr "Mevcut eşlemeler. Yeniden eşlemek için farklı bir sağlayıcı seçeneği seçin."
 
 msgid "Existing Stripe customer"
-msgstr ""
+msgstr "Mevcut Stripe müşterisi"
 
 msgid "Expand"
 msgstr "Genişlet"
@@ -6826,7 +6826,7 @@ msgid "Fill this company with a realistic industry story so every screen has som
 msgstr "Bu şirketi gerçekçi bir endüstri hikayesiyle doldurun, böylece her ekran bir şey içerir. Önceki durumu geri getirebilirsiniz."
 
 msgid "Filled with a default"
-msgstr ""
+msgstr "Varsayılan değerle dolduruldu"
 
 msgid "Filter"
 msgstr "Filtre"
@@ -8549,7 +8549,7 @@ msgid "Link Linear Issue"
 msgstr "Linear sorununu bağla"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr ""
+msgstr "Bu Carbon müşterisini bunlardan birine bağlayın veya ayrı bir Stripe müşterisi oluşturun."
 
 msgid "Link to sales order line"
 msgstr "Satış siparişi satırına bağla"
@@ -12550,13 +12550,13 @@ msgid "Resources"
 msgstr "Kaynaklar"
 
 msgid "Restore"
-msgstr ""
+msgstr "Geri yükle"
 
 msgid "Restore from Trash"
 msgstr "Çöp'ten Geri Yükle"
 
 msgid "Restore this company from a backup"
-msgstr ""
+msgstr "Bu şirketi bir yedekten geri yükle"
 
 msgid "Restore this entity to available stock at the bin and cost it was scrapped from."
 msgstr "Bu varlığı çıkartıldığı depo ve maliyet için kullanılabilir stoka geri yükleyin."
@@ -12565,7 +12565,7 @@ msgid "Restore tracked entities to available"
 msgstr "Takip edilen varlıkları kullanılabilir hale getir"
 
 msgid "Restore…"
-msgstr ""
+msgstr "Geri yükle…"
 
 msgid "Restoring files"
 msgstr "Dosyalar geri yükleniyor"
@@ -12631,7 +12631,7 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Bu faturadaki herhangi bir kalem defteri girişini tersine çevirir"
 
 msgid "Reverse charge"
-msgstr ""
+msgstr "Ters ücretlendirme"
 
 msgid "Reverse Charge Sales Tax"
 msgstr "Ters yükleme satış vergisi"
@@ -13967,7 +13967,7 @@ msgid "Some lines extracted from the PDF could not be automatically mapped to yo
 msgstr "PDF'den çıkarılan bazı satırlar envanter öğelerinize otomatik olarak eşleştirilemedi. Aşağıdaki her satırı gözden geçirin ve eşleştirin."
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
-msgstr ""
+msgstr "Bazı kayıtlar geri gelmeyecek. Devam etmek için <0>{CONFIRM_WORD}</0> yazın."
 
 msgid "Something went wrong. Please try again."
 msgstr "Bir şeyler ters gitti. Lütfen tekrar deneyin."
@@ -14284,19 +14284,19 @@ msgid "Straight line"
 msgstr "Doğrusal"
 
 msgid "Stripe"
-msgstr ""
+msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
-msgstr ""
+msgstr "Stripe'ın zaten bu e-posta ile bir müşterisi var"
 
 msgid "Stripe Due Date"
-msgstr ""
+msgstr "Stripe Vade Tarihi"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr ""
+msgstr "Stripe faturayı müşteriye e-posta ile gönderiyor, bu nedenle bir adres gerekli. Bu, Carbon'daki kişiye de kaydedilecek."
 
 msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr ""
+msgstr "Stripe'ın bu Carbon müşterisi için henüz bir müşterisi yok. Gönderme, bağlı hesabınızda bir tane oluşturacak."
 
 msgid "Style of kanban output to show in the Kanban table"
 msgstr "Kanban tablosunda gösterilecek kanban çıktısı stili"
@@ -14711,7 +14711,7 @@ msgid "Tax Depreciation Method"
 msgstr "Vergi Amortisman Yöntemi"
 
 msgid "Tax exempt"
-msgstr ""
+msgstr "Vergi muaftır"
 
 msgid "Tax Exempt"
 msgstr "Vergi Muaf"
@@ -15559,7 +15559,7 @@ msgid "These journal entries are still Draft, so their debits and credits aren't
 msgstr "Bu muhasebe kayıtları hâlâ Taslak durumundadır, bu nedenle borç ve alacakları bu dönem için defteri kebir'de değildir. Her birini deftere geçirin veya daha sonraki bir açık döneme yeniden tarihlendiriniz."
 
 msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
-msgstr ""
+msgstr "Bu yedek henüz kontrol edilmedi. Herhangi bir fark, geri yükleme çalıştığında bulunur."
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "Bu Carbon örneğinde Onshape OAuth kimlik bilgileri eksik. Bir yöneticiden bunları ayarlamasını isteyin."
@@ -15571,13 +15571,13 @@ msgid "This change notice is closed, so its changes are read-only."
 msgstr "Bu değişiklik bildirimi kapalı olduğundan, değişiklikleri salt okunurdur."
 
 msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
-msgstr ""
+msgstr "Bu şirketin verileri bu yedeklemenin içeriği ile değiştirilir. Bugünün verileri önce kaydedilir, bu nedenle geri alabilirsiniz."
 
 msgid "This completes the Discovery step."
 msgstr "Bu, Keşif adımını tamamlar."
 
 msgid "This contact has no email address"
-msgstr ""
+msgstr "Bu kişinin e-posta adresi yok"
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
 msgstr "Bu muhasebe ortağının ödenmemiş bir borcu yok — ödeme hesap üzerinde kaydedilecektir."
@@ -15605,10 +15605,10 @@ msgid "This invitation to join {0} has expired. You can request a new invite to 
 msgstr "{0} kuruluşuna katılmak için gönderilen bu davet süresi dolmuştur. E-postanıza yeni bir davet gönderilmesini isteyebilirsiniz."
 
 msgid "This invoice has no usable due date — choose one for Stripe."
-msgstr ""
+msgstr "Bu faturanın kullanılabilir bir vade tarihi yok — Stripe için birini seçin."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr ""
+msgstr "Bu fatura, zaten bu Carbon müşterisine bağlı olan Stripe müşterisine faturalandırılacak. Ayrıntılarını değiştirmek için Stripe kontrol panelinde düzenleyin."
 
 msgid "This is a controlled environment, so an authenticator app is required."
 msgstr "Bu kontrollü bir ortamdır, bu nedenle doğrulayıcı uygulaması gereklidir."

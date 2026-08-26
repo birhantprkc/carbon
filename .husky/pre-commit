@@ -14,25 +14,27 @@ pnpm exec lint-staged
 if git diff --cached --name-only | grep -qE '\.(tsx?|jsx?)$|\.po$'; then
     echo "Compiling translations..."
     # Not a blocker — a catalog that won't compile is worth knowing about, but it
-    # is not a reason to refuse the commit. Say so rather than failing silently.
-    if ! pnpm lingui:check; then
-        echo "⚠ Translations did not compile. The catalogs staged below may be incomplete."
+    # is not a reason to refuse the commit. It DOES stop the staging below, so a
+    # failed run can never commit half-written catalogs.
+    if pnpm lingui:check; then
+        # Strip `#:` origin refs before committing — they shift on any upstream
+        # code edit and are the biggest PR-conflict source. They're kept in the
+        # working dir during the translate flow (linguito needs them for LLM
+        # context) and only stripped right before commit.
+        pnpm lingui:clean
+
+        # Add compiled locale files to the commit
+        git add packages/locale/locales/**/*.po
+    else
+        echo "⚠ Translations did not compile — catalogs left unstaged for this commit."
     fi
-
-    # Strip `#:` origin refs before committing — they shift on any upstream
-    # code edit and are the biggest PR-conflict source. They're kept in the
-    # working dir during the translate flow (linguito needs them for LLM
-    # context) and only stripped right before commit.
-    pnpm lingui:clean
-
-    # Add compiled locale files to the commit
-    git add packages/locale/locales/**/*.po
 fi
 
 # Regenerate MCP tools if any .service.ts file was modified
 if git diff --cached --name-only | grep -q '\.service\.ts$'; then
     if ! npx tsx scripts/generate-mcp.ts; then
-        echo "⚠ MCP tool metadata could not be regenerated — it may be stale in this commit."
+        echo "✗ MCP tool metadata could not be regenerated. Nothing was staged."
+        exit 1
     fi
     git add apps/erp/app/routes/api+/mcp+/lib/tool-metadata.json
 fi

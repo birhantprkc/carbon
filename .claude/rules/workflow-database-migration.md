@@ -86,10 +86,15 @@ newest migrations, e.g. `20260609143732_document-template.sql`):
 
 ### 3b. Renaming or dropping a table? Record it for backups
 
-If the migration **renames or drops a table that has a `companyId` or `companyGroupId`
-column**, add an entry to `TABLE_RENAMES` in
+If the migration **renames or drops any table that appears in a company backup**, add an
+entry to `TABLE_RENAMES` in
 `packages/jobs/src/inngest/functions/tasks/company-backup.renames.ts` in the SAME commit:
 the new name for a rename, `null` for a table dropped along with its feature.
+
+That is more tables than it sounds: the catalog scopes a table either DIRECTLY (its own
+`companyId` / `companyGroupId` column) or `via` a foreign key to a scoped parent, so a
+child table with neither column is still exported and still needs an entry. When in doubt,
+run `pnpm db:check:backups` — it fails on exactly the tables that need one.
 
 Only you know which of the two it was. A customer's existing backup still names the old
 table, and to a restore "this table is gone" is ambiguous — guessing "dropped" when it was

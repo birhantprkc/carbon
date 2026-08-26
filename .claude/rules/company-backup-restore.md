@@ -285,7 +285,9 @@ breakage is what `RestoreDisclosure` and the snapshot-and-revert path exist for.
 ### Renamed and dropped tables — `company-backup.renames.ts`
 
 `TABLE_RENAMES` maps a tenant-scoped table's OLD name to its current one, or to `null`
-when it was dropped along with its feature. A migration that renames or drops such a table
+when it was dropped along with its feature. "Tenant-scoped" here means anything in the
+catalog — `direct` scope (its own `companyId`/`companyGroupId`) **and** `via` scope (reached
+through a FK to a scoped parent), since both are exported. A migration that renames or drops such a table
 must add an entry in the same commit; `db:check:backups` fails the commit until it does,
 and `.claude/rules/workflow-database-migration.md` step 3b is where the author is told.
 

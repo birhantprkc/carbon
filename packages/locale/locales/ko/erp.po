@@ -488,7 +488,7 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "현재 사이즈를 복사하여 새 사이즈가 생성됩니다"
 
 msgid "A new Stripe customer will be created"
-msgstr ""
+msgstr "새로운 Stripe 고객이 생성됩니다"
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
 msgstr "인보이스를 이유 계정에 대해 정산하는 비현금 문서로서, 신용은 지불액을 낮추고 차변은 올립니다."
@@ -2719,7 +2719,7 @@ msgid "Called a method in Carbon — the components plus operations that produce
 msgstr "Carbon에서는 이를 방법(method)이라고 부릅니다 — 품목을 만드는 구성품과 공정작업의 조합입니다."
 
 msgid "Can't be restored"
-msgstr ""
+msgstr "복원할 수 없습니다"
 
 msgid "Can't delete this period"
 msgstr "이 기간은 삭제할 수 없습니다"
@@ -2800,7 +2800,7 @@ msgid "Cannot send RFQ"
 msgstr "RFQ를 보낼 수 없습니다"
 
 msgid "Cannot send through Stripe"
-msgstr ""
+msgstr "Stripe를 통해 전송할 수 없습니다"
 
 msgid "Cannot upload — supplier interaction not yet created"
 msgstr "업로드할 수 없습니다 — 공급업체 상호작용이 아직 생성되지 않았습니다"
@@ -3008,10 +3008,10 @@ msgid "Check your email"
 msgstr "이메일을 확인하세요"
 
 msgid "Checked"
-msgstr ""
+msgstr "확인됨"
 
 msgid "Checking Stripe for this customer…"
-msgstr ""
+msgstr "이 고객의 Stripe 확인 중…"
 
 msgid "Checkpoint ·"
 msgstr "체크포인트 ·"
@@ -3912,7 +3912,7 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "판매주문을 이행할 새 생산 작업을 생성합니다"
 
 msgid "Create a new Stripe customer instead"
-msgstr ""
+msgstr "대신 새로운 Stripe 고객 생성"
 
 msgid "Create a new version"
 msgstr "새 버전 만들기"
@@ -5180,7 +5180,7 @@ msgid "Discard"
 msgstr "폐기"
 
 msgid "Discarded"
-msgstr ""
+msgstr "폐기됨"
 
 msgid "Disconnect"
 msgstr "연결 해제"
@@ -6232,7 +6232,7 @@ msgid "Existing mappings. Pick a different provider option to re-map."
 msgstr "기존 매핑입니다. 다시 매핑하려면 다른 제공자 옵션을 선택하세요."
 
 msgid "Existing Stripe customer"
-msgstr ""
+msgstr "기존 Stripe 고객"
 
 msgid "Expand"
 msgstr "펼치기"
@@ -6826,7 +6826,7 @@ msgid "Fill this company with a realistic industry story so every screen has som
 msgstr "이 회사를 현실적인 산업 시나리오로 채워서 모든 화면에 데이터가 표시되도록 합니다. 이전 상태로 복원할 수 있습니다."
 
 msgid "Filled with a default"
-msgstr ""
+msgstr "기본값으로 채워짐"
 
 msgid "Filter"
 msgstr "필터"
@@ -8549,7 +8549,7 @@ msgid "Link Linear Issue"
 msgstr "Linear 이슈 연결"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr ""
+msgstr "이 Carbon 고객을 그 중 하나에 연결하거나 별도의 Stripe 고객을 생성합니다."
 
 msgid "Link to sales order line"
 msgstr "판매주문 라인에 연결"
@@ -12550,13 +12550,13 @@ msgid "Resources"
 msgstr "리소스"
 
 msgid "Restore"
-msgstr ""
+msgstr "복원"
 
 msgid "Restore from Trash"
 msgstr "휴지통에서 복원"
 
 msgid "Restore this company from a backup"
-msgstr ""
+msgstr "백업에서 이 회사 복원"
 
 msgid "Restore this entity to available stock at the bin and cost it was scrapped from."
 msgstr "이 항목을 폐기 전 보관 위치 및 원가의 사용 가능한 재고로 복원합니다."
@@ -12565,7 +12565,7 @@ msgid "Restore tracked entities to available"
 msgstr "추적 개체를 사용 가능 상태로 복원"
 
 msgid "Restore…"
-msgstr ""
+msgstr "복원…"
 
 msgid "Restoring files"
 msgstr "파일 복원 중"
@@ -12631,7 +12631,7 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "이 인보이스의 모든 품목 원장 항목 취소"
 
 msgid "Reverse charge"
-msgstr ""
+msgstr "역청구"
 
 msgid "Reverse Charge Sales Tax"
 msgstr "매입자 납부 판매세(Reverse Charge)"
@@ -13967,7 +13967,7 @@ msgid "Some lines extracted from the PDF could not be automatically mapped to yo
 msgstr "PDF에서 추출된 일부 라인을 재고 품목에 자동으로 매핑할 수 없습니다. 아래에서 각 라인을 검토하고 매핑하세요."
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
-msgstr ""
+msgstr "일부 레코드는 돌아오지 않습니다. 계속하려면 <0>{CONFIRM_WORD}</0>를 입력하세요."
 
 msgid "Something went wrong. Please try again."
 msgstr "문제가 발생했습니다. 다시 시도해 주세요."
@@ -14284,19 +14284,19 @@ msgid "Straight line"
 msgstr "정액법"
 
 msgid "Stripe"
-msgstr ""
+msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
-msgstr ""
+msgstr "Stripe에 이미 이 이메일을 가진 고객이 있습니다"
 
 msgid "Stripe Due Date"
-msgstr ""
+msgstr "Stripe 만기일"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr ""
+msgstr "Stripe에서 고객에게 청구서를 이메일로 전송하므로 주소가 필요합니다. Carbon의 연락처에도 저장됩니다."
 
 msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr ""
+msgstr "Stripe에 이 Carbon 고객을 위한 고객이 아직 없습니다. 게시하면 연결된 계정에서 하나가 생성됩니다."
 
 msgid "Style of kanban output to show in the Kanban table"
 msgstr "칸반 테이블에 표시할 칸반 출력 스타일"
@@ -14711,7 +14711,7 @@ msgid "Tax Depreciation Method"
 msgstr "세무 감가상각 방법"
 
 msgid "Tax exempt"
-msgstr ""
+msgstr "세금 면제"
 
 msgid "Tax Exempt"
 msgstr "세금 면제"
@@ -15559,7 +15559,7 @@ msgid "These journal entries are still Draft, so their debits and credits aren't
 msgstr "이 분개들은 아직 임시이므로 그 차변과 대변이 이 기간의 총계정원장에 없습니다. 각각을 전기하거나 나중의 개방된 기간으로 재날짜하세요."
 
 msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
-msgstr ""
+msgstr "이 백업은 아직 확인되지 않았습니다. 복원이 실행될 때 차이점이 발견됩니다."
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "이 Carbon 인스턴스에 Onshape OAuth 자격 증명이 없습니다. 관리자에게 설정을 요청하세요."
@@ -15571,13 +15571,13 @@ msgid "This change notice is closed, so its changes are read-only."
 msgstr "이 변경 사항은 닫혀 있으므로 변경 사항이 읽기 전용입니다."
 
 msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
-msgstr ""
+msgstr "이 회사의 데이터는 이 백업의 내용으로 바뀝니다. 오늘의 데이터가 먼저 저장되므로 되돌릴 수 있습니다."
 
 msgid "This completes the Discovery step."
 msgstr "이것으로 발견(Discovery) 단계가 완료됩니다."
 
 msgid "This contact has no email address"
-msgstr ""
+msgstr "이 연락처에는 이메일 주소가 없습니다"
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
 msgstr "이 거래처에는 미결제 항목이 없습니다 — 결제는 선수금으로 기록됩니다."
@@ -15605,10 +15605,10 @@ msgid "This invitation to join {0} has expired. You can request a new invite to 
 msgstr "{0}에 참여하기 위한 이 초대권은 만료되었습니다. 이메일로 새 초대권을 보내달라고 요청할 수 있습니다."
 
 msgid "This invoice has no usable due date — choose one for Stripe."
-msgstr ""
+msgstr "이 청구서에는 사용할 수 있는 만기일이 없습니다 — Stripe를 위해 하나를 선택하세요."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr ""
+msgstr "이 청구서는 이 Carbon 고객에 이미 연결된 Stripe 고객에게 청구됩니다. 세부 정보를 변경하려면 Stripe 대시보드에서 편집하세요."
 
 msgid "This is a controlled environment, so an authenticator app is required."
 msgstr "이것은 제어되는 환경이므로 인증자 앱이 필수입니다."

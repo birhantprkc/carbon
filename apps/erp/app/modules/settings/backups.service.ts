@@ -12,6 +12,9 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 // `backup*Path` helpers in packages/jobs/.../company-backup.ts.
 const SNAPSHOT_PREFIX = "_pre-restore-";
 
+/** Supabase storage caps a `list` call; page until a short page comes back. */
+const BACKUP_LIST_PAGE_SIZE = 100;
+
 /**
  * Remove every object under a prefix (recursing into folders) so a deleted
  * backup actually releases its bucket space rather than orphaning files.
@@ -99,12 +102,21 @@ export async function listCompanyBackups(
   client: SupabaseClient<Database>,
   companyId: string
 ): Promise<{ data: CompanyBackupSummary[] | null; error: Error | null }> {
-  const { data, error } = await client.storage
-    .from(companyId)
-    .list("exports", { limit: 100 });
-  if (error) return { data: null, error };
+  // Paged: storage caps a list call, and the un-listed page is invisible in the
+  // UI — a backup you can neither restore nor delete.
+  const entries: Awaited<
+    ReturnType<ReturnType<typeof client.storage.from>["list"]>
+  >["data"] = [];
+  for (let offset = 0; ; offset += BACKUP_LIST_PAGE_SIZE) {
+    const { data, error } = await client.storage
+      .from(companyId)
+      .list("exports", { limit: BACKUP_LIST_PAGE_SIZE, offset });
+    if (error) return { data: null, error };
+    entries.push(...(data ?? []));
+    if ((data?.length ?? 0) < BACKUP_LIST_PAGE_SIZE) break;
+  }
 
-  const folders = (data ?? []).filter(
+  const folders = entries.filter(
     (e) => e.id === null && !e.name.startsWith(SNAPSHOT_PREFIX)
   );
 

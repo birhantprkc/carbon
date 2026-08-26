@@ -851,6 +851,7 @@ export function reportBackupCompatibility(
   }
 
   const liveByName = new Map(catalog.tables.map((t) => [t.name, t]));
+  const backupTableNames = new Set(manifest.tables.map((t) => t.name));
   for (const backupTable of manifest.tables) {
     // A table the catalog now excludes by design (MRP output, the company shell)
     // is not drift — its rows are ignored on load.
@@ -877,6 +878,17 @@ export function reportBackupCompatibility(
           table: backupTable.name,
           reason:
             "this table was removed along with its feature; its rows will not be restored"
+        });
+        continue;
+      }
+      // The backup carries BOTH names, so the rename can't be applied without
+      // merging two tables into one. Refuse: the loader keys off table name, so
+      // letting this through drops the old table's rows without a word.
+      if (backupTableNames.has(renamedTo)) {
+        findings.push({
+          kind: "blocked",
+          table: backupTable.name,
+          reason: `it maps to "${renamedTo}", which this backup also contains`
         });
         continue;
       }

@@ -29,7 +29,10 @@ export function disclosureState(
   const discards = findings.some((f) => f.kind === "discarded");
 
   return {
-    unchecked: !backup,
+    // A listed backup with no verdict reads as "no findings", which is
+    // indistinguishable from clean. `checkedAt` is the only thing that separates
+    // "we looked and found nothing" from "nobody looked".
+    unchecked: !backup || backup.compatibility.checkedAt === null,
     blocked,
     discards,
     canConfirm:

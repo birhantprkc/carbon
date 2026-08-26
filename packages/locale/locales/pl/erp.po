@@ -488,7 +488,7 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "Nowy rozmiar zostanie utworzony przy użyciu kopii bieżącego rozmiaru"
 
 msgid "A new Stripe customer will be created"
-msgstr ""
+msgstr "Nowy klient Stripe zostanie utworzony"
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
 msgstr "Dokument bezgotówkowy, który rozlicza fakturę względem konta przyczyny: kredyt obniża to, co się należy, debet to podwyższa."
@@ -2719,7 +2719,7 @@ msgid "Called a method in Carbon — the components plus operations that produce
 msgstr "Zwana metodą w Carbon — komponenty plus operacje, które tworzą część."
 
 msgid "Can't be restored"
-msgstr ""
+msgstr "Nie można przywrócić"
 
 msgid "Can't delete this period"
 msgstr "Nie można usunąć tego okresu"
@@ -2800,7 +2800,7 @@ msgid "Cannot send RFQ"
 msgstr "Nie można wysłać ZZO"
 
 msgid "Cannot send through Stripe"
-msgstr ""
+msgstr "Nie można wysłać przez Stripe"
 
 msgid "Cannot upload — supplier interaction not yet created"
 msgstr "Nie można przesłać — interakcja z dostawcą nie została jeszcze utworzona"
@@ -3008,10 +3008,10 @@ msgid "Check your email"
 msgstr "Sprawdź swoją pocztę"
 
 msgid "Checked"
-msgstr ""
+msgstr "Zaznaczono"
 
 msgid "Checking Stripe for this customer…"
-msgstr ""
+msgstr "Sprawdzanie Stripe dla tego klienta…"
 
 msgid "Checkpoint ·"
 msgstr "Punkt kontrolny ·"
@@ -3912,7 +3912,7 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "Utwórz nowe zadanie produkcyjne, aby zrealizować zamówienie sprzedaży"
 
 msgid "Create a new Stripe customer instead"
-msgstr ""
+msgstr "Utwórz zamiast tego nowego klienta Stripe"
 
 msgid "Create a new version"
 msgstr "Utwórz nową wersję"
@@ -5180,7 +5180,7 @@ msgid "Discard"
 msgstr "Odrzuć"
 
 msgid "Discarded"
-msgstr ""
+msgstr "Odrzucono"
 
 msgid "Disconnect"
 msgstr "Rozłącz"
@@ -6232,7 +6232,7 @@ msgid "Existing mappings. Pick a different provider option to re-map."
 msgstr "Istniejące mapowania. Wybierz inną opcję dostawcy, aby przezmapować."
 
 msgid "Existing Stripe customer"
-msgstr ""
+msgstr "Istniejący klient Stripe"
 
 msgid "Expand"
 msgstr "Rozwiń"
@@ -6826,7 +6826,7 @@ msgid "Fill this company with a realistic industry story so every screen has som
 msgstr "Wypełnij tę firmę realistyczną historią branżową, aby każdy ekran zawierał coś interesującego. Możesz przywrócić to, co tu było wcześniej."
 
 msgid "Filled with a default"
-msgstr ""
+msgstr "Wypełnione wartością domyślną"
 
 msgid "Filter"
 msgstr "Filtr"
@@ -8549,7 +8549,7 @@ msgid "Link Linear Issue"
 msgstr "Połącz problem Linear"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr ""
+msgstr "Połącz tego klienta Carbon z jednym z nich lub utwórz oddzielnego klienta Stripe."
 
 msgid "Link to sales order line"
 msgstr "Połącz z linią zamówienia sprzedaży"
@@ -12550,13 +12550,13 @@ msgid "Resources"
 msgstr "Zasoby"
 
 msgid "Restore"
-msgstr ""
+msgstr "Przywróć"
 
 msgid "Restore from Trash"
 msgstr "Przywróć z Kosza"
 
 msgid "Restore this company from a backup"
-msgstr ""
+msgstr "Przywróć tę firmę z kopii zapasowej"
 
 msgid "Restore this entity to available stock at the bin and cost it was scrapped from."
 msgstr "Przywróć tę jednostkę do dostępnych zapasów w pojemniku i po koszcie, z których została złomowana."
@@ -12565,7 +12565,7 @@ msgid "Restore tracked entities to available"
 msgstr "Przywróć śledzone jednostki do dostępnych"
 
 msgid "Restore…"
-msgstr ""
+msgstr "Przywróć…"
 
 msgid "Restoring files"
 msgstr "Przywracanie plików"
@@ -12631,7 +12631,7 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Odwróć wszystkie wpisy rejestru pozycji z tej faktury"
 
 msgid "Reverse charge"
-msgstr ""
+msgstr "Odwrotne obciążenie"
 
 msgid "Reverse Charge Sales Tax"
 msgstr "Odwrotne obciążenie podatkiem od sprzedaży"
@@ -13967,7 +13967,7 @@ msgid "Some lines extracted from the PDF could not be automatically mapped to yo
 msgstr "Niektóre linie wyodrębnione z pliku PDF nie mogły być automatycznie zmapowane na elementy Twojego magazynu. Przejrzyj i zmapuj każdą linię poniżej."
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
-msgstr ""
+msgstr "Niektóre rekordy nie wrócą. Wpisz <0>{CONFIRM_WORD}</0> aby kontynuować."
 
 msgid "Something went wrong. Please try again."
 msgstr "Coś poszło nie tak. Spróbuj ponownie."
@@ -14284,19 +14284,19 @@ msgid "Straight line"
 msgstr "Liniowa"
 
 msgid "Stripe"
-msgstr ""
+msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
-msgstr ""
+msgstr "Stripe już ma klienta z tym adresem e-mail"
 
 msgid "Stripe Due Date"
-msgstr ""
+msgstr "Data wymagalności Stripe"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr ""
+msgstr "Stripe wysyła fakturę do klienta, dlatego wymagany jest adres. Zostanie to również zapisane w kontakcie w Carbon."
 
 msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr ""
+msgstr "Stripe nie ma jeszcze klienta dla tego klienta Carbon. Zaksięgowanie utworzy go na Twoim połączonym koncie."
 
 msgid "Style of kanban output to show in the Kanban table"
 msgstr "Styl wyjścia kanban do wyświetlenia w tabeli Kanban"
@@ -14711,7 +14711,7 @@ msgid "Tax Depreciation Method"
 msgstr "Metoda Amortyzacji Podatkowej"
 
 msgid "Tax exempt"
-msgstr ""
+msgstr "Zwolniony z podatku"
 
 msgid "Tax Exempt"
 msgstr "Zwolniony z Podatku"
@@ -15559,7 +15559,7 @@ msgid "These journal entries are still Draft, so their debits and credits aren't
 msgstr "Te wpisy dziennika są wciąż w wersji roboczej, więc ich obciążenia i kredyty nie znajdują się w księdze w tym okresie. Opublikuj każdy lub przedatuj go na późniejszy otwarty okres."
 
 msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
-msgstr ""
+msgstr "Ta kopia zapasowa nie została jeszcze sprawdzona. Wszelkie różnice są znaleziane po uruchomieniu przywracania."
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "Ta instancja Carbon nie ma danych uwierzytelniających OAuth Onshape. Poproś administratora o ich ustawienie."
@@ -15571,13 +15571,13 @@ msgid "This change notice is closed, so its changes are read-only."
 msgstr "Ta notacja zmiany jest zamknięta, więc jej zmiany są tylko do odczytu."
 
 msgid "This company's data is replaced with the contents of this backup. Today's data is saved first, so you can revert."
-msgstr ""
+msgstr "Dane tej firmy są zastępowane zawartością tej kopii zapasowej. Dane z dzisiaj są najpierw zapisywane, aby można było cofnąć."
 
 msgid "This completes the Discovery step."
 msgstr "To uzupełnia krok Discovery."
 
 msgid "This contact has no email address"
-msgstr ""
+msgstr "Ten kontakt nie ma adresu e-mail"
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
 msgstr "Ta strona nie ma żadnych zaległości — płatność zostanie zarejestrowana na koncie."
@@ -15605,10 +15605,10 @@ msgid "This invitation to join {0} has expired. You can request a new invite to 
 msgstr "To zaproszenie do dołączenia do {0} wygasło. Możesz poprosić o wysłanie nowego zaproszenia na Twoją wiadomość e-mail."
 
 msgid "This invoice has no usable due date — choose one for Stripe."
-msgstr ""
+msgstr "Ta faktura nie ma używalnej daty wymagalności — wybierz jedną dla Stripe."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr ""
+msgstr "Ta faktura będzie rozliczana do klienta Stripe już połączonego z tym klientem Carbon. Aby zmienić szczegóły, edytuj to na pulpicie nawigacyjnym Stripe."
 
 msgid "This is a controlled environment, so an authenticator app is required."
 msgstr "To jest kontrolowane środowisko, dlatego wymagana jest aplikacja authenticator."
