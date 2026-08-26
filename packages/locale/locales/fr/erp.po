@@ -168,6 +168,9 @@ msgstr "{from}–{to} sur {count}"
 msgid "{from}–{to} of {count} operations"
 msgstr "{from}–{to} sur {count} opérations"
 
+msgid "{hiddenCount} more: {hiddenNames}"
+msgstr ""
+
 #. placeholder {0}: errors.length
 #. placeholder {1}: skipped.length
 msgid "{inserted} inserted, {updated} updated, {0} need fixing, {1} skipped."
@@ -299,8 +302,8 @@ msgstr "3h"
 msgid "4h"
 msgstr "4h"
 
-msgid "5 User Minimum"
-msgstr "Minimum 5 utilisateurs"
+msgid "5 user minimum"
+msgstr ""
 
 msgid "5-8 weeks"
 msgstr "5-8 semaines"
@@ -355,6 +358,9 @@ msgstr "Un consommable est un article physique utilisé pour fabriquer une pièc
 
 msgid "A contractor is a supplier contact with particular abilities and available hours"
 msgstr "Un entrepreneur est un contact fournisseur ayant des compétences particulières et des heures disponibles"
+
+msgid "A custom solution to meet your needs"
+msgstr ""
 
 msgid "A customer is a business or person who buys your parts or services."
 msgstr "Un client est une entreprise ou une personne qui achète vos pièces ou services."
@@ -465,6 +471,12 @@ msgstr "Un composant Fabriquer sur commande qui obtient son propre travail et so
 
 msgid "A Make to Order component whose parts are issued together into the parent job — no separate build."
 msgstr "Un composant Fabriquer sur commande dont les pièces sont émises ensemble dans la tâche parent — pas de construction séparée."
+
+msgid "A managed cloud-hosted version of Carbon"
+msgstr ""
+
+msgid "A managed version with all the advanced features"
+msgstr ""
 
 msgid "A material is a physical item used to make a part that can be used across multiple jobs"
 msgstr "Un matériau est un article physique utilisé pour fabriquer une pièce qui peut être utilisée dans plusieurs travaux"
@@ -1321,6 +1333,9 @@ msgstr "Tous les comptes"
 msgid "All actions selected"
 msgstr "Toutes les actions sélectionnées"
 
+msgid "All advanced features available"
+msgstr ""
+
 msgid "All Audit Logs"
 msgstr "Tous les journaux d'audit"
 
@@ -1575,9 +1590,6 @@ msgstr "AP à payer"
 msgid "AP Overdue"
 msgstr "AP En retard"
 
-msgid "API and Webhooks"
-msgstr "API et Webhooks"
-
 msgid "API Docs"
 msgstr "Documentation API"
 
@@ -1595,6 +1607,9 @@ msgstr "Clés API"
 
 msgid "API keys for programmatic access to your Carbon data."
 msgstr "Clés API pour un accès programmatique à vos données Carbon."
+
+msgid "API, webhooks, and integrations"
+msgstr ""
 
 msgid "Applied"
 msgstr "Appliqué"
@@ -2289,6 +2304,9 @@ msgstr "Les attributs sont hérités de la procédure."
 msgid "Audit Log"
 msgstr "Journal d'audit"
 
+msgid "Audit logging"
+msgstr ""
+
 msgid "Audit Logging"
 msgstr "Journalisation d'audit"
 
@@ -2357,6 +2375,9 @@ msgstr "Mises à jour automatiques des délais d'approvisionnement"
 
 msgid "Automatic Updates"
 msgstr "Mises à jour automatiques"
+
+msgid "Automatic updates and backups"
+msgstr ""
 
 msgid "Automatic, prorated consumption of a job's untracked materials when output is reported — tracked materials are issued manually."
 msgstr "Consommation automatique au prorata des matériaux non tracés d'un travail lors du signalement de la production — les matériaux tracés sont émis manuellement."
@@ -2454,6 +2475,9 @@ msgstr "Devise de base"
 
 msgid "Base Price"
 msgstr "Prix de base"
+
+msgid "Basic ERP, MES, and QMS functionality"
+msgstr ""
 
 msgid "Basic Information"
 msgstr "Informations de base"
@@ -2589,8 +2613,8 @@ msgstr "Importez vos pièces, nomenclatures, processus de fabrication et coûts 
 msgid "Browse library"
 msgstr "Parcourir la bibliothèque"
 
-msgid "Browse the live version read-only. You can still rearrange steps to tidy the layout."
-msgstr "Parcourir la version active en lecture seule. Vous pouvez toujours réorganiser les étapes pour nettoyer la mise en page."
+msgid "Browse the published version read-only. You can still rearrange steps to tidy the layout."
+msgstr ""
 
 msgid "Bucket"
 msgstr "Compartiment"
@@ -3148,11 +3172,11 @@ msgstr "Clôture"
 msgid "Closure blocked"
 msgstr "Fermeture bloquée"
 
-msgid "Cloud-Hosted"
-msgstr "Hébergé dans le cloud"
-
 msgid "Cloud, or your self-hosted environment."
 msgstr "Cloud, ou votre environnement auto-hébergé."
+
+msgid "CMMC compliant"
+msgstr ""
 
 msgid "Code"
 msgstr "Code"
@@ -3213,6 +3237,9 @@ msgstr "Engager un utilisateur champion pour chaque domaine"
 
 msgid "Committing a receipt, shipment, or invoice: quantities move, journal entries hit the ledger, and status becomes Posted."
 msgstr "Valider un reçu, un envoi ou une facture: les quantités se déplacent, les écritures du journal atteignent le grand livre, et le statut devient Validé."
+
+msgid "Community support"
+msgstr ""
 
 msgid "Companies"
 msgstr "Entreprises"
@@ -3503,6 +3530,9 @@ msgstr "Contact"
 
 msgid "Contact (optional)"
 msgstr "Contact (facultatif)"
+
+msgid "Contact us"
+msgstr ""
 
 msgid "contacts"
 msgstr "contacts"
@@ -4381,6 +4411,9 @@ msgstr "clients"
 
 msgid "Customers"
 msgstr "Clients"
+
+msgid "Customizations, training, and integrations"
+msgstr ""
 
 msgid "Customize"
 msgstr "Personnaliser"
@@ -6069,9 +6102,6 @@ msgstr "Compte de capitaux propres pour les bénéfices ou pertes accumulés"
 msgid "Equity account for currency translation adjustments (CTA)"
 msgstr "Compte de capitaux propres pour ajustements de conversion de devises (CTA)"
 
-msgid "ERP, MES, QMS"
-msgstr "ERP, MES, QMS"
-
 msgid "Error"
 msgstr "Erreur"
 
@@ -6191,9 +6221,6 @@ msgstr "Tout le reste"
 
 msgid "Everything else covers people, imports, integrations and the API — anything that is not one of your workflows."
 msgstr "Tout le reste couvre les personnes, les importations, les intégrations et l'API — tout ce qui n'est pas l'un de vos flux de travail."
-
-msgid "Everything from Starter"
-msgstr "Tout de Starter"
 
 msgid "Exceeds {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB total — remove some attachments to send."
 msgstr "Dépasse {PO_EMAIL_ATTACHMENT_LIMIT_MB} MB au total — supprimez certaines pièces jointes pour envoyer."
@@ -6945,12 +6972,6 @@ msgstr "Indicateurs"
 msgid "for anything. They'll pull in the right person."
 msgstr "pour n'importe quoi. Ils vont faire intervenir la bonne personne."
 
-msgid "For growing businesses that need support"
-msgstr "Pour les entreprises en croissance qui ont besoin de support"
-
-msgid "For US companies handling ITAR data"
-msgstr "Pour les entreprises américaines traitant des données ITAR"
-
 #. placeholder {0}: forecastMethod ?? "unknown"
 msgid "Forecast method: <0>{0}</0>. This row was not derived from active jobs, so no parent sources are available."
 msgstr "Méthode de prévision : <0>{0}</0>. Cette ligne n'a pas été dérivée de tâches actives, donc aucune source parent n'est disponible."
@@ -6960,6 +6981,9 @@ msgstr "Oublié de pointer la sortie ?"
 
 msgid "Format"
 msgstr "Format"
+
+msgid "Forward deployed engineer"
+msgstr ""
 
 msgid "Foundation"
 msgstr "Fondation"
@@ -7013,6 +7037,9 @@ msgstr "Lieu d'Exécution"
 
 msgid "Full name"
 msgstr "Nom complet"
+
+msgid "Full setup and migrations"
+msgstr ""
 
 msgid "Fully Depreciated"
 msgstr "Entièrement amorti"
@@ -7615,9 +7642,6 @@ msgstr "Centre de mise en œuvre"
 msgid "Implementation Lead"
 msgstr "Chef de mise en œuvre"
 
-msgid "Implementation Support"
-msgstr "Support à la mise en œuvre"
-
 msgid "Import {label} CSV"
 msgstr "Importer {label} CSV"
 
@@ -8111,6 +8135,9 @@ msgstr "Date d'émission"
 msgid "Issues"
 msgstr "Problèmes"
 
+msgid "It will stop running until you publish a version again. Nothing is deleted."
+msgstr ""
+
 msgid "ITAR Certifications"
 msgstr "Certifications ITAR"
 
@@ -8470,6 +8497,9 @@ msgstr "Moins de travail manuel"
 msgid "Less manual work, fewer errors"
 msgstr "Moins de travail manuel, moins d'erreurs"
 
+msgid "Let's Build"
+msgstr ""
+
 msgid "Let's build something"
 msgstr "Construisons quelque chose"
 
@@ -8576,17 +8606,11 @@ msgstr "Paramètres de liste"
 msgid "Lists are wired into both {0} and {1}, so this step cannot tell which one to repeat over. Leave a list on only one of them."
 msgstr "Les listes sont connectées à la fois à {0} et {1}, donc cette étape ne peut pas savoir sur laquelle répéter. Laissez une liste sur une seule d'entre elles."
 
-msgid "Live"
-msgstr "Actif"
-
 msgid "Live on Carbon"
 msgstr "En direct sur Carbon"
 
 msgid "Live reloading"
 msgstr "Rechargement en direct"
-
-msgid "Live Version"
-msgstr "Version active"
 
 msgid "Load newer"
 msgstr "Charger les plus récents"
@@ -8650,9 +8674,6 @@ msgstr "Verrouillé"
 
 msgid "Locking makes the period read-only for operational documents (receipts, shipments, invoices) while still allowing accounting adjustments like depreciation and disposals. A period must be locked before it can be closed."
 msgstr "Le verrouillage rend la période en lecture seule pour les documents opérationnels (reçus, expéditions, factures) tout en permettant les ajustements comptables comme l'amortissement et les cessions. Une période doit être verrouillée avant de pouvoir être fermée."
-
-msgid "Log In"
-msgstr "Se connecter"
 
 msgid "Log nonconformances and drive a CAPA"
 msgstr "Enregistrer les non-conformités et piloter une CAPA"
@@ -10993,9 +11014,6 @@ msgstr "Pourcentage"
 msgid "Percentage of Lot"
 msgstr "Pourcentage du lot"
 
-msgid "Perfect for low-cost evaluation"
-msgstr "Parfait pour une évaluation à faible coût"
-
 msgid "Period"
 msgstr "Période"
 
@@ -11603,6 +11621,9 @@ msgstr "Publié"
 
 msgid "Published by Carbon"
 msgstr "Publié par Carbon"
+
+msgid "Published Version"
+msgstr ""
 
 msgid "Published versions can't be edited. Look around read-only, or branch a new version to make changes."
 msgstr "Les versions publiées ne peuvent pas être modifiées. Consultez en lecture seule, ou créez une branche d'une nouvelle version pour apporter des modifications."
@@ -13445,8 +13466,11 @@ msgstr "Sélectionné : {selectedSum} / restant après division : {0}"
 msgid "Self Managed"
 msgstr "Autogéré"
 
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "Intégration autonome avec Carbon Academy"
+msgid "Self-hosted or managed"
+msgstr ""
+
+msgid "Self-onboarding"
+msgstr ""
 
 msgid "Self-paced"
 msgstr "Apprentissage autonome"
@@ -13867,6 +13891,9 @@ msgstr "Affiché en arrière-plan discret sur chaque page des PDF générés"
 msgid "Shown to the user when this rule fails."
 msgstr "Affiché à l'utilisateur lorsque cette règle échoue."
 
+msgid "Sign in to Carbon"
+msgstr ""
+
 msgid "Sign in with biometrics instead of a magic link. Passkeys are secured by Face ID, Touch ID, or your device PIN."
 msgstr "Connectez-vous avec la biométrie au lieu d'un lien magique. Les clés d'accès sont sécurisées par Face ID, Touch ID ou votre code PIN de l'appareil."
 
@@ -14071,6 +14098,9 @@ msgstr "Diviser la ligne de reçu"
 msgid "Split shipment line"
 msgstr "Diviser la ligne d'expédition"
 
+msgid "SSO/SAML"
+msgstr ""
+
 msgid "Stand up hosting"
 msgstr "Mettre en place l'hébergement"
 
@@ -14119,9 +14149,6 @@ msgstr "Commencer l'expiration au démarrage du processus"
 
 msgid "Start Here"
 msgstr "Commencer ici"
-
-msgid "Start Learning"
-msgstr "Commencer à apprendre"
 
 msgid "Start Now"
 msgstr "Commencer maintenant"
@@ -14757,6 +14784,9 @@ msgstr "Taxes"
 
 msgid "Team trained"
 msgstr "Équipe formée"
+
+msgid "Technical support"
+msgstr ""
 
 msgid "Temperature"
 msgstr "Température"
@@ -15744,11 +15774,11 @@ msgstr "Cette version appartient au change notice <0>{0}</0>. Modifiez-le là."
 msgid "This version cannot be opened"
 msgstr "Cette version ne peut pas être ouverte"
 
-msgid "This version is live"
-msgstr "Cette version est en direct"
+msgid "This version is published"
+msgstr ""
 
-msgid "This version is live. Create a new version to edit."
-msgstr "Cette version est en direct. Créez une nouvelle version pour modifier."
+msgid "This version is published. Create a new version to edit."
+msgstr ""
 
 msgid "This version's definition could not be read."
 msgstr "La définition de cette version n'a pas pu être lue."
@@ -16290,8 +16320,11 @@ msgstr "erreur inconnue"
 msgid "unknown location"
 msgstr "localisation inconnue"
 
-msgid "Unlimited Functional Support"
-msgstr "Support fonctionnel illimité"
+msgid "Unlimited functional support"
+msgstr ""
+
+msgid "Unlimited records"
+msgstr ""
 
 msgid "Unlink"
 msgstr "Dissocier"
@@ -16334,6 +16367,12 @@ msgstr "Dépingler {0}"
 
 msgid "Unposted Documents"
 msgstr "Documents non comptabilisés"
+
+msgid "Unpublish"
+msgstr ""
+
+msgid "Unpublish {name}?"
+msgstr ""
 
 msgid "Unreceived POs"
 msgstr "Bons de commande non reçus"
@@ -16692,9 +16731,9 @@ msgstr "Vérifiez votre email"
 msgid "Version"
 msgstr "Version"
 
-#. placeholder {0}: live.versionNumber
-msgid "Version {0} is live now and will be replaced."
-msgstr "La version {0} est active maintenant et sera remplacée."
+#. placeholder {0}: published.versionNumber
+msgid "Version {0} is published now and will be replaced."
+msgstr ""
 
 msgid "Version:"
 msgstr "Version :"
@@ -17577,6 +17616,9 @@ msgstr "Vous avez reçu ce lot"
 
 msgid "You're live on Carbon"
 msgstr "Vous êtes en direct sur Carbon"
+
+msgid "You're one step away from your workspace."
+msgstr ""
 
 msgid "You're setting Carbon up yourself, at your own pace"
 msgstr "Vous configurez Carbon vous-même, à votre rythme"
