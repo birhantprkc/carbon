@@ -210,9 +210,6 @@ msgstr "{total}个阶段让您的公司在Carbon上线。每个阶段都以检�
 msgid "{total} phases to go live"
 msgstr "{total} 个阶段即可上线"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# 件} other {# 件}}"
 
@@ -10185,9 +10182,6 @@ msgstr "未认证"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "工作数量不足以覆盖数量"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "未到达"

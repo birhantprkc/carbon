@@ -19,7 +19,6 @@ import { CONFIRM_WORD, disclosureState } from "./disclosure-state";
 import { formatBackupDate, formatBackupName } from "./format";
 
 type Finding = CompanyBackupSummary["compatibility"]["findings"][number];
-type Excluded = CompanyBackupSummary["excludedRows"][number];
 
 /**
  * What the person is told before their company's data is replaced.
@@ -53,7 +52,6 @@ export function RestoreDisclosure({
   // unknown, which the screen says rather than implying a clean bill of health.
   const findings = backup?.compatibility.findings ?? [];
   const checkedAt = backup?.compatibility.checkedAt ?? null;
-  const excluded = backup?.excludedRows ?? [];
   const { blocked, discards, canConfirm } = disclosureState(backup, typed);
 
   const close = () => {
@@ -109,10 +107,6 @@ export function RestoreDisclosure({
                 </p>
               )}
 
-              {excluded.length > 0 ? (
-                <ExcludedRows excluded={excluded} />
-              ) : null}
-
               {findings.length > 0 ? (
                 <FindingGroups findings={findings} checkedAt={checkedAt} />
               ) : null}
@@ -164,57 +158,6 @@ export function RestoreDisclosure({
         </ModalContent>
       </Modal>
     </>
-  );
-}
-
-/**
- * Rows the export left out, by product area.
- *
- * Distinct from a `discarded` finding and shown separately: a finding is about
- * the SCHEMA drifting since the backup was taken, this is about rows that were
- * never written to the backup in the first place, and the two have different
- * causes and different fixes. Both are losses, so both gate the typed
- * confirmation.
- *
- * Rendered ABOVE the findings because it is unconditional: a schema finding may
- * not apply to the reader's data, but an excluded row is a row that measurably
- * exists today and will not exist after.
- */
-function ExcludedRows({ excluded }: { excluded: Excluded[] }) {
-  const total = excluded.reduce((sum, x) => sum + x.rows, 0);
-  const areas = [...new Set(excluded.map((x) => tableArea(x.table)))];
-
-  return (
-    <VStack spacing={1}>
-      <span className="flex items-center gap-1.5 text-sm font-medium">
-        <LuTriangleAlert className="h-4 w-4 shrink-0" />
-        <Trans>Not in this backup</Trans>
-      </span>
-      <span className="text-sm text-muted-foreground">
-        <Trans>
-          {total} records couldn't be backed up and won't be here afterwards.
-        </Trans>
-      </span>
-      {/* The area, not the table — same rule as the findings below. */}
-      <span className="text-sm text-muted-foreground">{areas.join(", ")}</span>
-      <details className="text-xs text-muted-foreground">
-        <summary className="cursor-pointer">
-          <Trans>Details</Trans>
-        </summary>
-        <ul className="mt-1 flex flex-col gap-0.5 pl-4">
-          {excluded.map((x) => (
-            <li key={`${x.table}.${x.column}`}>
-              <span className="font-mono">
-                {x.table}.{x.column}
-              </span>
-              {" → "}
-              <span className="font-mono">{x.refTable}</span>
-              {` — ${x.rows}`}
-            </li>
-          ))}
-        </ul>
-      </details>
-    </VStack>
   );
 }
 

@@ -25,14 +25,8 @@ export function disclosureState(
   typed: string
 ): DisclosureState {
   const findings = backup?.compatibility.findings ?? [];
-  const excluded = backup?.excludedRows ?? [];
   const blocked = findings.some((f) => f.kind === "blocked");
-  // Excluded rows count as a discard. They are not in the backup, they DO exist
-  // in the company today, and a restore deletes today's data — so confirming
-  // this restore loses them for good. That they were unrestorable junk does not
-  // make their disappearance something to find out about afterwards.
-  const discards =
-    findings.some((f) => f.kind === "discarded") || excluded.length > 0;
+  const discards = findings.some((f) => f.kind === "discarded");
 
   return {
     unchecked: !backup,

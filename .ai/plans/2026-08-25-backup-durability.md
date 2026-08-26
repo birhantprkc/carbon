@@ -21,15 +21,24 @@ being asked, and the dated manifest vintages depended on a person remembering.
 Tasks 22–29 remove them and replace the vintages with one self-maintaining
 `packages/jobs/manifests/schema.json`. The whole nightly cron is gone.
 
+**Reversal pass, 2026-08-26 (PR review feedback).** Tasks 4, 6 and 20 are REVERTED and
+their code deleted. The export refusing an out-of-scope row is a tenant-leak detector,
+not a backup defect, so the hard refusal is back and the exclusion path is gone; the
+nightly monitor only logged, so it fails this repo's own "no detection without a
+consumer" rule; and the SQL migration guarded three functions that only READ the bad
+rows, so it tolerated the problem instead of preventing it. The edge-function fixes
+(Tasks 2 and 3) SURVIVE — they are the actual write path. Full reasoning:
+`.ai/reviews/2026-08-26-tenant-leak-feedback.md`, and the banner atop the spec.
+
 ## Progress
 
 - [x] Task 1: Confirm the cross-tenant write path at the `schedule` call sites
 - [x] Task 2: Verify job ownership inside the `schedule` edge function
 - [x] Task 3: Verify job ownership inside the `trigger-rework` edge function and scope its dependency read
-- [x] Task 4: Scheduled cross-tenant reference monitor
+- [~] Task 4: Scheduled cross-tenant reference monitor — **REVERTED 2026-08-26**, deleted: it only logged (spec D10)
 - [~] Task 5: Capture evidence and clean up the four bad rows — **SKIPPED by decision (2026-08-25)**
-- [x] Task 6: Harden `check_operation_dependencies` and `finish_job_operation` — dependency on Task 5 **removed**, see note
-- [x] Task 7: Export skips unrestorable rows instead of refusing
+- [~] Task 6: Harden `check_operation_dependencies` and `finish_job_operation` — **REVERTED 2026-08-26**, migration deleted: those functions only READ the bad rows
+- [~] Task 7: Export skips unrestorable rows instead of refusing — **REVERTED 2026-08-26**: the refusal is a tenant-leak detector (spec D3)
 - [x] Task 8: Rewrite export failure and partial-success copy
 - [x] Task 9: Report-mode compatibility API
 - [x] Task 10: Shared table → product-area map

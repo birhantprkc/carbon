@@ -210,9 +210,6 @@ msgstr "{total}個のフェーズでお客様の企業をCarbonで稼働させ�
 msgid "{total} phases to go live"
 msgstr "{total}個のフェーズをライブにする"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# 個} other {# 個}}"
 
@@ -10185,9 +10182,6 @@ msgstr "認定されていない"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "数量をカバーするのに十分なジョブがありません"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "未到達"

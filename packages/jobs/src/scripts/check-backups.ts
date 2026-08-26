@@ -151,8 +151,7 @@ function catalogAsManifest(catalog: Catalog, exportedAt: string): Manifest {
       columns: exportableColumns(t).map((c) => c.name)
     })),
     storage: [],
-    excludedTables,
-    excludedRows: []
+    excludedTables
   };
 }
 

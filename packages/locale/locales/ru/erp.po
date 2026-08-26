@@ -210,9 +210,6 @@ msgstr "{total} этапов, чтобы ваша компания начала 
 msgid "{total} phases to go live"
 msgstr "{total} этапов до запуска"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# единица} other {# единиц}}"
 
@@ -10185,9 +10182,6 @@ msgstr "Не сертифицировано"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Недостаточно заданий для покрытия количества"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "Не достигнуто"

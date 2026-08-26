@@ -12,6 +12,42 @@ replaced, and the changes are folded into the text below rather than left as err
 what you read here is what shipped. The corrected decisions and the reasoning behind them
 are in the table below and under Rejected alternatives.
 
+> ## ⚠ REVERSED 2026-08-26 — read this before Part 3 or D3/D10
+>
+> Review feedback on the PR overturned this spec's reading of the cross-tenant rows.
+> **Three things below no longer describe the branch**, and the reasoning that produced
+> them was wrong. Full write-up: `.ai/reviews/2026-08-26-tenant-leak-feedback.md`.
+>
+> **D3 (export skips unrestorable rows) is REVERTED.** The export refusing was never a
+> backup defect — it was a tenant leak surfacing. RLS hides another tenant's rows from
+> every ordinary read, so an export, which runs without RLS, is the only thing wide
+> enough to see one. Excluding the rows and finishing the backup silenced the sole
+> detector in exchange for a friendlier error on a company whose data was already wrong.
+> The hard refusal is back. `manifest.excludedRows`, `CompanyBackupSummary.excludedRows`,
+> the list-row count and the disclosure's `ExcludedRows` block are all gone.
+>
+> **D10 (nightly `findExportScopeViolations` monitor) is REVERTED.** `tenant-integrity.ts`
+> only wrote a log line. By this repo's own rule — no detection without a consumer that
+> acts — that is not monitoring. Deleted rather than dressed up.
+>
+> **Part 3's SQL migration is REVERTED.** `20260825075035_harden-operation-dependency-scope.sql`
+> added a same-company guard to `check_operation_dependencies`,
+> `set_initial_dependency_status` and `finish_job_operation`. Those three functions only
+> READ dependency rows; none of them writes one, so none could have produced the
+> mis-stamped data, and this spec's claim that they did was unsupported. The guard was
+> tolerating bad rows rather than preventing them, at the cost of rewriting three live
+> job-completion functions. Dropped.
+>
+> **What SURVIVES from Part 3, and matters most:** the edge-function fixes in
+> `trigger-rework/index.ts` and `schedule/index.ts`. Those are the write path. Before
+> them, `trigger-rework` had NO authorization gate at all, and its convergence read of
+> `jobOperationDependency` carried no `jobId` filter — so it swept in EVERY tenant's
+> dependency edges and re-inserted them under the caller's company. That is how the rows
+> got mis-stamped. Both functions now verify the job belongs to the caller's company and
+> 404 on a miss, and the read is scoped.
+>
+> Everything else in this spec — D1, D2, D4–D9, D11–D14 — is unaffected.
+
 Per-company backups are currently close to unusable, for two unrelated reasons
 that both surface to the user as "the backup is broken". This spec covers the
 mechanism, both defects, every decision taken, and — new in this revision — the
@@ -26,14 +62,14 @@ tell the person at each step.
 |---|---|---|
 | D1 | A new NOT NULL column must ship a DEFAULT (conformance check over migration SQL) | Makes the gate's main refusal branch unreachable. Cheapest fix in this document. |
 | D2 | Restore **discloses and proceeds** instead of refusing, except where data would be silently lost | The loader is already drift-tolerant; the gate is what refuses. |
-| D3 | Export **skips and discloses** unrestorable rows instead of refusing the whole backup | Four junk rows must not block a company's only backup. |
+| D3 | ~~Export **skips and discloses** unrestorable rows~~ **REVERTED 2026-08-26** — the export still refuses | The refusal is a tenant-leak detector, not a backup defect. See the banner above. |
 | D4 | A committed map of renamed/dropped tables, appended by the migration that renames | "Missing" means two different things and guessing wrong loses data quietly. |
 | D5 | A LOCAL pre-commit check, not a CI gate | Moves discovery to the moment fixing it is free. The CI design was abandoned on contact — a bare Postgres has no `auth`/`storage` schema, so it needed most of the compose stack. |
 | D6 | ONE self-maintaining schema baseline, `packages/jobs/manifests/schema.json`, regenerated and staged by the pre-commit hook | *(replaced the original D6, dated vintages: nothing forced anyone to add one, and the directory grew forever)* |
 | D7 | Backups have NO shelf life, NO scheduled creation, and NO revalidation pass | *(replaced the original D7, which had all three)* Revalidation had no consumer that acted on a finding; the other two acted on customer data without being asked. |
 | D8 | One shared status vocabulary across every backup surface | Five states, one word each, no synonyms. |
 | D9 | All user-facing copy names the affected product areas, never "the system" | The current message blames the product for a data-integrity finding. |
-| D10 | `findExportScopeViolations` runs on a schedule as monitoring | It is already the right query; it just only runs when someone clicks a button. |
+| D10 | ~~`findExportScopeViolations` runs on a schedule as monitoring~~ **REVERTED 2026-08-26** | It only logged. No detection without a consumer that acts. |
 
 | D11 | The baseline is the copy on `main`, fetched from `raw.githubusercontent.com`, slug from the `origin` remote | The last shipped schema is what customer backups were taken against; a file that regenerates itself cannot be its own baseline. |
 | D12 | A fetch failure warns — naming the STALENESS, not just the failure — and falls back to `git show origin/main:…`; a baseline found in NEITHER place is a hard failure | Offline work must not be blocked; a missing baseline skipped quietly is indistinguishable from a passing check. |

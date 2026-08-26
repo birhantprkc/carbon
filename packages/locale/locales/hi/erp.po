@@ -210,9 +210,6 @@ msgstr "{total} phases to get your company live on Carbon. Each one ends at a ch
 msgid "{total} phases to go live"
 msgstr "{total} चरण लाइव होने के लिए"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# इकाई} other {# इकाइयाँ}}"
 
@@ -10185,9 +10182,6 @@ msgstr "प्रमाणित नहीं"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "पर्याप्त नौकरियां नहीं हैं मात्रा को कवर करने के लिए"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "प्राप्त नहीं"

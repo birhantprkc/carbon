@@ -210,9 +210,6 @@ msgstr "{total} aşama şirketinizi Carbon'da canlı hale getirmek için. Her bi
 msgid "{total} phases to go live"
 msgstr "{total} aşama canlı yayına alınacak"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# birim} other {# birimler}}"
 
@@ -10185,9 +10182,6 @@ msgstr "Sertifikalı değil"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Miktarı karşılayacak yeterli iş yok"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "Ulaşılmadı"

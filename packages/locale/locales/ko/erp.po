@@ -210,9 +210,6 @@ msgstr "귀사가 Carbon을 도입하기까지 {total}단계가 있습니다. �
 msgid "{total} phases to go live"
 msgstr "도입까지 {total}단계"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# 단위} other {# 단위}}"
 
@@ -10185,9 +10182,6 @@ msgstr "인증되지 않음"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "수량을 충족할 만큼 작업이 충분하지 않습니다"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "도달하지 않음"

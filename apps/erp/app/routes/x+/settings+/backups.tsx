@@ -643,16 +643,6 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
                   {convertKbToString(Math.round(file.sizeBytes / 1024))}
                 </>
               ) : null}
-              {/* A number, not an adjective. These rows referenced another
-                  company's data, so they could never have been restored —
-                  the backup is complete without them, and saying so beats
-                  silence. */}
-              {file.excludedRowCount > 0 ? (
-                <>
-                  {" · "}
-                  {file.excludedRowCount.toLocaleString()} rows excluded
-                </>
-              ) : null}
             </>
           )}
         </span>

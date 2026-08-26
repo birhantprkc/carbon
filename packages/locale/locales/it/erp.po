@@ -210,9 +210,6 @@ msgstr "{total} fasi per mettere la tua azienda online su Carbon. Ognuna termina
 msgid "{total} phases to go live"
 msgstr "{total} fasi per andare live"
 
-msgid "{total} records couldn't be backed up and won't be here afterwards."
-msgstr ""
-
 msgid "{totalQuantity, plural, one {# unit} other {# units}}"
 msgstr "{totalQuantity, plural, one {# unità} other {# unità}}"
 
@@ -10185,9 +10182,6 @@ msgstr "Non certificato"
 
 msgid "Not enough jobs to cover quantity"
 msgstr "Non ci sono abbastanza lavori per coprire la quantità"
-
-msgid "Not in this backup"
-msgstr ""
 
 msgid "Not reached"
 msgstr "Non raggiunto"
