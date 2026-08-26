@@ -129,16 +129,20 @@ postings simply has no `journalLine`/`costLedger` rows; that is data-absence, no
 coverage gap. With `includeStorage: "all"`, `buildCompanyBackup` records the
 in-scope asset paths in `manifest.storage` and returns them; the job then
 `copyAssetsToBackup` them server-side into the backup's `assets/` folder.
-- **Out-of-scope rows are EXCLUDED, not fatal** (`manifest.excludedRows`, a
-  `ScopeViolation[]`). `findExportScopeViolationDetails` counts rows whose NOT-NULL
-  FK points outside the company's scope; the dump then appends the SAME predicate,
-  negated (`outOfScopeRefPredicate`), so the guard's count and the dump's omission
-  cannot drift. One `logger.warn` per edge, `excludedRowCount` on the list row.
-  Such a row is meaningless without the parent it points at, and the previous
-  behaviour — refusing the whole export — left the company with no backup at all
-  and reported it as `The system created an invalid backup`, blaming the product for
-  a data-integrity finding. Absent on manifests predating the field; read it as `[]`.
-  The only remaining hard export failure is a company with no `companyGroupId`.
+- **Out-of-scope rows are FATAL, deliberately.** `findExportScopeViolations` counts
+  rows whose NOT-NULL FK points outside the company's scope, and a non-zero count
+  throws before any table file is written, listing every offending edge.
+
+  **This refusal is a tenant-leak detector, not a backup bug.** RLS hides another
+  tenant's rows from every ordinary read; an export runs without RLS, so it is the
+  first thing in the system with a wide enough view to see a cross-tenant reference
+  at all. An implementation that excluded those rows and finished the backup was
+  built and REVERTED on 2026-08-26 for exactly that reason — it made the only
+  detector we have go quiet, in exchange for a nicer error on a company whose data
+  was already wrong. Do not rebuild it. If the customer cost of a blocked export
+  needs addressing, address it by finding the write path, not by lowering the guard.
+
+  The other hard export failure is a company with no `companyGroupId`.
 - **`compatibility.json`**, written by `writeBackupCompatibility`
   (`company-compatibility.ts`) immediately AFTER the manifest — never before, since
   the manifest is the completion flag. Holds `{ checkedAt, schemaVersion, status,
@@ -277,6 +281,34 @@ answer the data questions that make `SET NOT NULL` and type changes dangerous. T
 honest reading is that this pair catches the whole class of *structural* breakage —
 a table or column the backup has nothing to say about — and that the *value*-shaped
 breakage is what `RestoreDisclosure` and the snapshot-and-revert path exist for.
+
+### Renamed and dropped tables — `company-backup.renames.ts`
+
+`TABLE_RENAMES` maps a tenant-scoped table's OLD name to its current one, or to `null`
+when it was dropped along with its feature. A migration that renames or drops such a table
+must add an entry in the same commit; `db:check:backups` fails the commit until it does,
+and `.claude/rules/workflow-database-migration.md` step 3b is where the author is told.
+
+The map exists because "this table is not in the schema" is ambiguous and the schema cannot
+disambiguate it. Dropped → skipping the rows is correct. Renamed → skipping silently
+discards real data, orphans everything referencing it, and still reports success. So an
+UNMAPPED missing table refuses the restore and names itself, rather than guessing.
+
+`applyTableRenames(catalog, backup)` is what makes a mapping actually do something. It runs
+ONCE, immediately after `readBackup` and before `assertBackupImportable`, in all four load
+paths (restore, restore-revert, template-revert, import), rewriting the manifest table names
+and the `data` keys. Everything downstream — the gate, the closure preflight,
+`wipeAndLoad` — keys off table name, so normalising once is what keeps them from disagreeing;
+before it existed the mapping reached only `reportBackupCompatibility`, so the pre-restore
+screen said "restorable" and the gate then refused with
+`table "X" no longer exists in the current schema`.
+
+Two rules that make cycles safe. The map is consulted **only** for a name the live schema no
+longer has, so after A→B→A the stale `A: "B"` entry is never read and cannot redirect rows
+away from the table they belong to. And resolution is a **single hop**, never a chain — it
+reads one entry and resolves it once against the catalog, so it cannot spin. Anything it
+can't resolve confidently (unmapped, mapped at a name also missing, or mapped at a name this
+same backup already carries) is left untouched for the gate to refuse.
 
 ## No nightly housekeeping — deliberately
 
@@ -436,26 +468,51 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
   can make. The badge answers the real question, for today.
 - UI: `modules/settings/ui/Backups/` — `BackupChoices` (Data only / Data + files),
   `BackupSourcePicker`, `BackupProgressModal`, `RestoreReviewRow` (Keep/Revert),
-  `RestoreDisclosure` (the pre-restore screen — the ONLY path to a restore now;
-  it groups the stored verdict's findings by `tableArea` from `backups.areas.ts`,
-  always states delete-and-replace / snapshot / Revert / Keep in that order,
-  requires a typed confirmation only when something will be DISCARDED, and offers
-  no confirm button at all when a finding blocks). It renders TWO kinds of loss,
-  excluded rows FIRST and schema findings after, because they have different
-  causes: `ExcludedRows` reports rows the export never wrote (`manifest.excludedRows`,
-  a `ScopeViolation[]` of `{table, column, refTable, rows}`, carried through
-  `CompanyBackupSummary.excludedRows` in full rather than as the list row's bare
-  count) while a finding reports the schema drifting since. **Both gate the typed
-  confirmation** — an excluded row exists in the company TODAY and a restore
-  deletes today's data, so confirming loses it for good; that it was unrestorable
-  junk is not a reason to learn about it afterwards. Both group by `tableArea`, so
-  the real case reads "Items, Production" rather than `pickMethod` /
-  `jobOperationDependency`,
+  `RestoreDisclosure` (the pre-restore screen — the ONLY path to a restore now),
   `BackupContentsInfo` (lazy popover), `format.ts`. `JobProgressModal` tracks real
   completion, not a timer: restore/revert poll the status marker; **export** has no
   marker, so the route component revalidates the list and passes `completed` once
   the new backup actually appears (`exportBaseline` diff) — the dialog never claims
   success before the artifact exists.
+
+### `RestoreDisclosure` — five states, one base sentence
+
+The pre-restore screen. It renders the verdict stored beside the backup, so it costs no
+schema read and cannot disagree with the badge on the list. It is DISCLOSURE, not
+authorization: `assertBackupImportable` runs against the LIVE schema inside the restore, so
+a stale verdict can leave this screen under-informed but can never let through a restore the
+gate would refuse.
+
+Every state opens with the same two sentences — *This company's data is replaced with the
+contents of this backup. Today's data is saved first, so you can revert.* Keep and Revert are
+NOT explained here; they are explained on `RestoreReviewRow`, where they are the actual
+decision. The four-line version that spelled out delete / snapshot / Revert / Keep upfront
+read as a warning label and was cut.
+
+| State | Added copy | Confirm |
+|---|---|---|
+| clean | none | button, no typing |
+| unchecked (uploaded backup, no stored verdict) | "This backup hasn't been checked yet…" | button, no typing |
+| defaults only | `Filled with a default` group | button, no typing |
+| discards | `Discarded` group + "Some records won't come back. Type restore to continue." | typed `restore` |
+| blocked | `Can't be restored` group | **no button at all** |
+
+Findings group by `tableArea` (`backups.areas.ts`) — "Production" means something to the
+person deciding, `jobOperationDependency` does not — with table names in a `Details`
+expander and `Checked <date>` beneath.
+
+The state decision lives in `disclosure-state.ts` (`disclosureState(backup, typed)` →
+`{ unchecked, blocked, discards, canConfirm }`), NOT in the component, and is unit-tested in
+`disclosure-state.test.ts`. That split exists because the states worth seeing are the ones
+nobody can produce by hand; the app has no browser-rendering test setup, so the branching is
+what gets pinned.
+
+There is one state with **no purpose-written copy**: a backup that is not referentially
+closed. `assertReferentiallyClosed` throws inside the restore job with
+`This backup can't be restored: the backup is not self-contained — …`, which surfaces after
+the user clicks Restore, not on this screen — the stored verdict compares table and column
+NAMES, and this is a row-level fact it cannot see. The refusal happens before the wipe, so
+nothing is lost. Known gap.
 
 ## Onboarding seed
 

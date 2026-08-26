@@ -84,6 +84,19 @@ newest migrations, e.g. `20260609143732_document-template.sql`):
 - **Never**: an `itemReadableId` column, or a precision spec on `NUMERIC`.
 - **Views** use `WITH(SECURITY_INVOKER=true)`.
 
+### 3b. Renaming or dropping a table? Record it for backups
+
+If the migration **renames or drops a table that has a `companyId` or `companyGroupId`
+column**, add an entry to `TABLE_RENAMES` in
+`packages/jobs/src/inngest/functions/tasks/company-backup.renames.ts` in the SAME commit:
+the new name for a rename, `null` for a table dropped along with its feature.
+
+Only you know which of the two it was. A customer's existing backup still names the old
+table, and to a restore "this table is gone" is ambiguous — guessing "dropped" when it was
+really a rename silently discards their rows and still reports success. So an unmapped
+missing table refuses the restore outright, and `pnpm db:check:backups` fails your commit
+until the entry exists.
+
 ### 4. Update the Zod validators
 
 Update the module's `apps/erp/app/modules/{module}/{module}.models.ts` to match
@@ -111,5 +124,7 @@ alone, `pnpm db:types`. **Do NOT run `npm run db:build` — it does not exist.**
 - [ ] RLS enabled with the four standardized policy names (SELECT via
       `get_companies_with_employee_role()`, writes via
       `get_companies_with_employee_permission('<module>_<action>')`)
+- [ ] Renamed/dropped a tenant-scoped table? `TABLE_RENAMES` entry added
+      (`company-backup.renames.ts`) — new name, or `null` if dropped with its feature
 - [ ] Zod validators updated in `{module}.models.ts`
 - [ ] Applied locally with `pnpm db:migrate` (regenerates types) — never `db:build`

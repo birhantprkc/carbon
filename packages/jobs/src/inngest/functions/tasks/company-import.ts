@@ -19,6 +19,7 @@ import {
   restoreAssetsFromBackup,
   SECRET_TABLES
 } from "./company-backup";
+import { applyTableRenames } from "./company-backup.renames";
 import {
   buildRowTransforms,
   loadSubstrateIds
@@ -75,15 +76,12 @@ export const companyImportFunction = inngest.createFunction(
       }
 
       const name = backupNameFromSource(filePath);
-      const backup = await readBackup(client, companyId, name);
+      const raw = await readBackup(client, companyId, name);
 
-      if (
-        mode === "preserve" &&
-        backup.manifest.sourceCompanyId !== companyId
-      ) {
+      if (mode === "preserve" && raw.manifest.sourceCompanyId !== companyId) {
         throw new Error(
           "Preserve mode requires importing into the same company the artifact " +
-            `was exported from (${backup.manifest.sourceCompanyId}). ` +
+            `was exported from (${raw.manifest.sourceCompanyId}). ` +
             "Use reseed mode to import into a different company."
         );
       }
@@ -115,6 +113,8 @@ export const companyImportFunction = inngest.createFunction(
       const targetGroupId = targetCompany.data?.companyGroupId ?? null;
 
       const catalog = await getCompanyTableCatalog(db);
+      // Renamed tables move onto their current names before the gate sees them.
+      const backup = applyTableRenames(catalog, raw);
       const compatibility = assertBackupImportable(catalog, backup);
       if (!compatibility.ok) {
         throw new Error(

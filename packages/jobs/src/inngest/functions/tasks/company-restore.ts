@@ -24,6 +24,7 @@ import {
   wipeScopedData,
   writeBackupManifest
 } from "./company-backup";
+import { applyTableRenames } from "./company-backup.renames";
 import {
   assertReferentiallyClosed,
   buildRowTransforms,
@@ -415,7 +416,7 @@ export const companyRestoreFunction = inngest.createFunction(
 
       try {
         const name = backupNameFromSource(filePath);
-        const backup = await readBackup(client, companyId, name);
+        const raw = await readBackup(client, companyId, name);
         const { targetGroupId, includeGroup } = await resolveRestoreScope(
           client,
           companyId
@@ -423,7 +424,7 @@ export const companyRestoreFunction = inngest.createFunction(
 
         // A backup from ANOTHER company must re-stamp the chart of accounts onto
         // this group, so it's only allowed when the group is this company's alone.
-        const foreign = backup.manifest.sourceCompanyId !== companyId;
+        const foreign = raw.manifest.sourceCompanyId !== companyId;
         if (foreign && !includeGroup) {
           throw new Error(
             !targetGroupId
@@ -437,6 +438,10 @@ export const companyRestoreFunction = inngest.createFunction(
         }
 
         const catalog = await getCompanyTableCatalog(db);
+        // Move renamed tables onto their current names BEFORE the gate, so the
+        // gate, the closure preflight and the load all agree on what this backup
+        // contains. An unmapped missing table survives this and the gate refuses it.
+        const backup = applyTableRenames(catalog, raw);
         const compatibility = assertBackupImportable(catalog, backup);
         if (!compatibility.ok) {
           throw new Error(
@@ -656,9 +661,11 @@ export const companyRestoreRevertFunction = inngest.createFunction(
         // check). Wipe + reload the SAME scope the forward restore touched so the
         // undo is exact — including group data (chart of accounts) when the
         // forward run covered it.
-        const snapshot = await readBackup(client, companyId, snapshotPath);
+        const rawSnapshot = await readBackup(client, companyId, snapshotPath);
         const targetGroupId = await getCompanyGroupId(client, companyId);
         const catalog = await getCompanyTableCatalog(db);
+        // A snapshot predates any migration deployed since the restore it undoes.
+        const snapshot = applyTableRenames(catalog, rawSnapshot);
         const { rows, idRewrite } = await wipeAndLoad(db, catalog, snapshot, {
           companyId,
           userId: "",

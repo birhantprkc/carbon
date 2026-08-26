@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import {
+  assertBackupImportable,
   BACKUP_KIND,
   BACKUP_VERSION,
   type Catalog,
@@ -225,5 +226,109 @@ describe("reportBackupCompatibility — TABLE_RENAMES", () => {
 
     expect(result.blocked).toBe(true);
     expect(result.findings[0]?.reason).toContain("alsoMissing");
+  });
+});
+
+// The gate is the boolean form of the report and delegates to it. These pin that
+// the delegation refuses exactly the `blocked` findings and nothing else — the
+// report's `discarded`/`defaulted` findings must NOT stop a restore.
+describe("assertBackupImportable", () => {
+  const gate = (cat: Catalog, mf: Manifest) =>
+    assertBackupImportable(cat, { manifest: mf, data: {} });
+
+  it("passes a backup the schema has not moved away from", () => {
+    expect(
+      gate(
+        catalog([table("item", [col("id"), col("name")])]),
+        backup([{ name: "item", rows: 3, columns: ["id", "name"] }])
+      )
+    ).toEqual({ ok: true });
+  });
+
+  it("refuses an unsupported backup format", () => {
+    const result = gate(
+      catalog([table("item", [col("id")])]),
+      backup([{ name: "item", rows: 1, columns: ["id"] }], { version: 0 })
+    );
+    expect(result.ok).toBe(false);
+    expect((result as { reason: string }).reason).toContain(
+      "is no longer supported"
+    );
+  });
+
+  it("refuses a table the schema no longer has and cannot map", () => {
+    const result = gate(
+      catalog([table("item", [col("id")])]),
+      backup([{ name: "vanished", rows: 1, columns: ["id"] }])
+    );
+    expect(result.ok).toBe(false);
+    expect((result as { reason: string }).reason).toContain("vanished");
+  });
+
+  it("refuses a new required column with no default, naming table and column", () => {
+    const result = gate(
+      catalog([table("item", [col("id"), col("mandatory")])]),
+      backup([{ name: "item", rows: 1, columns: ["id"] }])
+    );
+    expect(result).toEqual({
+      ok: false,
+      reason:
+        '"item" now requires column "mandatory", which this backup predates'
+    });
+  });
+
+  it("ACCEPTS a renamed table, the case the hand-kept copy used to refuse", () => {
+    expect(
+      gate(
+        catalog([table("newName", [col("id")])]),
+        backup([{ name: "oldName", rows: 2, columns: ["id"] }])
+      )
+    ).toEqual({ ok: true });
+  });
+
+  it("accepts a dropped-with-its-feature table — discarded is not blocking", () => {
+    expect(
+      gate(
+        catalog([table("item", [col("id")])]),
+        backup([
+          { name: "item", rows: 1, columns: ["id"] },
+          { name: "retiredFeature", rows: 9, columns: ["id"] }
+        ])
+      )
+    ).toEqual({ ok: true });
+  });
+
+  it("accepts a removed column — those values are discarded, not blocking", () => {
+    expect(
+      gate(
+        catalog([table("item", [col("id")])]),
+        backup([{ name: "item", rows: 1, columns: ["id", "goneNow"] }])
+      )
+    ).toEqual({ ok: true });
+  });
+
+  it("accepts a new required column that has a default", () => {
+    expect(
+      gate(
+        catalog([
+          table("item", [col("id"), col("added", { hasDefault: true })])
+        ]),
+        backup([{ name: "item", rows: 1, columns: ["id"] }])
+      )
+    ).toEqual({ ok: true });
+  });
+
+  it("refuses account defaults arriving without a chart of accounts", () => {
+    const result = gate(
+      catalog([
+        table("account", [col("id")]),
+        table("accountDefault", [col("id")])
+      ]),
+      backup([{ name: "accountDefault", rows: 4, columns: ["id"] }])
+    );
+    expect(result.ok).toBe(false);
+    expect((result as { reason: string }).reason).toContain(
+      "no chart of accounts"
+    );
   });
 });
