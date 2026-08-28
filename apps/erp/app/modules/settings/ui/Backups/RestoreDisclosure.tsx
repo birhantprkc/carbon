@@ -23,11 +23,11 @@ type Finding = CompanyBackupSummary["compatibility"]["findings"][number];
 /**
  * What the person is told before their company's data is replaced.
  *
- * The verdict rendered here is the one stored beside the backup, so this screen
- * costs no schema read and can never disagree with the badge on the list. It is
- * DISCLOSURE, not authorization: the restore job runs the real gate itself, so a
- * verdict that has gone stale since it was written can leave this screen
- * under-informed but can never let through a restore the gate would refuse.
+ * The verdict rendered here was computed in the loader against the LIVE schema
+ * (`getCompanyBackups`), so it describes what a restore would do right now. It
+ * is DISCLOSURE, not authorization: the restore job runs the real gate itself
+ * (`assertBackupImportable`), so this screen can never let through a restore
+ * the gate would refuse.
  */
 export function RestoreDisclosure({
   backups,
@@ -47,11 +47,10 @@ export function RestoreDisclosure({
     [backups, source]
   );
 
-  // No stored verdict — an uploaded backup, or one whose check never landed. The
-  // consequences below still apply and are still shown; only the findings are
-  // unknown, which the screen says rather than implying a clean bill of health.
+  // No verdict — an upload-sourced restore. The consequences below still
+  // apply and are shown; only the findings are unknown, which the screen says
+  // rather than implying a clean bill of health.
   const findings = backup?.compatibility.findings ?? [];
-  const checkedAt = backup?.compatibility.checkedAt ?? null;
   const { unchecked, blocked, discards, canConfirm } = disclosureState(
     backup,
     typed
@@ -111,7 +110,7 @@ export function RestoreDisclosure({
               ) : null}
 
               {findings.length > 0 ? (
-                <FindingGroups findings={findings} checkedAt={checkedAt} />
+                <FindingGroups findings={findings} />
               ) : null}
 
               {discards ? (
@@ -173,13 +172,7 @@ const KIND_ICON = {
 } as const;
 
 /** Findings by kind, then by product area. Table names live in the expander. */
-function FindingGroups({
-  findings,
-  checkedAt
-}: {
-  findings: Finding[];
-  checkedAt: string | null;
-}) {
+function FindingGroups({ findings }: { findings: Finding[] }) {
   const { t } = useLingui();
   const kindLabel: Record<Finding["kind"], string> = {
     blocked: t`Can't be restored`,
@@ -226,11 +219,6 @@ function FindingGroups({
           );
         }
       )}
-      {checkedAt ? (
-        <span className="text-xs text-muted-foreground">
-          <Trans>Checked</Trans> {formatBackupDate(checkedAt)}
-        </span>
-      ) : null}
     </VStack>
   );
 }

@@ -5,6 +5,7 @@ import {
   BACKUP_VERSION,
   type Catalog,
   type ColumnInfo,
+  compatibilityStatus,
   type Manifest,
   reportBackupCompatibility,
   type TableInfo
@@ -346,5 +347,34 @@ describe("assertBackupImportable", () => {
     expect((result as { reason: string }).reason).toContain(
       "no chart of accounts"
     );
+  });
+});
+
+describe("compatibilityStatus", () => {
+  it("is ready when nothing differs", () => {
+    expect(compatibilityStatus({ findings: [], blocked: false })).toBe("ready");
+  });
+
+  it("is restorable-with-changes when there are findings but none block", () => {
+    expect(
+      compatibilityStatus({
+        findings: [
+          { kind: "defaulted", table: "item", column: "x", reason: "r" }
+        ],
+        blocked: false
+      })
+    ).toBe("restorable-with-changes");
+  });
+
+  it("is not-restorable as soon as one finding blocks", () => {
+    expect(
+      compatibilityStatus({
+        findings: [
+          { kind: "defaulted", table: "item", column: "x", reason: "r" },
+          { kind: "blocked", table: "item", column: "y", reason: "r" }
+        ],
+        blocked: true
+      })
+    ).toBe("not-restorable");
   });
 });

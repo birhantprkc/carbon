@@ -3031,9 +3031,6 @@ msgstr "Sprawdź księgę pozycji w poszukiwaniu pozycji z ujemną ilością dos
 msgid "Check your email"
 msgstr "Sprawdź swoją pocztę"
 
-msgid "Checked"
-msgstr "Zaznaczono"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Sprawdzanie Stripe dla tego klienta…"
 

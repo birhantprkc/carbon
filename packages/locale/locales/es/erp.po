@@ -3031,9 +3031,6 @@ msgstr "Revise el libro mayor de artículos para buscar artículos con cantidad 
 msgid "Check your email"
 msgstr "Revisa tu correo electrónico"
 
-msgid "Checked"
-msgstr "Verificado"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Verificando Stripe para este cliente…"
 

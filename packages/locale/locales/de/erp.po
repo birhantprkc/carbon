@@ -3031,9 +3031,6 @@ msgstr "Überprüfen Sie das Artikelhauptbuch auf Artikel mit negativem Bestand 
 msgid "Check your email"
 msgstr "Überprüfen Sie Ihre E-Mail"
 
-msgid "Checked"
-msgstr "Geprüft"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Stripe wird für diesen Kunden geprüft…"
 

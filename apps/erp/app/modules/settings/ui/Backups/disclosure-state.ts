@@ -4,7 +4,7 @@ import type { CompanyBackupSummary } from "../../backups.service";
 export const CONFIRM_WORD = "restore";
 
 export type DisclosureState = {
-  /** No stored verdict — an uploaded backup. Say so rather than imply it is clean. */
+  /** No verdict — an upload-sourced restore. Say so rather than imply it is clean. */
   unchecked: boolean;
   /** A finding refuses the restore outright. No confirm button is offered. */
   blocked: boolean;
@@ -29,10 +29,9 @@ export function disclosureState(
   const discards = findings.some((f) => f.kind === "discarded");
 
   return {
-    // A listed backup with no verdict reads as "no findings", which is
-    // indistinguishable from clean. `checkedAt` is the only thing that separates
-    // "we looked and found nothing" from "nobody looked".
-    unchecked: !backup || backup.compatibility.checkedAt === null,
+    // Every LISTED backup carries a live verdict (computed in the loader), so
+    // only a restore from outside the list — an uploaded file — is unchecked.
+    unchecked: !backup,
     blocked,
     discards,
     canConfirm:

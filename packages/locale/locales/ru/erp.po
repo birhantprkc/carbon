@@ -3031,9 +3031,6 @@ msgstr "Проверьте реестр товаров на наличие то�
 msgid "Check your email"
 msgstr "Проверьте вашу почту"
 
-msgid "Checked"
-msgstr "Проверено"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Проверка Stripe для этого клиента…"
 

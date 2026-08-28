@@ -3031,9 +3031,6 @@ msgstr "Dönem sonunda negatif el altında miktarı olan herhangi bir madde içi
 msgid "Check your email"
 msgstr "E-postanızı kontrol edin"
 
-msgid "Checked"
-msgstr "İşaretlendi"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Bu müşteri için Stripe kontrol ediliyor…"
 

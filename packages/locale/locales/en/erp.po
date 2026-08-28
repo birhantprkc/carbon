@@ -3031,9 +3031,6 @@ msgstr "Check the item ledger for any items with a negative on-hand quantity as 
 msgid "Check your email"
 msgstr "Check your email"
 
-msgid "Checked"
-msgstr "Checked"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Checking Stripe for this customer…"
 

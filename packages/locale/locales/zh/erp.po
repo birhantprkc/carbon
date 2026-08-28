@@ -3031,9 +3031,6 @@ msgstr "检查物料分类账中期末库存数量为负的任何物料——通
 msgid "Check your email"
 msgstr "检查您的电子邮件"
 
-msgid "Checked"
-msgstr "已检查"
-
 msgid "Checking Stripe for this customer…"
 msgstr "正在检查此客户的 Stripe…"
 

@@ -2,7 +2,7 @@ import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { sql } from "kysely";
 import { getJobDatabaseClient, type JobDatabase } from "../../../db";
 import { inngest } from "../../client";
-import type { Catalog, Manifest } from "./company-backup";
+import type { Manifest } from "./company-backup";
 import {
   BACKUP_INTEGRATION,
   BACKUP_KIND,
@@ -21,7 +21,6 @@ import {
   serializeTable,
   writeBackupManifest
 } from "./company-backup";
-import { writeBackupCompatibility } from "./company-compatibility";
 
 // Assets are copied server-side into the backup's `assets/` folder (no bytes pass
 // through this process), so there's no memory reason to cap a single file — the
@@ -63,8 +62,6 @@ export async function buildCompanyBackup(
 ): Promise<{
   name: string;
   manifest: Manifest;
-  /** The schema this backup was taken against — the compatibility verdict's baseline. */
-  catalog: Catalog;
   rows: number;
   /** `private`-bucket paths to copy into the backup's `assets/` folder. */
   assetSourcePaths: string[];
@@ -235,7 +232,7 @@ export async function buildCompanyBackup(
   // The manifest is NOT written here — the caller writes it LAST (after assets)
   // via writeBackupManifest, so its presence marks the backup as complete.
   const rows = tableManifest.reduce((sum, t) => sum + t.rows, 0);
-  return { name, manifest, catalog, rows, assetSourcePaths };
+  return { name, manifest, rows, assetSourcePaths };
 }
 
 // One company-scoped progress marker (exports run one-at-a-time, so no run id).
@@ -332,7 +329,7 @@ export const companyExportFunction = inngest.createFunction(
       };
 
       try {
-        const { name, manifest, catalog, rows, assetSourcePaths } =
+        const { name, manifest, rows, assetSourcePaths } =
           await buildCompanyBackup(client, db, {
             companyId,
             userId,
@@ -362,31 +359,6 @@ export const companyExportFunction = inngest.createFunction(
         // Manifest LAST — its presence marks the backup complete, so the list
         // never shows a half-written backup as ready.
         await writeBackupManifest(client, companyId, name, manifest);
-
-        // The compatibility verdict, written AFTER the manifest so it can never
-        // make an unfinished backup look complete. This is the ONLY place it is
-        // written. Best-effort: a backup whose verdict failed to write reads as
-        // "not yet checked", and an absent answer is not a bad one — losing a
-        // committed backup over a missing advisory badge would be.
-        try {
-          await writeBackupCompatibility(
-            client,
-            companyId,
-            name,
-            catalog,
-            manifest,
-            manifest.exportedAt
-          );
-        } catch (err) {
-          logger.warn(
-            "Company export could not record a compatibility verdict",
-            {
-              companyId,
-              name,
-              error: err instanceof Error ? err.message : String(err)
-            }
-          );
-        }
 
         logger.info("Company export complete", {
           companyId,

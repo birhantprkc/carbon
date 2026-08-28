@@ -3031,9 +3031,6 @@ msgstr "期末時点で保有数量がマイナスの品目がないか品目台
 msgid "Check your email"
 msgstr "メールを確認してください"
 
-msgid "Checked"
-msgstr "チェック済み"
-
 msgid "Checking Stripe for this customer…"
 msgstr "このカスタマーのStripeを確認しています…"
 

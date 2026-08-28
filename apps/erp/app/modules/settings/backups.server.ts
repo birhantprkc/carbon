@@ -1,10 +1,58 @@
 import { getCarbonServiceRole } from "@carbon/auth/client.server";
+import type { Database } from "@carbon/database";
 import { trigger } from "@carbon/jobs";
+import {
+  compatibilityStatus,
+  getCompanyTableCatalog,
+  reportBackupCompatibility
+} from "@carbon/jobs/backups";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { nanoid } from "nanoid";
+import { getDatabaseClient } from "~/services/database.server";
+import {
+  type CompanyBackupSummary,
+  listCompanyBackupFolders
+} from "./backups.service";
 
-// Server-only: enqueues the in-place restore inngest jobs. Kept out of the
-// route module so `@carbon/jobs` (which pulls Node `Buffer` via the Inngest
-// client) never lands in the browser bundle.
+// Server-only: enqueues the in-place restore inngest jobs and computes the
+// live compatibility verdict. Kept out of the route module so `@carbon/jobs`
+// (which pulls Node `Buffer` via the Inngest client) never lands in the
+// browser bundle.
+
+/**
+ * The Backups loader's list: each ready backup's manifest diffed against
+ * TODAY's schema, so the badge and the restore disclosure describe what a
+ * restore would actually do right now. Computed on every load rather than
+ * stored — a verdict written at export time compares the manifest against the
+ * very schema it was projected from and can only ever say "ready".
+ */
+export async function getCompanyBackups(
+  client: SupabaseClient<Database>,
+  companyId: string
+): Promise<{ data: CompanyBackupSummary[] | null; error: Error | null }> {
+  const { data, error } = await listCompanyBackupFolders(client, companyId);
+  if (error || !data) return { data: null, error };
+
+  // One schema read per page load, shared by every row.
+  const catalog = data.some((b) => b.manifest)
+    ? await getCompanyTableCatalog(getDatabaseClient())
+    : null;
+
+  return {
+    data: data.map(({ manifest, ...summary }) => {
+      if (!catalog || !manifest) return summary;
+      const report = reportBackupCompatibility(catalog, manifest);
+      return {
+        ...summary,
+        compatibility: {
+          status: compatibilityStatus(report),
+          findings: report.findings
+        }
+      };
+    }),
+    error: null
+  };
+}
 
 /**
  * Kick off an in-place restore of `filePath` (one of this company's own

@@ -3031,9 +3031,6 @@ msgstr "अवधि के अंत तक नकारात्मक मौ�
 msgid "Check your email"
 msgstr "अपना ईमेल जांचें"
 
-msgid "Checked"
-msgstr "जांचा गया"
-
 msgid "Checking Stripe for this customer…"
 msgstr "इस ग्राहक के लिए Stripe की जांच कर रहे हैं…"
 

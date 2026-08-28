@@ -48,12 +48,12 @@ import {
   deleteCompanyBackup,
   exportCompanyBackup,
   getCompanyExportRun,
-  getCompanyRestoreRuns,
-  listCompanyBackups
+  getCompanyRestoreRuns
 } from "~/modules/settings";
 import {
   dismissCompanyExportFailure,
   finalizeCompanyRestore,
+  getCompanyBackups,
   revertCompanyRestore,
   startCompanyRestore
 } from "~/modules/settings/backups.server";
@@ -111,7 +111,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   requireBackupAccess(email);
 
   const [backupsList, restoreRuns, exportRun] = await Promise.all([
-    listCompanyBackups(client, companyId),
+    getCompanyBackups(client, companyId),
     getCompanyRestoreRuns(client, companyId),
     getCompanyExportRun(client, companyId)
   ]);

@@ -21,7 +21,7 @@ Background job system built on Inngest. Handles event system processing (webhook
 
 ## Never
 
-- Import Inngest internals or server-only job code in app bundles — use only the public exports from `@carbon/jobs` (`.` subpath: `trigger`, `batchTrigger`, schemas).
+- Import Inngest internals or server-only job code in app bundles — use only the public exports from `@carbon/jobs` (`.` subpath: `trigger`, `batchTrigger`, schemas; `./backups`: the pure catalog/compatibility layer, server-side only).
 - Use the event system for real-time / data-integrity needs — it is async (typically ~3–5s, up to ~1 min if a push wake is lost). Use sync interceptors instead.
 - Bypass the PGMQ queue by writing directly to handler tables — always go through `dispatch_event_batch()` triggers.
 - Give a workflow action anything but the owner-scoped client it was handed. A privileged or
@@ -59,6 +59,7 @@ field for one script. That is exactly why the catalog/compatibility logic lives 
 | Subpath | Provides |
 |---------|----------|
 | `.` (index) | `trigger()`, `batchTrigger()`, `Events` type, Jira/Linear webhook schemas |
+| `./backups` | `src/backups/schema.ts` — catalog introspection + backup-compatibility diff (`getCompanyTableCatalog`, `reportBackupCompatibility`, `compatibilityStatus`, types). No Inngest, no logger; the ERP Backups loader computes the live restore verdict through it. Server-side only (runs `information_schema` SQL) |
 | `./events` | `Events` type (re-export from `@carbon/lib`) |
 | `./inngest` | Inngest client + function registrations, plus `setWorkflowDispatch` and its `WorkflowDispatch` / `DispatchContext` / `DispatchResult` types (server-only) |
 | `./worker` | Worker entry point for Inngest serve |

@@ -3031,9 +3031,6 @@ msgstr "기간 종료 시점의 음수 수량 보유 항목에 대해 항목 원
 msgid "Check your email"
 msgstr "이메일을 확인하세요"
 
-msgid "Checked"
-msgstr "확인됨"
-
 msgid "Checking Stripe for this customer…"
 msgstr "이 고객의 Stripe 확인 중…"
 

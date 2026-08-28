@@ -3031,9 +3031,6 @@ msgstr "Controlla il registro degli articoli per eventuali articoli con una quan
 msgid "Check your email"
 msgstr "Controlla la tua email"
 
-msgid "Checked"
-msgstr "Verificato"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Controllo di Stripe per questo cliente…"
 

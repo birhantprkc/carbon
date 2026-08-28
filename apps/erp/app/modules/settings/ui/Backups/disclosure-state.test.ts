@@ -7,18 +7,15 @@ type Finding = CompanyBackupSummary["compatibility"]["findings"][number];
 const finding = (kind: Finding["kind"], table = "job"): Finding =>
   ({ kind, table, column: "startDate", reason: "a reason" }) as Finding;
 
-const backup = (
-  findings: Finding[] = [],
-  checkedAt: string | null = "2026-08-25T20:06:00.000Z"
-): CompanyBackupSummary =>
+const backup = (findings: Finding[] = []): CompanyBackupSummary =>
   ({
     name: "minimal",
     label: "minimal",
     exportedAt: "2026-08-25T20:06:00.000Z",
-    compatibility: { checkedAt, findings }
+    compatibility: { findings }
   }) as unknown as CompanyBackupSummary;
 
-// The five states the disclosure screen can be in. Named here the way they are
+// The states the disclosure screen can be in. Named here the way they are
 // described to a reader, so a future change that collapses two of them fails.
 describe("disclosureState", () => {
   it("a clean backup asks for nothing", () => {
@@ -32,16 +29,6 @@ describe("disclosureState", () => {
 
   it("an uploaded backup has no verdict, and still confirms", () => {
     expect(disclosureState(undefined, "")).toEqual({
-      unchecked: true,
-      blocked: false,
-      discards: false,
-      canConfirm: true
-    });
-  });
-
-  it("a LISTED backup with no verdict is unchecked, not clean", () => {
-    // compatibility.json absent or unreadable — no findings, but nobody looked.
-    expect(disclosureState(backup([], null), "")).toEqual({
       unchecked: true,
       blocked: false,
       discards: false,

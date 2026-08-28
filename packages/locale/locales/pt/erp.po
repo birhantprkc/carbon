@@ -3031,9 +3031,6 @@ msgstr "Verifique o razão de itens para qualquer item com quantidade em mão ne
 msgid "Check your email"
 msgstr "Verifique seu email"
 
-msgid "Checked"
-msgstr "Verificado"
-
 msgid "Checking Stripe for this customer…"
 msgstr "Verificando Stripe para este cliente…"
 
