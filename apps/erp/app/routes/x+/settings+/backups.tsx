@@ -620,13 +620,8 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
         file.status === "pending" || isDeleting ? "opacity-70" : ""
       }`}
     >
-      <VStack spacing={0}>
-        <HStack spacing={2}>
-          <span className="text-sm font-medium">{name}</span>
-          <Badge variant={backupStatusVariant(status)}>
-            {t(backupStatusLabel(status))}
-          </Badge>
-        </HStack>
+      <VStack spacing={0} className="min-w-0">
+        <span className="text-sm font-medium truncate">{name}</span>
         <span className="text-xs text-muted-foreground">
           {file.status === "pending" ? (
             // A pending folder with no running export is a dead partial — never
@@ -645,7 +640,13 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
           )}
         </span>
       </VStack>
-      <HStack spacing={2}>
+      <HStack spacing={2} className="shrink-0">
+        {/* Status sits with the actions, not against the name — it describes
+            what you can DO with the row (restore it or not), and a loud chip
+            beside a quiet text-sm title read as part of the name. */}
+        <Badge variant={backupStatusVariant(status)}>
+          {t(backupStatusLabel(status))}
+        </Badge>
         {file.status === "ready" && !isDeleting ? (
           <Button asChild variant="secondary">
             <a
