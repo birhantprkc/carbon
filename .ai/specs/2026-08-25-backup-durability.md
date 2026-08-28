@@ -12,6 +12,24 @@ replaced, and the changes are folded into the text below rather than left as err
 what you read here is what shipped. The corrected decisions and the reasoning behind them
 are in the table below and under Rejected alternatives.
 
+> ## ⚠ REVISED 2026-08-28 — the compatibility verdict is computed live, not stored
+>
+> Self-review found the stored verdict was a tautology: `writeBackupCompatibility`
+> ran once, at export time, diffing the manifest against the very catalog it had
+> just been projected from — empty by construction — and was never refreshed. So
+> `compatibility.json` always said `ready`, and the badge's yellow/red states, the
+> typed-confirm gate and the blocked no-confirm state were unreachable.
+>
+> **Now:** the Backups loader computes `reportBackupCompatibility` against the
+> LIVE schema on every load (`getCompanyBackups` in `backups.server.ts`, via the
+> new `@carbon/jobs/backups` export of `packages/jobs/src/backups/schema.ts`).
+> `compatibility.json`, `writeBackupCompatibility`, `checkedAt` and the
+> "listed but unchecked" state are gone; the restore job's own gate is unchanged.
+> The same pass extracted the catalog/compat logic into `src/backups/` so
+> `check-backups.ts` runs under bare tsx without the `@carbon/logger`
+> `"type": "module"` flip (reverted), moved `TABLE_RENAMES` to
+> `src/backups/renames.ts`, and translated the badge/area/popover copy.
+>
 > ## ⚠ REVERSED 2026-08-26 — read this before Part 3 or D3/D10
 >
 > Review feedback on the PR overturned this spec's reading of the cross-tenant rows.

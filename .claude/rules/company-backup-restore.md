@@ -1,5 +1,6 @@
 ---
 paths:
+  - "packages/jobs/src/backups/**"
   - "packages/jobs/src/inngest/functions/tasks/company-backup.ts"
   - "packages/jobs/src/inngest/functions/tasks/company-export.ts"
   - "packages/jobs/src/inngest/functions/tasks/company-import.ts"
@@ -45,9 +46,13 @@ loader/action (404), and the nav (`localOrInternalRoutes` in
 
 ## Shared engine — `company-backup.ts`
 
-The catalog is **schema-introspected**, not a hand-maintained list:
+The catalog is **schema-introspected**, not a hand-maintained list. The
+catalog + compatibility layer lives in `packages/jobs/src/backups/schema.ts`
+(no runtime `@carbon/*` imports, so bare-`tsx` scripts and the ERP server can
+both use it; `company-backup.ts` re-exports it), exported to app code as
+`@carbon/jobs/backups`:
 
-- `getCompanyTableCatalog(sql)` reads `information_schema` for every public BASE
+- `getCompanyTableCatalog(db)` reads `information_schema` for every public BASE
   TABLE carrying a `companyId` or `companyGroupId` column, builds `TableInfo`
   (columns, FK edges, `scopeColumn`, `hasId`/id type), and topologically sorts
   (referenced-first). **`companyId` wins** when a table has both columns.
@@ -143,14 +148,13 @@ in-scope asset paths in `manifest.storage` and returns them; the job then
   needs addressing, address it by finding the write path, not by lowering the guard.
 
   The other hard export failure is a company with no `companyGroupId`.
-- **`compatibility.json`**, written by `writeBackupCompatibility`
-  (`company-compatibility.ts`) immediately AFTER the manifest — never before, since
-  the manifest is the completion flag. Holds `{ checkedAt, schemaVersion, status,
-  findings }` from `reportBackupCompatibility(catalog, manifest)`. Best-effort: a
-  failed write leaves the backup committed and the verdict simply absent, which the
-  UI reads as "not yet checked". It exists because the comparison needs the live
-  schema and lives in this package, and app code may not import job internals — so
-  the verdict is precomputed here and read as an ordinary file there.
+- **No compatibility verdict is stored with the backup.** One was
+  (`compatibility.json`, written at export time on this feature's branch) and it
+  was a tautology: the export diffed the manifest against the very catalog it had
+  just been projected from, so it always said `ready` and was never refreshed.
+  The verdict is only meaningful when manifest and schema come from different
+  points in time, so it is computed LIVE in the Backups loader instead (see the
+  ERP layer below).
 - **Progress/failure marker**: one `externalIntegrationMapping` row per company
   (`integration = "company-export"`, no run id — exports are one-at-a-time per
   company). The job writes `{ status: "running", startedAt, progress }` heartbeats
@@ -178,15 +182,14 @@ prevents that, and prevention at commit time is the only place it can be done �
 once the migration is in production the backup is already dead, and every
 downstream mechanism can do no more than say so.
 
-That is why there is **no nightly re-check** of stored verdicts. One was built and
-removed (2026-08-25): it recomputed `compatibility.json` every night, fired no
-alert, repaired nothing, and its only real effect was keeping a badge fresh. Do not
-reintroduce it without a consumer that ACTS on a finding. What remains after it:
-`compatibility.json` is written once at export and is a dated fact (`checkedAt` =
-the export date, which the row already shows); `RestoreDisclosure` prints that date
-at the one moment the answer changes a decision; and the hard refusal is
-`assertBackupImportable`, which runs against the LIVE schema inside
-`company-restore.ts` and cannot go stale.
+That is why there is **no stored verdict and no re-check job**: the Backups
+loader computes `reportBackupCompatibility` against the LIVE schema on every
+load (`getCompanyBackups` in `backups.server.ts`), so the badge cannot go
+stale, and the hard refusal is `assertBackupImportable`, which runs against
+the live schema inside `company-restore.ts`. (Two earlier designs died here:
+a nightly re-check that alerted nobody and repaired nothing, and an
+export-time `compatibility.json` that compared the manifest against the very
+catalog it was projected from and could only ever say `ready`.)
 
 `packages/jobs/src/scripts/check-backups.ts` compares ONE committed **schema
 baseline** — `packages/jobs/manifests/schema.json`, every exportable table with its
@@ -316,24 +319,24 @@ same backup already carries) is left untouched for the gate to refuse.
 
 A backup exists because a person took one, and stays until a person deletes it.
 There is **no cron in this feature at all**. A `backupMaintenanceFunction`
-(`0 3 * * *`) briefly existed with three passes; every one has been removed and it
-should not come back:
+(`0 3 * * *`) with three passes was built on this feature's branch and dropped
+before merge — none of it ever shipped on `main`, so there is no code or
+constant to find; this list exists so nobody rebuilds it:
 
-- **Compatibility re-check** — removed 2026-08-25. Recomputed `compatibility.json`
-  nightly, alerted nobody, repaired nothing. Do not reintroduce a detector with no
-  consumer that ACTS on a finding.
-- **`expireBackups`** (delete past `BACKUP_RETENTION_DAYS = 90`) — removed
-  2026-08-25, never shipped. It could not tell a backup a person deliberately took
-  from one a cron took for them, so the one the customer chose was the one that
-  disappeared. Deleting customer data on a timer nobody asked for.
-- **`scheduleStaleExports`** (take one for any company whose newest is over
-  `BACKUP_MAX_AGE_DAYS = 7`) — removed 2026-08-25, never shipped. Each run is a
-  separate folder, so within months the person's own backup sat buried among rows
-  labelled `Scheduled` they never made, and we paid to store all of them.
+- **Compatibility re-check** — recomputed a stored verdict nightly, alerted
+  nobody, repaired nothing. The live loader computation replaced the whole idea
+  of a stored verdict. Do not reintroduce a detector with no consumer that ACTS
+  on a finding.
+- **`expireBackups`** (delete past a retention window) — could not tell a backup
+  a person deliberately took from one a cron took for them, so the one the
+  customer chose was the one that disappeared. Deleting customer data on a timer
+  nobody asked for.
+- **`scheduleStaleExports`** (take one for any company whose newest was over a
+  week old) — each run is a separate folder, so the person's own backup would
+  sit buried among rows labelled `Scheduled` they never made, all paid storage.
 
-Both constants are gone from `@carbon/utils` (`const.ts`) with it. The parent
-spec's D7 wanted scheduled creation; that is dropped, not deferred — **not as a
-setting either**. See `.ai/specs/2026-08-25-backup-durability.md`.
+The parent spec's D7 wanted scheduled creation; that is dropped, not deferred —
+**not as a setting either**. See `.ai/specs/2026-08-25-backup-durability.md`.
 
 Pre-restore and pre-template snapshots (`_pre-*`) were never touched by that job
 and still are not: they are dropped by the keep/revert path in `company-restore.ts`
@@ -422,15 +425,21 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
 ## ERP layer
 
 - `backups.service.ts` — per-company bucket ops: `exportCompanyBackup`,
-  `listCompanyBackups` (`from(companyId).list("exports")` folders; a folder is
-  "ready" once `manifest.json` exists, else "pending"), `deleteCompanyBackup`
-  (removes the whole `exports/<name>/` folder), `getCompanyRestoreRuns` (restore
-  markers), `getCompanyExportRun` (the export marker: `status:
-  "running" | "failed"`, `progress`, `startedAt`, `error`).
-- `backups.server.ts` — server-only trigger wrappers (`startCompanyRestore`,
-  `finalizeCompanyRestore`, `revertCompanyRestore`) plus
-  `dismissCompanyExportFailure` (service-role delete of the failed export
-  marker) — kept off the client to avoid `Buffer`-in-client.
+  `listCompanyBackupFolders` (`from(companyId).list("exports")` folders, paged
+  with a hard page cap; a folder is "ready" once `manifest.json` exists, else
+  "pending"; returns each parsed `Manifest` for the server wrapper),
+  `deleteCompanyBackup` (removes the whole `exports/<name>/` folder),
+  `getCompanyRestoreRuns` (restore markers), `getCompanyExportRun` (the export
+  marker: `status: "running" | "failed"`, `progress`, `startedAt`, `error`).
+- `backups.server.ts` — server-only. `getCompanyBackups` is the loader's list:
+  it reads the live catalog ONCE per load (`getCompanyTableCatalog` over
+  `getDatabaseClient()`, via `@carbon/jobs/backups`), diffs every listed
+  manifest with `reportBackupCompatibility`, attaches
+  `{ status, findings }` to each row and strips the manifest. Plus the trigger
+  wrappers (`startCompanyRestore`, `finalizeCompanyRestore`,
+  `revertCompanyRestore`) and `dismissCompanyExportFailure` (service-role
+  delete of the failed export marker) — kept off the client to avoid
+  `Buffer`-in-client.
 - `routes/x+/settings+/backups.tsx` — **access-gated** (`requireBackupAccess`)
   loader/action (export / restore / keep / dismiss / revert / delete /
   dismissExportFailure intents). `filePath` is forced under `exports/`. Export is
@@ -451,23 +460,25 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
   grouped, per-entity `scope: company|group`.
 - `routes/api+/settings.backup-restore-status.$restoreRunId.ts` — poll; `companyId`
   from `requirePermissions`, so a user can't poll another company's run.
-- **One status vocabulary, five words** (`ui/Backups/format.ts`: `BackupStatus`,
-  `backupStatusLabel`, `backupStatusVariant`). No synonyms anywhere:
+- **One status vocabulary, four words** (`ui/Backups/format.ts`: `BackupStatus`,
+  `backupStatusLabel` — a `msg`-descriptor map resolved with `t(...)` at the
+  render site — and `backupStatusVariant`). No synonyms anywhere:
 
   | Status | Meaning | Restorable? |
   |---|---|---|
-  | `Ready` | loads into today's schema unchanged — also what a not-yet-checked backup shows | yes |
+  | `Ready` | loads into today's schema unchanged | yes |
   | `Restorable with changes` | loads, but N things differ; disclosure required | yes, after confirming |
   | `Not restorable` | a hard refusal, with the reason | no |
   | `Incomplete` | no `manifest.json` — the export died partway | no |
-  | `Failed` | the export itself failed, with the reason | no |
 
-  `Incomplete` outranks any stored verdict (a half-written folder's incompleteness
-  is the whole story) and is never rendered as "Preparing…" once no export is being
-  tracked — that was the bug where a dead folder looked alive forever. A row shows
-  its taken date, size, label and this badge, and deliberately **no expiry date**:
-  a printed date reads as a promise the backup is good until then, which nothing
-  can make. The badge answers the real question, for today.
+  A failed EXPORT is not a row status — it renders as the failure banner from
+  the export marker. `Incomplete` outranks the computed verdict (a half-written
+  folder's incompleteness is the whole story) and is never rendered as
+  "Preparing…" once no export is being tracked — that was the bug where a dead
+  folder looked alive forever. A row shows its taken date, size, label and this
+  badge, and deliberately **no expiry date**: a printed date reads as a promise
+  the backup is good until then, which nothing can make. The badge answers the
+  real question, for today — computed against the live schema on every load.
 - UI: `modules/settings/ui/Backups/` — `BackupChoices` (Data only / Data + files),
   `BackupSourcePicker`, `BackupProgressModal`, `RestoreReviewRow` (Keep/Revert),
   `RestoreDisclosure` (the pre-restore screen — the ONLY path to a restore now),
@@ -479,11 +490,11 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
 
 ### `RestoreDisclosure` — five states, one base sentence
 
-The pre-restore screen. It renders the verdict stored beside the backup, so it costs no
-schema read and cannot disagree with the badge on the list. It is DISCLOSURE, not
-authorization: `assertBackupImportable` runs against the LIVE schema inside the restore, so
-a stale verdict can leave this screen under-informed but can never let through a restore the
-gate would refuse.
+The pre-restore screen. It renders the verdict the loader computed against the
+LIVE schema (`getCompanyBackups`), so it can never disagree with the badge on
+the list. It is DISCLOSURE, not authorization: `assertBackupImportable` runs
+the same diff again inside the restore, so this screen can never let through a
+restore the gate would refuse.
 
 Every state opens with the same two sentences — *This company's data is replaced with the
 contents of this backup. Today's data is saved first, so you can revert.* Keep and Revert are
@@ -494,14 +505,15 @@ read as a warning label and was cut.
 | State | Added copy | Confirm |
 |---|---|---|
 | clean | none | button, no typing |
-| unchecked (uploaded backup, no stored verdict) | "This backup hasn't been checked yet…" | button, no typing |
+| unchecked (an upload-sourced restore — every LISTED backup has a live verdict) | "This backup hasn't been checked yet…" | button, no typing |
 | defaults only | `Filled with a default` group | button, no typing |
 | discards | `Discarded` group + "Some records won't come back. Type restore to continue." | typed `restore` |
 | blocked | `Can't be restored` group | **no button at all** |
 
-Findings group by `tableArea` (`backups.areas.ts`) — "Production" means something to the
-person deciding, `jobOperationDependency` does not — with table names in a `Details`
-expander and `Checked <date>` beneath.
+Findings group by `tableArea` (`backups.areas.ts`) — "Production" means something
+to the person deciding, `jobOperationDependency` does not. Areas are stable keys
+resolved to copy via `areaLabel` (`msg` descriptors); table names live in a
+`Details` expander. There is no "Checked <date>" line — the verdict is live.
 
 The state decision lives in `disclosure-state.ts` (`disclosureState(backup, typed)` →
 `{ unchecked, blocked, discards, canConfirm }`), NOT in the component, and is unit-tested in
@@ -512,7 +524,7 @@ what gets pinned.
 There is one state with **no purpose-written copy**: a backup that is not referentially
 closed. `assertReferentiallyClosed` throws inside the restore job with
 `This backup can't be restored: the backup is not self-contained — …`, which surfaces after
-the user clicks Restore, not on this screen — the stored verdict compares table and column
+the user clicks Restore, not on this screen — the verdict compares table and column
 NAMES, and this is a row-level fact it cannot see. The refusal happens before the wipe, so
 nothing is lost. Known gap.
 

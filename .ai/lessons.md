@@ -1161,3 +1161,23 @@ canvas hosting Radix popovers/selects.
 **Rule:** Adding a browser-safe var is THREE edits, not one: the `getEnv` export, `getBrowserEnv()` + the `Window.env` interface, AND the consuming app's root-loader `env` object (destructure + literal) for every app that needs it client-side. The loader's hand-curated `env` is the real source of `window.env` on the happy path — a key present in `getBrowserEnv()` but absent there is `undefined` in the browser. When an env-driven feature is dark despite the server value being set, diff `getBrowserEnv()`'s keys against the loader's `env` object before touching anything else.
 
 **Applies to:** `apps/erp/app/root.tsx` (and `apps/mes/app/root.tsx`) loader `env` objects, `packages/env/src/index.ts` `getBrowserEnv()`, any `window.env`-gated integration/feature flag.
+
+## A verdict computed against its own input is a tautology — diff across time, at read time
+
+**Context:** PR #1477 stored a "can this backup still be restored?" verdict (`compatibility.json`) beside each backup, written once by the export job and never refreshed. Its badge, typed-confirm gate, and no-confirm-button state were the PR's headline UX. CI was green; ~500 lines of tests passed.
+
+**Problem:** The export computed `reportBackupCompatibility(catalog, manifest)` where the manifest had just been PROJECTED from that same catalog, in the same process. `diff(x, project(x))` is empty by construction, so the stored status was `"ready"` for every backup forever, and every downstream state driven by findings was unreachable. Nothing failed: the function was correct, the tests exercised it with hand-built drifted inputs, and only the one production call site was degenerate.
+
+**Rule:** A comparison is only meaningful when its two sides come from different points in time or different origins. When a check's input is derived from the thing it is checked against — at the same moment, by the same code — the check can only ever pass, and green tests won't catch it because tests construct the divergent inputs the call site never produces. Compute such verdicts at READ time (live schema vs stored artifact), and when reviewing, trace where each argument of a comparison actually comes from at the real call site.
+
+**Applies to:** `packages/jobs/src/backups/schema.ts` (`reportBackupCompatibility`), `getCompanyBackups` in `apps/erp/app/modules/settings/backups.server.ts`, and any future "is X still valid?" precomputation (schema drift, config validation, cache-freshness verdicts).
+
+## Bare-tsx scripts: isolate the import chain, never flip a shared package's `type`
+
+**Context:** `pnpm db:check:backups` (`packages/jobs/src/scripts/check-backups.ts`) runs under bare `tsx`, which cannot named-import a CJS workspace package at runtime. Its import of `company-backup.ts` pulled in `@carbon/logger` via a module-scope `getLogger`, and the branch "fixed" the resulting crash by adding `"type": "module"` to `packages/logger/package.json` — a module-system change to a package consumed by 13 others, made for one dev script.
+
+**Problem:** Flipping a shared package's `type` field changes resolution for every consumer to satisfy one entrypoint, and the connection between the flip and its reason is invisible — the next person hitting the same error flips the next package. The actual dependency was incidental: the script needed six pure functions that sat in a file whose module scope also called the logger.
+
+**Rule:** When a bare-`tsx` (or plain-node) script hits `does not provide an export named …`, fix the SCRIPT's runtime import chain: move the pure logic it needs into a module with no runtime `@carbon/*` imports (type-only imports are fine — they erase) and import that. `packages/jobs/src/backups/schema.ts` is the pattern; `packages/database`'s seed scripts (relative `.ts` imports only) are the older precedent. Never change a shared package's `type`/`exports` for one script's benefit.
+
+**Applies to:** `packages/jobs/src/scripts/**`, `packages/database/src/{seed,check}-*.ts`, `ci/src/**`, and any new `tsx`-run script in a CJS-rooted package.

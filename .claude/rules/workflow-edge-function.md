@@ -31,8 +31,7 @@ Add an entry to `packages/database/supabase/config.toml`.
 runs `supabase functions deploy` with **no function name**, and that deploys every
 directory under `supabase/functions/` regardless of `config.toml`. The entry only
 overrides per-function settings, `verify_jwt` above all.
-<!-- UNVERIFIED: the CLI's default for an unregistered function's verify_jwt is
-documented as true, but that was not confirmed against a deployed Carbon function. -->
+<!-- UNVERIFIED: verify_jwt default for an UNREGISTERED function (docs say true; not confirmed on a deployed Carbon fn) -->
 
 `schedule` and `trigger-rework` are both live today with no `config.toml` entry.
 That is the trap: an unregistered function looks unshipped in this file while being
