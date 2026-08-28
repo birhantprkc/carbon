@@ -3822,6 +3822,9 @@ msgstr "Centros de Costos"
 msgid "Cost History"
 msgstr "Historial de Costos"
 
+msgid "Cost ledger"
+msgstr "Libro de costos"
+
 msgid "Cost of Goods Sold"
 msgstr "Costo de Bienes Vendidos"
 
@@ -3901,6 +3904,9 @@ msgstr "Contrapartes"
 
 msgid "Counterparty"
 msgstr "Contraparte"
+
+msgid "Counting…"
+msgstr "Contando…"
 
 msgid "Country"
 msgstr "País"
@@ -4210,6 +4216,9 @@ msgstr "Acumulativo"
 
 msgid "Cumulative %"
 msgstr "% Acumulativo"
+
+msgid "Currencies"
+msgstr "Monedas"
 
 msgid "Currencies & tax"
 msgstr "Monedas e impuestos"
@@ -6198,6 +6207,9 @@ msgstr "Tipo de Evento"
 msgid "Events"
 msgstr "Eventos"
 
+msgid "Every company-scoped record. Credentials, integration tokens and webhooks are never included."
+msgstr "Todos los registros de la empresa. Las credenciales, los tokens de integración y los webhooks nunca se incluyen."
+
 msgid "Every condition must match"
 msgstr "Todas las condiciones deben coincidir"
 
@@ -7745,6 +7757,12 @@ msgstr "entrante"
 msgid "Incoming"
 msgstr "Entrante"
 
+msgid "Incomplete"
+msgstr "Incompleto"
+
+msgid "Incomplete backup — not restorable"
+msgstr "Copia de seguridad incompleta — no restaurable"
+
 msgid "Incoterm"
 msgstr "Incoterm"
 
@@ -8282,6 +8300,9 @@ msgstr "Los asientos de diario fechados en este período que aún están en Borr
 
 msgid "Journal Entry"
 msgstr "Asiento de Diario"
+
+msgid "Journal lines"
+msgstr "Líneas de asiento"
 
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Los diarios con fecha en o antes de esta fecha se tratan como bloqueados. Se fusionan con la fecha de bloqueo reportada por el proveedor cuando ambas existen."
@@ -10168,6 +10189,9 @@ msgstr "Flujo de trabajo de no conformidad"
 msgid "Non-conformance (issue)"
 msgstr "No conformidad (problema)"
 
+msgid "Non-conformances"
+msgstr "No conformidades"
+
 msgid "Non-Inventory"
 msgstr "No Inventario"
 
@@ -10212,6 +10236,9 @@ msgstr "Sin referencias aún."
 
 msgid "Not Required"
 msgstr "No requerido"
+
+msgid "Not restorable"
+msgstr "No restaurable"
 
 msgid "Not set"
 msgstr "No establecido"
@@ -10691,6 +10718,9 @@ msgstr "Original"
 
 msgid "Original Count"
 msgstr "Conteo Original"
+
+msgid "Other"
+msgstr "Otros"
 
 msgid "Other Expense"
 msgstr "Otro Gasto"
@@ -11658,6 +11688,9 @@ msgstr "Monto de Factura de Compra"
 msgid "Purchase Invoice Line"
 msgstr "Línea de Factura de Compra"
 
+msgid "Purchase invoices"
+msgstr "Facturas de Compra"
+
 msgid "Purchase Invoices"
 msgstr "Facturas de Compra"
 
@@ -11687,6 +11720,9 @@ msgstr "Orden de compra eliminada exitosamente"
 
 msgid "Purchase Order Type"
 msgstr "Tipo de Orden de Compra"
+
+msgid "Purchase orders"
+msgstr "Órdenes de Compra"
 
 msgid "Purchase Orders"
 msgstr "Órdenes de Compra"
@@ -12567,6 +12603,9 @@ msgstr "recursos"
 msgid "Resources"
 msgstr "Recursos"
 
+msgid "Restorable with changes"
+msgstr "Restaurable con cambios"
+
 msgid "Restore"
 msgstr "Restaurar"
 
@@ -12939,6 +12978,9 @@ msgstr "Factura de Venta"
 msgid "Sales Invoice Line"
 msgstr "Línea de Factura de Venta"
 
+msgid "Sales invoices"
+msgstr "Facturas de Venta"
+
 msgid "Sales Invoices"
 msgstr "Facturas de Venta"
 
@@ -12968,6 +13010,9 @@ msgstr "Ubicación de Orden de Venta"
 
 msgid "Sales Order Number"
 msgstr "Número de Orden de Venta"
+
+msgid "Sales orders"
+msgstr "Órdenes de Venta"
 
 msgid "Sales Orders"
 msgstr "Órdenes de Venta"
@@ -16008,6 +16053,9 @@ msgstr "Cantidad total disponible del artículo en todas las unidades de almacen
 msgid "Total quantity required across all active jobs and sales orders at this location — not just this job."
 msgstr "Cantidad total requerida en todos los trabajos activos y órdenes de venta en esta ubicación, no solo en este trabajo."
 
+msgid "Total records"
+msgstr "Registros totales"
+
 msgid "Total scrap quantity"
 msgstr "Cantidad total de desechos"
 
@@ -17103,6 +17151,9 @@ msgstr "Bienvenido a Carbon"
 msgid "Welcome, {companyName}"
 msgstr "Bienvenido, {companyName}"
 
+msgid "What a backup contains"
+msgstr "Qué contiene una copia de seguridad"
+
 msgid "What category of failure this is — Mechanical, Electrical, Software, Operator, Material, etc.; rolls up into the failure-mode pareto report so the category breakdown is meaningful."
 msgstr "Qué categoría de falla es esta — Mecánica, Eléctrica, Software, Operador, Material, etc.; se resume en el informe de pareto de modo de falla para que el desglose de categorías sea significativo."
 
@@ -17168,6 +17219,9 @@ msgstr "Lo que estamos asumiendo"
 
 msgid "What you need to do"
 msgstr "Lo que necesitas hacer"
+
+msgid "What's in a backup"
+msgstr "Qué hay en una copia de seguridad"
 
 msgid "What's in scope"
 msgstr "Qué está incluido en el alcance"

@@ -3822,6 +3822,9 @@ msgstr "원가센터"
 msgid "Cost History"
 msgstr "원가 이력"
 
+msgid "Cost ledger"
+msgstr "원가 원장"
+
 msgid "Cost of Goods Sold"
 msgstr "매출원가"
 
@@ -3901,6 +3904,9 @@ msgstr "거래처"
 
 msgid "Counterparty"
 msgstr "거래처"
+
+msgid "Counting…"
+msgstr "집계 중…"
 
 msgid "Country"
 msgstr "국가"
@@ -4210,6 +4216,9 @@ msgstr "누적"
 
 msgid "Cumulative %"
 msgstr "누적 %"
+
+msgid "Currencies"
+msgstr "통화"
 
 msgid "Currencies & tax"
 msgstr "통화 및 세금"
@@ -6198,6 +6207,9 @@ msgstr "이벤트 유형"
 msgid "Events"
 msgstr "이벤트"
 
+msgid "Every company-scoped record. Credentials, integration tokens and webhooks are never included."
+msgstr "회사 범위의 모든 레코드. 자격 증명, 통합 토큰, 웹훅은 포함되지 않습니다."
+
 msgid "Every condition must match"
 msgstr "모든 조건이 일치해야 함"
 
@@ -7745,6 +7757,12 @@ msgstr "입고"
 msgid "Incoming"
 msgstr "입고"
 
+msgid "Incomplete"
+msgstr "불완전"
+
+msgid "Incomplete backup — not restorable"
+msgstr "불완전한 백업 — 복원할 수 없음"
+
 msgid "Incoterm"
 msgstr "인코텀즈"
 
@@ -8282,6 +8300,9 @@ msgstr "이 기간에 날짜가 지정된 임시 분개들은 전기되거나 �
 
 msgid "Journal Entry"
 msgstr "분개"
+
+msgid "Journal lines"
+msgstr "분개 라인"
 
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "이 날짜 이전의 분개는 잠금으로 처리됩니다. 둘 다 존재하면 공급자에서 보고한 잠금 날짜와 병합됩니다."
@@ -10168,6 +10189,9 @@ msgstr "부적합 워크플로우"
 msgid "Non-conformance (issue)"
 msgstr "부적합(이슈)"
 
+msgid "Non-conformances"
+msgstr "부적합"
+
 msgid "Non-Inventory"
 msgstr "비재고"
 
@@ -10212,6 +10236,9 @@ msgstr "아직 어디에서도 참조되지 않음."
 
 msgid "Not Required"
 msgstr "필수 아님"
+
+msgid "Not restorable"
+msgstr "복원 불가"
 
 msgid "Not set"
 msgstr "설정되지 않음"
@@ -10691,6 +10718,9 @@ msgstr "원본"
 
 msgid "Original Count"
 msgstr "원본 계산"
+
+msgid "Other"
+msgstr "기타"
 
 msgid "Other Expense"
 msgstr "기타 비용"
@@ -11658,6 +11688,9 @@ msgstr "구매 인보이스 금액"
 msgid "Purchase Invoice Line"
 msgstr "구매 인보이스 라인"
 
+msgid "Purchase invoices"
+msgstr "구매 인보이스"
+
 msgid "Purchase Invoices"
 msgstr "구매 인보이스"
 
@@ -11687,6 +11720,9 @@ msgstr "구매주문이 삭제되었습니다"
 
 msgid "Purchase Order Type"
 msgstr "구매주문 유형"
+
+msgid "Purchase orders"
+msgstr "구매주문"
 
 msgid "Purchase Orders"
 msgstr "구매주문"
@@ -12567,6 +12603,9 @@ msgstr "리소스"
 msgid "Resources"
 msgstr "리소스"
 
+msgid "Restorable with changes"
+msgstr "변경 사항과 함께 복원 가능"
+
 msgid "Restore"
 msgstr "복원"
 
@@ -12939,6 +12978,9 @@ msgstr "판매 인보이스"
 msgid "Sales Invoice Line"
 msgstr "판매 인보이스 라인"
 
+msgid "Sales invoices"
+msgstr "판매 인보이스"
+
 msgid "Sales Invoices"
 msgstr "판매 인보이스"
 
@@ -12968,6 +13010,9 @@ msgstr "판매주문 위치"
 
 msgid "Sales Order Number"
 msgstr "판매주문 번호"
+
+msgid "Sales orders"
+msgstr "판매주문"
 
 msgid "Sales Orders"
 msgstr "판매주문"
@@ -16008,6 +16053,9 @@ msgstr "이 위치의 모든 저장 단위에 걸친 해당 품목의 총 재고
 msgid "Total quantity required across all active jobs and sales orders at this location — not just this job."
 msgstr "이 작업뿐 아니라 이 위치의 모든 진행 중인 작업과 판매주문에서 필요한 총 수량입니다."
 
+msgid "Total records"
+msgstr "총 레코드"
+
 msgid "Total scrap quantity"
 msgstr "총 폐기량"
 
@@ -17103,6 +17151,9 @@ msgstr "Carbon에 오신 것을 환영합니다"
 msgid "Welcome, {companyName}"
 msgstr "환영합니다, {companyName}님"
 
+msgid "What a backup contains"
+msgstr "백업에 포함된 내용"
+
 msgid "What category of failure this is — Mechanical, Electrical, Software, Operator, Material, etc.; rolls up into the failure-mode pareto report so the category breakdown is meaningful."
 msgstr "이 고장의 범주(기계적, 전기적, 소프트웨어, 작업자, 자재 등)로, 고장 모드 파레토 보고서에 집계되어 범주별 분석이 의미를 갖도록 합니다."
 
@@ -17168,6 +17219,9 @@ msgstr "저희가 전제하는 사항"
 
 msgid "What you need to do"
 msgstr "해야 할 일"
+
+msgid "What's in a backup"
+msgstr "백업의 내용"
 
 msgid "What's in scope"
 msgstr "범위에 포함되는 것"

@@ -1,3 +1,6 @@
+import type { MessageDescriptor } from "@lingui/core";
+import { msg } from "@lingui/core/macro";
+
 // Backup filenames are `{timestamp}_{label-slug}.carbon.json.gz`. Turn the slug
 // back into a readable title (the timestamp is shown separately as the date).
 const BACKUP_ACRONYMS = new Set([
@@ -37,37 +40,30 @@ export function formatElapsed(ms: number): string {
 }
 
 /**
- * The ONLY five words a backup row is allowed to say about itself. Anything a
- * person reads here they may act on, so the vocabulary is closed: a new state gets
- * added here, with copy, rather than invented at a call site.
- *
- * `ready` doubles as "not yet checked" — a backup whose verdict has not been
- * written is not a problem to report, it is simply a backup nobody has compared to
- * the current schema yet.
+ * The ONLY words a backup row is allowed to say about itself. Anything a
+ * person reads here they may act on, so the vocabulary is closed: a new state
+ * gets added here, with copy, rather than invented at a call site. (A failed
+ * EXPORT never becomes a row — it renders as the failure banner instead.)
  */
 export type BackupStatus =
   | "ready"
   | "restorable-with-changes"
   | "not-restorable"
-  | "incomplete"
-  | "failed";
+  | "incomplete";
 
-export function backupStatusLabel(status: BackupStatus): string {
-  switch (status) {
-    case "ready":
-      return "Ready";
-    case "restorable-with-changes":
-      return "Restorable with changes";
-    case "not-restorable":
-      return "Not restorable";
-    case "incomplete":
-      return "Incomplete";
-    case "failed":
-      return "Failed";
-  }
+const STATUS_LABELS: Record<BackupStatus, MessageDescriptor> = {
+  ready: msg`Ready`,
+  "restorable-with-changes": msg`Restorable with changes`,
+  "not-restorable": msg`Not restorable`,
+  incomplete: msg`Incomplete`
+};
+
+/** Resolve at the render site with `useLingui().t(...)`. */
+export function backupStatusLabel(status: BackupStatus): MessageDescriptor {
+  return STATUS_LABELS[status];
 }
 
-/** Which of the four badge colours a status wears. */
+/** Which badge colour a status wears. */
 export function backupStatusVariant(
   status: BackupStatus
 ): "green" | "yellow" | "red" | "secondary" {
@@ -77,7 +73,6 @@ export function backupStatusVariant(
     case "restorable-with-changes":
       return "yellow";
     case "not-restorable":
-    case "failed":
       return "red";
     case "incomplete":
       return "secondary";

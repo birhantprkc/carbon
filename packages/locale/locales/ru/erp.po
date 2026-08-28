@@ -3822,6 +3822,9 @@ msgstr "Центры затрат"
 msgid "Cost History"
 msgstr "История стоимости"
 
+msgid "Cost ledger"
+msgstr "Книга затрат"
+
 msgid "Cost of Goods Sold"
 msgstr "Себестоимость реализованной продукции"
 
@@ -3901,6 +3904,9 @@ msgstr "Контрагенты"
 
 msgid "Counterparty"
 msgstr "Контрагент"
+
+msgid "Counting…"
+msgstr "Подсчёт…"
 
 msgid "Country"
 msgstr "Страна"
@@ -4210,6 +4216,9 @@ msgstr "Нарастающий итог"
 
 msgid "Cumulative %"
 msgstr "Кумулятивный %"
+
+msgid "Currencies"
+msgstr "Валюты"
 
 msgid "Currencies & tax"
 msgstr "Валюты и налоги"
@@ -6198,6 +6207,9 @@ msgstr "Тип события"
 msgid "Events"
 msgstr "События"
 
+msgid "Every company-scoped record. Credentials, integration tokens and webhooks are never included."
+msgstr "Все записи компании. Учётные данные, токены интеграций и вебхуки никогда не включаются."
+
 msgid "Every condition must match"
 msgstr "Каждое условие должно совпадать"
 
@@ -7745,6 +7757,12 @@ msgstr "входящий"
 msgid "Incoming"
 msgstr "Входящие"
 
+msgid "Incomplete"
+msgstr "Неполная"
+
+msgid "Incomplete backup — not restorable"
+msgstr "Неполная резервная копия — восстановление невозможно"
+
 msgid "Incoterm"
 msgstr "Инкотермс"
 
@@ -8282,6 +8300,9 @@ msgstr "Записи в журнале, датированные в этом п�
 
 msgid "Journal Entry"
 msgstr "Запись в журнале"
+
+msgid "Journal lines"
+msgstr "Строки журнала"
 
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Журналы с датой в указанный день или раньше считаются заблокированными. Объединяются с датой блокировки, сообщаемой системой, когда обе существуют."
@@ -10168,6 +10189,9 @@ msgstr "Рабочий процесс несоответствия"
 msgid "Non-conformance (issue)"
 msgstr "Несоответствие (проблема)"
 
+msgid "Non-conformances"
+msgstr "Несоответствия"
+
 msgid "Non-Inventory"
 msgstr "Не в наличии"
 
@@ -10212,6 +10236,9 @@ msgstr "Пока не на что-либо ссылается."
 
 msgid "Not Required"
 msgstr "Не требуется"
+
+msgid "Not restorable"
+msgstr "Восстановление невозможно"
 
 msgid "Not set"
 msgstr "Не установлено"
@@ -10691,6 +10718,9 @@ msgstr "Оригинал"
 
 msgid "Original Count"
 msgstr "Исходный подсчет"
+
+msgid "Other"
+msgstr "Прочее"
 
 msgid "Other Expense"
 msgstr "Прочие расходы"
@@ -11658,6 +11688,9 @@ msgstr "Сумма счета покупателя"
 msgid "Purchase Invoice Line"
 msgstr "Строка счета-фактуры покупки"
 
+msgid "Purchase invoices"
+msgstr "Счета-фактуры покупателя"
+
 msgid "Purchase Invoices"
 msgstr "Счета-фактуры покупателя"
 
@@ -11687,6 +11720,9 @@ msgstr "Заказ на покупку успешно удален"
 
 msgid "Purchase Order Type"
 msgstr "Тип заказа на покупку"
+
+msgid "Purchase orders"
+msgstr "Заказы на покупку"
 
 msgid "Purchase Orders"
 msgstr "Заказы на покупку"
@@ -12567,6 +12603,9 @@ msgstr "ресурсы"
 msgid "Resources"
 msgstr "Ресурсы"
 
+msgid "Restorable with changes"
+msgstr "Восстановима с изменениями"
+
 msgid "Restore"
 msgstr "Восстановить"
 
@@ -12939,6 +12978,9 @@ msgstr "Счет-фактура продажи"
 msgid "Sales Invoice Line"
 msgstr "Строка счета продажи"
 
+msgid "Sales invoices"
+msgstr "Счета-фактуры продажи"
+
 msgid "Sales Invoices"
 msgstr "Счета-фактуры продажи"
 
@@ -12968,6 +13010,9 @@ msgstr "Местоположение заказа на продажу"
 
 msgid "Sales Order Number"
 msgstr "Номер заказа продажи"
+
+msgid "Sales orders"
+msgstr "Заказы на продажу"
 
 msgid "Sales Orders"
 msgstr "Заказы на продажу"
@@ -16008,6 +16053,9 @@ msgstr "Общее наличное количество позиции по в�
 msgid "Total quantity required across all active jobs and sales orders at this location — not just this job."
 msgstr "Общее требуемое количество по всем активным заданиям и заказам на продажу в этом местоположении — не только по этому заданию."
 
+msgid "Total records"
+msgstr "Всего записей"
+
 msgid "Total scrap quantity"
 msgstr "Общее количество брака"
 
@@ -17103,6 +17151,9 @@ msgstr "Добро пожаловать в Carbon"
 msgid "Welcome, {companyName}"
 msgstr "Добро пожаловать, {companyName}"
 
+msgid "What a backup contains"
+msgstr "Что содержит резервная копия"
+
 msgid "What category of failure this is — Mechanical, Electrical, Software, Operator, Material, etc.; rolls up into the failure-mode pareto report so the category breakdown is meaningful."
 msgstr "Какая это категория отказа — Механическая, Электрическая, Программная, Оператор, Материал и т. д.; обобщается в отчете парето режима отказа, чтобы разбиение по категориям было значимым."
 
@@ -17168,6 +17219,9 @@ msgstr "Что мы предполагаем"
 
 msgid "What you need to do"
 msgstr "Что вам нужно сделать"
+
+msgid "What's in a backup"
+msgstr "Содержимое резервной копии"
 
 msgid "What's in scope"
 msgstr "Что входит в область"

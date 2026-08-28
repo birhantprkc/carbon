@@ -13,7 +13,7 @@ import {
 import { Trans, useLingui } from "@lingui/react/macro";
 import { useMemo, useState } from "react";
 import { LuCircleAlert, LuInfo, LuTriangleAlert } from "react-icons/lu";
-import { tableArea } from "../../backups.areas";
+import { areaLabel, tableArea } from "../../backups.areas";
 import type { CompanyBackupSummary } from "../../backups.service";
 import { CONFIRM_WORD, disclosureState } from "./disclosure-state";
 import { formatBackupDate, formatBackupName } from "./format";
@@ -187,6 +187,7 @@ function FindingGroups({ findings }: { findings: Finding[] }) {
           const forKind = findings.filter((f) => f.kind === kind);
           const Icon = KIND_ICON[kind];
           const areas = [...new Set(forKind.map((f) => tableArea(f.table)))];
+          const areaNames = areas.map((a) => t(areaLabel(a))).join(", ");
           return (
             <VStack key={kind} spacing={1}>
               <span className="flex items-center gap-1.5 text-sm font-medium">
@@ -195,9 +196,7 @@ function FindingGroups({ findings }: { findings: Finding[] }) {
               </span>
               {/* The area, not the table — "Production" means something to the
                   person deciding; `jobOperationDependency` does not. */}
-              <span className="text-sm text-muted-foreground">
-                {areas.join(", ")}
-              </span>
+              <span className="text-sm text-muted-foreground">{areaNames}</span>
               <details className="text-xs text-muted-foreground">
                 <summary className="cursor-pointer">
                   <Trans>Details</Trans>

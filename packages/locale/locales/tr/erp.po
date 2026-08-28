@@ -3822,6 +3822,9 @@ msgstr "Maliyet Merkezleri"
 msgid "Cost History"
 msgstr "Maliyet Geçmişi"
 
+msgid "Cost ledger"
+msgstr "Maliyet defteri"
+
 msgid "Cost of Goods Sold"
 msgstr "Satılan Malların Maliyeti"
 
@@ -3901,6 +3904,9 @@ msgstr "Muhasebeleştirilecek Taraflar"
 
 msgid "Counterparty"
 msgstr "Karşı Taraf"
+
+msgid "Counting…"
+msgstr "Sayılıyor…"
 
 msgid "Country"
 msgstr "Ülke"
@@ -4210,6 +4216,9 @@ msgstr "Kümülatif"
 
 msgid "Cumulative %"
 msgstr "Kümülatif %"
+
+msgid "Currencies"
+msgstr "Para birimleri"
 
 msgid "Currencies & tax"
 msgstr "Para birimler ve vergi"
@@ -6198,6 +6207,9 @@ msgstr "Olay Türü"
 msgid "Events"
 msgstr "Etkinlikler"
 
+msgid "Every company-scoped record. Credentials, integration tokens and webhooks are never included."
+msgstr "Şirket kapsamındaki tüm kayıtlar. Kimlik bilgileri, entegrasyon belirteçleri ve webhook'lar asla dahil edilmez."
+
 msgid "Every condition must match"
 msgstr "Her koşul eşleşmelidir"
 
@@ -7745,6 +7757,12 @@ msgstr "gelen"
 msgid "Incoming"
 msgstr "Gelen"
 
+msgid "Incomplete"
+msgstr "Eksik"
+
+msgid "Incomplete backup — not restorable"
+msgstr "Eksik yedek — geri yüklenemez"
+
 msgid "Incoterm"
 msgstr "İrsalat Koşulu"
 
@@ -8282,6 +8300,9 @@ msgstr "Bu dönemde tarihli ve hâlâ Taslak durumunda olan muhasebe kayıtları
 
 msgid "Journal Entry"
 msgstr "Muhasebe Kaydı"
+
+msgid "Journal lines"
+msgstr "Yevmiye satırları"
 
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Bu tarih veya öncesine tarihlenmiş yevmiyeler kilitli olarak kabul edilir. Her ikisi de mevcut olduğunda sağlayıcı tarafından bildirilen kilitlenme tarihi ile birleştirilir."
@@ -10168,6 +10189,9 @@ msgstr "Uygunsuzluk İş Akışı"
 msgid "Non-conformance (issue)"
 msgstr "Uygunsuzluk (sorun)"
 
+msgid "Non-conformances"
+msgstr "Uygunsuzluklar"
+
 msgid "Non-Inventory"
 msgstr "Envanter Dışı"
 
@@ -10212,6 +10236,9 @@ msgstr "Henüz hiçbir yerde referans verilmemiş."
 
 msgid "Not Required"
 msgstr "Gerekli Değil"
+
+msgid "Not restorable"
+msgstr "Geri yüklenemez"
 
 msgid "Not set"
 msgstr "Belirtilmemiş"
@@ -10691,6 +10718,9 @@ msgstr "Orijinal"
 
 msgid "Original Count"
 msgstr "Orijinal Sayım"
+
+msgid "Other"
+msgstr "Diğer"
 
 msgid "Other Expense"
 msgstr "Diğer Gider"
@@ -11658,6 +11688,9 @@ msgstr "Satın Alma Faturası Tutarı"
 msgid "Purchase Invoice Line"
 msgstr "Satın Alma Faturası Kalemi"
 
+msgid "Purchase invoices"
+msgstr "Satın Alma Faturaları"
+
 msgid "Purchase Invoices"
 msgstr "Satın Alma Faturaları"
 
@@ -11687,6 +11720,9 @@ msgstr "Satın alma siparişi başarıyla kaldırıldı"
 
 msgid "Purchase Order Type"
 msgstr "Satın Alma Siparişi Türü"
+
+msgid "Purchase orders"
+msgstr "Satın Alma Siparişleri"
 
 msgid "Purchase Orders"
 msgstr "Satın Alma Siparişleri"
@@ -12567,6 +12603,9 @@ msgstr "kaynaklar"
 msgid "Resources"
 msgstr "Kaynaklar"
 
+msgid "Restorable with changes"
+msgstr "Değişikliklerle geri yüklenebilir"
+
 msgid "Restore"
 msgstr "Geri yükle"
 
@@ -12939,6 +12978,9 @@ msgstr "Satış Faturası"
 msgid "Sales Invoice Line"
 msgstr "Satış Faturası Kalemi"
 
+msgid "Sales invoices"
+msgstr "Satış Faturaları"
+
 msgid "Sales Invoices"
 msgstr "Satış Faturaları"
 
@@ -12968,6 +13010,9 @@ msgstr "Satış Siparişi Konumu"
 
 msgid "Sales Order Number"
 msgstr "Satış Siparişi Numarası"
+
+msgid "Sales orders"
+msgstr "Satış Siparişleri"
 
 msgid "Sales Orders"
 msgstr "Satış Siparişleri"
@@ -16008,6 +16053,9 @@ msgstr "Bu konumdaki tüm depolama birimlerinde öğenin toplam eldeki miktarı.
 msgid "Total quantity required across all active jobs and sales orders at this location — not just this job."
 msgstr "Bu konumdaki tüm aktif işler ve satış siparişleri genelinde gereken toplam miktar — yalnızca bu iş için değil."
 
+msgid "Total records"
+msgstr "Toplam kayıt"
+
 msgid "Total scrap quantity"
 msgstr "Toplam atık miktarı"
 
@@ -17103,6 +17151,9 @@ msgstr "Carbon'a Hoş Geldiniz"
 msgid "Welcome, {companyName}"
 msgstr "Hoş geldiniz, {companyName}"
 
+msgid "What a backup contains"
+msgstr "Bir yedek neler içerir"
+
 msgid "What category of failure this is — Mechanical, Electrical, Software, Operator, Material, etc.; rolls up into the failure-mode pareto report so the category breakdown is meaningful."
 msgstr "Bu hangi başarısızlık kategorisidir — Mekanik, Elektrik, Yazılım, Operatör, Malzeme, vb.; arıza modu pareto raporunda özetlenir, böylece kategori dökümü anlamlı olur."
 
@@ -17168,6 +17219,9 @@ msgstr "Neyi varsaydığımız"
 
 msgid "What you need to do"
 msgstr "Yapmanız gereken şeyler"
+
+msgid "What's in a backup"
+msgstr "Yedeğin içeriği"
 
 msgid "What's in scope"
 msgstr "Kapsamda neler var"

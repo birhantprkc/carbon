@@ -265,6 +265,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function BackupsRoute() {
   const { files, restoreRuns, exportRun } = useLoaderData<typeof loader>();
+  const readyBackups = files.filter((f) => f.status === "ready");
   const fetcher = useFetcher<{
     success?: boolean;
     message?: string;
@@ -445,9 +446,7 @@ export default function BackupsRoute() {
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col gap-1.5">
                     <span className="text-sm">Source</span>
-                    <BackupSourcePicker
-                      backups={files.filter((f) => f.status === "ready")}
-                    />
+                    <BackupSourcePicker backups={readyBackups} />
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <span className="text-sm">Include</span>
@@ -460,7 +459,7 @@ export default function BackupsRoute() {
                     submits through the fetcher rather than the form's own submit
                     button, because the modal is portaled outside the <form>. */}
                 <RestoreDisclosure
-                  backups={files.filter((f) => f.status === "ready")}
+                  backups={readyBackups}
                   onConfirm={({ source, includeStorage }) =>
                     fetcher.submit(
                       { intent: "restore", source, includeStorage },
@@ -611,8 +610,7 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
     );
   });
   const name = file.label || formatBackupName(file.name);
-  // A half-written folder has no verdict to report — the incompleteness is the
-  // whole story, so it outranks whatever compatibility.json may or may not say.
+  // A half-written folder has no verdict — the incompleteness is the whole story.
   const status: BackupStatus =
     file.status === "pending" ? "incomplete" : file.compatibility.status;
 
@@ -626,14 +624,14 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
         <HStack spacing={2}>
           <span className="text-sm font-medium">{name}</span>
           <Badge variant={backupStatusVariant(status)}>
-            {backupStatusLabel(status)}
+            {t(backupStatusLabel(status))}
           </Badge>
         </HStack>
         <span className="text-xs text-muted-foreground">
           {file.status === "pending" ? (
             // A pending folder with no running export is a dead partial — never
             // lie with "Preparing…".
-            <>Incomplete backup — not restorable</>
+            <Trans>Incomplete backup — not restorable</Trans>
           ) : (
             <>
               <DateTime value={file.exportedAt} variant="absolute" />

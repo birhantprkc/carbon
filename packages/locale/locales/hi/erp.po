@@ -3822,6 +3822,9 @@ msgstr "लागत केंद्र"
 msgid "Cost History"
 msgstr "लागत इतिहास"
 
+msgid "Cost ledger"
+msgstr "लागत खाता"
+
 msgid "Cost of Goods Sold"
 msgstr "बेची गई वस्तुओं की लागत"
 
@@ -3901,6 +3904,9 @@ msgstr "प्रतिपक्ष"
 
 msgid "Counterparty"
 msgstr "प्रतिपक्ष"
+
+msgid "Counting…"
+msgstr "गिनती हो रही है…"
 
 msgid "Country"
 msgstr "देश"
@@ -4210,6 +4216,9 @@ msgstr "संचयी"
 
 msgid "Cumulative %"
 msgstr "संचयी %"
+
+msgid "Currencies"
+msgstr "मुद्राएँ"
 
 msgid "Currencies & tax"
 msgstr "मुद्राएं और कर"
@@ -6198,6 +6207,9 @@ msgstr "ईवेंट प्रकार"
 msgid "Events"
 msgstr "घटनाएं"
 
+msgid "Every company-scoped record. Credentials, integration tokens and webhooks are never included."
+msgstr "कंपनी के दायरे के सभी रिकॉर्ड। क्रेडेंशियल, इंटीग्रेशन टोकन और वेबहुक कभी शामिल नहीं होते।"
+
 msgid "Every condition must match"
 msgstr "हर शर्त मेल खानी चाहिए"
 
@@ -7745,6 +7757,12 @@ msgstr "आने वाला"
 msgid "Incoming"
 msgstr "आने वाली"
 
+msgid "Incomplete"
+msgstr "अधूरा"
+
+msgid "Incomplete backup — not restorable"
+msgstr "अधूरा बैकअप — पुनर्स्थापना योग्य नहीं"
+
 msgid "Incoterm"
 msgstr "Incoterm"
 
@@ -8282,6 +8300,9 @@ msgstr "इस अवधि में दिनांकित जर्नल �
 
 msgid "Journal Entry"
 msgstr "जर्नल प्रविष्टि"
+
+msgid "Journal lines"
+msgstr "जर्नल पंक्तियाँ"
 
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "इस तारीख को या उससे पहले की तारीख वाली पत्रिकाओं को लॉक किए गए के रूप में माना जाता है। प्रदाता द्वारा रिपोर्ट की गई लॉक तारीख के साथ विलय किया जाता है जब दोनों मौजूद हों।"
@@ -10168,6 +10189,9 @@ msgstr "गैर-अनुरूपता वर्कफ़्लो"
 msgid "Non-conformance (issue)"
 msgstr "गैर-अनुकूलता (समस्या)"
 
+msgid "Non-conformances"
+msgstr "गैर-अनुरूपताएँ"
+
 msgid "Non-Inventory"
 msgstr "गैर-इन्वेंटरी"
 
@@ -10212,6 +10236,9 @@ msgstr "अभी तक कहीं भी संदर्भित नही�
 
 msgid "Not Required"
 msgstr "आवश्यक नहीं"
+
+msgid "Not restorable"
+msgstr "पुनर्स्थापना योग्य नहीं"
 
 msgid "Not set"
 msgstr "सेट नहीं है"
@@ -10691,6 +10718,9 @@ msgstr "मूल"
 
 msgid "Original Count"
 msgstr "मूल गणना"
+
+msgid "Other"
+msgstr "अन्य"
 
 msgid "Other Expense"
 msgstr "अन्य व्यय"
@@ -11658,6 +11688,9 @@ msgstr "क्रय चालान राशि"
 msgid "Purchase Invoice Line"
 msgstr "खरीद चालान पंक्ति"
 
+msgid "Purchase invoices"
+msgstr "खरीद चालान"
+
 msgid "Purchase Invoices"
 msgstr "खरीद चालान"
 
@@ -11687,6 +11720,9 @@ msgstr "क्रय आदेश सफलतापूर्वक हटा �
 
 msgid "Purchase Order Type"
 msgstr "क्रय आदेश प्रकार"
+
+msgid "Purchase orders"
+msgstr "क्रय आदेश"
 
 msgid "Purchase Orders"
 msgstr "क्रय आदेश"
@@ -12567,6 +12603,9 @@ msgstr "संसाधन"
 msgid "Resources"
 msgstr "संसाधन"
 
+msgid "Restorable with changes"
+msgstr "बदलावों के साथ पुनर्स्थापना योग्य"
+
 msgid "Restore"
 msgstr "पुनः स्थापित करें"
 
@@ -12939,6 +12978,9 @@ msgstr "बिक्रय चालान"
 msgid "Sales Invoice Line"
 msgstr "बिक्रय चालान पंक्ति"
 
+msgid "Sales invoices"
+msgstr "बिक्रय चालान"
+
 msgid "Sales Invoices"
 msgstr "बिक्रय चालान"
 
@@ -12968,6 +13010,9 @@ msgstr "बिक्रय आदेश स्थान"
 
 msgid "Sales Order Number"
 msgstr "बिक्रय आदेश संख्या"
+
+msgid "Sales orders"
+msgstr "बिक्रय आदेश"
 
 msgid "Sales Orders"
 msgstr "बिक्रय आदेश"
@@ -16008,6 +16053,9 @@ msgstr "इस स्थान पर सभी भंडारण इकाइ�
 msgid "Total quantity required across all active jobs and sales orders at this location — not just this job."
 msgstr "इस स्थान पर सभी सक्रिय कार्यों और बिक्री आदेशों में आवश्यक कुल मात्रा — केवल इस कार्य के लिए नहीं।"
 
+msgid "Total records"
+msgstr "कुल रिकॉर्ड"
+
 msgid "Total scrap quantity"
 msgstr "कुल scrap मात्रा"
 
@@ -17103,6 +17151,9 @@ msgstr "कार्बन में आपका स्वागत है"
 msgid "Welcome, {companyName}"
 msgstr "स्वागत है, {companyName}"
 
+msgid "What a backup contains"
+msgstr "बैकअप में क्या शामिल है"
+
 msgid "What category of failure this is — Mechanical, Electrical, Software, Operator, Material, etc.; rolls up into the failure-mode pareto report so the category breakdown is meaningful."
 msgstr "यह किस विफलता श्रेणी का है — यांत्रिक, विद्युत, सॉफ्टवेयर, ऑपरेटर, सामग्री, आदि; विफलता-मोड पेरेटो रिपोर्ट में संक्षेपित होता है ताकि श्रेणी विभाजन सार्थक हो।"
 
@@ -17168,6 +17219,9 @@ msgstr "हम क्या मान रहे हैं"
 
 msgid "What you need to do"
 msgstr "आपको क्या करना है"
+
+msgid "What's in a backup"
+msgstr "बैकअप में क्या है"
 
 msgid "What's in scope"
 msgstr "स्कोप में क्या है"

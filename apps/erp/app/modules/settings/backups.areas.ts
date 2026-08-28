@@ -1,22 +1,56 @@
+import type { MessageDescriptor } from "@lingui/core";
+import { msg } from "@lingui/core/macro";
+
 /**
  * Product areas for backup surfaces.
  *
  * One vocabulary, two consumers: the "what's in a backup" popover
- * (`api+/settings.backup-summary.ts`) and the pre-restore disclosure screen. The
- * disclosure screen groups its findings by area rather than by table, because
- * "Production" means something to the person deciding and `jobOperationDependency`
- * does not. Keeping both on the same list is what stops the two screens naming
- * the same data differently.
+ * (`api+/settings.backup-summary.ts` + `BackupContentsInfo`) and the
+ * pre-restore disclosure screen. The disclosure groups findings by area rather
+ * than by table, because "Production" means something to the person deciding
+ * and `jobOperationDependency` does not.
+ *
+ * Areas are stable KEYS; copy lives in `AREA_LABELS` as `msg` descriptors
+ * resolved client-side with `t(...)` — the summary API returns keys and
+ * counts only, so no English crosses the wire.
  */
+
+export type BackupArea =
+  | "sales"
+  | "purchasing"
+  | "items"
+  | "production"
+  | "inventory"
+  | "accounting"
+  | "quality"
+  | "people"
+  | "other";
 
 export type Scope = "company" | "group";
 
 /**
- * `scope` is the column rows are counted by: "company" (companyId, the default)
- * or "group" (companyGroupId — the shared chart of accounts / currencies /
- * dimensions).
+ * `scope` is the column rows are counted by: "company" (companyId, the
+ * default) or "group" (companyGroupId — the shared chart of accounts /
+ * currencies / dimensions).
  */
-export type Entity = [label: string, table: string, scope?: Scope];
+export type Entity = [label: MessageDescriptor, table: string, scope?: Scope];
+
+export const AREA_LABELS: Record<BackupArea, MessageDescriptor> = {
+  sales: msg`Sales`,
+  purchasing: msg`Purchasing`,
+  items: msg`Items`,
+  production: msg`Production`,
+  inventory: msg`Inventory`,
+  accounting: msg`Accounting`,
+  quality: msg`Quality`,
+  people: msg`People`,
+  other: msg`Other`
+};
+
+/** The label for an area key; unknown keys read as "Other". */
+export function areaLabel(area: string): MessageDescriptor {
+  return AREA_LABELS[area as BackupArea] ?? AREA_LABELS.other;
+}
 
 /**
  * Recognizable entities a backup carries, grouped for the popover. Not
@@ -24,153 +58,144 @@ export type Entity = [label: string, table: string, scope?: Scope];
  * headline counts.
  */
 export const BACKUP_SUMMARY_GROUPS: {
-  title: string;
+  area: BackupArea;
   entities: Entity[];
 }[] = [
   {
-    title: "Sales",
+    area: "sales",
     entities: [
-      ["Customers", "customer"],
-      ["Quotes", "quote"],
-      ["Sales orders", "salesOrder"],
-      ["Sales invoices", "salesInvoice"],
-      ["Shipments", "shipment"]
+      [msg`Customers`, "customer"],
+      [msg`Quotes`, "quote"],
+      [msg`Sales orders`, "salesOrder"],
+      [msg`Sales invoices`, "salesInvoice"],
+      [msg`Shipments`, "shipment"]
     ]
   },
   {
-    title: "Purchasing",
+    area: "purchasing",
     entities: [
-      ["Suppliers", "supplier"],
-      ["Purchase orders", "purchaseOrder"],
-      ["Purchase invoices", "purchaseInvoice"],
-      ["Receipts", "receipt"]
+      [msg`Suppliers`, "supplier"],
+      [msg`Purchase orders`, "purchaseOrder"],
+      [msg`Purchase invoices`, "purchaseInvoice"],
+      [msg`Receipts`, "receipt"]
     ]
   },
   {
-    title: "Items",
+    area: "items",
     entities: [
-      ["Parts", "part"],
-      ["Materials", "material"],
-      ["Tools", "tool"]
+      [msg`Parts`, "part"],
+      [msg`Materials`, "material"],
+      [msg`Tools`, "tool"]
     ]
   },
   {
-    title: "Production",
+    area: "production",
     entities: [
-      ["Jobs", "job"],
-      ["Work centers", "workCenter"],
-      ["Processes", "process"]
+      [msg`Jobs`, "job"],
+      [msg`Work centers`, "workCenter"],
+      [msg`Processes`, "process"]
     ]
   },
   {
-    title: "Accounting",
+    area: "accounting",
     entities: [
-      ["Accounts", "account", "group"],
-      ["Currencies", "currency", "group"],
-      ["Dimensions", "dimension", "group"],
-      ["Journal lines", "journalLine"],
-      ["Item ledger", "itemLedger"],
-      ["Cost ledger", "costLedger"]
+      [msg`Accounts`, "account", "group"],
+      [msg`Currencies`, "currency", "group"],
+      [msg`Dimensions`, "dimension", "group"],
+      [msg`Journal lines`, "journalLine"],
+      [msg`Item ledger`, "itemLedger"],
+      [msg`Cost ledger`, "costLedger"]
     ]
   },
   {
-    title: "Quality",
+    area: "quality",
     entities: [
-      ["Non-conformances", "nonConformance"],
-      ["Gauges", "gauge"]
+      [msg`Non-conformances`, "nonConformance"],
+      [msg`Gauges`, "gauge"]
     ]
   },
-  { title: "People", entities: [["Employees", "employee"]] }
+  { area: "people", entities: [[msg`Employees`, "employee"]] }
 ];
 
 /** Every table named by the groups above, plus the child tables a compatibility
  *  finding is likely to name. Deliberately NOT exhaustive over the ~400 scoped
  *  tables — see `tableArea`. */
-const TABLE_AREAS: Record<string, string> = {
+const TABLE_AREAS: Record<string, BackupArea> = {
   ...Object.fromEntries(
     BACKUP_SUMMARY_GROUPS.flatMap((g) =>
-      g.entities.map(([, table]) => [table, g.title])
+      g.entities.map(([, table]) => [table, g.area])
     )
   ),
 
-  // Sales
-  quoteLine: "Sales",
-  salesOrderLine: "Sales",
-  salesInvoiceLine: "Sales",
-  shipmentLine: "Sales",
-  customerContact: "Sales",
-  customerLocation: "Sales",
-  opportunity: "Sales",
+  quoteLine: "sales",
+  salesOrderLine: "sales",
+  salesInvoiceLine: "sales",
+  shipmentLine: "sales",
+  customerContact: "sales",
+  customerLocation: "sales",
+  opportunity: "sales",
 
-  // Purchasing
-  purchaseOrderLine: "Purchasing",
-  purchaseInvoiceLine: "Purchasing",
-  receiptLine: "Purchasing",
-  supplierContact: "Purchasing",
-  supplierLocation: "Purchasing",
-  supplierPart: "Purchasing",
+  purchaseOrderLine: "purchasing",
+  purchaseInvoiceLine: "purchasing",
+  receiptLine: "purchasing",
+  supplierContact: "purchasing",
+  supplierLocation: "purchasing",
+  supplierPart: "purchasing",
 
-  // Items
-  item: "Items",
-  itemReplenishment: "Items",
-  itemPlanning: "Items",
-  itemCost: "Items",
-  itemUnitSalePrice: "Items",
-  makeMethod: "Items",
-  methodMaterial: "Items",
-  methodOperation: "Items",
-  consumable: "Items",
-  service: "Items",
-  pickMethod: "Items",
+  item: "items",
+  itemReplenishment: "items",
+  itemPlanning: "items",
+  itemCost: "items",
+  itemUnitSalePrice: "items",
+  makeMethod: "items",
+  methodMaterial: "items",
+  methodOperation: "items",
+  consumable: "items",
+  service: "items",
+  pickMethod: "items",
 
-  // Production
-  jobOperation: "Production",
-  jobOperationDependency: "Production",
-  jobMakeMethod: "Production",
-  jobMaterial: "Production",
-  productionEvent: "Production",
-  productionQuantity: "Production",
-  rework: "Production",
-  workCenterProcess: "Production",
+  jobOperation: "production",
+  jobOperationDependency: "production",
+  jobMakeMethod: "production",
+  jobMaterial: "production",
+  productionEvent: "production",
+  productionQuantity: "production",
+  rework: "production",
+  workCenterProcess: "production",
 
   // Inventory — its own area, not in the popover's headline list.
   // `itemLedger` is deliberately absent: the popover already files it under
   // Accounting, and one name in two places is worse than an imperfect name.
-  location: "Inventory",
-  shelf: "Inventory",
-  trackedEntity: "Inventory",
-  kanban: "Inventory",
-  warehouseTransfer: "Inventory",
+  location: "inventory",
+  shelf: "inventory",
+  trackedEntity: "inventory",
+  kanban: "inventory",
+  warehouseTransfer: "inventory",
 
-  // Accounting
-  accountDefault: "Accounting",
-  journal: "Accounting",
-  costLedger: "Accounting",
-  supplierLedger: "Accounting",
-  fixedAsset: "Accounting",
-  period: "Accounting",
-  paymentTerm: "Accounting",
+  accountDefault: "accounting",
+  journal: "accounting",
+  supplierLedger: "accounting",
+  fixedAsset: "accounting",
+  period: "accounting",
+  paymentTerm: "accounting",
 
-  // Quality
-  nonConformanceJobOperation: "Quality",
-  inspection: "Quality",
-  qualityDocument: "Quality",
+  nonConformanceJobOperation: "quality",
+  inspection: "quality",
+  qualityDocument: "quality",
 
-  // People
-  employeeJob: "People",
-  ability: "People"
+  employeeJob: "people",
+  ability: "people"
 };
 
 /**
  * The product area a table belongs to, for user-facing copy.
  *
- * Returns `"Other"` for anything unmapped, and that is the honest answer rather
- * than a failure: there are roughly 400 tenant-scoped tables and hand-mapping all
- * of them would be stale within a release. A finding in `"Other"` still shows its
- * exact table name in the details expander, so nothing is hidden — it is just
- * grouped less helpfully. Widen the map when a real finding lands in `"Other"`
- * often enough to matter.
+ * Returns `"other"` for anything unmapped — the honest answer rather than a
+ * failure: hand-mapping all ~400 tenant-scoped tables would be stale within a
+ * release, and a finding in "Other" still shows its exact table name in the
+ * details expander. Widen the map when a real finding lands there often enough
+ * to matter.
  */
-export function tableArea(table: string): string {
-  return TABLE_AREAS[table] ?? "Other";
+export function tableArea(table: string): BackupArea {
+  return TABLE_AREAS[table] ?? "other";
 }

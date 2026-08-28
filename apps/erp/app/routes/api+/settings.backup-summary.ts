@@ -32,28 +32,26 @@ export async function loader({ request }: LoaderFunctionArgs) {
   if (!canAccessBackups(email))
     throw new Response("Not found", { status: 404 });
 
+  // Keys and counts only — the popover owns the labels (msg descriptors it
+  // resolves client-side), so no display copy crosses the wire.
   const groups = await Promise.all(
     BACKUP_SUMMARY_GROUPS.map(async (group) => {
       const rows = await Promise.all(
-        group.entities.map(async ([label, table, scope]) =>
-          scope === "group"
-            ? {
-                label,
-                count: await countEntity(
+        group.entities.map(async ([, table, scope]) => ({
+          table,
+          count:
+            scope === "group"
+              ? await countEntity(
                   client,
                   table,
                   "companyGroupId",
                   companyGroupId
                 )
-              }
-            : {
-                label,
-                count: await countEntity(client, table, "companyId", companyId)
-              }
-        )
+              : await countEntity(client, table, "companyId", companyId)
+        }))
       );
       const subtotal = rows.reduce((sum, r) => sum + r.count, 0);
-      return { title: group.title, rows, subtotal };
+      return { area: group.area, rows, subtotal };
     })
   );
 
