@@ -88,7 +88,7 @@ newest migrations, e.g. `20260609143732_document-template.sql`):
 
 If the migration **renames or drops any table that appears in a company backup**, add an
 entry to `TABLE_RENAMES` in
-`packages/jobs/src/inngest/functions/tasks/company-backup.renames.ts` in the SAME commit:
+`packages/jobs/src/backups/renames.ts` in the SAME commit:
 the new name for a rename, `null` for a table dropped along with its feature.
 
 That is more tables than it sounds: the catalog scopes a table either DIRECTLY (its own
@@ -130,6 +130,6 @@ alone, `pnpm db:types`. **Do NOT run `npm run db:build` — it does not exist.**
       `get_companies_with_employee_role()`, writes via
       `get_companies_with_employee_permission('<module>_<action>')`)
 - [ ] Renamed/dropped a tenant-scoped table? `TABLE_RENAMES` entry added
-      (`company-backup.renames.ts`) — new name, or `null` if dropped with its feature
+      (`packages/jobs/src/backups/renames.ts`) — new name, or `null` if dropped with its feature
 - [ ] Zod validators updated in `{module}.models.ts`
 - [ ] Applied locally with `pnpm db:migrate` (regenerates types) — never `db:build`

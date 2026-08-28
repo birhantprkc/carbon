@@ -1,6 +1,7 @@
 import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { chunkArray } from "@carbon/utils";
 import { sql } from "kysely";
+import { applyTableRenames } from "../../../backups/renames";
 import { getJobDatabaseClient, type JobDatabase } from "../../../db";
 import { inngest } from "../../client";
 import type { Catalog, CompanyBackup, JobProgress } from "./company-backup";
@@ -24,7 +25,6 @@ import {
   wipeScopedData,
   writeBackupManifest
 } from "./company-backup";
-import { applyTableRenames } from "./company-backup.renames";
 import {
   assertReferentiallyClosed,
   buildRowTransforms,

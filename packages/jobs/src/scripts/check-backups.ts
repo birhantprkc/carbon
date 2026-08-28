@@ -29,10 +29,7 @@ import type { KyselyDatabase } from "@carbon/database/client";
 import { now } from "@internationalized/date";
 import { Kysely, PostgresDialect, sql } from "kysely";
 import pg from "pg";
-import type {
-  Catalog,
-  Manifest
-} from "../inngest/functions/tasks/company-backup";
+import type { Catalog, Manifest } from "../backups/schema";
 import {
   BACKUP_KIND,
   BACKUP_VERSION,
@@ -40,7 +37,7 @@ import {
   getCompanyTableCatalog,
   reportBackupCompatibility,
   selectExportableTables
-} from "../inngest/functions/tasks/company-backup";
+} from "../backups/schema";
 import {
   BASELINE_BRANCH,
   BaselineError,
@@ -55,7 +52,7 @@ const FETCH_TIMEOUT_MS = 3000;
 const FIX_HINT =
   "Fix: give the new column a DEFAULT (or make it nullable and backfill), or — " +
   "if a table was renamed — add an entry to TABLE_RENAMES in " +
-  "packages/jobs/src/inngest/functions/tasks/company-backup.renames.ts";
+  "packages/jobs/src/backups/renames.ts";
 
 const RERUN_HINT =
   "Re-run on its own with: pnpm db:check:backups\n" +

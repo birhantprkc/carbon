@@ -1,6 +1,7 @@
 import { getCarbonServiceRole } from "@carbon/auth/client.server";
 import { chunkArray } from "@carbon/utils";
 import { sql } from "kysely";
+import { applyTableRenames } from "../../../backups/renames";
 import { getJobDatabaseClient } from "../../../db";
 import { inngest } from "../../client";
 import {
@@ -19,7 +20,6 @@ import {
   restoreAssetsFromBackup,
   SECRET_TABLES
 } from "./company-backup";
-import { applyTableRenames } from "./company-backup.renames";
 import {
   buildRowTransforms,
   loadSubstrateIds

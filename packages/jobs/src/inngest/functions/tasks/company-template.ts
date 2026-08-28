@@ -4,6 +4,7 @@ import { getPostgresConnectionPool } from "@carbon/database/client";
 import { applyDataset, getDataset } from "@carbon/database/datasets";
 import { datetime } from "@carbon/utils";
 import { NonRetriableError } from "inngest";
+import { applyTableRenames } from "../../../backups/renames";
 import { getJobDatabaseClient } from "../../../db";
 import { inngest } from "../../client";
 import {
@@ -17,7 +18,6 @@ import {
   throttleProgress,
   writeBackupManifest
 } from "./company-backup";
-import { applyTableRenames } from "./company-backup.renames";
 import { buildCompanyBackup } from "./company-export";
 import { resolveRestoreScope, wipeAndLoad } from "./company-restore";
 

@@ -47,8 +47,12 @@ read-only. See `manifests/README.md` and `.claude/rules/company-backup-restore.m
 
 Scripts under `src/scripts/` run through bare `tsx`, which does NOT paper over CJS/ESM interop the
 way Vite and vitest do. A **named** import of a workspace package that lacks `"type": "module"`
-(`@carbon/database`, `@carbon/utils`) throws `does not provide an export named …` at run time even
-though it typechecks. Import types only from those, or use a package that has it.
+(`@carbon/database`, `@carbon/utils`, `@carbon/logger`) throws `does not provide an export named …`
+at run time even though it typechecks. The fix is to keep a script's runtime import chain free of
+those packages (type-only imports are fine — they erase) — never to flip a shared package's `type`
+field for one script. That is exactly why the catalog/compatibility logic lives in
+`src/backups/schema.ts` with no runtime `@carbon/*` imports, instead of in `company-backup.ts`
+(whose module-scope `getLogger` would drag `@carbon/logger` into the script).
 
 ## Key Exports
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { Manifest } from "../inngest/functions/tasks/company-backup";
+import type { Manifest } from "../backups/schema";
 import {
   BaselineError,
   type BaselineSources,

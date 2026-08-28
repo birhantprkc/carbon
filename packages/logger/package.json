@@ -38,6 +38,5 @@
     "typecheck": "tsgo --noEmit"
   },
   "sideEffects": false,
-  "version": "0.0.0",
-  "type": "module"
+  "version": "0.0.0"
 }

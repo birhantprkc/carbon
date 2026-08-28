@@ -282,7 +282,7 @@ honest reading is that this pair catches the whole class of *structural* breakag
 a table or column the backup has nothing to say about — and that the *value*-shaped
 breakage is what `RestoreDisclosure` and the snapshot-and-revert path exist for.
 
-### Renamed and dropped tables — `company-backup.renames.ts`
+### Renamed and dropped tables — `src/backups/renames.ts`
 
 `TABLE_RENAMES` maps a tenant-scoped table's OLD name to its current one, or to `null`
 when it was dropped along with its feature. "Tenant-scoped" here means anything in the
