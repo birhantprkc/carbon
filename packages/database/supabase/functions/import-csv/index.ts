@@ -10,6 +10,7 @@ import { requirePermissions } from "../lib/supabase.ts";
 import { Database } from "../lib/types.ts";
 import { getReadableIdWithRevision } from "../lib/utils.ts";
 import { classifyImportRow } from "./classify-import-row.ts";
+import { importConfigLookups } from "./config-lookup-import.ts";
 import { importMaterialProperties } from "./material-property-import.ts";
 import { importMethods } from "./method-import.ts";
 
@@ -28,12 +29,18 @@ const importCsvValidator = z.object({
     "operations",
     "partWithMethod",
     "part",
+    "service",
     "supplier",
     "supplierContact",
     "tool",
     "workCenter",
     "process",
     "storageUnit",
+    "unitOfMeasure",
+    "itemPostingGroup",
+    "storageType",
+    "scrapReason",
+    "department",
     "materialSubstance",
     "materialForm",
     "materialFinish",
@@ -1434,10 +1441,20 @@ serve(async (req: Request) => {
       case "consumable":
       case "tool":
       case "fixture":
+      case "service":
       case "part": {
         const getExternalId = (id: string) => {
           return `${table}:${id}`;
         };
+
+        // A service can never be shipped, received or stocked, so the wizard
+        // does not offer a Tracking Type column for it. The item validator
+        // below requires one, and `upsertService` hard-codes the same value.
+        if (table === "service") {
+          for (const record of mappedRecords) {
+            record.itemTrackingType = "Non-Inventory";
+          }
+        }
 
         const externalIdMap = await getCsvExternalIdMap("item", companyId);
         const readableIds = new Set();
@@ -1865,10 +1882,19 @@ serve(async (req: Request) => {
               userId
             );
 
-            if (["part", "fixture", "tool", "consumable"].includes(table)) {
+            if (
+              ["part", "fixture", "tool", "consumable", "service"].includes(
+                table
+              )
+            ) {
               const specificInserts = insertedItems.map((item) => ({
                 id: item.readableId,
-                approved: true,
+                // `service` has its own `approved` default and a legacy
+                // NOT NULL `serviceType` the UI no longer surfaces —
+                // `upsertService` writes "External" for the same reason.
+                ...(table === "service"
+                  ? { serviceType: "External" }
+                  : { approved: true }),
                 companyId,
                 createdAt: new Date().toISOString(),
                 createdBy: userId,
@@ -2876,6 +2902,20 @@ serve(async (req: Request) => {
       case "operations":
       case "partWithMethod": {
         await importMethods(db, {
+          table,
+          mappedRecords,
+          companyId,
+          userId,
+          summary,
+        });
+        break;
+      }
+      case "unitOfMeasure":
+      case "itemPostingGroup":
+      case "storageType":
+      case "scrapReason":
+      case "department": {
+        await importConfigLookups(db, {
           table,
           mappedRecords,
           companyId,
