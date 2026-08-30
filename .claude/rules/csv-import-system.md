@@ -59,7 +59,7 @@ Three exported maps, all keyed by table name:
 
 Other exports: `creatableLookups`, and types `CreatableLookup`, `CreatableForm`.
 
-> **`fieldMappings[table]` and `importSchemas[table]` must declare the same fields.**
+> **Every field in `fieldMappings[table]` must also be declared in `importSchemas[table]`.**
 > The route builds `columnMappings` from the zod parse result, and a zod object strips
 > keys it does not declare — so a field the wizard offers but the schema omits is mapped
 > by the user, submitted, and silently dropped before the edge function sees it. That is
