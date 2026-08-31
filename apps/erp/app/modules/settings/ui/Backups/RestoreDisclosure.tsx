@@ -18,7 +18,9 @@ import type { CompanyBackupSummary } from "../../backups.service";
 import { CONFIRM_WORD, disclosureState } from "./disclosure-state";
 import { formatBackupDate, formatBackupName } from "./format";
 
-type Finding = CompanyBackupSummary["compatibility"]["findings"][number];
+type Finding = NonNullable<
+  CompanyBackupSummary["compatibility"]
+>["findings"][number];
 
 /**
  * What the person is told before their company's data is replaced.
@@ -50,7 +52,7 @@ export function RestoreDisclosure({
   // No verdict — an upload-sourced restore. The consequences below still
   // apply and are shown; only the findings are unknown, which the screen says
   // rather than implying a clean bill of health.
-  const findings = backup?.compatibility.findings ?? [];
+  const findings = backup?.compatibility?.findings ?? [];
   const { unchecked, blocked, discards, canConfirm } = disclosureState(
     backup,
     typed

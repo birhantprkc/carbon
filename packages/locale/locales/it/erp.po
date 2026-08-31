@@ -2898,6 +2898,7 @@ msgstr "Chiamata una metodo in Carbon — i componenti più le operazioni che pr
 
 msgid "Can't be restored"
 msgstr "Non può essere ripristinato"
+
 msgid "Can't be scheduled"
 msgstr ""
 
@@ -3194,7 +3195,6 @@ msgid "Check your email"
 msgstr "Controlla la tua email"
 
 msgid "Checking Stripe for this customer…"
-msgstr "Controllo di Stripe per questo cliente…"
 msgstr "Verifica di Stripe per questo cliente…"
 
 msgid "Checkpoint ·"
@@ -4138,7 +4138,6 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "Crea un nuovo ordine di produzione per evadere l'ordine di vendita"
 
 msgid "Create a new Stripe customer instead"
-msgstr "Creare invece un nuovo cliente Stripe"
 msgstr "Crea un nuovo cliente Stripe invece"
 
 msgid "Create a new version"
@@ -8968,7 +8967,6 @@ msgid "Link Linear Issue"
 msgstr "Collega problema Linear"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr "Collega questo cliente Carbon a uno di essi, oppure crea un cliente Stripe separato."
 msgstr "Collega questo cliente Carbon a uno di loro, oppure crea un cliente Stripe separato."
 
 msgid "Link to sales order line"
@@ -10722,6 +10720,7 @@ msgstr "Non richiesto"
 
 msgid "Not restorable"
 msgstr "Non ripristinabile"
+
 msgid "Not scheduled"
 msgstr "Non programmato"
 
@@ -13320,7 +13319,6 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Storna qualsiasi voce di ledger articoli da questa fattura"
 
 msgid "Reverse charge"
-msgstr "Addebito inverso"
 msgstr "Inversione contabile"
 
 msgid "Reverse Charge Sales Tax"
@@ -14725,11 +14723,11 @@ msgstr "Solutions Engineer"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Alcune righe estratte dal PDF non potevano essere mappate automaticamente ai tuoi articoli. Rivedi e mappa ogni riga di seguito."
 
-msgid "Some Shifts"
-msgstr "Alcuni turni"
-
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Alcuni record non torneranno. Digita <0>{CONFIRM_WORD}</0> per continuare."
+
+msgid "Some Shifts"
+msgstr "Alcuni turni"
 
 msgid "Something went wrong. Please try again."
 msgstr "Qualcosa è andato storto. Riprova."
@@ -15070,14 +15068,12 @@ msgid "Stripe"
 msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
-msgstr "Stripe ha già un cliente con questa email"
 msgstr "Stripe ha già un cliente con questo indirizzo email"
 
 msgid "Stripe Due Date"
 msgstr "Data di scadenza Stripe"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe invia la fattura al cliente tramite email, quindi è richiesto un indirizzo. Questo verrà salvato anche nel contatto in Carbon."
 msgstr "Stripe invia l'email della fattura al cliente, quindi è richiesto un indirizzo. Questo sarà anche salvato al contatto in Carbon."
 
 msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
@@ -15505,7 +15501,6 @@ msgid "Tax Depreciation Method"
 msgstr "Metodo di ammortamento fiscale"
 
 msgid "Tax exempt"
-msgstr "Esente da imposte"
 msgstr "esente da imposta"
 
 msgid "Tax Exempt"
@@ -16456,7 +16451,6 @@ msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "Questa fattura non ha una data di scadenza utilizzabile — scegline una per Stripe."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "Questa fattura verrà addebitata al cliente Stripe già collegato a questo cliente Carbon. Per modificarne i dettagli, modificalo nel dashboard di Stripe."
 msgstr "Questa fattura sarà addebitata al cliente Stripe già collegato a questo cliente Carbon. Per modificare i suoi dettagli, modificalo nel dashboard Stripe."
 
 msgid "This is a controlled environment, so an authenticator app is required."

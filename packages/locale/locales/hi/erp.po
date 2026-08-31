@@ -2896,11 +2896,11 @@ msgstr "बाहरी URL को कॉल करें"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Carbon में एक विधि कहा जाता है — घटक साथ ऑपरेशन जो एक पार्ट का उत्पादन करते हैं।"
 
-msgid "Can't be scheduled"
-msgstr ""
-
 msgid "Can't be restored"
 msgstr "पुनः स्थापित नहीं किया जा सकता"
+
+msgid "Can't be scheduled"
+msgstr ""
 
 msgid "Can't delete this period"
 msgstr "इस अवधि को हटाया नहीं जा सकता"
@@ -3195,7 +3195,6 @@ msgid "Check your email"
 msgstr "अपना ईमेल जांचें"
 
 msgid "Checking Stripe for this customer…"
-msgstr "इस ग्राहक के लिए Stripe की जांच कर रहे हैं…"
 msgstr "इस ग्राहक के लिए Stripe की जांच की जा रही है…"
 
 msgid "Checkpoint ·"
@@ -4139,7 +4138,6 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "विक्रय आदेश को पूरा करने के लिए एक नया उत्पादन जॉब बनाएँ"
 
 msgid "Create a new Stripe customer instead"
-msgstr "इसके बजाय एक नया Stripe ग्राहक बनाएं"
 msgstr "इसके बजाय एक नया Stripe ग्राहक बनाएँ"
 
 msgid "Create a new version"
@@ -8969,7 +8967,6 @@ msgid "Link Linear Issue"
 msgstr "Linear समस्या को लिंक करें"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr "इस Carbon ग्राहक को उनमें से किसी से जोड़ें, या एक अलग Stripe ग्राहक बनाएं।"
 msgstr "इस Carbon ग्राहक को इनमें से किसी एक से जोड़ें, या एक अलग Stripe ग्राहक बनाएँ।"
 
 msgid "Link to sales order line"
@@ -10723,6 +10720,7 @@ msgstr "आवश्यक नहीं"
 
 msgid "Not restorable"
 msgstr "पुनर्स्थापना योग्य नहीं"
+
 msgid "Not scheduled"
 msgstr "अनुसूचित नहीं"
 
@@ -14727,6 +14725,7 @@ msgstr "PDF से निकाली गई कुछ पंक्तियो�
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "कुछ रिकॉर्ड वापस नहीं आएंगे। जारी रखने के लिए <0>{CONFIRM_WORD}</0> टाइप करें।"
+
 msgid "Some Shifts"
 msgstr "कुछ शिफ्ट"
 
@@ -15073,13 +15072,6 @@ msgstr "Stripe के पास पहले से इस ईमेल के �
 
 msgid "Stripe Due Date"
 msgstr "Stripe देय तारीख"
-
-msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe ग्राहक को चालान ईमेल करता है, इसलिए एक पता आवश्यक है। यह Carbon में संपर्क में भी सहेजा जाएगा।"
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe के पास अभी तक इस Carbon ग्राहक के लिए कोई ग्राहक नहीं है। पोस्ट करने से आपके जुड़े खाते पर एक बनाया जाएगा।"
-msgstr "Stripe नियत तिथि"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
 msgstr "Stripe ग्राहक को चालान ईमेल करता है, इसलिए एक पता आवश्यक है। यह Carbon में संपर्क के लिए भी सहेजा जाएगा।"
@@ -16428,7 +16420,6 @@ msgid "This completes the Discovery step."
 msgstr "यह Discovery चरण को पूरा करता है।"
 
 msgid "This contact has no email address"
-msgstr "इस संपर्क के पास ईमेल पता नहीं है"
 msgstr "इस संपर्क के पास कोई ईमेल पता नहीं है"
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
@@ -16458,10 +16449,6 @@ msgstr "यह आमंत्रण {0} में शामिल होने 
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "इस चालान के पास कोई उपयोगी देय तारीख नहीं है — Stripe के लिए एक चुनें।"
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "इस चालान को उस Stripe ग्राहक को बिल दिया जाएगा जो पहले से इस Carbon ग्राहक से जुड़ा हुआ है। इसके विवरण को बदलने के लिए, इसे Stripe डैशबोर्ड में संपादित करें।"
-msgstr "इस चालान के पास कोई उपयोगी नियत तिथि नहीं है — Stripe के लिए एक चुनें।"
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "इस चालान को Stripe ग्राहक को बिल दिया जाएगा जो पहले से इस Carbon ग्राहक से जुड़ा हुआ है। इसके विवरण को बदलने के लिए, Stripe डैशबोर्ड में संपादित करें।"

@@ -552,7 +552,6 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "현재 사이즈를 복사하여 새 사이즈가 생성됩니다"
 
 msgid "A new Stripe customer will be created"
-msgstr "새로운 Stripe 고객이 생성됩니다"
 msgstr "새 Stripe 고객이 생성됩니다."
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
@@ -2899,6 +2898,7 @@ msgstr "Carbon에서는 이를 방법(method)이라고 부릅니다 — 품목�
 
 msgid "Can't be restored"
 msgstr "복원할 수 없습니다"
+
 msgid "Can't be scheduled"
 msgstr ""
 
@@ -4138,7 +4138,6 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "수주를 이행하기 위해 새 생산 작업 지시를 생성합니다."
 
 msgid "Create a new Stripe customer instead"
-msgstr "대신 새로운 Stripe 고객 생성"
 msgstr "대신 새 Stripe 고객을 생성합니다."
 
 msgid "Create a new version"
@@ -10721,6 +10720,7 @@ msgstr "필수 아님"
 
 msgid "Not restorable"
 msgstr "복원 불가"
+
 msgid "Not scheduled"
 msgstr "예약되지 않음"
 
@@ -14725,6 +14725,7 @@ msgstr "PDF에서 추출된 일부 라인을 재고 품목에 자동으로 매�
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "일부 레코드는 돌아오지 않습니다. 계속하려면 <0>{CONFIRM_WORD}</0>를 입력하세요."
+
 msgid "Some Shifts"
 msgstr "일부 교대"
 
@@ -15071,13 +15072,6 @@ msgstr "Stripe에 이미 이 이메일을 가진 고객이 있습니다"
 
 msgid "Stripe Due Date"
 msgstr "Stripe 만기일"
-
-msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe에서 고객에게 청구서를 이메일로 전송하므로 주소가 필요합니다. Carbon의 연락처에도 저장됩니다."
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe에 이 Carbon 고객을 위한 고객이 아직 없습니다. 게시하면 연결된 계정에서 하나가 생성됩니다."
-msgstr "Stripe 마감일"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
 msgstr "Stripe가 송장을 고객에게 이메일로 보내므로 주소가 필요합니다. 이것도 Carbon의 담당자 정보에 저장됩니다."
@@ -15507,7 +15501,6 @@ msgid "Tax Depreciation Method"
 msgstr "세무 감가상각 방법"
 
 msgid "Tax exempt"
-msgstr "세금 면제"
 msgstr "면세"
 
 msgid "Tax Exempt"
@@ -16427,7 +16420,6 @@ msgid "This completes the Discovery step."
 msgstr "이것으로 발견(Discovery) 단계가 완료됩니다."
 
 msgid "This contact has no email address"
-msgstr "이 연락처에는 이메일 주소가 없습니다"
 msgstr "이 담당자는 이메일 주소가 없습니다."
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
@@ -16457,10 +16449,6 @@ msgstr "{0}에 가입하라는 초대가 만료되었습니다. 이메일로 새
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "이 청구서에는 사용할 수 있는 만기일이 없습니다 — Stripe를 위해 하나를 선택하세요."
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "이 청구서는 이 Carbon 고객에 이미 연결된 Stripe 고객에게 청구됩니다. 세부 정보를 변경하려면 Stripe 대시보드에서 편집하세요."
-msgstr "이 송장은 사용 가능한 마감일이 없습니다 — Stripe를 위해 선택하십시오."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "이 송장은 이미 이 Carbon 고객과 연결된 Stripe 고객에게 청구됩니다. 세부 사항을 변경하려면 Stripe 대시보드에서 편집하세요."

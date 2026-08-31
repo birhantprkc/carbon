@@ -2898,6 +2898,7 @@ msgstr "Llamada una método en Carbon — los componentes más las operaciones q
 
 msgid "Can't be restored"
 msgstr "No se puede restaurar"
+
 msgid "Can't be scheduled"
 msgstr ""
 
@@ -10719,6 +10720,7 @@ msgstr "No requerido"
 
 msgid "Not restorable"
 msgstr "No restaurable"
+
 msgid "Not scheduled"
 msgstr "No programado"
 
@@ -13317,7 +13319,6 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Revertir cualquier entrada del libro mayor de artículos de esta factura"
 
 msgid "Reverse charge"
-msgstr "Cargo inverso"
 msgstr "Inversión del sujeto pasivo"
 
 msgid "Reverse Charge Sales Tax"
@@ -14724,6 +14725,7 @@ msgstr "Algunas líneas extraídas del PDF no se pudieron asignar automáticamen
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Algunos registros no volverán. Escriba <0>{CONFIRM_WORD}</0> para continuar."
+
 msgid "Some Shifts"
 msgstr "Algunos turnos"
 
@@ -15075,7 +15077,6 @@ msgid "Stripe emails the invoice to the customer, so an address is required. Thi
 msgstr "Stripe envía la factura por correo electrónico al cliente, por lo que se requiere una dirección. Esto también se guardará en el contacto en Carbon."
 
 msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe aún no tiene un cliente para este cliente de Carbon. Al publicar, se creará uno en tu cuenta conectada."
 msgstr "Stripe aún no tiene un cliente para este cliente de Carbon. La contabilización creará uno en su cuenta conectada."
 
 msgid "Style of kanban output to show in the Kanban table"
@@ -16448,10 +16449,6 @@ msgstr "Esta invitación para unirse a {0} ha vencido. Puedes solicitar que se e
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "Esta factura no tiene una fecha de vencimiento utilizable: elija una para Stripe."
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "Esta factura se facturará al cliente de Stripe ya vinculado con este cliente de Carbon. Para cambiar sus detalles, edítelo en el panel de control de Stripe."
-msgstr "Esta factura no tiene una fecha de vencimiento utilizable: elige una para Stripe."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "Esta factura se facturará al cliente de Stripe ya vinculado a este cliente de Carbon. Para cambiar sus detalles, edítalo en el panel de Stripe."

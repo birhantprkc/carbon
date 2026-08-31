@@ -552,7 +552,6 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "将使用当前尺寸的副本创建新尺寸"
 
 msgid "A new Stripe customer will be created"
-msgstr "将创建一个新的 Stripe 客户"
 msgstr "将创建新的 Stripe 客户"
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
@@ -2897,11 +2896,11 @@ msgstr "调用外部 URL"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "在Carbon中称为方法 — 生产一个零件的组成部分和工序。"
 
-msgid "Can't be scheduled"
-msgstr ""
-
 msgid "Can't be restored"
 msgstr "无法恢复"
+
+msgid "Can't be scheduled"
+msgstr ""
 
 msgid "Can't delete this period"
 msgstr "无法删除此期间"
@@ -2982,7 +2981,6 @@ msgid "Cannot send RFQ"
 msgstr "无法发送询价单"
 
 msgid "Cannot send through Stripe"
-msgstr "无法通过 Stripe 发送"
 msgstr "无法通过Stripe发送"
 
 msgid "Cannot upload — supplier interaction not yet created"
@@ -3197,7 +3195,6 @@ msgid "Check your email"
 msgstr "检查您的电子邮件"
 
 msgid "Checking Stripe for this customer…"
-msgstr "正在检查此客户的 Stripe…"
 msgstr "正在为此客户检查Stripe…"
 
 msgid "Checkpoint ·"
@@ -4141,7 +4138,6 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "创建新的生产工作以完成销售订单"
 
 msgid "Create a new Stripe customer instead"
-msgstr "改为创建新的 Stripe 客户"
 msgstr "改为创建新的Stripe客户"
 
 msgid "Create a new version"
@@ -8971,7 +8967,6 @@ msgid "Link Linear Issue"
 msgstr "关联 Linear 问题"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr "将此 Carbon 客户关联到其中之一，或创建单独的 Stripe 客户。"
 msgstr "将此 Carbon 客户链接到其中一个，或创建单独的 Stripe 客户。"
 
 msgid "Link to sales order line"
@@ -10725,6 +10720,7 @@ msgstr "不需要"
 
 msgid "Not restorable"
 msgstr "无法恢复"
+
 msgid "Not scheduled"
 msgstr "未计划"
 
@@ -14727,11 +14723,11 @@ msgstr "解决方案工程师"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "从 PDF 提取的某些行无法自动映射到你的库存物料。查看并映射下面的每一行。"
 
-msgid "Some Shifts"
-msgstr "某些班次"
-
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "某些记录不会回来。输入 <0>{CONFIRM_WORD}</0> 继续。"
+
+msgid "Some Shifts"
+msgstr "某些班次"
 
 msgid "Something went wrong. Please try again."
 msgstr "出现问题。请重试。"
@@ -15073,16 +15069,6 @@ msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
 msgstr "Stripe 已经有一个具有此电子邮件的客户"
-
-msgid "Stripe Due Date"
-msgstr "Stripe 截止日期"
-
-msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe 通过电子邮件将发票发送给客户，因此需要地址。这也将保存到 Carbon 中的联系人。"
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe 还没有此 Carbon 客户的客户。发布将在您连接的帐户上创建一个。"
-msgstr "Stripe 已拥有此电子邮件的客户"
 
 msgid "Stripe Due Date"
 msgstr "Stripe 到期日期"
@@ -15515,7 +15501,6 @@ msgid "Tax Depreciation Method"
 msgstr "税务折旧方法"
 
 msgid "Tax exempt"
-msgstr "税务豁免"
 msgstr "免税"
 
 msgid "Tax Exempt"
@@ -16464,10 +16449,6 @@ msgstr "加入 {0} 的邀请已过期。您可以请求将新邀请发送到您�
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "此发票没有可用的截止日期 — 为 Stripe 选择一个。"
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "此发票将计费给已关联到此 Carbon 客户的 Stripe 客户。要更改其详细信息，请在 Stripe 仪表板中编辑它。"
-msgstr "此发票没有可用的到期日——为Stripe选择一个。"
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "此发票将计费给已链接到此 Carbon 客户的 Stripe 客户。要更改其详细信息，请在 Stripe 仪表板中编辑它。"

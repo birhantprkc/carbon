@@ -76,11 +76,17 @@ export type CompanyBackupSummary = {
    * the current schema by `getCompanyBackups` (backups.server.ts) on every
    * load, never stored. The hard refusal is still `assertBackupImportable`
    * inside the restore job; this is the same diff, disclosed upfront.
+   *
+   * `null` when the schema could not be read (database unreachable, pool
+   * exhausted). That is "we did not check", NOT "clean" — the row shows no
+   * badge and the restore screen says so. Never substitute a `ready` verdict
+   * here: claiming a backup is restorable without comparing anything is the
+   * exact failure this whole computation replaced.
    */
   compatibility: {
     status: BackupCompatibilityStatus;
     findings: CompatibilityFinding[];
-  };
+  } | null;
 };
 
 /**
@@ -132,7 +138,7 @@ export async function listCompanyBackupFolders(
           label: null,
           rows: 0,
           sizeBytes: 0,
-          compatibility: { status: "ready", findings: [] },
+          compatibility: null,
           manifest: null
         };
         const mf = await client.storage

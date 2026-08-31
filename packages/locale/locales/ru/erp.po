@@ -552,7 +552,6 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "Новый размер будет создан с использованием копии текущего размера"
 
 msgid "A new Stripe customer will be created"
-msgstr "Будет создан новый клиент Stripe"
 msgstr "Будет создана новая учетная запись покупателя Stripe"
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
@@ -2899,6 +2898,7 @@ msgstr "Называется метод в Carbon — компоненты пл�
 
 msgid "Can't be restored"
 msgstr "Невозможно восстановить"
+
 msgid "Can't be scheduled"
 msgstr ""
 
@@ -3195,7 +3195,6 @@ msgid "Check your email"
 msgstr "Проверьте вашу почту"
 
 msgid "Checking Stripe for this customer…"
-msgstr "Проверка Stripe для этого клиента…"
 msgstr "Проверка Stripe для этого покупателя…"
 
 msgid "Checkpoint ·"
@@ -4139,7 +4138,6 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "Создать новый производственный заказ для выполнения заказа покупателя"
 
 msgid "Create a new Stripe customer instead"
-msgstr "Создать нового клиента Stripe вместо этого"
 msgstr "Вместо этого создать нового покупателя Stripe"
 
 msgid "Create a new version"
@@ -6529,7 +6527,6 @@ msgid "Existing mappings. Pick a different provider option to re-map."
 msgstr "Существующие отображения. Выберите другой вариант провайдера для переотображения."
 
 msgid "Existing Stripe customer"
-msgstr "Существующий клиент Stripe"
 msgstr "Существующий покупатель Stripe"
 
 msgid "Expand"
@@ -8970,7 +8967,6 @@ msgid "Link Linear Issue"
 msgstr "Связать проблему Linear"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr "Свяжите этого клиента Carbon с одним из них или создайте отдельного клиента Stripe."
 msgstr "Свяжите этого покупателя Carbon с одним из них или создайте отдельного покупателя Stripe."
 
 msgid "Link to sales order line"
@@ -10724,6 +10720,7 @@ msgstr "Не требуется"
 
 msgid "Not restorable"
 msgstr "Восстановление невозможно"
+
 msgid "Not scheduled"
 msgstr "Не запланировано"
 
@@ -13322,7 +13319,6 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Отменить любые записи журнала номенклатуры из этой счет-фактуры"
 
 msgid "Reverse charge"
-msgstr "Возвратное начисление"
 msgstr "Обратное начисление"
 
 msgid "Reverse Charge Sales Tax"
@@ -14727,11 +14723,11 @@ msgstr "Инженер решений"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Некоторые строки, извлеченные из PDF, не удалось автоматически сопоставить с вашими номенклатурными позициями. Проверьте и сопоставьте каждую строку ниже."
 
-msgid "Some Shifts"
-msgstr "Некоторые смены"
-
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Некоторые записи не вернутся. Введите <0>{CONFIRM_WORD}</0> для продолжения."
+
+msgid "Some Shifts"
+msgstr "Некоторые смены"
 
 msgid "Something went wrong. Please try again."
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
@@ -15073,16 +15069,6 @@ msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
 msgstr "В Stripe уже есть клиент с этим адресом электронной почты"
-
-msgid "Stripe Due Date"
-msgstr "Дата платежа Stripe"
-
-msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe отправляет счет клиенту по электронной почте, поэтому требуется адрес. Он также будет сохранен в контакте в Carbon."
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "В Stripe еще нет клиента для этого клиента Carbon. При публикации будет создан клиент на вашей подключенной учетной записи."
-msgstr "У Stripe уже есть покупатель с этим адресом электронной почты"
 
 msgid "Stripe Due Date"
 msgstr "Срок выполнения Stripe"
@@ -15515,7 +15501,6 @@ msgid "Tax Depreciation Method"
 msgstr "Метод налоговой амортизации"
 
 msgid "Tax exempt"
-msgstr "Освобождено от налога"
 msgstr "Не облагается налогом"
 
 msgid "Tax Exempt"
@@ -16435,7 +16420,6 @@ msgid "This completes the Discovery step."
 msgstr "Этим завершается этап обнаружения."
 
 msgid "This contact has no email address"
-msgstr "У этого контакта нет адреса электронной почты"
 msgstr "Это контактное лицо не имеет адреса электронной почты"
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
@@ -16465,10 +16449,6 @@ msgstr "Это приглашение присоединиться к {0} ист
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "Этот счет не имеет пригодной даты платежа — выберите одну для Stripe."
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "Счет будет выставлен клиенту Stripe, уже связанному с этим клиентом Carbon. Чтобы изменить его детали, отредактируйте его в панели инструментов Stripe."
-msgstr "Этот счет-фактура не имеет используемого срока выполнения — выберите один для Stripe."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "Этот счет-фактура будет выставлен покупателю Stripe, уже связанному с этим покупателем Carbon. Чтобы изменить его данные, отредактируйте его в панели Stripe."

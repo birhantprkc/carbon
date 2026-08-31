@@ -2898,6 +2898,7 @@ msgstr "Called a method in Carbon — the components plus operations that produc
 
 msgid "Can't be restored"
 msgstr "Can't be restored"
+
 msgid "Can't be scheduled"
 msgstr "Can't be scheduled"
 
@@ -10719,6 +10720,7 @@ msgstr "Not Required"
 
 msgid "Not restorable"
 msgstr "Not restorable"
+
 msgid "Not scheduled"
 msgstr "Not scheduled"
 
@@ -14723,6 +14725,7 @@ msgstr "Some lines extracted from the PDF could not be automatically mapped to y
 
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
+
 msgid "Some Shifts"
 msgstr "Some Shifts"
 
@@ -16395,10 +16398,11 @@ msgstr "These jobs have operations assigned to this work center:"
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 
-msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
-msgstr "This backup hasn't been checked yet. Any differences are found when the restore runs."
 msgid "this ability"
 msgstr "this ability"
+
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
+msgstr "This backup hasn't been checked yet. Any differences are found when the restore runs."
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."

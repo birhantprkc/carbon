@@ -552,7 +552,6 @@ msgid "A new size will be created using a copy of the current size"
 msgstr "Une nouvelle taille sera créée en utilisant une copie de la taille actuelle"
 
 msgid "A new Stripe customer will be created"
-msgstr "Un nouveau client Stripe sera créé"
 msgstr "Un nouveau client Stripe sera créé."
 
 msgid "A non-cash document that settles an invoice against a reason account: a credit lowers what's owed, a debit raises it."
@@ -2899,6 +2898,7 @@ msgstr "Appelée une méthode en Carbon — les composants plus les opérations 
 
 msgid "Can't be restored"
 msgstr "Impossible à restaurer"
+
 msgid "Can't be scheduled"
 msgstr ""
 
@@ -8967,7 +8967,6 @@ msgid "Link Linear Issue"
 msgstr "Lier un problème Linear"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr "Liez ce client Carbon à l'un d'eux, ou créez un client Stripe séparé."
 msgstr "Liez ce client Carbon à l'un d'entre eux, ou créez un client Stripe distinct."
 
 msgid "Link to sales order line"
@@ -10721,6 +10720,7 @@ msgstr "Non requis"
 
 msgid "Not restorable"
 msgstr "Non restaurable"
+
 msgid "Not scheduled"
 msgstr "Non planifié"
 
@@ -13319,7 +13319,6 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Inverser les écritures de registre d'articles de cette facture"
 
 msgid "Reverse charge"
-msgstr "Charge inversée"
 msgstr "Autofacture"
 
 msgid "Reverse Charge Sales Tax"
@@ -14724,11 +14723,11 @@ msgstr "Ingénieur Solutions"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Certaines lignes extraites du PDF n'ont pas pu être automatiquement associées à vos articles. Passez en revue et associez chaque ligne ci-dessous."
 
-msgid "Some Shifts"
-msgstr "Certains postes"
-
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Certains enregistrements ne reviendront pas. Tapez <0>{CONFIRM_WORD}</0> pour continuer."
+
+msgid "Some Shifts"
+msgstr "Certains postes"
 
 msgid "Something went wrong. Please try again."
 msgstr "Quelque chose s'est mal passé. Veuillez réessayer."
@@ -15069,7 +15068,6 @@ msgid "Stripe"
 msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
-msgstr "Stripe a déjà un client avec cet e-mail"
 msgstr "Stripe possède déjà un client avec cet e-mail"
 
 msgid "Stripe Due Date"
@@ -15077,10 +15075,6 @@ msgstr "Date d'échéance Stripe"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
 msgstr "Stripe envoie la facture par e-mail au client, une adresse est donc requise. Ceci sera également enregistré dans le contact dans Carbon."
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe n'a pas encore de client pour ce client Carbon. La publication en créera un sur votre compte connecté."
-msgstr "Stripe envoie par e-mail la facture au client, c'est pourquoi une adresse est requise. Cette adresse sera également enregistrée au contact dans Carbon."
 
 msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
 msgstr "Stripe n'a pas encore de client pour ce client Carbon. La comptabilisation en créera un sur votre compte connecté."
@@ -15507,7 +15501,6 @@ msgid "Tax Depreciation Method"
 msgstr "Méthode d'amortissement fiscal"
 
 msgid "Tax exempt"
-msgstr "Exonéré de TVA"
 msgstr "Exonéré de taxe"
 
 msgid "Tax Exempt"
@@ -16405,10 +16398,11 @@ msgstr "Ces ordres de fabrication ont des opérations assignées à ce poste de 
 msgid "These journal entries are still Draft, so their debits and credits aren't in the ledger for this period. Post each one, or re-date it into a later open period."
 msgstr "Ces écritures de journal sont encore Brouillon, de sorte que leurs débits et crédits ne se trouvent pas dans le grand livre pour cette période. Comptabilisez chacune ou redatez-la à une période ouverte ultérieure."
 
-msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
-msgstr "Cette sauvegarde n'a pas encore été vérifiée. Toute différence est trouvée lors de l'exécution de la restauration."
 msgid "this ability"
 msgstr "cette compétence"
+
+msgid "This backup hasn't been checked yet. Any differences are found when the restore runs."
+msgstr "Cette sauvegarde n'a pas encore été vérifiée. Toute différence est trouvée lors de l'exécution de la restauration."
 
 msgid "This Carbon instance is missing its Onshape OAuth credentials. Ask an administrator to set them."
 msgstr "Cette instance Carbon n'a pas d'identifiants OAuth Onshape. Demandez à un administrateur de les configurer."

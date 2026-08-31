@@ -611,8 +611,12 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
   });
   const name = file.label || formatBackupName(file.name);
   // A half-written folder has no verdict — the incompleteness is the whole story.
-  const status: BackupStatus =
-    file.status === "pending" ? "incomplete" : file.compatibility.status;
+  // A null verdict means the schema could not be read: show no badge rather than
+  // a green one nothing actually checked.
+  const status: BackupStatus | null =
+    file.status === "pending"
+      ? "incomplete"
+      : (file.compatibility?.status ?? null);
 
   return (
     <HStack
@@ -644,9 +648,11 @@ function BackupRow({ file }: { file: CompanyBackupSummary }) {
         {/* Status sits with the actions, not against the name — it describes
             what you can DO with the row (restore it or not), and a loud chip
             beside a quiet text-sm title read as part of the name. */}
-        <Badge variant={backupStatusVariant(status)}>
-          {t(backupStatusLabel(status))}
-        </Badge>
+        {status ? (
+          <Badge variant={backupStatusVariant(status)}>
+            {t(backupStatusLabel(status))}
+          </Badge>
+        ) : null}
         {file.status === "ready" && !isDeleting ? (
           <Button asChild variant="secondary">
             <a

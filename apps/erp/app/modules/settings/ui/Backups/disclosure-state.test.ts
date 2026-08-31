@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import type { CompanyBackupSummary } from "../../backups.service";
 import { CONFIRM_WORD, disclosureState } from "./disclosure-state";
 
-type Finding = CompanyBackupSummary["compatibility"]["findings"][number];
+type Finding = NonNullable<
+  CompanyBackupSummary["compatibility"]
+>["findings"][number];
 
 const finding = (kind: Finding["kind"], table = "job"): Finding =>
   ({ kind, table, column: "startDate", reason: "a reason" }) as Finding;
@@ -21,6 +23,21 @@ describe("disclosureState", () => {
   it("a clean backup asks for nothing", () => {
     expect(disclosureState(backup(), "")).toEqual({
       unchecked: false,
+      blocked: false,
+      discards: false,
+      canConfirm: true
+    });
+  });
+
+  it("a listed backup whose verdict could not be computed is unchecked", () => {
+    // Schema unreadable (DB down / pool exhausted) — the loader leaves
+    // `compatibility` null rather than claiming the backup is clean.
+    const unverified = {
+      ...backup(),
+      compatibility: null
+    } as CompanyBackupSummary;
+    expect(disclosureState(unverified, "")).toEqual({
+      unchecked: true,
       blocked: false,
       discards: false,
       canConfirm: true

@@ -2898,6 +2898,7 @@ msgstr "Zwana metodą w Carbon — komponenty plus operacje, które tworzą czę
 
 msgid "Can't be restored"
 msgstr "Nie można przywrócić"
+
 msgid "Can't be scheduled"
 msgstr ""
 
@@ -4137,7 +4138,6 @@ msgid "Create a new production job to fulfill the sales order"
 msgstr "Utwórz nowe zadanie produkcyjne, aby zrealizować zamówienie sprzedaży"
 
 msgid "Create a new Stripe customer instead"
-msgstr "Utwórz zamiast tego nowego klienta Stripe"
 msgstr "Zamiast tego utwórz nowego klienta Stripe"
 
 msgid "Create a new version"
@@ -8967,7 +8967,6 @@ msgid "Link Linear Issue"
 msgstr "Połącz problem Linear"
 
 msgid "Link this Carbon customer to one of them, or create a separate Stripe customer."
-msgstr "Połącz tego klienta Carbon z jednym z nich lub utwórz oddzielnego klienta Stripe."
 msgstr "Połącz tego klienta Carbon z jednym z nich, lub utwórz osobnego klienta Stripe."
 
 msgid "Link to sales order line"
@@ -10721,6 +10720,7 @@ msgstr "Nie wymagane"
 
 msgid "Not restorable"
 msgstr "Nie do przywrócenia"
+
 msgid "Not scheduled"
 msgstr "Nie zaplanowano"
 
@@ -14723,11 +14723,11 @@ msgstr "Inżynier Rozwiązań"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "Niektóre pozycje wyodrębnione z pliku PDF nie mogły być automatycznie zmapowane do artykułów z twoich zapasów. Przejrzyj i zamapuj każdą pozycję poniżej."
 
-msgid "Some Shifts"
-msgstr "Niektóre zmiany"
-
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Niektóre rekordy nie wrócą. Wpisz <0>{CONFIRM_WORD}</0> aby kontynuować."
+
+msgid "Some Shifts"
+msgstr "Niektóre zmiany"
 
 msgid "Something went wrong. Please try again."
 msgstr "Coś poszło nie tak. Spróbuj ponownie."
@@ -15072,13 +15072,6 @@ msgstr "Stripe już ma klienta z tym adresem e-mail"
 
 msgid "Stripe Due Date"
 msgstr "Data wymagalności Stripe"
-
-msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe wysyła fakturę do klienta, dlatego wymagany jest adres. Zostanie to również zapisane w kontakcie w Carbon."
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe nie ma jeszcze klienta dla tego klienta Carbon. Zaksięgowanie utworzy go na Twoim połączonym koncie."
-msgstr "Termin Stripe"
 
 msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
 msgstr "Stripe wysyła fakturę do klienta pocztą e-mail, więc wymagany jest adres. Zostanie również zapisany w kontakcie w Carbon."
@@ -16456,10 +16449,6 @@ msgstr "To zaproszenie do dołączenia do {0} wygasło. Możesz poprosić o wys�
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "Ta faktura nie ma używalnej daty wymagalności — wybierz jedną dla Stripe."
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "Ta faktura będzie rozliczana do klienta Stripe już połączonego z tym klientem Carbon. Aby zmienić szczegóły, edytuj to na pulpicie nawigacyjnym Stripe."
-msgstr "Ta faktura nie ma użytecznego terminu — wybierz jeden dla Stripe."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "Ta faktura będzie naliczona klientowi Stripe już połączonemu z tym klientem Carbon. Aby zmienić jego szczegóły, edytuj go w pulpicie Stripe."

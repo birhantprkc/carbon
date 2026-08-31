@@ -24,14 +24,15 @@ export function disclosureState(
   backup: CompanyBackupSummary | undefined,
   typed: string
 ): DisclosureState {
-  const findings = backup?.compatibility.findings ?? [];
+  const findings = backup?.compatibility?.findings ?? [];
   const blocked = findings.some((f) => f.kind === "blocked");
   const discards = findings.some((f) => f.kind === "discarded");
 
   return {
-    // Every LISTED backup carries a live verdict (computed in the loader), so
-    // only a restore from outside the list — an uploaded file — is unchecked.
-    unchecked: !backup,
+    // A listed backup normally carries a live verdict (computed in the loader).
+    // It is missing only for an upload-sourced restore, or when the schema read
+    // failed — both mean "nobody checked", which is not the same as clean.
+    unchecked: !backup || !backup.compatibility,
     blocked,
     discards,
     canConfirm:

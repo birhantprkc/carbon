@@ -2896,11 +2896,11 @@ msgstr "Harici bir URL çağır"
 msgid "Called a method in Carbon — the components plus operations that produce a part."
 msgstr "Carbon'da bir yöntem olarak adlandırılır — bir parçayı oluşturan bileşenler artı operasyonlar."
 
-msgid "Can't be scheduled"
-msgstr ""
-
 msgid "Can't be restored"
 msgstr "Geri yüklenemez"
+
+msgid "Can't be scheduled"
+msgstr ""
 
 msgid "Can't delete this period"
 msgstr "Bu dönem silinemez"
@@ -10720,6 +10720,7 @@ msgstr "Gerekli Değil"
 
 msgid "Not restorable"
 msgstr "Geri yüklenemez"
+
 msgid "Not scheduled"
 msgstr "Planlanmadı"
 
@@ -13318,7 +13319,6 @@ msgid "Reverse any item ledger entries from this invoice"
 msgstr "Bu faturadaki herhangi bir kalem defteri girişini tersine çevirir"
 
 msgid "Reverse charge"
-msgstr "Ters ücretlendirme"
 msgstr "Ters kayıt"
 
 msgid "Reverse Charge Sales Tax"
@@ -14723,11 +14723,11 @@ msgstr "Çözüm Mühendisi"
 msgid "Some lines extracted from the PDF could not be automatically mapped to your inventory items. Review and map each line below."
 msgstr "PDF'den çıkarılan bazı satırlar stok kartlarınıza otomatik olarak eşleştirilemedi. Aşağıdaki her satırı gözden geçirin ve eşleştirin."
 
-msgid "Some Shifts"
-msgstr "Bazı Vardiyalar"
-
 msgid "Some records won't come back. Type <0>{CONFIRM_WORD}</0> to continue."
 msgstr "Bazı kayıtlar geri gelmeyecek. Devam etmek için <0>{CONFIRM_WORD}</0> yazın."
+
+msgid "Some Shifts"
+msgstr "Bazı Vardiyalar"
 
 msgid "Something went wrong. Please try again."
 msgstr "Bir şeyler ters gitti. Lütfen tekrar deneyin."
@@ -15069,16 +15069,6 @@ msgstr "Stripe"
 
 msgid "Stripe already has a customer with this email"
 msgstr "Stripe'ın zaten bu e-posta ile bir müşterisi var"
-
-msgid "Stripe Due Date"
-msgstr "Stripe Vade Tarihi"
-
-msgid "Stripe emails the invoice to the customer, so an address is required. This will also be saved to the contact in Carbon."
-msgstr "Stripe faturayı müşteriye e-posta ile gönderiyor, bu nedenle bir adres gerekli. Bu, Carbon'daki kişiye de kaydedilecek."
-
-msgid "Stripe has no customer for this Carbon customer yet. Posting will create one on your connected account."
-msgstr "Stripe'ın bu Carbon müşterisi için henüz bir müşterisi yok. Gönderme, bağlı hesabınızda bir tane oluşturacak."
-msgstr "Stripe'ın zaten bu e-postaya sahip bir müşterisi var"
 
 msgid "Stripe Due Date"
 msgstr "Stripe Son Tarihi"
@@ -15511,7 +15501,6 @@ msgid "Tax Depreciation Method"
 msgstr "Vergi Amortisman Yöntemi"
 
 msgid "Tax exempt"
-msgstr "Vergi muaftır"
 msgstr "vergiden muaf"
 
 msgid "Tax Exempt"
@@ -16431,7 +16420,6 @@ msgid "This completes the Discovery step."
 msgstr "Bu, Keşif adımını tamamlar."
 
 msgid "This contact has no email address"
-msgstr "Bu kişinin e-posta adresi yok"
 msgstr "Bu ilgili kişinin e-posta adresi yok"
 
 msgid "This counterparty has nothing outstanding — the payment will be recorded on-account."
@@ -16461,10 +16449,6 @@ msgstr "{0} grubuna katılma davetinizin süresi doldu. Yeni bir davet talebinde
 
 msgid "This invoice has no usable due date — choose one for Stripe."
 msgstr "Bu faturanın kullanılabilir bir vade tarihi yok — Stripe için birini seçin."
-
-msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
-msgstr "Bu fatura, zaten bu Carbon müşterisine bağlı olan Stripe müşterisine faturalandırılacak. Ayrıntılarını değiştirmek için Stripe kontrol panelinde düzenleyin."
-msgstr "Bu fatura, Stripe için kullanılabilir bir son tarih içermiyor — lütfen bir tane seçin."
 
 msgid "This invoice will be billed to the Stripe customer already linked to this Carbon customer. To change its details, edit it in the Stripe dashboard."
 msgstr "Bu fatura, zaten bu Carbon müşterisine bağlı olan Stripe müşterisine faturalanacak. Ayrıntılarını değiştirmek için Stripe panosunda düzenleyin."

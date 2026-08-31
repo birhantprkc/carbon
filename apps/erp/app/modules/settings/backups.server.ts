@@ -6,9 +6,13 @@ import {
   getCompanyTableCatalog,
   reportBackupCompatibility
 } from "@carbon/jobs/backups";
+import { getLogger } from "@carbon/logger";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { nanoid } from "nanoid";
 import { getDatabaseClient } from "~/services/database.server";
+
+const log = getLogger("erp", "backups");
+
 import {
   type CompanyBackupSummary,
   listCompanyBackupFolders
@@ -33,13 +37,26 @@ export async function getCompanyBackups(
   const { data, error } = await listCompanyBackupFolders(client, companyId);
   if (error || !data) return { data: null, error };
 
-  // One schema read per page load, shared by every row.
-  const catalog = data.some((b) => b.manifest)
-    ? await getCompanyTableCatalog(getDatabaseClient())
-    : null;
+  // One schema read per page load, shared by every row. A failure here must
+  // NOT take the page down: listing, downloading and deleting backups all work
+  // without a verdict, and the restore has its own gate. So a database that is
+  // unreachable or out of connections costs the badges, not the screen.
+  let catalog: Awaited<ReturnType<typeof getCompanyTableCatalog>> | null = null;
+  if (data.some((b) => b.manifest)) {
+    try {
+      catalog = await getCompanyTableCatalog(getDatabaseClient());
+    } catch (err) {
+      log.warn("Backups: live compatibility unavailable — listing without it", {
+        companyId,
+        error: err instanceof Error ? err.message : String(err)
+      });
+    }
+  }
 
   return {
     data: data.map(({ manifest, ...summary }) => {
+      // No catalog (schema unreadable) or no manifest (incomplete export) →
+      // `compatibility` stays null: "not checked", never a green "ready".
       if (!catalog || !manifest) return summary;
       const report = reportBackupCompatibility(catalog, manifest);
       return {
