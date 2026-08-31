@@ -15,7 +15,6 @@ import {
   canSetReplicationRole,
   getCompanyTableCatalog,
   isUserScopedIdentityTable,
-  newIdForTable,
   RESTORE_INTEGRATION,
   readBackup,
   removeStoragePrefix,
@@ -27,6 +26,7 @@ import {
 } from "./company-backup";
 import {
   assertReferentiallyClosed,
+  buildIdMaps,
   buildRowTransforms,
   loadSubstrateIds
 } from "./company-backup.transforms";
@@ -98,24 +98,14 @@ export async function wipeAndLoad(
     backup.manifest.tables.map((t) => [t.name, new Set(t.columns)])
   );
 
-  // Foreign: assign a fresh id to every id-keyed row up front so FKs (and the
-  // ids embedded in storage paths) can be rewritten in a single pass. Only remap
-  // string ids (text/uuid) — integer/serial ids (e.g. `journal`) can't take a
-  // nanoid, and since the table is wiped first their original ids are free to
-  // reuse verbatim (FKs to them stay valid by keeping the original value).
-  const idMaps = new Map<string, Map<string, string>>();
+  // Foreign: assign a fresh id to every id-bearing row up front so FKs (and the
+  // ids embedded in storage paths) can be rewritten in a single pass. See
+  // `buildIdMaps` for what qualifies and why.
+  const idMaps = remap
+    ? buildIdMaps(loadTables, backup.data)
+    : new Map<string, Map<string, string>>();
   const idRewrite = new Map<string, string>();
   if (remap) {
-    for (const t of loadTables) {
-      if (!t.hasId) continue;
-      const idType = t.columns.find((c) => c.name === "id")?.udtName;
-      if (idType !== "uuid" && idType !== "text") continue;
-      const map = new Map<string, string>();
-      for (const row of backup.data[t.name]!) {
-        if (typeof row.id === "string") map.set(row.id, newIdForTable(t));
-      }
-      idMaps.set(t.name, map);
-    }
     for (const map of idMaps.values()) {
       for (const [oldId, newId] of map) idRewrite.set(oldId, newId);
     }

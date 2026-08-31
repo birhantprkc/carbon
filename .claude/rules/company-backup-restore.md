@@ -98,8 +98,20 @@ both use it; `company-backup.ts` re-exports it), exported to app code as
   legacy branch) in the manifest; `assertBackupImportable` rejects a file whose
   version no longer matches or that's missing a now-required column.
 - Id minting: `newIdForTable(table)` → `randomUUID()` for uuid id columns else
-  `nanoid()`. Id remap is **gated to text/uuid id columns** (serial/int ids are
-  left alone).
+  `nanoid()`. `buildIdMaps` (`company-backup.transforms.ts`) decides WHICH rows get
+  one, and both the restore and the reseed/import call it so they can't drift.
+  It is **gated on having a text/uuid `id` COLUMN**, not on `hasId` (PK exactly
+  `id`) — the ~25 composite-PK tables are referenced by their `id` too, and five
+  of them back that with a global `UNIQUE (id)`: `changeOrderRequiredAction`,
+  `balloon`, `inspectionDocument`, `inspectionFeature` (all PK
+  `("id","companyId")`) and `demandProjection` (PK
+  `("itemId","locationId","periodId")`). Leaving their source ids in place made a
+  cross-company restore collide with the SOURCE company's still-live rows and roll
+  the whole thing back. Serial/int ids are left alone. A
+  1:1 extension table whose `id` is itself an FK (`purchaseOrderDelivery.id ->
+  purchaseOrder.id`) SHARES its parent's map rather than minting a second id,
+  which would split the pair — and under `session_replication_role='replica'`
+  the break would commit.
 - Storage path rewriting: `rewriteStoragePath` (swap `{sourceCompanyId}/` →
   `{targetCompanyId}/` + remapped id segments), `rewriteToTemplateAssetPath`
   (`{co}/…` → `_templates/{industryId}/…`). `STORAGE_PATH_COLUMNS` =
@@ -413,9 +425,6 @@ snapshot through exactly this path. See `onboarding-company-templates.md`.
   assets into its `assets/` folder, so each backup costs roughly its asset size in
   storage. Snapshots are transient (their `assets/` is removed on keep/revert);
   exports persist until deleted (`deleteCompanyBackupExport` removes the folder).
-- **`company-import` id-gate drift** — restore gates id remap on column type
-  (text/uuid); import still uses a `typeof row.id === "string"` heuristic. Share
-  one transform builder to fix.
 - Sequences: the only pg-native serials on backed-up tables are `entryNumber` on
   `itemLedger`/`costLedger`/`supplierLedger` (not PKs, not unique; PKs are all
   text). They are **global/shared across tenants** — never `setval` them scoped to
