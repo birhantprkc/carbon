@@ -1143,6 +1143,9 @@ msgstr "Adicionar uma linha de precificação personalizada para substituir quan
 msgid "Add a domain"
 msgstr "Adicionar um domínio"
 
+msgid "Add a line (in document explorers)"
+msgstr "Adicionar uma linha (em exploradores de documento)"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Adicione uma seção de materiais que lista cada item na lista de materiais com sua quantidade."
 
@@ -3615,6 +3618,9 @@ msgstr "Confirmar {0}"
 
 msgid "Confirm & release"
 msgstr "Confirmar e liberar"
+
+msgid "Confirm a dialog"
+msgstr "Confirmar um diálogo"
 
 msgid "Confirm all"
 msgstr "Confirmar tudo"
@@ -7637,6 +7643,9 @@ msgstr "Ir para {0}"
 msgid "Go to implementation hub"
 msgstr "Ir para o hub de implementação"
 
+msgid "Go to module"
+msgstr "Ir para o módulo"
+
 msgid "Go to that week"
 msgstr "Ir para essa semana"
 
@@ -8701,6 +8710,9 @@ msgstr "Linhas de lançamento"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Diários datados nesta data ou antes são tratados como bloqueados. Mesclados com a data de bloqueio relatada pelo fornecedor quando ambos existem."
 
+msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+msgstr "Ir para uma seção em páginas de detalhes (⇧⌘ + a letra da seção)"
+
 msgid "Just one"
 msgstr "Apenas um"
 
@@ -8742,6 +8754,9 @@ msgstr "Mantém pedidos, cotações e configurações atrás de uma segunda veri
 
 msgid "Key"
 msgstr "Chave"
+
+msgid "Keyboard shortcuts"
+msgstr "Atalhos de teclado"
 
 msgid "Kind of record"
 msgstr "Tipo de registro"
@@ -8965,6 +8980,9 @@ msgstr "Claro"
 
 msgid "Light Mode"
 msgstr "Modo Claro"
+
+msgid "Light or dark mode"
+msgstr "Modo claro ou escuro"
 
 msgid "Lights Out (24×7)"
 msgstr "Luzes Apagadas (24×7)"
@@ -10135,6 +10153,9 @@ msgstr "Nova linha do orçamento"
 msgid "New Receipt"
 msgstr "Novo Recebimento"
 
+msgid "New record (on list pages)"
+msgstr "Novo registro (em páginas de lista)"
+
 msgid "New record created"
 msgstr "Novo registro criado"
 
@@ -10257,6 +10278,9 @@ msgstr "Próxima Data de Vencimento"
 
 msgid "Next page"
 msgstr "Próxima página"
+
+msgid "Next page (in tables)"
+msgstr "Próxima página (em tabelas)"
 
 msgid "Next Sequence"
 msgstr "Próxima Sequência"
@@ -10651,6 +10675,9 @@ msgstr "Nenhum trabalho programado nesta janela"
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "Nenhum turno configurado — assumindo segunda–sexta, dias de 8h"
+
+msgid "No shortcuts available on this page."
+msgstr "Nenhum atalho disponível nesta página."
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "Nenhum número único e confiável para inventário ou status do trabalho"
@@ -12013,6 +12040,9 @@ msgstr "Dia Anterior"
 
 msgid "Previous page"
 msgstr "Página anterior"
+
+msgid "Previous page (in tables)"
+msgstr "Página anterior (em tabelas)"
 
 msgid "Previous step"
 msgstr "Etapa anterior"
@@ -13840,6 +13870,9 @@ msgstr "Salvar Método"
 msgid "Save Rate"
 msgstr "Salvar taxa"
 
+msgid "Save the form you're editing"
+msgstr "Salvar o formulário que você está editando"
+
 msgid "Save view"
 msgstr "Salvar visualização"
 
@@ -14709,6 +14742,9 @@ msgstr "Mostrar IDs de Fornecedor"
 
 msgid "Show sync options"
 msgstr "Mostrar opções de sincronização"
+
+msgid "Show this overlay"
+msgstr "Mostrar esta sobreposição"
 
 msgid "Show Trailing Zeros"
 msgstr "Mostrar Zeros Decimais"
@@ -16946,6 +16982,9 @@ msgstr "Alternar nível"
 
 msgid "Toggle Properties"
 msgstr "Alternar Propriedades"
+
+msgid "Toggle the sidebar"
+msgstr "Alternar a barra lateral"
 
 msgid "Toggle views"
 msgstr "Alternar visualizações"

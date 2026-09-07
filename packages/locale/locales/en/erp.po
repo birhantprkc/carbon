@@ -1143,6 +1143,9 @@ msgstr "Add a custom pricing row to override quantity, price, shipping, lead tim
 msgid "Add a domain"
 msgstr "Add a domain"
 
+msgid "Add a line (in document explorers)"
+msgstr "Add a line (in document explorers)"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Add a materials section that lists each item on the bill of materials with its quantity."
 
@@ -3615,6 +3618,9 @@ msgstr "Confirm {0}"
 
 msgid "Confirm & release"
 msgstr "Confirm & release"
+
+msgid "Confirm a dialog"
+msgstr "Confirm a dialog"
 
 msgid "Confirm all"
 msgstr "Confirm all"
@@ -7637,6 +7643,9 @@ msgstr "Go to {0}"
 msgid "Go to implementation hub"
 msgstr "Go to implementation hub"
 
+msgid "Go to module"
+msgstr "Go to module"
+
 msgid "Go to that week"
 msgstr "Go to that week"
 
@@ -8701,6 +8710,9 @@ msgstr "Journal lines"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 
+msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+msgstr "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+
 msgid "Just one"
 msgstr "Just one"
 
@@ -8742,6 +8754,9 @@ msgstr "Keeps orders, quotes, and settings behind a second check"
 
 msgid "Key"
 msgstr "Key"
+
+msgid "Keyboard shortcuts"
+msgstr "Keyboard shortcuts"
 
 msgid "Kind of record"
 msgstr "Kind of record"
@@ -8965,6 +8980,9 @@ msgstr "Light"
 
 msgid "Light Mode"
 msgstr "Light Mode"
+
+msgid "Light or dark mode"
+msgstr "Light or dark mode"
 
 msgid "Lights Out (24×7)"
 msgstr "Lights Out (24×7)"
@@ -10135,6 +10153,9 @@ msgstr "New Quote Line"
 msgid "New Receipt"
 msgstr "New Receipt"
 
+msgid "New record (on list pages)"
+msgstr "New record (on list pages)"
+
 msgid "New record created"
 msgstr "New record created"
 
@@ -10257,6 +10278,9 @@ msgstr "Next Due Date"
 
 msgid "Next page"
 msgstr "Next page"
+
+msgid "Next page (in tables)"
+msgstr "Next page (in tables)"
 
 msgid "Next Sequence"
 msgstr "Next Sequence"
@@ -10651,6 +10675,9 @@ msgstr "No scheduled work in this window"
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "No shifts configured — assuming Mon–Fri, 8h days"
+
+msgid "No shortcuts available on this page."
+msgstr "No shortcuts available on this page."
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "No single, trusted number for inventory or job status"
@@ -12013,6 +12040,9 @@ msgstr "Previous Day"
 
 msgid "Previous page"
 msgstr "Previous page"
+
+msgid "Previous page (in tables)"
+msgstr "Previous page (in tables)"
 
 msgid "Previous step"
 msgstr "Previous step"
@@ -13840,6 +13870,9 @@ msgstr "Save Method"
 msgid "Save Rate"
 msgstr "Save Rate"
 
+msgid "Save the form you're editing"
+msgstr "Save the form you're editing"
+
 msgid "Save view"
 msgstr "Save view"
 
@@ -14709,6 +14742,9 @@ msgstr "Show Supplier IDs"
 
 msgid "Show sync options"
 msgstr "Show sync options"
+
+msgid "Show this overlay"
+msgstr "Show this overlay"
 
 msgid "Show Trailing Zeros"
 msgstr "Show Trailing Zeros"
@@ -16946,6 +16982,9 @@ msgstr "Toggle level"
 
 msgid "Toggle Properties"
 msgstr "Toggle Properties"
+
+msgid "Toggle the sidebar"
+msgstr "Toggle the sidebar"
 
 msgid "Toggle views"
 msgstr "Toggle views"

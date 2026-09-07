@@ -1143,6 +1143,9 @@ msgstr "मात्रा, मूल्य, शिपिंग, लीड ट�
 msgid "Add a domain"
 msgstr "एक डोमेन जोड़ें"
 
+msgid "Add a line (in document explorers)"
+msgstr "दस्तावेज़ एक्सप्लोरर में पंक्ति जोड़ें"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "बिल ऑफ मेटेरियल्स पर प्रत्येक आइटम और उसकी मात्रा को सूचीबद्ध करने वाली एक सामग्री अनुभाग जोड़ें।"
 
@@ -3615,6 +3618,9 @@ msgstr "की पुष्टि करें {0}"
 
 msgid "Confirm & release"
 msgstr "पुष्टि करें और जारी करें"
+
+msgid "Confirm a dialog"
+msgstr "संवाद की पुष्टि करें"
 
 msgid "Confirm all"
 msgstr "सभी की पुष्टि करें"
@@ -7637,6 +7643,9 @@ msgstr "{0} पर जाएं"
 msgid "Go to implementation hub"
 msgstr "कार्यान्वयन हब पर जाएं"
 
+msgid "Go to module"
+msgstr "मॉड्यूल पर जाएं"
+
 msgid "Go to that week"
 msgstr "उस सप्ताह पर जाएं"
 
@@ -8701,6 +8710,9 @@ msgstr "जर्नल पंक्तियाँ"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "इस तारीख को या इससे पहले दिनांकित जर्नल को लॉक माना जाता है। दोनों मौजूद होने पर प्रदाता द्वारा रिपोर्ट की गई लॉक तारीख के साथ मर्ज किया जाता है।"
 
+msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+msgstr "विवरण पृष्ठों पर अनुभाग पर जाएं (⇧⌘ + अनुभाग का अक्षर)"
+
 msgid "Just one"
 msgstr "बस एक"
 
@@ -8742,6 +8754,9 @@ msgstr "ऑर्डर, कोट्स और सेटिंग्स को 
 
 msgid "Key"
 msgstr "कुंजी"
+
+msgid "Keyboard shortcuts"
+msgstr "कीबोर्ड शॉर्टकट"
 
 msgid "Kind of record"
 msgstr "रिकॉर्ड का प्रकार"
@@ -8965,6 +8980,9 @@ msgstr "हल्का"
 
 msgid "Light Mode"
 msgstr "लाइट मोड"
+
+msgid "Light or dark mode"
+msgstr "हल्का या गहरा थीम"
 
 msgid "Lights Out (24×7)"
 msgstr "लाइट्स आउट (24×7)"
@@ -10135,6 +10153,9 @@ msgstr "नई कोटेशन पंक्ति"
 msgid "New Receipt"
 msgstr "नई रसीद"
 
+msgid "New record (on list pages)"
+msgstr "नया रिकॉर्ड (सूची पृष्ठों पर)"
+
 msgid "New record created"
 msgstr "नया रिकॉर्ड बनाया गया"
 
@@ -10257,6 +10278,9 @@ msgstr "अगली नियत तिथि"
 
 msgid "Next page"
 msgstr "अगला पृष्ठ"
+
+msgid "Next page (in tables)"
+msgstr "अगला पृष्ठ (तालिकाओं में)"
 
 msgid "Next Sequence"
 msgstr "अगला अनुक्रम"
@@ -10651,6 +10675,9 @@ msgstr "इस विंडो में कोई शेड्यूल कि�
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "कोई पारियाँ कॉन्फ़िगर नहीं — सोमवार–शुक्रवार, 8 घंटे की दिन मानी जा रही है"
+
+msgid "No shortcuts available on this page."
+msgstr "इस पृष्ठ पर कोई शॉर्टकट उपलब्ध नहीं है।"
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "इन्वेंटरी या जॉब स्थिति के लिए कोई एकल, विश्वसनीय संख्या नहीं"
@@ -12013,6 +12040,9 @@ msgstr "पिछला दिन"
 
 msgid "Previous page"
 msgstr "पिछला पृष्ठ"
+
+msgid "Previous page (in tables)"
+msgstr "पिछला पृष्ठ (तालिकाओं में)"
 
 msgid "Previous step"
 msgstr "पिछला चरण"
@@ -13840,6 +13870,9 @@ msgstr "विधि सहेजें"
 msgid "Save Rate"
 msgstr "दर सहेजें"
 
+msgid "Save the form you're editing"
+msgstr "जिस फॉर्म को आप संपादित कर रहे हैं उसे सहेजें"
+
 msgid "Save view"
 msgstr "दृश्य सहेजें"
 
@@ -14709,6 +14742,9 @@ msgstr "आपूर्तिकर्ता आईडी दिखाएं"
 
 msgid "Show sync options"
 msgstr "सिंक विकल्प दिखाएं"
+
+msgid "Show this overlay"
+msgstr "यह ओवरले दिखाएं"
 
 msgid "Show Trailing Zeros"
 msgstr "अनुगामी शून्य दिखाएं"
@@ -16946,6 +16982,9 @@ msgstr "स्तर टॉगल करें"
 
 msgid "Toggle Properties"
 msgstr "गुण टॉगल करें"
+
+msgid "Toggle the sidebar"
+msgstr "साइडबार को टॉगल करें"
 
 msgid "Toggle views"
 msgstr "दृश्य टॉगल करें"

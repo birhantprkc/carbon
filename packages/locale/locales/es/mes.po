@@ -138,6 +138,9 @@ msgstr "¿Está seguro de que desea finalizar esta operación? Esto terminará t
 msgid "Are you sure you want to leave this page?"
 msgstr "¿Estás seguro de que quieres salir de esta página?"
 
+msgid "Assembly steps"
+msgstr "Pasos de montaje"
+
 msgid "Assigned"
 msgstr "Asignado"
 
@@ -536,6 +539,9 @@ msgstr "¿Finalizar con material sin recoger?"
 msgid "Forgot to Clock Out?"
 msgstr "¿Olvidó fichar salida?"
 
+msgid "General"
+msgstr "General"
+
 msgid "Go back to operation"
 msgstr "Volver a la operación"
 
@@ -633,6 +639,9 @@ msgstr "Órdenes de trabajo"
 msgid "Keep picking"
 msgstr "Continuar picking"
 
+msgid "Keyboard shortcuts"
+msgstr "Atajos de teclado"
+
 msgid "Kit"
 msgstr "Kit"
 
@@ -723,6 +732,9 @@ msgstr "Quitar manualmente artículos del inventario"
 msgid "Mark Short"
 msgstr "Marcar como faltante"
 
+msgid "Mark the step done / record"
+msgstr "Marcar el paso como hecho / registrar"
+
 msgid "matches"
 msgstr "coincide con"
 
@@ -766,6 +778,9 @@ msgstr "Mis horas"
 msgid "Name"
 msgstr "Nombre"
 
+msgid "Navigation"
+msgstr "Navegación"
+
 msgid "New"
 msgstr "Nuevo"
 
@@ -777,6 +792,9 @@ msgstr "Más reciente primero"
 
 msgid "Next"
 msgstr "Siguiente"
+
+msgid "Next step"
+msgstr "Siguiente paso"
 
 msgid "No"
 msgstr "No"
@@ -873,6 +891,9 @@ msgstr "Sin números de serie"
 
 msgid "No serial numbers found"
 msgstr "No se encontraron números de serie"
+
+msgid "No shortcuts available on this page."
+msgstr "No hay atajos disponibles en esta página."
 
 msgid "No spare parts added yet"
 msgstr "Aún no se han agregado repuestos"
@@ -1025,6 +1046,9 @@ msgstr "Anterior"
 msgid "Preventive"
 msgstr "Preventivo"
 
+msgid "Previous step"
+msgstr "Paso anterior"
+
 msgid "Print"
 msgstr "Imprimir"
 
@@ -1129,6 +1153,9 @@ msgstr "Pedido de venta"
 
 msgid "Save"
 msgstr "Guardar"
+
+msgid "Save the form you're editing"
+msgstr "Guardar el formulario que estás editando"
 
 msgid "Scan"
 msgstr "Escanear"
@@ -1286,6 +1313,9 @@ msgstr "Faltante"
 msgid "Short pick {itemName}"
 msgstr "Picking corto {itemName}"
 
+msgid "Show this overlay"
+msgstr "Mostrar esta superposición"
+
 msgid "Sign in with Google"
 msgstr "Iniciar sesión con Google"
 
@@ -1321,6 +1351,9 @@ msgstr "Repuestos utilizados"
 
 msgid "Start"
 msgstr "Iniciar"
+
+msgid "Start or pause the operation"
+msgstr "Iniciar o pausar la operación"
 
 msgid "Station User"
 msgstr "Usuario de estación"
@@ -1407,6 +1440,9 @@ msgstr "Tiempo trabajado: {0}"
 
 msgid "Today"
 msgstr "Hoy"
+
+msgid "Toggle the sidebar"
+msgstr "Alternar la barra lateral"
 
 msgid "Tools"
 msgstr "Herramientas"

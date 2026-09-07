@@ -1143,6 +1143,9 @@ msgstr "Добавить пользовательскую строку цено�
 msgid "Add a domain"
 msgstr "Добавить домен"
 
+msgid "Add a line (in document explorers)"
+msgstr "Добавить строку (в обозревателях документов)"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Добавить раздел материалов, в котором указывается каждый элемент спецификации материалов с его количеством."
 
@@ -3615,6 +3618,9 @@ msgstr "Подтвердить {0}"
 
 msgid "Confirm & release"
 msgstr "Подтвердить и запустить в работу"
+
+msgid "Confirm a dialog"
+msgstr "Подтвердить диалоговое окно"
 
 msgid "Confirm all"
 msgstr "Подтвердить все"
@@ -7637,6 +7643,9 @@ msgstr "Перейти к {0}"
 msgid "Go to implementation hub"
 msgstr "Перейти в центр внедрения"
 
+msgid "Go to module"
+msgstr "Перейти в модуль"
+
 msgid "Go to that week"
 msgstr "Перейти на эту неделю"
 
@@ -8701,6 +8710,9 @@ msgstr "Строки журнала"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Операции, датированные в эту дату или ранее, считаются заблокированными. Объединены с датой блокировки, указанной поставщиком, если обе существуют."
 
+msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+msgstr "Перейти к разделу на страницах деталей (⇧⌘ + буква раздела)"
+
 msgid "Just one"
 msgstr "Только один"
 
@@ -8742,6 +8754,9 @@ msgstr "Требует дополнительную проверку для за
 
 msgid "Key"
 msgstr "Ключ"
+
+msgid "Keyboard shortcuts"
+msgstr "Сочетания клавиш"
 
 msgid "Kind of record"
 msgstr "Тип записи"
@@ -8965,6 +8980,9 @@ msgstr "Светлая"
 
 msgid "Light Mode"
 msgstr "Светлый режим"
+
+msgid "Light or dark mode"
+msgstr "Светлая или тёмная тема"
 
 msgid "Lights Out (24×7)"
 msgstr "Темное производство (24×7)"
@@ -10135,6 +10153,9 @@ msgstr "Новая строка предложения"
 msgid "New Receipt"
 msgstr "Новая квитанция"
 
+msgid "New record (on list pages)"
+msgstr "Новая запись (на страницах списков)"
+
 msgid "New record created"
 msgstr "Создана новая запись"
 
@@ -10257,6 +10278,9 @@ msgstr "Следующий Срок выполнения"
 
 msgid "Next page"
 msgstr "Следующая страница"
+
+msgid "Next page (in tables)"
+msgstr "Следующая страница (в таблицах)"
 
 msgid "Next Sequence"
 msgstr "Следующая Нумерация"
@@ -10651,6 +10675,9 @@ msgstr "Нет запланированной работы в этом окне"
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "Смены не настроены — предполагается Пн–Пт, 8ч дни"
+
+msgid "No shortcuts available on this page."
+msgstr "На этой странице сочетания клавиш недоступны."
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "Нет единого надежного показателя для инвентаря или статуса работы"
@@ -12013,6 +12040,9 @@ msgstr "Предыдущий день"
 
 msgid "Previous page"
 msgstr "Предыдущая страница"
+
+msgid "Previous page (in tables)"
+msgstr "Предыдущая страница (в таблицах)"
 
 msgid "Previous step"
 msgstr "Предыдущий шаг"
@@ -13840,6 +13870,9 @@ msgstr "Сохранить метод"
 msgid "Save Rate"
 msgstr "Сохранить курс"
 
+msgid "Save the form you're editing"
+msgstr "Сохранить редактируемую форму"
+
 msgid "Save view"
 msgstr "Сохранить представление"
 
@@ -14709,6 +14742,9 @@ msgstr "Показать ID поставщиков"
 
 msgid "Show sync options"
 msgstr "Показать параметры синхронизации"
+
+msgid "Show this overlay"
+msgstr "Показать это наложение"
 
 msgid "Show Trailing Zeros"
 msgstr "Показывать завершающие нули"
@@ -16946,6 +16982,9 @@ msgstr "Переключить уровень"
 
 msgid "Toggle Properties"
 msgstr "Переключить свойства"
+
+msgid "Toggle the sidebar"
+msgstr "Переключить боковую панель"
 
 msgid "Toggle views"
 msgstr "Переключить представления"

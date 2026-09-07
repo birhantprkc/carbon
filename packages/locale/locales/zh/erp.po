@@ -1143,6 +1143,9 @@ msgstr "添加自定义定价行以覆盖数量、价格、运费、提前期和
 msgid "Add a domain"
 msgstr "添加一个域"
 
+msgid "Add a line (in document explorers)"
+msgstr "添加一行（在文件浏览器中）"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "添加一个列出物料清单上每个物料及其数量的物料部分。"
 
@@ -3615,6 +3618,9 @@ msgstr "确认 {0}"
 
 msgid "Confirm & release"
 msgstr "确认并下达"
+
+msgid "Confirm a dialog"
+msgstr "确认对话框"
 
 msgid "Confirm all"
 msgstr "全部确认"
@@ -7637,6 +7643,9 @@ msgstr "前往 {0}"
 msgid "Go to implementation hub"
 msgstr "前往实施中心"
 
+msgid "Go to module"
+msgstr "转到模块"
+
 msgid "Go to that week"
 msgstr "跳转到该周"
 
@@ -8701,6 +8710,9 @@ msgstr "日记账行"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "在此日期或之前日期的凭证被视为已锁定。当两者都存在时，与提供商报告的锁定日期合并。"
 
+msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+msgstr "跳转到详情页面的某一部分（⇧⌘ + 该部分的字母）"
+
 msgid "Just one"
 msgstr "仅一个"
 
@@ -8742,6 +8754,9 @@ msgstr "让订单、报价单和设置受到第二道检查的保护"
 
 msgid "Key"
 msgstr "钥匙"
+
+msgid "Keyboard shortcuts"
+msgstr "键盘快捷键"
 
 msgid "Kind of record"
 msgstr "记录类型"
@@ -8965,6 +8980,9 @@ msgstr "浅色"
 
 msgid "Light Mode"
 msgstr "浅色模式"
+
+msgid "Light or dark mode"
+msgstr "亮色或深色模式"
 
 msgid "Lights Out (24×7)"
 msgstr "熄灯（24×7）"
@@ -10135,6 +10153,9 @@ msgstr "新报价行"
 msgid "New Receipt"
 msgstr "新收据"
 
+msgid "New record (on list pages)"
+msgstr "新建记录（在列表页面）"
+
 msgid "New record created"
 msgstr "新记录已创建"
 
@@ -10257,6 +10278,9 @@ msgstr "下次到期日期"
 
 msgid "Next page"
 msgstr "下一页"
+
+msgid "Next page (in tables)"
+msgstr "下一页（在表格中）"
 
 msgid "Next Sequence"
 msgstr "下一个编号规则"
@@ -10651,6 +10675,9 @@ msgstr "此时间窗内无排程工作"
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "未配置班次——假定周一至周五，每天8小时"
+
+msgid "No shortcuts available on this page."
+msgstr "此页面没有可用的快捷键。"
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "库存管理或工单状态没有单一的可信数字"
@@ -12013,6 +12040,9 @@ msgstr "前一天"
 
 msgid "Previous page"
 msgstr "上一页"
+
+msgid "Previous page (in tables)"
+msgstr "上一页（在表格中）"
 
 msgid "Previous step"
 msgstr "上一步骤"
@@ -13840,6 +13870,9 @@ msgstr "保存方法"
 msgid "Save Rate"
 msgstr "保存汇率"
 
+msgid "Save the form you're editing"
+msgstr "保存您正在编辑的表单"
+
 msgid "Save view"
 msgstr "保存视图"
 
@@ -14709,6 +14742,9 @@ msgstr "显示供应商ID"
 
 msgid "Show sync options"
 msgstr "显示同步选项"
+
+msgid "Show this overlay"
+msgstr "显示此覆盖层"
 
 msgid "Show Trailing Zeros"
 msgstr "显示尾随零"
@@ -16946,6 +16982,9 @@ msgstr "切换级别"
 
 msgid "Toggle Properties"
 msgstr "切换属性"
+
+msgid "Toggle the sidebar"
+msgstr "切换侧边栏"
 
 msgid "Toggle views"
 msgstr "切换视图"

@@ -33,11 +33,12 @@ import {
   useDisclosure,
   useMode,
   useRouteData,
+  useShortcutKeyMap,
   useSidebar
 } from "@carbon/react";
 import { Trans, useLingui } from "@lingui/react/macro";
 import type { ComponentProps } from "react";
-import { Suspense, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import { BsFillHexagonFill } from "react-icons/bs";
 import {
   LuActivity,
@@ -59,10 +60,18 @@ import {
   LuUsers,
   LuWrench
 } from "react-icons/lu";
-import { Await, Form, Link, useFetcher, useLocation } from "react-router";
+import {
+  Await,
+  Form,
+  Link,
+  useFetcher,
+  useLocation,
+  useNavigate
+} from "react-router";
 import { useUser } from "~/hooks";
 import type { action } from "~/root";
 import type { Location } from "~/services/types";
+import { MES_NAV_SHORTCUTS } from "~/shortcuts";
 import type { PinnedInUser } from "~/types";
 import { ERP_URL, path } from "~/utils/path";
 import { AdjustInventory } from "./AdjustInventory";
@@ -193,6 +202,45 @@ export function OperationsNav({
   activeMaintenanceCount: number;
 }) {
   const { t } = useLingui();
+  const navigate = useNavigate();
+
+  // ⌥1–7 sidebar navigation (see ~/shortcuts). ⌘digits are browser-reserved.
+  useShortcutKeyMap(
+    useMemo(
+      () => [
+        {
+          shortcut: MES_NAV_SHORTCUTS.operations,
+          action: () => navigate(path.to.operations)
+        },
+        {
+          shortcut: MES_NAV_SHORTCUTS.assigned,
+          action: () => navigate(path.to.assigned)
+        },
+        {
+          shortcut: MES_NAV_SHORTCUTS.active,
+          action: () => navigate(path.to.active)
+        },
+        {
+          shortcut: MES_NAV_SHORTCUTS.recent,
+          action: () => navigate(path.to.recent)
+        },
+        {
+          shortcut: MES_NAV_SHORTCUTS.jobs,
+          action: () => navigate(path.to.jobs)
+        },
+        {
+          shortcut: MES_NAV_SHORTCUTS.maintenance,
+          action: () => navigate(path.to.maintenance)
+        },
+        {
+          shortcut: MES_NAV_SHORTCUTS.picking,
+          action: () => navigate(path.to.picking)
+        }
+      ],
+      [navigate]
+    )
+  );
+
   const links = [
     {
       title: t`Schedule`,

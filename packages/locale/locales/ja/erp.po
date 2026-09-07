@@ -1143,6 +1143,9 @@ msgstr "数量、価格、配送、リードタイム、および税を上書き
 msgid "Add a domain"
 msgstr "ドメインを追加"
 
+msgid "Add a line (in document explorers)"
+msgstr "行を追加（文書エクスプローラーで）"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "部品表の各項目とその数量をリストアップした材料セクションを追加します。"
 
@@ -3615,6 +3618,9 @@ msgstr "{0}を確認"
 
 msgid "Confirm & release"
 msgstr "確認してリリース"
+
+msgid "Confirm a dialog"
+msgstr "ダイアログを確認"
 
 msgid "Confirm all"
 msgstr "すべて確認"
@@ -7637,6 +7643,9 @@ msgstr "{0}に移動"
 msgid "Go to implementation hub"
 msgstr "実施ハブに移動"
 
+msgid "Go to module"
+msgstr "モジュールに移動"
+
 msgid "Go to that week"
 msgstr "その週に移動"
 
@@ -8701,6 +8710,9 @@ msgstr "仕訳明細"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "この日付以前の仕訳はロック中として扱われます。両方が存在する場合、プロバイダーが報告したロック日付とマージされます。"
 
+msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
+msgstr "詳細ページのセクションにジャンプ（⇧⌘ + セクションの文字）"
+
 msgid "Just one"
 msgstr "1つだけ"
 
@@ -8742,6 +8754,9 @@ msgstr "注文、見積、設定を2段階認証で保護します"
 
 msgid "Key"
 msgstr "キー"
+
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット"
 
 msgid "Kind of record"
 msgstr "レコード種別"
@@ -8965,6 +8980,9 @@ msgstr "ライト"
 
 msgid "Light Mode"
 msgstr "ライトモード"
+
+msgid "Light or dark mode"
+msgstr "ライト/ダークモード"
 
 msgid "Lights Out (24×7)"
 msgstr "ライツアウト（24×7）"
@@ -10135,6 +10153,9 @@ msgstr "新規見積明細"
 msgid "New Receipt"
 msgstr "新しい領収書"
 
+msgid "New record (on list pages)"
+msgstr "新規記録（リストページで）"
+
 msgid "New record created"
 msgstr "新しいレコードが作成されました"
 
@@ -10257,6 +10278,9 @@ msgstr "次の期日"
 
 msgid "Next page"
 msgstr "次のページ"
+
+msgid "Next page (in tables)"
+msgstr "次ページ（テーブルで）"
 
 msgid "Next Sequence"
 msgstr "次の採番"
@@ -10651,6 +10675,9 @@ msgstr "このウィンドウにはスケジュール済みの作業がありま
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "シフトが構成されていません — 月～金、8時間営業を想定"
+
+msgid "No shortcuts available on this page."
+msgstr "このページではショートカットはありません。"
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "在庫またはジョブステータスの単一の信頼できる数値がない"
@@ -12013,6 +12040,9 @@ msgstr "前の日"
 
 msgid "Previous page"
 msgstr "前のページ"
+
+msgid "Previous page (in tables)"
+msgstr "前ページ（テーブルで）"
 
 msgid "Previous step"
 msgstr "前のステップ"
@@ -13840,6 +13870,9 @@ msgstr "メソッドを保存"
 msgid "Save Rate"
 msgstr "レートを保存"
 
+msgid "Save the form you're editing"
+msgstr "編集中のフォームを保存"
+
 msgid "Save view"
 msgstr "ビューを保存"
 
@@ -14709,6 +14742,9 @@ msgstr "仕入先IDを表示"
 
 msgid "Show sync options"
 msgstr "同期オプションを表示"
+
+msgid "Show this overlay"
+msgstr "このオーバーレイを表示"
 
 msgid "Show Trailing Zeros"
 msgstr "末尾のゼロを表示"
@@ -16946,6 +16982,9 @@ msgstr "レベルを切り替え"
 
 msgid "Toggle Properties"
 msgstr "プロパティを切り替え"
+
+msgid "Toggle the sidebar"
+msgstr "サイドバーを切り替え"
 
 msgid "Toggle views"
 msgstr "ビューを切り替える"
