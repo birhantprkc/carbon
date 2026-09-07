@@ -1149,6 +1149,9 @@ msgstr "라인 추가 (문서 탐색기에서)"
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "자재 섹션을 추가하여 자재 명세서의 각 항목과 수량을 나열합니다."
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "라벨을 직접 출력하려면 인쇄 설정에서 프린터를 추가하세요."
 
@@ -1160,6 +1163,9 @@ msgstr "행 추가"
 
 msgid "Add a step"
 msgstr "단계 추가"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "능력 추가"
@@ -8710,8 +8716,8 @@ msgstr "분개 라인"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "이 날짜 또는 이전 날짜의 전표는 잠김으로 처리됩니다. 둘 다 존재할 때 공급자 보고 잠금 날짜와 병합됩니다."
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "상세 페이지의 섹션으로 이동 (⇧⌘ + 섹션의 글자)"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "정확히 하나"

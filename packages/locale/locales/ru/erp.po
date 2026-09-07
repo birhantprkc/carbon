@@ -1149,6 +1149,9 @@ msgstr "Добавить строку (в обозревателях докум�
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Добавить раздел материалов, в котором указывается каждый элемент спецификации материалов с его количеством."
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Добавьте принтер в настройки печати для прямой печати этикеток."
 
@@ -1160,6 +1163,9 @@ msgstr "Добавить строку"
 
 msgid "Add a step"
 msgstr "Добавить шаг"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "Добавить способность"
@@ -8710,8 +8716,8 @@ msgstr "Строки журнала"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Операции, датированные в эту дату или ранее, считаются заблокированными. Объединены с датой блокировки, указанной поставщиком, если обе существуют."
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "Перейти к разделу на страницах деталей (⇧⌘ + буква раздела)"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "Только один"

@@ -1149,6 +1149,9 @@ msgstr "行を追加（文書エクスプローラーで）"
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "部品表の各項目とその数量をリストアップした材料セクションを追加します。"
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "プリンター設定にプリンターを追加して、ラベルを直接印刷します。"
 
@@ -1160,6 +1163,9 @@ msgstr "行を追加"
 
 msgid "Add a step"
 msgstr "ステップを追加"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "能力を追加"
@@ -8710,8 +8716,8 @@ msgstr "仕訳明細"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "この日付以前の仕訳はロック中として扱われます。両方が存在する場合、プロバイダーが報告したロック日付とマージされます。"
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "詳細ページのセクションにジャンプ（⇧⌘ + セクションの文字）"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "1つだけ"
@@ -16984,7 +16990,7 @@ msgid "Toggle Properties"
 msgstr "プロパティを切り替え"
 
 msgid "Toggle the sidebar"
-msgstr "サイドバーを切り替え"
+msgstr "サイドバーの表示/非表示を切り替える"
 
 msgid "Toggle views"
 msgstr "ビューを切り替える"

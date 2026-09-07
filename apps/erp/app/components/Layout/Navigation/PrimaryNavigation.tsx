@@ -71,7 +71,13 @@ const PrimaryNavigation = () => {
     }
     return map;
   }, [links, settingsModule, navigate]);
-  useShortcutSequence({ prefix: MODULE_GO_TO_PREFIX, map: goToModules });
+  // Disabled while rearranging the rail — a stray `g`+letter would navigate
+  // away and discard the unsaved layout.
+  useShortcutSequence({
+    prefix: MODULE_GO_TO_PREFIX,
+    map: goToModules,
+    disabled: editMode.isEditing
+  });
 
   // The rail expands on hover. The search modal (a Radix dialog) toggles
   // document.body pointer-events, and restoring them on close fires a phantom

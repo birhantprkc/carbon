@@ -17,6 +17,7 @@ import { useBlocker, useNavigation } from "react-router";
 import { useIsSubmitting } from "../hooks";
 import { useFormStateContext } from "../internal/formStateContext";
 import {
+  isSubmitShortcutOwner,
   registerSubmitShortcut,
   shouldSubmitOnShortcut,
   submitShortcutCount,
@@ -88,10 +89,15 @@ export const Submit = forwardRef<HTMLButtonElement, SubmitProps>(
     // fails safe (count > 1 → no-op).
     const shortcutActive =
       shortcut !== false && !(isDisabled || isSubmitting || !isIdle);
+    const shortcutId = useRef<symbol | null>(null);
+    if (shortcutId.current === null) {
+      shortcutId.current = Symbol("submit-shortcut");
+    }
     useEffect(() => {
       if (!shortcutActive) return;
-      const id = Symbol("submit-shortcut");
-      registerSubmitShortcut(id);
+      const id = shortcutId.current;
+      if (!id) return;
+      registerSubmitShortcut(id, innerRef.current?.form ?? null);
       return () => unregisterSubmitShortcut(id);
     }, [shortcutActive]);
 
@@ -108,7 +114,10 @@ export const Submit = forwardRef<HTMLButtonElement, SubmitProps>(
         ownForm: el.form,
         activeForm,
         activeIsEditable: isEditableTarget(active),
-        activeSubmitCount: submitShortcutCount()
+        activeSubmitCount: submitShortcutCount(),
+        ownsForm: shortcutId.current
+          ? isSubmitShortcutOwner(shortcutId.current, el.form)
+          : false
       });
     }, []);
 

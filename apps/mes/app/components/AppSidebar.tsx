@@ -38,7 +38,7 @@ import {
 } from "@carbon/react";
 import { Trans, useLingui } from "@lingui/react/macro";
 import type { ComponentProps } from "react";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useCallback, useMemo, useRef } from "react";
 import { BsFillHexagonFill } from "react-icons/bs";
 import {
   LuActivity,
@@ -203,6 +203,17 @@ export function OperationsNav({
 }) {
   const { t } = useLingui();
   const navigate = useNavigate();
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  // Same close-on-navigate behavior as the sidebar links' onClick below —
+  // a shortcut jump must not leave the mobile drawer covering the new page.
+  const go = useCallback(
+    (to: string) => {
+      if (isMobile) setOpenMobile(false);
+      navigate(to);
+    },
+    [isMobile, setOpenMobile, navigate]
+  );
 
   // ⌥1–7 sidebar navigation (see ~/shortcuts). ⌘digits are browser-reserved.
   useShortcutKeyMap(
@@ -210,34 +221,34 @@ export function OperationsNav({
       () => [
         {
           shortcut: MES_NAV_SHORTCUTS.operations,
-          action: () => navigate(path.to.operations)
+          action: () => go(path.to.operations)
         },
         {
           shortcut: MES_NAV_SHORTCUTS.assigned,
-          action: () => navigate(path.to.assigned)
+          action: () => go(path.to.assigned)
         },
         {
           shortcut: MES_NAV_SHORTCUTS.active,
-          action: () => navigate(path.to.active)
+          action: () => go(path.to.active)
         },
         {
           shortcut: MES_NAV_SHORTCUTS.recent,
-          action: () => navigate(path.to.recent)
+          action: () => go(path.to.recent)
         },
         {
           shortcut: MES_NAV_SHORTCUTS.jobs,
-          action: () => navigate(path.to.jobs)
+          action: () => go(path.to.jobs)
         },
         {
           shortcut: MES_NAV_SHORTCUTS.maintenance,
-          action: () => navigate(path.to.maintenance)
+          action: () => go(path.to.maintenance)
         },
         {
           shortcut: MES_NAV_SHORTCUTS.picking,
-          action: () => navigate(path.to.picking)
+          action: () => go(path.to.picking)
         }
       ],
-      [navigate]
+      [go]
     )
   );
 
@@ -283,7 +294,6 @@ export function OperationsNav({
 
   const location = useLocation();
   const { pathname } = location;
-  const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <SidebarGroup>

@@ -1149,6 +1149,9 @@ msgstr "Agregar una línea (en exploradores de documentos)"
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Agregue una sección de materiales que enumere cada artículo en la lista de materiales con su cantidad."
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Agregue una impresora en la configuración de impresión para imprimir etiquetas directamente."
 
@@ -1160,6 +1163,9 @@ msgstr "Agregar una fila"
 
 msgid "Add a step"
 msgstr "Agregar un paso"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "Agregar capacidad"
@@ -8710,8 +8716,8 @@ msgstr "Líneas de asiento"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Los asientos fechados en o antes de esta fecha se tratan como bloqueados. Se combinan con la fecha de bloqueo reportada por el proveedor cuando ambas existen."
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "Ir a una sección en páginas de detalle (⇧⌘ + la letra de la sección)"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "Solo uno"

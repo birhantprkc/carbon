@@ -81,12 +81,22 @@ const ShortcutHelp = () => {
       },
       {
         shortcut: DETAIL_TAB_SHORTCUTS.details,
-        description: t`Jump to a section on detail pages (⇧⌘ + the section's letter)`,
+        description: t`Jump to a section on detail pages (same modifiers + the section's letter)`,
         group: navigation
       },
       {
         shortcut: EXPLORER_SHORTCUTS.addLine,
         description: t`Add a line (in document explorers)`,
+        group: navigation
+      },
+      {
+        shortcut: EXPLORER_SHORTCUTS.addAttribute,
+        description: t`Add a step or question (in procedure and training explorers)`,
+        group: navigation
+      },
+      {
+        shortcut: EXPLORER_SHORTCUTS.addParameter,
+        description: t`Add a parameter (in the procedure explorer)`,
         group: navigation
       },
       ...moduleEntries

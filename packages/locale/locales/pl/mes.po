@@ -733,7 +733,7 @@ msgid "Mark Short"
 msgstr "Oznacz jako brakujące"
 
 msgid "Mark the step done / record"
-msgstr "Oznacz krok jako gotowy / zapisz"
+msgstr "Oznacz krok jako wykonany / zapisz"
 
 msgid "matches"
 msgstr "pasuje do"
@@ -1314,7 +1314,7 @@ msgid "Short pick {itemName}"
 msgstr "Krótki pick {itemName}"
 
 msgid "Show this overlay"
-msgstr "Pokaż to menu"
+msgstr "Wyświetl to okno nakładki"
 
 msgid "Sign in with Google"
 msgstr "Zaloguj się przez Google"

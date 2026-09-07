@@ -1149,6 +1149,9 @@ msgstr "Satır ekle (belge tarayıcılarında)"
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Ürün ağacısındaki her stok kartını miktarı ile listeleyen bir bölüm ekleyin"
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Etiketleri doğrudan yazdırmak için yazdırma ayarlarında bir yazıcı ekleyin."
 
@@ -1160,6 +1163,9 @@ msgstr "Bir satır ekle"
 
 msgid "Add a step"
 msgstr "Bir adım ekle"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "Yetenek Ekle"
@@ -8710,8 +8716,8 @@ msgstr "Yevmiye satırları"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Bu tarihte veya öncesinde tarihlendirilen muhasebe fişleri kilitli olarak değerlendirilir. Her ikisi de mevcutsa sağlayıcı tarafından rapor edilen kilit tarihi ile birleştirilir."
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "Ayrıntı sayfalarında bir bölüme atla (⇧⌘ + bölümün harfi)"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "Sadece bir"

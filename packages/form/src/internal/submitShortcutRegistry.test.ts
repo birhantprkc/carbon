@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  isSubmitShortcutOwner,
   registerSubmitShortcut,
   shouldSubmitOnShortcut,
   submitShortcutCount,
@@ -16,7 +17,8 @@ describe("shouldSubmitOnShortcut (guard truth table)", () => {
         ownForm: formA,
         activeForm: formA,
         activeIsEditable: true,
-        activeSubmitCount: 3
+        activeSubmitCount: 3,
+        ownsForm: true
       })
     ).toBe(true);
   });
@@ -27,7 +29,8 @@ describe("shouldSubmitOnShortcut (guard truth table)", () => {
         ownForm: formA,
         activeForm: formB,
         activeIsEditable: true,
-        activeSubmitCount: 1
+        activeSubmitCount: 1,
+        ownsForm: true
       })
     ).toBe(false);
   });
@@ -38,7 +41,8 @@ describe("shouldSubmitOnShortcut (guard truth table)", () => {
         ownForm: formA,
         activeForm: null,
         activeIsEditable: true,
-        activeSubmitCount: 1
+        activeSubmitCount: 1,
+        ownsForm: true
       })
     ).toBe(false);
   });
@@ -49,7 +53,8 @@ describe("shouldSubmitOnShortcut (guard truth table)", () => {
         ownForm: formA,
         activeForm: null,
         activeIsEditable: false,
-        activeSubmitCount: 1
+        activeSubmitCount: 1,
+        ownsForm: true
       })
     ).toBe(true);
   });
@@ -60,7 +65,8 @@ describe("shouldSubmitOnShortcut (guard truth table)", () => {
         ownForm: formA,
         activeForm: null,
         activeIsEditable: false,
-        activeSubmitCount: 2
+        activeSubmitCount: 2,
+        ownsForm: true
       })
     ).toBe(false);
   });
@@ -71,7 +77,8 @@ describe("shouldSubmitOnShortcut (guard truth table)", () => {
         ownForm: null,
         activeForm: formB,
         activeIsEditable: true,
-        activeSubmitCount: 1
+        activeSubmitCount: 1,
+        ownsForm: true
       })
     ).toBe(false);
   });
@@ -82,12 +89,72 @@ describe("submit shortcut registry", () => {
     const a = Symbol("a");
     const b = Symbol("b");
     const base = submitShortcutCount();
-    registerSubmitShortcut(a);
-    registerSubmitShortcut(b);
+    registerSubmitShortcut(a, null);
+    registerSubmitShortcut(b, null);
     expect(submitShortcutCount()).toBe(base + 2);
     unregisterSubmitShortcut(a);
     expect(submitShortcutCount()).toBe(base + 1);
     unregisterSubmitShortcut(b);
     expect(submitShortcutCount()).toBe(base);
+  });
+});
+
+describe("one shortcut owner per form", () => {
+  it("only the first-mounted active Submit of a form fires in-form", () => {
+    const first = Symbol("first");
+    const second = Symbol("second");
+    const form = {} as HTMLFormElement;
+    registerSubmitShortcut(first, form);
+    registerSubmitShortcut(second, form);
+    try {
+      expect(isSubmitShortcutOwner(first, form)).toBe(true);
+      expect(isSubmitShortcutOwner(second, form)).toBe(false);
+      expect(
+        shouldSubmitOnShortcut({
+          ownForm: form,
+          activeForm: form,
+          activeIsEditable: true,
+          activeSubmitCount: 2,
+          ownsForm: isSubmitShortcutOwner(second, form)
+        })
+      ).toBe(false);
+      expect(
+        shouldSubmitOnShortcut({
+          ownForm: form,
+          activeForm: form,
+          activeIsEditable: true,
+          activeSubmitCount: 2,
+          ownsForm: isSubmitShortcutOwner(first, form)
+        })
+      ).toBe(true);
+    } finally {
+      unregisterSubmitShortcut(first);
+      unregisterSubmitShortcut(second);
+    }
+  });
+
+  it("ownership passes to the next Submit when the owner unmounts", () => {
+    const first = Symbol("first");
+    const second = Symbol("second");
+    const form = {} as HTMLFormElement;
+    registerSubmitShortcut(first, form);
+    registerSubmitShortcut(second, form);
+    try {
+      unregisterSubmitShortcut(first);
+      expect(isSubmitShortcutOwner(second, form)).toBe(true);
+    } finally {
+      unregisterSubmitShortcut(first);
+      unregisterSubmitShortcut(second);
+    }
+  });
+
+  it("a null form never owns the shortcut", () => {
+    const a = Symbol("a");
+    registerSubmitShortcut(a, null);
+    try {
+      expect(isSubmitShortcutOwner(a, null)).toBe(false);
+    } finally {
+      unregisterSubmitShortcut(a);
+    }
   });
 });

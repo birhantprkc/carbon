@@ -733,7 +733,7 @@ msgid "Mark Short"
 msgstr "Отметить как недостача"
 
 msgid "Mark the step done / record"
-msgstr "Отметить этап как завершённый / запись"
+msgstr "Отметить этап как завершённый / записать"
 
 msgid "matches"
 msgstr "соответствует"

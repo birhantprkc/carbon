@@ -1149,6 +1149,9 @@ msgstr "Dodaj pozycję (w przeglądarkach dokumentów)"
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Dodaj sekcję materiałów, która zawiera listę każdego elementu zestawienia materiałowego z jego ilością."
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Dodaj drukarkę w ustawieniach drukowania, aby drukować etykiety bezpośrednio."
 
@@ -1160,6 +1163,9 @@ msgstr "Dodaj wiersz"
 
 msgid "Add a step"
 msgstr "Dodaj krok"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "Dodaj Umiejętność"
@@ -8710,8 +8716,8 @@ msgstr "Pozycje dziennika"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Dowody księgowe datowane na dzień lub wcześniej są traktowane jako zablokowane. Scalane z datą blokady zgłoszoną przez dostawcę, gdy oba istnieją."
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "Przejdź do sekcji na stronach szczegółów (⇧⌘ + litera sekcji)"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "Tylko jeden"

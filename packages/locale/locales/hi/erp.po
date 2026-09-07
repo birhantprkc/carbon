@@ -1149,6 +1149,9 @@ msgstr "दस्तावेज़ एक्सप्लोरर में प
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "बिल ऑफ मेटेरियल्स पर प्रत्येक आइटम और उसकी मात्रा को सूचीबद्ध करने वाली एक सामग्री अनुभाग जोड़ें।"
 
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
+
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "लेबल सीधे प्रिंट करने के लिए प्रिंटिंग सेटिंग्स में एक प्रिंटर जोड़ें।"
 
@@ -1160,6 +1163,9 @@ msgstr "एक पंक्ति जोड़ें"
 
 msgid "Add a step"
 msgstr "एक चरण जोड़ें"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "क्षमता जोड़ें"
@@ -8710,8 +8716,8 @@ msgstr "जर्नल पंक्तियाँ"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "इस तारीख को या इससे पहले दिनांकित जर्नल को लॉक माना जाता है। दोनों मौजूद होने पर प्रदाता द्वारा रिपोर्ट की गई लॉक तारीख के साथ मर्ज किया जाता है।"
 
-msgid "Jump to a section on detail pages (⇧⌘ + the section's letter)"
-msgstr "विवरण पृष्ठों पर अनुभाग पर जाएं (⇧⌘ + अनुभाग का अक्षर)"
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
 
 msgid "Just one"
 msgstr "बस एक"

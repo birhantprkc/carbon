@@ -1442,7 +1442,7 @@ msgid "Today"
 msgstr "今日"
 
 msgid "Toggle the sidebar"
-msgstr "サイドバーを切り替え"
+msgstr "サイドバーの表示/非表示を切り替える"
 
 msgid "Tools"
 msgstr "工具"
