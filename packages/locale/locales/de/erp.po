@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "Auftragsvorgang"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "Auftragsvorgang Los"
 
 msgid "Job Operations"
 msgstr "Auftragsvorgang­änge"
@@ -11024,6 +11024,9 @@ msgstr "Kein Lagerbestand für diesen Artikel ist erfasst. Sie können ihn trotz
 
 msgid "No work center utilization data within range"
 msgstr "Keine Auslastungsdaten des Arbeitsplatzes im Bereich vorhanden"
+
+msgid "No work centers at this location"
+msgstr "Keine Arbeitsplätze an diesem Standort"
 
 msgid "No work centers exist"
 msgstr "Keine Arbeitsplätze vorhanden"

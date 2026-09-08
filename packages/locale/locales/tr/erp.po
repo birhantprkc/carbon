@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "İş emri operasyonu"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "İş emri operasyonu partisi"
 
 msgid "Job Operations"
 msgstr "İş emri operasyonları"
@@ -11024,6 +11024,9 @@ msgstr "Bu ürün için depoda kayıtlı stok bulunmamaktadır. Sayım yeniden d
 
 msgid "No work center utilization data within range"
 msgstr "Belirlenen aralıkta iş merkezi kullanım verisi yok"
+
+msgid "No work centers at this location"
+msgstr "Bu lokasyonda İş merkezi yok"
 
 msgid "No work centers exist"
 msgstr "İş merkezi bulunmamaktadır"

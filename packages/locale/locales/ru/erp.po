@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "Операция заказа"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "Серия операции заказа"
 
 msgid "Job Operations"
 msgstr "Операции заказа"
@@ -11024,6 +11024,9 @@ msgstr "На складе нет записей о наличии этого т�
 
 msgid "No work center utilization data within range"
 msgstr "Нет данных об использовании рабочего центра в указанном диапазоне"
+
+msgid "No work centers at this location"
+msgstr "На этой площадке нет рабочих центров"
 
 msgid "No work centers exist"
 msgstr "Рабочих центров не существует"

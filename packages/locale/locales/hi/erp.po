@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "जॉब ऑपरेशन"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "जॉब ऑपरेशन बैच"
 
 msgid "Job Operations"
 msgstr "जॉब ऑपरेशन"
@@ -11024,6 +11024,9 @@ msgstr "इस आइटम के लिए कोई गोदाम स्ट
 
 msgid "No work center utilization data within range"
 msgstr "सीमा के भीतर कोई वर्क सेंटर उपयोग डेटा नहीं"
+
+msgid "No work centers at this location"
+msgstr "इस स्थान पर कोई वर्क सेंटर नहीं"
 
 msgid "No work centers exist"
 msgstr "कोई वर्क सेंटर मौजूद नहीं है"

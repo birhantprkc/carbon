@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "Operazione dell'ordine"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "Lotto di operazione dell'ordine"
 
 msgid "Job Operations"
 msgstr "Operazioni dell'ordine"
@@ -11024,6 +11024,9 @@ msgstr "Nessuna giacenza di magazzino è registrata per questo articolo. Puoi co
 
 msgid "No work center utilization data within range"
 msgstr "Nessun dato di utilizzo del centro di lavoro nell'intervallo"
+
+msgid "No work centers at this location"
+msgstr "Nessun centro di lavoro in questa ubicazione"
 
 msgid "No work centers exist"
 msgstr "Non esistono centri di lavoro"

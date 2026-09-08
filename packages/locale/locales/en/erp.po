@@ -11025,6 +11025,9 @@ msgstr "No warehouse stock is on record for this item. You can still pick it —
 msgid "No work center utilization data within range"
 msgstr "No work center utilization data within range"
 
+msgid "No work centers at this location"
+msgstr "No work centers at this location"
+
 msgid "No work centers exist"
 msgstr "No work centers exist"
 

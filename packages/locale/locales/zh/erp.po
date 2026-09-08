@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "工单工序"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "工单工序批次"
 
 msgid "Job Operations"
 msgstr "工单工序"
@@ -11024,6 +11024,9 @@ msgstr "此物料的仓库库存无记录。您仍然可以拣货 — 在手库�
 
 msgid "No work center utilization data within range"
 msgstr "范围内没有工作中心利用率数据"
+
+msgid "No work centers at this location"
+msgstr "此地点没有工作中心"
 
 msgid "No work centers exist"
 msgstr "没有工作中心存在"

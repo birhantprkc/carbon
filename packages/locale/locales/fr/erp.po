@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "Opération d'OF"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "Lot de production d'opération d'OF"
 
 msgid "Job Operations"
 msgstr "Opérations d'OF"
@@ -11024,6 +11024,9 @@ msgstr "Aucun stock d'entrepôt n'est enregistré pour cet article. Vous pouvez 
 
 msgid "No work center utilization data within range"
 msgstr "Aucune donnée d'utilisation des postes de travail dans la plage"
+
+msgid "No work centers at this location"
+msgstr "Aucun poste de travail sur ce site"
 
 msgid "No work centers exist"
 msgstr "Aucun poste de travail n'existe"

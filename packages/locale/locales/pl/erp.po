@@ -8889,7 +8889,7 @@ msgid "Job Operation"
 msgstr "Operacja zlecenia"
 
 msgid "Job operation batch"
-msgstr ""
+msgstr "Partia produkcyjna operacji zlecenia"
 
 msgid "Job Operations"
 msgstr "Operacje zlecenia"
@@ -11024,6 +11024,9 @@ msgstr "Brak zapasu w magazynie dla tego artykułu. Możesz go mimo tego pobrać
 
 msgid "No work center utilization data within range"
 msgstr "Brak danych o wykorzystaniu stanowiska roboczego w podanym zakresie"
+
+msgid "No work centers at this location"
+msgstr "Brak stanowisk roboczych w tej lokalizacji"
 
 msgid "No work centers exist"
 msgstr "Nie istnieją stanowiska robocze"
