@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "त्यागें"
 
 msgid "Discard import"
-msgstr ""
+msgstr "आयात त्यागें"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "क्या यह आयात त्यागें?"
 
 msgid "Discarded"
 msgstr "छोड़ा गया"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "वर्तमान रखें"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "संपादन जारी रखें"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "मौजूदा मूल्य निर्धारण रखें, केवल नई वस्तुएं जोड़ें"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "व्यय खाता जिस पर यह अप्रत्यक्ष-खर्च लाइन पोस्ट करता है; आवश्यक है क्योंकि अप्रत्यक्ष लाइनों के पास खाता प्राप्त करने के लिए कोई वस्तु बही प्रविष्टि नहीं है।"
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "आपके द्वारा अपलोड की गई फ़ाइल और की गई मैपिंग खो जाएँगी।"
 
 msgid "the first 3 to 4 weeks"
 msgstr "पहले 3 से 4 सप्ताह"

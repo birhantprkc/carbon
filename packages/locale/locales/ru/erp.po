@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "Отклонить"
 
 msgid "Discard import"
-msgstr ""
+msgstr "Отклонить импорт"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "Отклонить этот импорт?"
 
 msgid "Discarded"
 msgstr "Отклонено"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "Сохранить текущие"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "Продолжить редактирование"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "Сохранить существующее ценообразование, добавить только новую номенклатуру"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "Счет расходов, на который относится эта строка косвенных расходов; требуется, так как косвенные строки не имеют записи в книге товаров, из которой можно вывести счет."
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "Загруженный файл и созданные сопоставления будут потеряны."
 
 msgid "the first 3 to 4 weeks"
 msgstr "первые 3–4 недели"

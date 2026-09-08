@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "丢弃"
 
 msgid "Discard import"
-msgstr ""
+msgstr "丢弃导入"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "丢弃此次导入？"
 
 msgid "Discarded"
 msgstr "已放弃"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "保持当前"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "继续编辑"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "保留现有定价，仅添加新物料"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "此间接支出行过账至的费用科目；因为间接行没有物料分类账条目来推导科目，所以这是必需的。"
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "您上传的文件和已完成的映射将会丢失。"
 
 msgid "the first 3 to 4 weeks"
 msgstr "前3到4周"

@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "Scarta"
 
 msgid "Discard import"
-msgstr ""
+msgstr "Scarta importazione"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "Scartare questa importazione?"
 
 msgid "Discarded"
 msgstr "Scartato"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "Mantieni Attuale"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "Continua a modificare"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "Mantieni la determinazione dei prezzi esistente, aggiungi solo nuovi articoli"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "Il conto spese a cui questa riga di spesa indiretta viene contabilizzata; obbligatorio perché le righe indirette non hanno una voce di inventario da cui derivare il conto."
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "Il file caricato e le mappature effettuate andranno persi."
 
 msgid "the first 3 to 4 weeks"
 msgstr "le prime 3-4 settimane"

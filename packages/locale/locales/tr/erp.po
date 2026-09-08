@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "Atıkla"
 
 msgid "Discard import"
-msgstr ""
+msgstr "İçe aktarmadan vazgeç"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "Bu içe aktarmadan vazgeçilsin mi?"
 
 msgid "Discarded"
 msgstr "İptal edildi"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "Mevcut Tut"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "Düzenlemeye devam et"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "Mevcut fiyatlandırmayı koru, yalnızca yeni öğeler ekle"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "Bu dolaylı harcama satırının nakledildiği gider hesabı; dolaylı satırlar hesabı türetmek için bir envanter defter girişine sahip olmadığından gereklidir."
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "Yüklediğiniz dosya ve yaptığınız eşleştirmeler kaybolacak."
 
 msgid "the first 3 to 4 weeks"
 msgstr "ilk 3 ila 4 hafta"

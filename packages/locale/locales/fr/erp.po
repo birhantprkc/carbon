@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "Rejeter"
 
 msgid "Discard import"
-msgstr ""
+msgstr "Rejeter l'import"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "Rejeter cet import ?"
 
 msgid "Discarded"
 msgstr "Rejeté"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "Conserver les paramètres actuels"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "Continuer l'édition"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "Conserver la tarification existante, ajouter uniquement les nouveaux articles"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "Le compte de charge auquel cette ligne de dépenses indirectes se comptabilise; requis parce que les lignes indirectes n'ont pas d'entrée de livre comptable d'article à partir de laquelle dériver le compte."
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "Le fichier que vous avez importé et les correspondances que vous avez définies seront perdus."
 
 msgid "the first 3 to 4 weeks"
 msgstr "les 3 à 4 premières semaines"

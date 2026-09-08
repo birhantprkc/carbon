@@ -5636,10 +5636,10 @@ msgid "Discard"
 msgstr "Odrzuć"
 
 msgid "Discard import"
-msgstr ""
+msgstr "Odrzuć import"
 
 msgid "Discard this import?"
-msgstr ""
+msgstr "Odrzucić ten import?"
 
 msgid "Discarded"
 msgstr "Odrzucono"
@@ -8954,7 +8954,7 @@ msgid "Keep Current"
 msgstr "Zachowaj bieżące"
 
 msgid "Keep editing"
-msgstr ""
+msgstr "Kontynuuj edycję"
 
 msgid "Keep existing pricing, only add new items"
 msgstr "Zachowaj istniejące ceny, dodaj tylko nowe artykuły"
@@ -16355,7 +16355,7 @@ msgid "The expense account this indirect-spend line posts to; required because i
 msgstr "Konto wydatków, na które ta linia wydatków pośrednich jest księgowana; wymagane, ponieważ linie pośrednie nie mają wpisu do księgi inwentarzowej, z którego można pochodzić konto."
 
 msgid "The file you uploaded and the mappings you've made will be lost."
-msgstr ""
+msgstr "Przesłany plik i utworzone mapowania zostaną utracone."
 
 msgid "the first 3 to 4 weeks"
 msgstr "pierwsze 3 do 4 tygodnie"
