@@ -58,10 +58,13 @@ export const JOB_OPERATION_STATUS_COLOR_MAP = {
 
 // Operation batch lifecycle. `Active` is DISPLAYED as "Released"; the colors
 // mirror the job map (Planned=yellow, Released/Ready=blue, in-flight=orange,
-// done=green) so a batch reads the same as the jobs it dispatches.
+// done=green) so a batch reads the same as the jobs it dispatches. "Released"
+// is a display alias for Active (BatchStatus rewrites the label) so consumers
+// that render the display name — the docs StatusFlow — resolve the same blue.
 export const BATCH_STATUS_COLOR_MAP = {
   Planned: "yellow",
   Active: "blue",
+  Released: "blue",
   Completing: "orange",
   Completed: "green"
 } as const satisfies Record<string, StatusColor>;

@@ -1239,7 +1239,7 @@ msgid "Add a materials section that lists each item on the bill of materials wit
 msgstr "Adicione uma seção de materiais que lista cada item na lista de materiais com sua quantidade."
 
 msgid "Add a parameter (in the procedure explorer)"
-msgstr ""
+msgstr "Adicionar um parâmetro (no explorador de procedimentos)"
 
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Adicione uma impressora nas configurações de impressão para imprimir etiquetas diretamente."
@@ -1254,7 +1254,7 @@ msgid "Add a step"
 msgstr "Adicionar uma etapa"
 
 msgid "Add a step or question (in procedure and training explorers)"
-msgstr ""
+msgstr "Adicionar uma etapa ou pergunta (nos exploradores de procedimento e treinamento)"
 
 msgid "Add Ability"
 msgstr "Adicionar Capacidade"
@@ -4262,7 +4262,7 @@ msgstr "Não foi possível ler o documento: {0}"
 #. placeholder {0}: d.failed.length
 #. placeholder {1}: d.failed .map((f) => f.readableId) .join(", ")
 msgid "Could not release {0}: {1}"
-msgstr ""
+msgstr "Não foi possível liberar {0}: {1}"
 
 msgid "Could not save"
 msgstr "Não foi possível salvar"
@@ -8956,7 +8956,7 @@ msgid "Journals dated on or before this date are treated as locked. Merged with 
 msgstr "Diários datados nesta data ou antes são tratados como bloqueados. Mesclados com a data de bloqueio relatada pelo fornecedor quando ambos existem."
 
 msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
-msgstr ""
+msgstr "Ir para uma seção em páginas de detalhes (mesmos modificadores + a letra da seção)"
 
 msgid "Just one"
 msgstr "Apenas um"
@@ -11540,6 +11540,9 @@ msgstr "operação"
 msgid "Operation"
 msgstr "Operação"
 
+msgid "Operation batch"
+msgstr "Lote de operação"
+
 msgid "Operation lead time"
 msgstr "Lead time da operação"
 
@@ -13381,7 +13384,7 @@ msgstr "Liberação"
 
 #. placeholder {0}: releasable.length
 msgid "Release {0} batches"
-msgstr ""
+msgstr "Liberar {0} lotes de produção"
 
 msgid "Release Batch"
 msgstr "Liberar lote de produção"
@@ -13403,7 +13406,7 @@ msgstr "Liberado"
 
 #. placeholder {0}: d.released
 msgid "Released {0} batches"
-msgstr ""
+msgstr "Liberados {0} lotes de produção"
 
 msgid "Released date"
 msgstr "Data de lançamento"
@@ -17908,6 +17911,9 @@ msgstr "Recuperar da Sucata {label}"
 
 msgid "Unshipped orders"
 msgstr "Pedidos não enviados"
+
+msgid "Unstarted job operations on one batchable process grouped to run together at a work center, sharing one setup and one timer whose time splits back per job in proportion to quantity."
+msgstr "Operações da ordem não iniciadas em um processo em lote agrupadas para executar juntas em um centro de trabalho, compartilhando um setup e um cronômetro cujo tempo se divide de volta por ordem proporcionalmente à quantidade."
 
 msgid "Unsupported source document type: {sourceDocument}"
 msgstr "Tipo de documento de origem não suportado: {sourceDocument}"

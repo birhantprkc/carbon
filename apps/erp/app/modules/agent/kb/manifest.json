@@ -372,6 +372,27 @@
       ]
     },
     {
+      "slug": "docs/reference/batching",
+      "title": "Operation batching",
+      "description": "Group identical operations from several jobs to run as one setup and one timer at a work center, with time and cost split back per job by quantity.",
+      "keywords": ["operation", "batching", "docs", "reference"],
+      "headings": [
+        "Making a process batchable",
+        "Building a batch",
+        "Lifecycle",
+        "On the schedule",
+        "On the shop floor",
+        "Related",
+        "Internals, exact strings, and troubleshooting",
+        "The batch card is missing from the operations board / MES",
+        "Can't dissolve, unrelease, remove a member, or change the work center",
+        "An operator sees a job that was never released",
+        "Retry Completion rejects my corrected quantities",
+        "The builder hides some operations on the process",
+        "Suggested batches look wrong / too small"
+      ]
+    },
+    {
       "slug": "docs/reference/calibration",
       "title": "Gauges and calibration",
       "description": "Track measurement instruments, schedule their calibrations, and flag any gauge that falls out of calibration.",
