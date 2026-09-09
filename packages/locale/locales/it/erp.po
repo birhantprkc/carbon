@@ -1229,8 +1229,14 @@ msgstr "Aggiungi una riga di prezzo personalizzata per forzare quantità, prezzo
 msgid "Add a domain"
 msgstr "Aggiungi un dominio"
 
+msgid "Add a line (in document explorers)"
+msgstr "Aggiungi una riga (negli esploratori di documenti)"
+
 msgid "Add a materials section that lists each item on the bill of materials with its quantity."
 msgstr "Aggiungi una sezione materiali che elenca ogni articolo della distinta base con la sua quantità."
+
+msgid "Add a parameter (in the procedure explorer)"
+msgstr ""
 
 msgid "Add a printer in the printing settings to print labels directly."
 msgstr "Aggiungi una stampante nelle impostazioni di stampa per stampare le etichette direttamente."
@@ -1243,6 +1249,9 @@ msgstr "Aggiungi una riga"
 
 msgid "Add a step"
 msgstr "Aggiungi un passaggio"
+
+msgid "Add a step or question (in procedure and training explorers)"
+msgstr ""
 
 msgid "Add Ability"
 msgstr "Aggiungi Capacità"
@@ -3753,6 +3762,9 @@ msgstr "Conferma {0}"
 
 msgid "Confirm & release"
 msgstr "Conferma e rilascia"
+
+msgid "Confirm a dialog"
+msgstr "Conferma una finestra di dialogo"
 
 msgid "Confirm all"
 msgstr "Conferma tutti"
@@ -7858,6 +7870,9 @@ msgstr "Vai a {0}"
 msgid "Go to implementation hub"
 msgstr "Vai all'hub di implementazione"
 
+msgid "Go to module"
+msgstr "Vai al modulo"
+
 msgid "Go to that week"
 msgstr "Vai a quella settimana"
 
@@ -8937,6 +8952,9 @@ msgstr "Righe di registrazione"
 msgid "Journals dated on or before this date are treated as locked. Merged with the provider-reported lock date when both exist."
 msgstr "Le prime note datate su o prima di questa data sono trattate come bloccate. Unite alla data di blocco segnalata dal provider quando entrambe esistono."
 
+msgid "Jump to a section on detail pages (same modifiers + the section's letter)"
+msgstr ""
+
 msgid "Just one"
 msgstr "Solo uno"
 
@@ -8981,6 +8999,9 @@ msgstr "Mantiene ordini, offerte e impostazioni dietro un secondo controllo"
 
 msgid "Key"
 msgstr "Chiave"
+
+msgid "Keyboard shortcuts"
+msgstr "Scorciatoie da tastiera"
 
 msgid "Kind of record"
 msgstr "Tipo di record"
@@ -9207,6 +9228,9 @@ msgstr "Chiaro"
 
 msgid "Light Mode"
 msgstr "Modalità Chiara"
+
+msgid "Light or dark mode"
+msgstr "Modalità chiara o scura"
 
 msgid "Lights Out (24×7)"
 msgstr "Spento (24×7)"
@@ -10418,6 +10442,9 @@ msgstr "Nuova Riga offerta"
 msgid "New Receipt"
 msgstr "Nuova Ricevuta"
 
+msgid "New record (on list pages)"
+msgstr "Nuovo record (nelle pagine di elenco)"
+
 msgid "New record created"
 msgstr "Nuovo record creato"
 
@@ -10540,6 +10567,9 @@ msgstr "Data di prossima scadenza"
 
 msgid "Next page"
 msgstr "Pagina successiva"
+
+msgid "Next page (in tables)"
+msgstr "Pagina successiva (nelle tabelle)"
 
 msgid "Next Sequence"
 msgstr "Sequenza Successiva"
@@ -10955,6 +10985,9 @@ msgstr "Nessun lavoro programmato in questo intervallo"
 
 msgid "No shifts configured — assuming Mon–Fri, 8h days"
 msgstr "Nessun turno configurato — presupponendo giorni lun–ven, 8h"
+
+msgid "No shortcuts available on this page."
+msgstr "Nessuna scorciatoia disponibile in questa pagina."
 
 msgid "No single, trusted number for inventory or job status"
 msgstr "Nessun numero unico e affidabile per l'inventario o lo stato del lavoro"
@@ -12362,6 +12395,9 @@ msgstr "Giorno precedente"
 
 msgid "Previous page"
 msgstr "Pagina precedente"
+
+msgid "Previous page (in tables)"
+msgstr "Pagina precedente (nelle tabelle)"
 
 msgid "Previous step"
 msgstr "Passaggio precedente"
@@ -14223,6 +14259,9 @@ msgstr "Salva Metodo"
 msgid "Save Rate"
 msgstr "Salva tasso"
 
+msgid "Save the form you're editing"
+msgstr "Salva il modulo che stai modificando"
+
 msgid "Save view"
 msgstr "Salva vista"
 
@@ -15115,6 +15154,9 @@ msgstr "Mostra ID Fornitore"
 
 msgid "Show sync options"
 msgstr "Mostra opzioni di sincronizzazione"
+
+msgid "Show this overlay"
+msgstr "Mostra questo overlay"
 
 msgid "Show Trailing Zeros"
 msgstr "Mostra Zeri Finali"
@@ -17389,6 +17431,9 @@ msgstr "Attiva/disattiva livello"
 
 msgid "Toggle Properties"
 msgstr "Attiva/Disattiva Proprietà"
+
+msgid "Toggle the sidebar"
+msgstr "Attiva/disattiva la barra laterale"
 
 msgid "Toggle views"
 msgstr "Attiva/disattiva visualizzazioni"
