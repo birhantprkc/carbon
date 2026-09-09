@@ -108,6 +108,44 @@ describe("mcp tool-metadata generator", () => {
     expect(insertContact?.required ?? []).not.toContain("email");
   });
 
+  // zod's email conversion emits a ~200-char `pattern` next to
+  // `format: "email"` on every email field — the format keyword carries the
+  // contract; the regex is stripped to keep describe_tool responses lean.
+  it("never publishes pattern alongside format", () => {
+    const walk = (node: unknown, path: string): void => {
+      if (Array.isArray(node)) {
+        node.forEach((item, i) => walk(item, `${path}[${i}]`));
+        return;
+      }
+      if (node !== null && typeof node === "object") {
+        const record = node as Record<string, unknown>;
+        if (typeof record.format === "string") {
+          expect(record.pattern, path).toBeUndefined();
+        }
+        for (const [key, value] of Object.entries(record)) {
+          walk(value, `${path}.${key}`);
+        }
+      }
+    };
+    for (const t of tools) walk(t.schema, t.name);
+    // The format itself survives the strip.
+    const email = props(get("sales_insertCustomerContact")).contact?.properties
+      ?.email;
+    expect(email?.format).toBe("email");
+  });
+
+  // A `{mod}.mcp.server.ts` export that shares a service function's name
+  // SHADOWS it — one tool, the wrapper's implementation, the same published
+  // name/schema. Without the generator dedupe the tool appeared twice.
+  it("registers a shadowed mcp.server function exactly once", () => {
+    const entries = tools.filter(
+      (t) => t.name === "production_upsertJobMaterial"
+    );
+    expect(entries).toHaveLength(1);
+    // The wrapper keeps the service's discriminated-upsert contract.
+    expect(props(entries[0]!)._operation?.enum).toEqual(["create", "update"]);
+  });
+
   // A parenthesized discriminated-upsert union branch resolves instead of
   // publishing an opaque {} member (and the leading-pipe union style must not
   // contribute an empty first member).

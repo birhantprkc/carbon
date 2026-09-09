@@ -1189,6 +1189,27 @@ function stripComments(source: string): string {
     .replace(/(^|[^:])\/\/.*$/gm, "$1");
 }
 
+/**
+ * Delete `pattern` wherever a sibling `format` is present, recursively. zod
+ * v4's email conversion emits BOTH — `format: "email"` plus a ~200-character
+ * regex — on every email field of every validator-derived schema. The format
+ * keyword carries the same contract for a fraction of the tokens, and MCP
+ * clients read these schemas far more often than they validate against them.
+ */
+function stripRedundantPatterns(node: unknown): void {
+  if (Array.isArray(node)) {
+    for (const item of node) stripRedundantPatterns(item);
+    return;
+  }
+  if (node !== null && typeof node === "object") {
+    const record = node as Record<string, unknown>;
+    if (typeof record.format === "string" && "pattern" in record) {
+      delete record.pattern;
+    }
+    for (const value of Object.values(record)) stripRedundantPatterns(value);
+  }
+}
+
 function addOperationArg(schema: Record<string, unknown>): void {
   const properties = (schema.properties ?? {}) as Record<string, unknown>;
   properties._operation = {
@@ -1453,7 +1474,19 @@ export function buildAllToolMetadata(opts: BuildOptions = {}): ManifestEntry[] {
     if (fs.existsSync(mcpServerFile)) {
       const mcpServerContent = fs.readFileSync(mcpServerFile, "utf-8");
       content = `${content}\n${mcpServerContent}`;
-      functions.push(...parseExportedFunctions(mcpServerContent));
+      // A same-named mcp.server export SHADOWS the service one — matching the
+      // runtime registry, where the mcp.server spread wins — so an orchestration
+      // wrapper can replace a bare service function without renaming the
+      // published tool. Its PARAMS come from the wrapper; note that body scans
+      // (classification, the `_operation` discriminator) read the FIRST match in
+      // the concatenated content, i.e. the service body — a wrapper must keep
+      // the same discriminator convention as the function it shadows.
+      const mcpFunctions = parseExportedFunctions(mcpServerContent);
+      const shadowed = new Set(mcpFunctions.map((f) => f.name));
+      for (let i = functions.length - 1; i >= 0; i--) {
+        if (shadowed.has(functions[i].name)) functions.splice(i, 1);
+      }
+      functions.push(...mcpFunctions);
     }
 
     // Sources searched when a param references a bare type alias, most
@@ -1494,6 +1527,7 @@ export function buildAllToolMetadata(opts: BuildOptions = {}): ManifestEntry[] {
         onResolved: (validatorName, how) =>
           opts.onValidatorResolved?.(toolName, validatorName, how),
       });
+      stripRedundantPatterns(schema);
       if (
         injectAuth.includes("createdBy") &&
         usesOperationDiscriminator(content, func.name)
