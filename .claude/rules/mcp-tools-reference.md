@@ -245,11 +245,27 @@ exports into the same module namespace), and writes `apps/erp/app/routes/api+/mc
   `{"type":"array","items":{...}}`; a `z.infer<typeof V>` validator param resolves
   `V.merge(z.object({...}))` / `applyX(...)` wrappers / referenced `*Validator`s
   (same models file) into real fields; and an `errorMap: () => (...)` inside a
-  validator no longer truncates the fields after it. A parameter typed with a bare
-  **named alias** (`prices: QuoteLinePriceInput[]`) still publishes with opaque
-  `items` — the alias isn't resolved — so spell the object type out inline. Keep
-  `//` comments above the function, not inside the parameter list (a comment there
-  is parsed as a property name).
+  validator no longer truncates the fields after it. A `z.infer<typeof V>`
+  **nested inside an inline object type** also resolves — bare, `Partial<...>`,
+  `PickPartial<..., "k">` (listed keys turn optional), `Omit<..., "k">`, an
+  indexed access (`z.infer<...>["lines"]`), and an `& { ... }` intersection —
+  as do parenthesized discriminated-upsert union branches
+  (`(Omit<z.infer<...>> & {...}) | (...)`). Also resolved:
+  `Database["public"]["Enums"][...]` (real value enums) and
+  `Database["public"]["Tables"][t]["Row"|"Insert"|"Update"]` (real columns,
+  auth-injected fields stripped) via `scripts/lib/db-types.ts` over the
+  generated types; `Array<T>`/`ReadonlyArray<T>`/`Record<string, V>`/
+  `Partial<X>` generics; general `A & B` intersections; `(typeof x)[number]`
+  const arrays (real values when the registry has them); and bare **type
+  aliases declared in the module's own sources** (service file, `types.ts`,
+  models, and the shared equivalents). This matters on WRITE tools: an untyped
+  `{}` invites an MCP client to guess field names, and a guessed
+  `contact.phone` reached the insert and failed with PGRST204 (pinned by
+  `apps/erp/test/mcp-tool-metadata.test.ts`). Still opaque, deliberately:
+  compiler-derived types (`ReturnType`/`Awaited`), aliases imported from other
+  packages, `Map<...>` params, and genuine `Json`/`unknown`/rich-text fields.
+  Keep `//` comments above the function, not inside the parameter list (a
+  comment there is parsed as a property name).
 - A service whose first parameter is `db` (a Kysely transaction client) is served
   `getDatabaseClient()` by `dispatch.server.ts`, the same way `client` is served
   the supabase one. A first parameter named anything else falls through to the
