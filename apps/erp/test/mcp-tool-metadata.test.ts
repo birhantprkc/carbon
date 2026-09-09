@@ -146,6 +146,48 @@ describe("mcp tool-metadata generator", () => {
     expect(props(entries[0]!)._operation?.enum).toEqual(["create", "update"]);
   });
 
+  // A union/intersection AROUND a validator reference publishes the
+  // intersection extras, not the validator verbatim. `jobId` is NOT NULL in
+  // the DB but lived only in the `& { jobId: string }` extras, so the schema
+  // omitted it and a schema-exact create failed with a 23502 — an MCP agent
+  // found this live. Required only where required in EVERY union branch, so a
+  // create-only `Omit<…, "id">` branch demotes `id` to optional.
+  it("publishes intersection extras on discriminated upserts", () => {
+    const jobMaterial = get("production_upsertJobMaterial");
+    expect(props(jobMaterial).jobId?.type).toBe("string");
+    expect(jobMaterial.schema.required).toContain("jobId");
+    expect(Object.keys(props(jobMaterial))).toContain("customFields");
+
+    const quoteMaterial = get("sales_upsertQuoteMaterial");
+    expect(quoteMaterial.schema.required).toContain("quoteId");
+    expect(quoteMaterial.schema.required).toContain("quoteLineId");
+
+    // Create branch omits `id` (server-minted), update branch has it → optional.
+    const quoteOperation = get("sales_upsertQuoteOperation");
+    expect(Object.keys(props(quoteOperation))).toContain("id");
+    expect(quoteOperation.schema.required ?? []).not.toContain("id");
+  });
+
+  // An `Omit<…, "field">` in the service signature is honored — the field the
+  // service explicitly refuses must not be re-published from the validator.
+  it("honors Omit<> in composed signatures", () => {
+    expect(Object.keys(props(get("purchasing_insertSupplier")))).not.toContain(
+      "id"
+    );
+    expect(
+      Object.keys(props(get("inventory_insertManualInventoryAdjustment")))
+    ).not.toContain("requiresSerialTracking");
+  });
+
+  // `zfd.text(z.string().transform((v) => v === "true"))` — the form-post
+  // boolean — publishes its two legal values instead of a bare string. An MCP
+  // agent passing real booleans got an opaque validation failure.
+  it("annotates string-encoded booleans with their legal values", () => {
+    const p = props(get("production_upsertJobMaterial"));
+    expect(p.requiresBatchTracking?.enum).toEqual(["true", "false"]);
+    expect(p.requiresSerialTracking?.enum).toEqual(["true", "false"]);
+  });
+
   // A parenthesized discriminated-upsert union branch resolves instead of
   // publishing an opaque {} member (and the leading-pipe union style must not
   // contribute an empty first member).

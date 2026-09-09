@@ -115,6 +115,40 @@ HTTP/agent/workflow callers of `callOperation` are untouched:
 - `search_tools` returns just the grouped list — the old how-to footer
   duplicated the server instructions and re-listed every name a second time.
 
+### Schemas tell the caller the WHOLE contract (agent-found bug class)
+
+Three fixes from letting a real MCP agent drive the server; all pinned by
+`mcp-tool-metadata.test.ts` and `validation-issues.test.ts`:
+
+- **Intersection extras are published.** A single-object param typed
+  `(z.infer<V> & { jobId; …; createdBy }) | (z.infer<V> & { jobId; …;
+  updatedBy })` used to publish the validator VERBATIM (the unanchored
+  `z.infer<` match in `buildToolSchema` won first), silently dropping every
+  `& {...}` extra — `jobId` (NOT NULL in the DB) was missing from
+  `production_upsertJobMaterial`, `quoteId`/`quoteLineId` from
+  `sales_upsertQuoteMaterial`; ~120 tools carried some form of it. Union
+  branches now resolve through the intersection-aware machinery and merge
+  flat: properties from every branch, required only where required in EVERY
+  branch (so a create-only `Omit<…, "id">` branch demotes `id` to optional),
+  auth fields stripped via `CONTEXT_PARAMS`. An `Omit<…, "field">` is honored
+  too — `purchasing_insertSupplier` no longer re-publishes the `id` its
+  signature refuses. The `& ({createdBy} | {updatedBy})` audit union still
+  resolves to the validator verbatim by design (its extras are all injected).
+- **String-encoded booleans publish their two legal values.**
+  `zfd.text(z.string().transform((v) => v === "true"))` converted to a bare
+  `{type:"string"}`, so JSON callers sent real booleans and got an opaque
+  rejection. `validator-to-json-schema.ts` PROBES each field (parses "true" →
+  `true`, "false" → `false`; nothing else in the codebase does that —
+  `z.coerce.boolean()` maps "false" to `true`) and adds
+  `enum: ["true","false"]`.
+- **Validation errors name the fields.** oRPC's bare "Input validation failed"
+  is expanded by `callOperation` from the issues on the ORPCError
+  (`formatValidationIssues`, `api+/v1+/lib/validation-issues.ts`): each
+  issue's dotted path + message, capped at 8. Because `.input()` compiles from
+  the published schema, the fixed schemas also mean jobId-missing /
+  boolean-for-string mistakes are caught at validation with a self-correcting
+  message instead of surfacing as a Postgres 23502.
+
 ## How `call_tool` actually runs a tool (the canonical oRPC dispatch)
 
 `call_tool` does **not** go back through the MCP protocol — it calls
