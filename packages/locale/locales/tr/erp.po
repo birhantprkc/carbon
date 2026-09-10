@@ -1850,11 +1850,17 @@ msgstr "Uygulandı"
 msgid "Applied amount for {0}"
 msgstr "{0} için uygulanan tutar"
 
+msgid "Applied amounts are in company base currency ({baseCurrency})."
+msgstr "Uygulanan tutarlar şirket temel para birimindedir ({baseCurrency})."
+
 msgid "Applied Date"
 msgstr "Uygulama Tarihi"
 
 msgid "Applied To"
 msgstr "Uygulandı"
+
+msgid "Applied, discount and write-off amounts are in company base currency ({baseCurrency})."
+msgstr "Uygulanan tutarlar, iskontolar ve kayıttan düşülen tutarlar şirketin temel para birimi ({baseCurrency}) cinsindendir."
 
 msgid "Applies to"
 msgstr "Uygulama"
@@ -2379,6 +2385,12 @@ msgstr "Bu kullanıcılara daveti göndermek istediğinizden emin misiniz?"
 
 msgid "Are you sure you want to send an invite to this user?"
 msgstr "Bu kullanıcıya daveti göndermek istediğinizden emin misiniz?"
+
+msgid "Are you sure you want to void this memo? This will reverse its accounting entries and applications. This cannot be undone."
+msgstr "Bu notu hükümsüz kılmak istediğinizden emin misiniz? Bu, muhasebe girişlerini ve uygulamalarını tersine çevirecektir. Bu geri alınamaz."
+
+msgid "Are you sure you want to void this payment? This will reverse its accounting entries and applications. This cannot be undone."
+msgstr "Bu ödemeyi hükümsüz kılmak istediğinizden emin misiniz? Bu, muhasebe girişlerini ve uygulamalarını tersine çevirecektir. Bu geri alınamaz."
 
 msgid "Are you sure you want to void this purchase invoice? This action will reverse all financial transactions and cannot be undone."
 msgstr "Bu alış faturasını hükümsüz kılmak istediğinizden emin misiniz? Bu işlem tüm mali işlemleri tersine çevirecek ve geri alınamaz."
@@ -3439,9 +3451,6 @@ msgstr "Arama sorgusunu temizle"
 
 msgid "Clear selection"
 msgstr "Seçimi temizle"
-
-msgid "Clear this invoice with the party's posted credits as well as cash. Credits apply directly — no posting needed."
-msgstr "Bu faturayı tarafın muhasebeleştirilmiş alacakları ve nakit ile kapatın. Alacaklar doğrudan uygulanır — muhasebeleştirme gerekmez."
 
 msgid "Clear value"
 msgstr "Değeri temizle"
@@ -4599,6 +4608,9 @@ msgstr "Genel üretim giderleri WIP'e soğurulduğunda alacak hesabı"
 
 msgid "Credit accounts used when manufacturing costs are absorbed into WIP"
 msgstr "Üretim maliyetleri WIP'e soğurulduğunda kullanılan alacak hesapları"
+
+msgid "Credit amounts are in company base currency ({currency}). Credits take effect when this payment posts."
+msgstr "Alacak tutarları şirketin temel para birimi ({currency}) cinsindendir. Bu ödeme muhasebeleştirildiğinde alacaklar geçerli olur."
 
 msgid "Credit Memo"
 msgstr "Alacak dekontu"
@@ -8564,6 +8576,9 @@ msgstr "stok"
 msgid "Inv Rate"
 msgstr "Fatura Oranı"
 
+msgid "Invalid applications"
+msgstr "Geçersiz uygulamalar"
+
 msgid "Invalid Invite"
 msgstr "Geçersiz Davetiye"
 
@@ -10854,6 +10869,9 @@ msgstr "Atanacak kimse yok"
 msgid "No open invoices"
 msgstr "Açık fatura yok"
 
+msgid "No open memos"
+msgstr "Açık muhasebe notları yok"
+
 msgid "No open orders for this item are available to link."
 msgstr "Bu stok kartı için bağlanacak açık sipariş yok."
 
@@ -11965,6 +11983,9 @@ msgstr "Ödeme Uygulamaları"
 msgid "Payment Date"
 msgstr "Ödeme Tarihi"
 
+msgid "Payment from Customer"
+msgstr "Müşteriden Ödeme"
+
 msgid "Payment ID"
 msgstr "Ödeme Kimliği"
 
@@ -11986,11 +12007,14 @@ msgstr "Ödeme Koşulları"
 msgid "Payment terms like Net 30 or due on receipt"
 msgstr "Net 30 gibi ödeme koşulları veya alındığında ödeme"
 
+msgid "Payment to Supplier"
+msgstr "Tedarikçiye Ödeme"
+
 msgid "Payments"
 msgstr "Ödemeler"
 
-msgid "Payments and credits applied to this invoice. Click a row to open the source document."
-msgstr "Bu faturaya uygulanan ödemeler ve krediler. Kaynak belgeyi açmak için bir satıra tıklayın."
+msgid "Payments and credits applied to this invoice. Applied amounts and FX are in company base currency. Click a row to open the source document."
+msgstr "Bu faturaya uygulanan ödemeler ve alacaklar. Uygulanan tutarlar ve kur farkları şirketin temel para birimi cinsindendir. Kaynak belgeyi açmak için bir satıra tıklayın."
 
 msgid "PDF"
 msgstr "PDF"
@@ -13280,8 +13304,8 @@ msgstr "Kayıt"
 msgid "Record a credit or debit memo against a customer or supplier. Applications to specific invoices are added after the memo is created."
 msgstr "Bir müşteri veya tedarikçiye karşı kredi veya borç notu kaydedin. Belirli faturaların uygulamaları, not oluşturulduktan sonra eklenir."
 
-msgid "Record cash received from a customer (Receipt) or paid to a supplier (Disbursement). Applications to specific invoices are added after the payment is created."
-msgstr "Müşteriden alınan nakiti (Tahsilat) veya tedarikçiye ödenen nakiti (Tediye) kaydedin. Belirli faturaların uygulamaları ödeme oluşturulduktan sonra eklenir."
+msgid "Record a customer payment, supplier payment, or refund. Applications to invoices or memos are added after the payment is created."
+msgstr "Müşteri ödemesi, tedarikçi ödemesi veya iade kaydedin. Faturaların veya muhasebe notlarının uygulamaları, ödeme oluşturulduktan sonra eklenir."
 
 msgid "Record deleted"
 msgstr "Kayıt silindi"
@@ -13324,6 +13348,15 @@ msgstr "Yenile"
 
 msgid "Refresh exchange rate"
 msgstr "Döviz kurunu yenile"
+
+msgid "Refund from Supplier"
+msgstr "Tedarikçiden İade"
+
+msgid "Refund memos"
+msgstr "İade Muhasebe Notları"
+
+msgid "Refund to Customer"
+msgstr "Müşteriye İade"
 
 msgid "Regenerate"
 msgstr "Yeniden oluştur"
@@ -13829,8 +13862,14 @@ msgstr "Sürüm {revision}"
 msgid "Revenue"
 msgstr "Hasılat"
 
+msgid "Revenue account for shipping charged to customers"
+msgstr "Müşterilere yansıtılan kargo için hasılat hesabı"
+
 msgid "Revenue and expenses over a period"
 msgstr "Bir dönem içinde hasılat ve giderler"
+
+msgid "Revenue GL account credited for shipping charged to customers, posted on its own line; it must be a different account from the Sales default."
+msgstr "Müşterilere yapılan kargo masrafları için alacaklandırılan Hasılat muhasebe hesabı, kendi satırında muhasebeleştirilir; Satış varsayılanından farklı bir hesap olması gerekir."
 
 msgid "Reverse all inventory adjustments"
 msgstr "Tüm stok düzeltmelerini ters kayıt yap"
@@ -14719,9 +14758,6 @@ msgstr "Yüzeyleri seç"
 msgid "Select the groups that should complete this training"
 msgstr "Bu eğitimi tamamlaması gereken grupları seçin"
 
-msgid "Select the invoices this payment settles. Discount and write-off are in invoice currency."
-msgstr "Bu ödemenin kapattığı faturaları seç. İskonto ve Kayıttan Düşme fatura para birimindedir."
-
 msgid "Select value"
 msgstr "Değer seçin"
 
@@ -15094,6 +15130,12 @@ msgstr "Sevkiyat yöntemleri"
 
 msgid "Shipping Notes"
 msgstr "Sevkiyat Notları"
+
+msgid "Shipping Revenue"
+msgstr "Kargo hasılatı"
+
+msgid "Shipping Revenue (default)"
+msgstr "Kargo hasılatı (varsayılan)"
 
 msgid "Shipping Supplier"
 msgstr "Nakliye Tedarikçisi"
@@ -16125,6 +16167,9 @@ msgstr "Vergi Yüzdesi"
 
 msgid "Tax Residual Value %"
 msgstr "Vergi Kalıntı Değeri %"
+
+msgid "Tax Status"
+msgstr "Vergi Durumu"
 
 msgid "Tax Useful Life (default)"
 msgstr "Vergi faydalı ömrü (varsayılan)"
@@ -18480,6 +18525,11 @@ msgstr "Kullanıcının herkese açık profilinde görünür"
 
 msgid "Void"
 msgstr "Hükümsüz kıl"
+
+#. placeholder {0}: initialValues.memoId
+#. placeholder {0}: initialValues.paymentId
+msgid "Void {0}"
+msgstr "Hükümsüz Kıl {0}"
 
 msgid "Void Invoice"
 msgstr "Faturayı hükümsüz kıl"

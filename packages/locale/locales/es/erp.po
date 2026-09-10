@@ -1850,11 +1850,17 @@ msgstr "Aplicado"
 msgid "Applied amount for {0}"
 msgstr "Importe aplicado para {0}"
 
+msgid "Applied amounts are in company base currency ({baseCurrency})."
+msgstr "Los montos aplicados están en la moneda base de la empresa ({baseCurrency})."
+
 msgid "Applied Date"
 msgstr "Fecha de Aplicación"
 
 msgid "Applied To"
 msgstr "Aplicado a"
+
+msgid "Applied, discount and write-off amounts are in company base currency ({baseCurrency})."
+msgstr "Los importes aplicados, los descuentos y las cancelaciones contables están expresados en la moneda base de la empresa ({baseCurrency})."
 
 msgid "Applies to"
 msgstr "Se aplica a"
@@ -2379,6 +2385,12 @@ msgstr "¿Estás seguro de que deseas enviar una invitación a estos usuarios?"
 
 msgid "Are you sure you want to send an invite to this user?"
 msgstr "¿Estás seguro de que deseas enviar una invitación a este usuario?"
+
+msgid "Are you sure you want to void this memo? This will reverse its accounting entries and applications. This cannot be undone."
+msgstr "¿Está seguro de que desea anular este memorándum? Esto invertirá sus asientos contables y aplicaciones. No se puede deshacer."
+
+msgid "Are you sure you want to void this payment? This will reverse its accounting entries and applications. This cannot be undone."
+msgstr "¿Está seguro de que desea anular este pago? Esto invertirá sus asientos contables y aplicaciones. No se puede deshacer."
 
 msgid "Are you sure you want to void this purchase invoice? This action will reverse all financial transactions and cannot be undone."
 msgstr "¿Está seguro de que desea anular esta factura de compra? Esta acción revertirá todas las transacciones financieras y no se puede deshacer."
@@ -3439,9 +3451,6 @@ msgstr "Limpiar consulta de búsqueda"
 
 msgid "Clear selection"
 msgstr "Limpiar selección"
-
-msgid "Clear this invoice with the party's posted credits as well as cash. Credits apply directly — no posting needed."
-msgstr "Liquide esta factura con los créditos contabilizados de la parte así como efectivo. Los créditos se aplican directamente — no se requiere contabilización."
 
 msgid "Clear value"
 msgstr "Limpiar valor"
@@ -4599,6 +4608,9 @@ msgstr "Cuenta de haber cuando los costos indirectos se absorben en producto en 
 
 msgid "Credit accounts used when manufacturing costs are absorbed into WIP"
 msgstr "Cuentas de haber utilizadas cuando los costos de manufactura se absorben en producto en proceso"
+
+msgid "Credit amounts are in company base currency ({currency}). Credits take effect when this payment posts."
+msgstr "Los importes de crédito están expresados en la moneda base de la empresa ({currency}). Los créditos tienen efecto cuando se contabiliza este pago."
 
 msgid "Credit Memo"
 msgstr "Nota de Crédito"
@@ -8564,6 +8576,9 @@ msgstr "inv"
 msgid "Inv Rate"
 msgstr "Tasa Inv"
 
+msgid "Invalid applications"
+msgstr "Aplicaciones no válidas"
+
 msgid "Invalid Invite"
 msgstr "Invitación Inválida"
 
@@ -10854,6 +10869,9 @@ msgstr "Nadie para asignar"
 msgid "No open invoices"
 msgstr "Sin facturas abiertas"
 
+msgid "No open memos"
+msgstr "Sin memorandos abiertos"
+
 msgid "No open orders for this item are available to link."
 msgstr "No hay pedidos abiertos disponibles para este artículo."
 
@@ -11965,6 +11983,9 @@ msgstr "Aplicaciones de Pago"
 msgid "Payment Date"
 msgstr "Fecha de Pago"
 
+msgid "Payment from Customer"
+msgstr "Pago del Cliente"
+
 msgid "Payment ID"
 msgstr "ID de Pago"
 
@@ -11986,11 +12007,14 @@ msgstr "Condiciones de pago"
 msgid "Payment terms like Net 30 or due on receipt"
 msgstr "Condiciones de pago como Neto 30 o pagadero a la recepción"
 
+msgid "Payment to Supplier"
+msgstr "Pago al Proveedor"
+
 msgid "Payments"
 msgstr "Pagos"
 
-msgid "Payments and credits applied to this invoice. Click a row to open the source document."
-msgstr "Pagos y créditos aplicados a esta factura. Haz clic en una fila para abrir el documento de origen."
+msgid "Payments and credits applied to this invoice. Applied amounts and FX are in company base currency. Click a row to open the source document."
+msgstr "Pagos y créditos aplicados a esta factura. Los importes aplicados y las diferencias de cambio están expresados en la moneda base de la empresa. Haga clic en una fila para abrir el documento de origen."
 
 msgid "PDF"
 msgstr "PDF"
@@ -13280,8 +13304,8 @@ msgstr "Registro"
 msgid "Record a credit or debit memo against a customer or supplier. Applications to specific invoices are added after the memo is created."
 msgstr "Registrar una nota de crédito o débito contra un cliente o proveedor. Las aplicaciones a facturas específicas se agregan después de que se crea la nota."
 
-msgid "Record cash received from a customer (Receipt) or paid to a supplier (Disbursement). Applications to specific invoices are added after the payment is created."
-msgstr "Registre el efectivo recibido de un cliente (Recepción) o pagado a un proveedor (Desembolso). Las aplicaciones a facturas específicas se agregan después de que se crea el pago."
+msgid "Record a customer payment, supplier payment, or refund. Applications to invoices or memos are added after the payment is created."
+msgstr "Registre un pago del cliente, un pago al proveedor, o un reembolso. Las aplicaciones a facturas o memorandos se agregan después de que se crea el pago."
 
 msgid "Record deleted"
 msgstr "Registro eliminado"
@@ -13324,6 +13348,15 @@ msgstr "Actualizar"
 
 msgid "Refresh exchange rate"
 msgstr "Actualizar tipo de cambio"
+
+msgid "Refund from Supplier"
+msgstr "Reembolso del Proveedor"
+
+msgid "Refund memos"
+msgstr "Memorandos de Reembolso"
+
+msgid "Refund to Customer"
+msgstr "Reembolso al Cliente"
 
 msgid "Regenerate"
 msgstr "Regenerar"
@@ -13829,8 +13862,14 @@ msgstr "Rev {revision}"
 msgid "Revenue"
 msgstr "Ingresos por ventas"
 
+msgid "Revenue account for shipping charged to customers"
+msgstr "Cuenta de ingresos por gastos de envío cobrados a los clientes"
+
 msgid "Revenue and expenses over a period"
 msgstr "Ingresos por ventas y gastos durante un período"
+
+msgid "Revenue GL account credited for shipping charged to customers, posted on its own line; it must be a different account from the Sales default."
+msgstr "Cuenta contable de Ingresos por Envío acreditada por gastos de envío cobrados a clientes, contabilizada en su propia línea; debe ser una cuenta diferente de la predeterminada de Ventas."
 
 msgid "Reverse all inventory adjustments"
 msgstr "Revertir todos los ajustes de inventario"
@@ -14719,9 +14758,6 @@ msgstr "Seleccionar superficies"
 msgid "Select the groups that should complete this training"
 msgstr "Selecciona los grupos que deben completar esta capacitación"
 
-msgid "Select the invoices this payment settles. Discount and write-off are in invoice currency."
-msgstr "Seleccione las facturas que este pago liquida. El descuento y la cancelación contable están en la moneda de la factura."
-
 msgid "Select value"
 msgstr "Seleccionar valor"
 
@@ -15094,6 +15130,12 @@ msgstr "Métodos de Envío"
 
 msgid "Shipping Notes"
 msgstr "Notas de Envío"
+
+msgid "Shipping Revenue"
+msgstr "Ingresos por gastos de envío"
+
+msgid "Shipping Revenue (default)"
+msgstr "Ingresos por gastos de envío (predeterminado)"
 
 msgid "Shipping Supplier"
 msgstr "Proveedor de Envío"
@@ -16125,6 +16167,9 @@ msgstr "Porcentaje de Impuesto"
 
 msgid "Tax Residual Value %"
 msgstr "Valor residual fiscal %"
+
+msgid "Tax Status"
+msgstr "Estado fiscal"
 
 msgid "Tax Useful Life (default)"
 msgstr "Vida útil fiscal (predeterminada)"
@@ -18480,6 +18525,11 @@ msgstr "Visible en el perfil público de un usuario"
 
 msgid "Void"
 msgstr "Anular"
+
+#. placeholder {0}: initialValues.memoId
+#. placeholder {0}: initialValues.paymentId
+msgid "Void {0}"
+msgstr "Anular {0}"
 
 msgid "Void Invoice"
 msgstr "Anular Factura"
