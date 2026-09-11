@@ -90,15 +90,14 @@ export function createMcpServer(ctx: McpContext, today: string): McpServer {
       // Find the tool in metadata
       const tool = toolMetadata.tools.find(t => t.name === name);
       if (!tool) {
-        logger.error("Tool not found", { name });
+        // A caller typo, not a server fault — warn, not error.
+        logger.warn("Tool not found", { name });
         return {
           content: [{ type: "text" as const, text: `Tool '${name}' not found` }],
           isError: true
         };
       }
 
-      logger.info("Found tool", { name: tool.name, module: tool.module });
-      
       // Tool schemas are provided via metadata, no need to load modules
       
       let output = `Tool: ${name}\n`;
@@ -191,22 +190,29 @@ export function createMcpServer(ctx: McpContext, today: string): McpServer {
 
       // Runs through the canonical oRPC dispatch (gate middleware included); the
       // Supabase envelope arrives already unwrapped to `data`/`count`.
+      const start = performance.now();
       const result = await callOperation(name, ctx, args);
-
-      logger.info("Execution result", {
-        success: result.success,
-        hasData: result.success && result.data !== undefined,
-        error: result.success ? undefined : result.error
-      });
+      const responseTime = performance.now() - start;
 
       if (result.success) {
+        logger.info("Execution result", {
+          name,
+          success: true,
+          hasData: result.data !== undefined,
+          responseTime
+        });
         const output =
           result.data === undefined
             ? "Operation completed successfully"
             : formatMcpResult(result.data, result.count);
         return { content: [{ type: "text" as const, text: output }] };
       }
-      logger.error("Tool execution failed", { error: result.error });
+      logger.error("Tool execution failed", {
+        name,
+        error: result.error,
+        errorKind: result.errorKind,
+        responseTime
+      });
       return {
         content: [{
           type: "text" as const,
@@ -233,12 +239,9 @@ export function createMcpServer(ctx: McpContext, today: string): McpServer {
     },
     withErrorHandling(async (params: any) => {
       const { query, module, classification, limit = 20, offset = 0 } = params;
-      
-      logger.info("search_tools invoked", { query, module, classification, limit, offset });
 
       let results = toolMetadata.tools;
-      logger.info("Total tools available", { count: results.length });
-      
+
       // Apply filters
       if (module) {
         results = results.filter(t => t.module.toLowerCase().includes(module.toLowerCase()));
@@ -257,10 +260,17 @@ export function createMcpServer(ctx: McpContext, today: string): McpServer {
       
       const foundTools = results.slice(offset, offset + limit);
       const toolNames = foundTools.map(t => t.name);
-      
-      logger.info("Found tools after filtering", { count: results.length });
-      logger.info("Returning tools", { toolNames });
-      
+
+      logger.info("search_tools invoked", {
+        query,
+        module,
+        classification,
+        limit,
+        offset,
+        matched: results.length,
+        returned: toolNames.length
+      });
+
       // Build response
       let output = `Found ${results.length} tools`;
       if (results.length > limit) {
