@@ -32,6 +32,8 @@ DB types, Supabase/Kysely clients, audit config, event system types, rate limiti
 - Specify decimal places in `NUMERIC` columns (use bare `NUMERIC`).
 - Use `000000` for the HHMMSS portion of migration timestamps (causes cross-branch collisions).
 - Use the deprecated `has_role` / `has_company_permission` RLS helpers.
+- Write a `SECURITY DEFINER` function that trusts a company id from its caller without `PERFORM assert_company_access(company_id)` first — every `public` function is an API endpoint (see `.claude/rules/database-migration-patterns.md`).
+- `REVOKE EXECUTE` on a `public` function: on this Postgres image calling it then segfaults the backend. Guard inside the function, or make it `SECURITY INVOKER`.
 
 ## Validation Commands
 

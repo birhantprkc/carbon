@@ -81993,6 +81993,10 @@ export type Database = {
         Args: { p_company_id: string; p_permission: string }
         Returns: undefined
       }
+      assert_company_access: {
+        Args: { p_company_id: string; p_permission?: string }
+        Returns: undefined
+      }
       attach_audit_log_append_only: {
         Args: { p_table_name: string }
         Returns: undefined

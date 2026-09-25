@@ -2271,3 +2271,28 @@ roles when only the server writes them. Also check `pg_policies` for `qual = 'tr
 
 **Applies to:** `packages/database/supabase/migrations/**` RLS on global tables (`user`,
 `userPermission`, `group`), and any review of an RLS helper.
+
+---
+
+**Context:** A security report: with only the published anon key, a caller could reach 84+
+SECURITY DEFINER functions through `/rest/v1/rpc` — inventory valuation, claims, document
+sequences, the event interceptors — for any company, plus a SQL injection in
+`get_company_id_from_foreign_key`. Table RLS held on all 438 tables; the functions went around it.
+
+**Problem:** Every function in `public` is an RPC endpoint, and a SECURITY DEFINER one bypasses
+RLS. Guards were written inline as `IF NOT (has_role(...) OR ...)`, which is NULL — not true —
+when a lookup finds nothing, so they never raised. The obvious fix, `REVOKE EXECUTE`, segfaults
+this Postgres image on the next anon call (`20260924192316`); a first draft of the fix did exactly
+that and only a rule file caught it, because its test checked `has_function_privilege` instead of
+making the call.
+
+**Rule:** Never `REVOKE EXECUTE` on a public function. A SECURITY DEFINER function that takes a
+company id calls `assert_company_access` first; one that only servers call raises on
+`current_setting('role')`; everything internal (helpers, event interceptors) is SECURITY INVOKER.
+Never trust a user id parameter without relating it to `auth.uid()`. Test a guard by CALLING the
+function as `anon` and as another company's user, not by reading the catalog. Edge functions:
+`verify_jwt` accepts the anon key, so authorize in-function (`requirePermissions` / `requireCaller`).
+
+**Applies to:** every `CREATE FUNCTION` in `packages/database/supabase/migrations/**`,
+`packages/database/supabase/functions/*/index.ts`; enforced by the
+`public-definer-function-authorizes-caller` invariant and `supabase/tests/rpc-privileges.test.sql`.
